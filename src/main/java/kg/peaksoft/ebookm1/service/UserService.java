@@ -41,13 +41,13 @@ public class UserService implements UserDetailsService {
     }
 
     public UserResponse update(UserRequest request, Long id) {
-        User user = repository.getById(id);
+        User user = repository.findById(id).get();
         editMapper.updateUser(user, request);
         return viewMapper.viewUser(repository.save(user));
     }
 
     public UserResponse getById(Long id) {
-        User user = repository.getById(id);
+        User user = repository.findById(id).get();
         return viewMapper.viewUser(user);
     }
 
@@ -56,7 +56,7 @@ public class UserService implements UserDetailsService {
     }
 
     public UserResponse deleteById(Long id) {
-        User user = repository.getById(id);
+        User user = repository.findById(id).get();
         repository.deleteById(id);
         return viewMapper.viewUser(user);
     }

@@ -13,5 +13,7 @@ import java.util.Set;
 public class AuthResponse {
     private String jwtToken;
     private String message;
+    private String firstName;
+    private String email;
     private Set<String> authorities;
 }

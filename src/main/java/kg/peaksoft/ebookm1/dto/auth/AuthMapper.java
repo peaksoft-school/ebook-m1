@@ -16,6 +16,8 @@ public class AuthMapper {
             setAuthority(authResponse, user.getRoles());
         }
         authResponse.setJwtToken(token);
+        authResponse.setFirstName(user.getFirstName());
+        authResponse.setEmail(user.getEmail());
         authResponse.setMessage(message);
         return authResponse;
     }
