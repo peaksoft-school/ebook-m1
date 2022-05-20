@@ -19,7 +19,6 @@ public class UserResponse {
     private String lastName;
     private String phoneNumber;
     private String email;
-    private String password;
     private LocalDateTime created;
     private boolean isActive;
 }

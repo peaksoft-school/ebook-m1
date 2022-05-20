@@ -21,7 +21,6 @@ public class UserViewMapper {
         response.setLastName(user.getLastName());
         response.setPhoneNumber(user.getPhoneNumber());
         response.setEmail(user.getEmail());
-        response.setPassword(user.getPassword());
         response.setCreated(user.getCreated());
         response.setActive(true);
         return response;
