@@ -1,7 +1,7 @@
-package kg.peaksoft.ebookm1.dto.auth;
+package kg.peaksoft.ebookm1.api.payLoad.dto.auth;
 
-import kg.peaksoft.ebookm1.entity.Role;
-import kg.peaksoft.ebookm1.entity.User;
+import kg.peaksoft.ebookm1.db.entity.securityEntity.Role;
+import kg.peaksoft.ebookm1.db.entity.securityEntity.User;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -10,6 +10,7 @@ import java.util.Set;
 
 @Component
 public class AuthMapper {
+
     public AuthResponse view(String token, String message, User user) {
         var authResponse = new AuthResponse();
         if (user != null) {
@@ -30,4 +31,3 @@ public class AuthMapper {
         authResponse.setAuthorities(authorities);
     }
 }
-

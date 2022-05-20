@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.dto.auth;
+package kg.peaksoft.ebookm1.api.payLoad.dto.auth;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -11,6 +11,7 @@ import java.util.Set;
 @Setter
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class AuthResponse {
+
     private String jwtToken;
     private String message;
     private String firstName;

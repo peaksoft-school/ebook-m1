@@ -1,6 +1,6 @@
-package kg.peaksoft.ebookm1.repository;
+package kg.peaksoft.ebookm1.db.repository;
 
-import kg.peaksoft.ebookm1.entity.Role;
+import kg.peaksoft.ebookm1.db.entity.securityEntity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

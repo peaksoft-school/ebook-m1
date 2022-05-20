@@ -1,21 +1,22 @@
-package kg.peaksoft.ebookm1.dto.user;
+package kg.peaksoft.ebookm1.api.payLoad.dto.user;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class UserRequest {
+public class UserResponse {
 
+    private Long id;
     private String firstName;
     private String lastName;
     private String phoneNumber;
     private String email;
-    private String password;
-
-
+    private LocalDateTime created;
+    private boolean isActive;
 }

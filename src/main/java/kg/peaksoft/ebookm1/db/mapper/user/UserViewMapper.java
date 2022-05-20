@@ -1,6 +1,7 @@
-package kg.peaksoft.ebookm1.dto.user;
+package kg.peaksoft.ebookm1.db.mapper.user;
 
-import kg.peaksoft.ebookm1.entity.User;
+import kg.peaksoft.ebookm1.api.payLoad.dto.user.UserResponse;
+import kg.peaksoft.ebookm1.db.entity.securityEntity.User;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

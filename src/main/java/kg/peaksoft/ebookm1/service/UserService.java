@@ -1,11 +1,11 @@
 package kg.peaksoft.ebookm1.service;
 
-import kg.peaksoft.ebookm1.dto.user.UserEditMapper;
-import kg.peaksoft.ebookm1.dto.user.UserRequest;
-import kg.peaksoft.ebookm1.dto.user.UserResponse;
-import kg.peaksoft.ebookm1.dto.user.UserViewMapper;
-import kg.peaksoft.ebookm1.entity.User;
-import kg.peaksoft.ebookm1.repository.UserRepository;
+import kg.peaksoft.ebookm1.db.mapper.user.UserEditMapper;
+import kg.peaksoft.ebookm1.api.payLoad.dto.user.UserRequest;
+import kg.peaksoft.ebookm1.api.payLoad.dto.user.UserResponse;
+import kg.peaksoft.ebookm1.db.mapper.user.UserViewMapper;
+import kg.peaksoft.ebookm1.db.entity.securityEntity.User;
+import kg.peaksoft.ebookm1.db.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -61,4 +61,3 @@ public class UserService implements UserDetailsService {
         return viewMapper.viewUser(user);
     }
 }
-
