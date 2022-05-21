@@ -24,4 +24,5 @@ public class Book {
     private List<AudioBook> audioBooks;
     @ManyToMany
     private List<eBook> eBooks;
+    private BookType bookType;
 }

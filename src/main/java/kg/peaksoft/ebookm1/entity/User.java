@@ -26,6 +26,7 @@ public class User {
     private String password;
     private LocalDateTime created;
     private Boolean isActive;
+    @OneToMany
     private List<Role> roles;
 
 }

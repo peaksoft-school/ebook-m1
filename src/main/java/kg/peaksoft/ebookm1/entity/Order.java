@@ -25,7 +25,7 @@ public class Order {
     private OrderStatus orderStatus;
     private int sum;
     private String address;
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany
     private List<Client> client;
     @OneToMany
     private List<OrderDetails> orderDetails;

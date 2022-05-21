@@ -36,11 +36,11 @@ public class eBook {
     private int numberOfBooks;
     private int discount;
     private Boolean bestseller;
-    @ManyToMany(cascade= CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany
     private List<Bucket> buckets;
-    @OneToMany(cascade= CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany
     private  List<Genre> genres;
-    @OneToMany(cascade= CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany
     private List<Image> image;
 
 

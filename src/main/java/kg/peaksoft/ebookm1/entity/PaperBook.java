@@ -36,10 +36,10 @@ public class PaperBook {
     private BookType bookType;
     @Enumerated(EnumType.STRING)
     private Language bookLanguage;
-    @ManyToMany(cascade= CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany
     private List<Bucket> buckets;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany
     private List<Genre> genres;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany
     private List<Image> image;
 }
