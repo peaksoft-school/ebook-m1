@@ -18,12 +18,29 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @Column(name = "bucket_books")  //research again
-    private List<Bucket> buckets;
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<PaperBook> paperBooks;
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<AudioBook> audioBooks;
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<eBook> eBooks;
+
+    @OneToOne
+    @JoinColumn(name = "paper_book_paper_book_id")
+    private PaperBook paperBook;
+
+    @OneToOne
+    @JoinColumn(name = "audio_book_audio_id")
+    private AudioBook audioBook;
+
+    @OneToOne
+    @JoinColumn(name = "e_book_e_book_id")
+    private eBook eBook;
+
+
+
+
+
+//    @Column(name = "bucket_books")  //research again
+//    private List<Bucket> buckets;
+//    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private List<PaperBook> paperBooks;
+//    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private List<AudioBook> audioBooks;
+//    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private List<eBook> eBooks;
 }

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "searches")
@@ -18,15 +19,17 @@ public class Search {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String search;
-    @OneToOne
-    @JoinColumn(name = "paper_book_id")
-    private PaperBook paperBook;
-    @OneToOne
-    @JoinColumn(name = "audio_book_id")
-    private AudioBook audioBook;
-    @OneToOne
-    @JoinColumn(name = "ebook_id")
-    private eBook eBook;
+    private List<Book> books;
+
+//    @OneToOne
+//    @JoinColumn(name = "paper_book_id")
+//    private PaperBook paperBook;
+//    @OneToOne
+//    @JoinColumn(name = "audio_book_id")
+//    private AudioBook audioBook;
+//    @OneToOne
+//    @JoinColumn(name = "ebook_id")
+//    private eBook eBook;
 
 
 }

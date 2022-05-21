@@ -24,14 +24,16 @@ public class Client {
     private String email;
     private String password;
     private Boolean emailConfirm;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<Bucket> bucket;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<PaperBook> paperBooks;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<AudioBook> audioBooks;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<eBook> eBooks;
+    @OneToMany
+    private List<Book> books;
+//    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private Bucket bucket;
+//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private List<PaperBook> paperBooks;
+//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private List<AudioBook> audioBooks;
+//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private List<eBook> eBooks;
 
 
 

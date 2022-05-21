@@ -18,11 +18,14 @@ public class Bucket {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<Client> client;
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<PaperBook> paperBooks;
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<AudioBook> audioBooks;
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<eBook> eBooks;
+    private Client client;
+    @OneToMany
+    private List<Book> books;
+
+//    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private List<PaperBook> paperBooks;
+//    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private List<AudioBook> audioBooks;
+//    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private List<eBook> eBooks;
 }

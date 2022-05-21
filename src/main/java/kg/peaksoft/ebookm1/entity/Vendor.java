@@ -17,14 +17,18 @@ import java.util.List;
 public class Vendor {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "vendor_id")
     private Long id;
     private String name;
     private String email;
     private String password;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<PaperBook> paperBooks;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<AudioBook> audioBooks;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<eBook> eBooks;
+    private List<Book> books;
+
+
+//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private List<PaperBook> paperBooks;
+//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private List<AudioBook> audioBooks;
+//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private List<eBook> eBooks;
 }

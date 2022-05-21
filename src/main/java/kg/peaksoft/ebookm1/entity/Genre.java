@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -21,14 +22,16 @@ public class Genre {
     private Long id;
     @Enumerated(EnumType.STRING)
     private BookType bookType;
-    @OneToOne
-    @JoinColumn(name = "paper_book_id")
-    private PaperBook paperBook;
-    @OneToOne
-    @JoinColumn(name = "audio_book_id")
-    private AudioBook audioBook;
-    @OneToOne
-    @JoinColumn(name = "ebook_id")
-    private eBook eBook;
+    @OneToMany
+    private List<Book> books;
+//    @OneToOne
+//    @JoinColumn(name = "paper_book_id")
+//    private PaperBook paperBook;
+//    @OneToOne
+//    @JoinColumn(name = "audio_book_id")
+//    private AudioBook audioBook;
+//    @OneToOne
+//    @JoinColumn(name = "ebook_id")
+//    private eBook eBook;
 
 }

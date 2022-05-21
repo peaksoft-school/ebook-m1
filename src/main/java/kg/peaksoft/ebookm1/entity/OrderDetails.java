@@ -24,9 +24,12 @@ public class OrderDetails {
     private Order order;
     private int amount;
     private int price;
-    private List<PaperBook> paperBooks;
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<AudioBook> audioBooks;
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<eBook> eBooks;
+    @OneToMany
+    private List<Book> books;
+
+//    private List<PaperBook> paperBooks;
+//    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private List<AudioBook> audioBooks;
+//    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private List<eBook> eBooks;
 }
