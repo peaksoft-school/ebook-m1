@@ -12,17 +12,22 @@ public class VendorEditMapper {
             return null;
         }
         Vendor vendor = new Vendor();
-        vendor.setName(request.getName());
+        vendor.setFirstName(request.getFirstName());
+        vendor.setLastName(request.getLastName());
+        vendor.setPhoneNumber(request.getPhoneNumber());
         vendor.setEmail(request.getEmail());
         vendor.setPassword(request.getPassword());
-//        vendor.setEmailConfirm(true);
+        vendor.setEmailConfirm(true);
         return vendor;
     }
 
     public Vendor updateVendor(Vendor vendor, VendorRequest request) {
-        vendor.setName(request.getName());
+        vendor.setFirstName(request.getFirstName());
+        vendor.setLastName(request.getLastName());
+        vendor.setPhoneNumber(request.getPhoneNumber());
         vendor.setEmail(request.getEmail());
         vendor.setPassword(request.getPassword());
+        vendor.setEmailConfirm(true);
         return vendor;
     }
 }

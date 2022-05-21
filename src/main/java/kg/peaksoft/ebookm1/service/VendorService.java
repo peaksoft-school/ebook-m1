@@ -26,18 +26,18 @@ public class VendorService {
     }
 
     public VendorResponse update(Long id, VendorRequest request) {
-        Vendor vendor = repository.getById(id);
+        Vendor vendor = repository.findById(id).get();
         editMapper.updateVendor(vendor, request);
         return viewMapper.viewVendor(repository.save(vendor));
     }
 
     public VendorResponse getById(Long id) {
-        Vendor vendor = repository.getById(id);
+        Vendor vendor = repository.findById(id).get();
         return viewMapper.viewVendor(vendor);
     }
 
     public VendorResponse deleteById(Long id) {
-        Vendor vendor = repository.getById(id);
+        Vendor vendor = repository.findById(id).get();
         repository.deleteById(id);
         return viewMapper.viewVendor(vendor);
     }

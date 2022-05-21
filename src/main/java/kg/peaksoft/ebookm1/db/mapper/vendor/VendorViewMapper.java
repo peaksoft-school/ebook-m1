@@ -18,8 +18,11 @@ public class VendorViewMapper {
         if (vendor.getId() != null) {
             response.setId(vendor.getId());
         }
-        response.setName(vendor.getName());
+        response.setFirstName(vendor.getFirstName());
+        response.setLastName(vendor.getLastName());
+        response.setPhoneNumber(vendor.getPhoneNumber());
         response.setEmail(vendor.getEmail());
+        response.setEmailConfirm(vendor.getEmailConfirm());
         return response;
     }
 

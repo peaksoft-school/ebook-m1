@@ -26,18 +26,18 @@ public class BookService {
     }
 
     public BookResponse update(Long id, BookRequest request) {
-        Book book = repository.getById(id);
+        Book book = repository.findById(id).get();
         editMapper.updateBook(book, request);
         return viewMapper.viewBook(repository.save(book));
     }
 
     public BookResponse getById(Long id) {
-        Book book = repository.getById(id);
+        Book book = repository.findById(id).get();
         return viewMapper.viewBook(book);
     }
 
     public BookResponse deleteById(Long id) {
-        Book book = repository.getById(id);
+        Book book = repository.findById(id).get();
         repository.deleteById(id);
         return viewMapper.viewBook(book);
     }

@@ -8,7 +8,9 @@ import lombok.Data;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class VendorRequest {
 
-    private String name;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
     private String email;
     private String password;
 }

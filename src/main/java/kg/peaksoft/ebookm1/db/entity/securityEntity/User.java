@@ -1,7 +1,6 @@
 package kg.peaksoft.ebookm1.db.entity.securityEntity;
 
 import lombok.*;
-import org.hibernate.annotations.Cascade;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,8 +11,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import static org.hibernate.annotations.CascadeType.*;
 
 @Entity
 @Table(name = "users")
@@ -27,21 +24,21 @@ public class User implements UserDetails {
     @GeneratedValue(generator = "user_gen", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "user_gen", sequenceName = "user_seq", allocationSize = 1)
     private Long id;
-    @Column(name = "first_name", length = 20)
+    @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
     private String phoneNumber;
-    @Column(unique = true, length = 45)
+    @Column(unique = true)
     private String email;
-    @Column(unique = true, length = 20)
+    @Column(unique = true)
     private String password;
     @CreatedDate
     private LocalDateTime created;
     private boolean isActive;
 
-    @ManyToMany
-    @Cascade({MERGE, PERSIST, REFRESH, DETACH})
+    @ManyToMany(fetch = FetchType.EAGER)
+//    @Cascade({MERGE, PERSIST, REFRESH, DETACH})
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "roles_id"))

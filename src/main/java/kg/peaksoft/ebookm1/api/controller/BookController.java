@@ -6,6 +6,7 @@ import kg.peaksoft.ebookm1.api.payLoad.dto.book.BookRequest;
 import kg.peaksoft.ebookm1.api.payLoad.dto.book.BookResponse;
 import kg.peaksoft.ebookm1.service.BookService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/book")
 @Tag(name = "Book", description = "The Book API")
+@PreAuthorize("hasAnyAuthority('ADMIN')")
 public class BookController {
 
     private final BookService service;

@@ -33,6 +33,7 @@ public class UserController {
     }
 
     @GetMapping("/getById/{id}")
+    @Operation(summary = "All  users can get by id")
     public UserResponse getByIdUser(@PathVariable Long id) {
         return userService.getById(id);
     }
@@ -44,6 +45,7 @@ public class UserController {
     }
 
     @GetMapping("/getAll")
+    @Operation(summary = "All  users can get all users")
     public List<UserResponse> getAllUsers() {
         return userService.getAllUsers();
     }
