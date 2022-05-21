@@ -6,15 +6,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "roles")
-@Setter
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class Role {
-    @Id@GeneratedValue(strategy = GenerationType.SEQUENCE)
+
+    @Id
+    @GeneratedValue(generator = "role_gen", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "role_gen", sequenceName = "role_seq", allocationSize = 1)
     private Long id;
-    private String role;
+    private String name;
+
+    @ManyToMany(mappedBy = "roles")
+    private List<User> users;
 }
