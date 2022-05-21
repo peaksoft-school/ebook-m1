@@ -31,17 +31,19 @@ public class DataInitializer {
             Image image3 = new Image();
             image3.setName("poetry");
 
-            Book book1 = new Book();
-            book1.setEBooks(Arrays.asList(eBooks1));
-            book1.setPaperBooks(Arrays.asList(paperBook1));
-            book1.setAudioBooks(Arrays.asList(audioBook1));
 
             //genres
             Genre genre1 = new Genre();
             genre1.setBookType(BookType.AUDIO_BOOK);
             genre1.setBooks(Arrays.asList(book1));
 
+            // book
+            Book book1 = new Book();
+            book1.setEBooks(Arrays.asList(eBooks1));
+            book1.setPaperBooks(Arrays.asList(paperBook1));
+            book1.setAudioBooks(Arrays.asList(audioBook1));
 
+            //bucket
             Bucket bucket1 = new Bucket();
             bucket1 = new Bucket();
             bucket1.setClient();
@@ -49,8 +51,8 @@ public class DataInitializer {
             Bucket bucket2 = new Bucket();
             bucket2 = new Bucket();
             bucket2.setBooks(Arrays.asList());
-//
-                //eBook
+
+            //eBook
             eBook eBooks1 = new eBook();
             eBooks1.setTitle("1948");
             eBooks1.setAuthor("George Orwell");
@@ -67,8 +69,6 @@ public class DataInitializer {
             eBooks1.setImage(Arrays.asList(image1));
             eBooks1.setYearOfIssue(LocalDate.parse("2000", DateTimeFormatter.ofPattern("yyyy")));
             eBooks1.setBuckets(Arrays.asList(bucket1));
-
-
 
            //paperBooks
             PaperBook paperBook1 = new PaperBook();
@@ -102,7 +102,6 @@ public class DataInitializer {
             paperBook2.setNumberOfBooks(7);
             paperBook2.setDiscount(25);
             paperBook2.setBestseller(true);
-//            paperBook1.setBuckets(Arrays.asList(bucket3));
 //            paperBook2.setBuckets(Arrays.asList(buckets));
             paperBook2.setGenres(Arrays.asList(genre1));
             paperBook2.setImage(Arrays.asList(image1));
@@ -148,30 +147,26 @@ public class DataInitializer {
 //            clientRepository.save(client1);
 
 
-            //role was deleted
-//            Role role1 = new Role();
-//            role1.setName("ADMIN");
+            //role
+            Role role1 = new Role();
+            role1.setRole("ADMIN");
 
 
             //user
-//            User user = new User();
-//            user.setFirstName("Jane");
-//            user.setLastName("Casper");
-//            user.setEmail("jane@test.test");
-//            user.setPassword("pass");
-//            user.setCreated(LocalDateTime.now());
-//            user.setIsActive(true);
-//            user.setRoles(Arrays.asList(role1));
+            User user = new User();
+            user.setFirstName("Jane");
+            user.setLastName("Casper");
+            user.setEmail("jane@test.test");
+            user.setPassword("pass");
+            user.setCreated(LocalDateTime.now());
+            user.setIsActive(true);
+            user.setRoles(Arrays.asList(role1));
 
 
            //search
             Search search1 = new Search();
             search1.setSearch("keyword");
             search1.setBooks(Arrays.asList(book1));
-//            search1.setPaperBook(paperBook2);
-//            search1.setAudioBook(audioBook1);
-//            search1.setEBook(eBooks1);
-
 
            //order
             Order order1 = new Order();
@@ -199,26 +194,15 @@ public class DataInitializer {
             promoCode1.setFinishingDay(LocalDateTime.of(2022, 9, 10, 1, 30));
             promoCode1.setPercent(20);
             promoCode1.setBooks(Arrays.asList(book1));
-//            promoCode1.setPaperBooks(Arrays.asList(paperBook2));
-//            promoCode1.setAudioBooks(Arrays.asList(audioBook1));
-//            promoCode1.setEBooks(Arrays.asList(eBooks1));
 
             //favoritesClass
 
             FavoritesBooks favoritesBook1 = new FavoritesBooks();
             favoritesBook1.setBooks(Arrays.asList(book1));
-//            favoritesBook1.setPaperBooks(paperBook2);
-//            favoritesBook1.setAudioBooks(audioBook1);
-//            favoritesBook1.setEBooks(eBooks1);
+
+            clientRepository.save()
 
 
-
-
-
-
-
-
-//
         };
     }
 

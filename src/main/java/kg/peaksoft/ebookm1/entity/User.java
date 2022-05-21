@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -19,8 +22,10 @@ public class User {
     private Long id;
     private String firstName;
     private String lastName;
-    private String PhoneNumber;
     private String email;
     private String password;
-    private Boolean emailConfirm;
+    private LocalDateTime created;
+    private Boolean isActive;
+    private List<Role> roles;
+
 }
