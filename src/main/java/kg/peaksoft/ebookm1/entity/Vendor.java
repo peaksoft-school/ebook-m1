@@ -22,6 +22,7 @@ public class Vendor {
     private String name;
     private String email;
     private String password;
+    @OneToMany
     private List<Book> books;
 
 

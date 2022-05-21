@@ -23,7 +23,9 @@ public class PromoCode {
     private LocalDateTime startingDay;
     private LocalDateTime finishingDay;
     private int percent;
+
     private List<Book> books;
+
 //    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 //    private List<PaperBook> paperBooks;
 //    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)

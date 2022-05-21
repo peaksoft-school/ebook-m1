@@ -6,22 +6,21 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "books")
+@Table(name = "users")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Book {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @ManyToMany
-    private List<PaperBook> paperBooks;
-    @ManyToMany
-    private List<AudioBook> audioBooks;
-    @ManyToMany
-    private List<eBook> eBooks;
+    private String firstName;
+    private String lastName;
+    private String PhoneNumber;
+    private String email;
+    private String password;
+    private Boolean emailConfirm;
 }

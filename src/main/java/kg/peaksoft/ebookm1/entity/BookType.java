@@ -1,30 +1,36 @@
 package kg.peaksoft.ebookm1.entity;
 
 public enum BookType {
-    FANTASY,
-    DETECTIVE,
-    NOVEL,
-    THRILLER,
-    HORROR,
-    COMIC,
-    ADVENTURES,
-    PROSE,
-    POETRY,
-    BUSINESS_LITERATURE,
-    COMPUTER_LITERATURE,
-    PSYCHOLOGY,
-    STORY,
-    ART_AND_CULTURE,
-    SOCIETY,
-    SCIENTIFIC_LITERATURE,
-    MEMORY,
-    HOBBY,
-    BEAUTY_HEALTH,
-    LEARNING_LANGUAGE,
-    BOOK_FOR_CHILDREN,
-    DYSTOPIA;
+//    FANTASY,
+//    DETECTIVE,
+//    NOVEL,
+//    THRILLER,
+//    HORROR,
+//    COMIC,
+//    ADVENTURES,
+//    PROSE,
+//    POETRY,
+//    BUSINESS_LITERATURE,
+//    COMPUTER_LITERATURE,
+//    PSYCHOLOGY,
+//    STORY,
+//    ART_AND_CULTURE,
+//    SOCIETY,
+//    SCIENTIFIC_LITERATURE,
+//    MEMORY,
+//    HOBBY,
+//    BEAUTY_HEALTH,
+//    LEARNING_LANGUAGE,
+//    BOOK_FOR_CHILDREN,
+//    DYSTOPIA;
+    PAPER_BOOK,
+    ELECTRONIC_BOOK,
+    AUDIO_BOOK;
 
-//    private TypeBook bookType;
+    BookType() {
+    }
+
+    //    private TypeBook bookType;
 //
 //
 //
