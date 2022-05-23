@@ -21,25 +21,6 @@ public class PaperBook {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "paperBook_id")
     private Long id;
-    private String title;
-    private String author;
-    private String publishingHouse;
-    private String aboutTheBook;
-    private int price;
-    private int numberOfBooks;
-    private int pageVolume;
-    private int discount;
-    @DateTimeFormat(pattern ="yyyy")
-    private LocalDate yearOfIssue;
-    private Boolean bestseller;
-    @Enumerated(EnumType.STRING)
-    private BookType bookType;
-    @Enumerated(EnumType.STRING)
-    private Language bookLanguage;
-    @ManyToMany
-    private List<Bucket> buckets;
-    @OneToMany
-    private List<Genre> genres;
-    @OneToMany
-    private List<Image> image;
+    private String bookFragment;
+
 }

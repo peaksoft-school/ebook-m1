@@ -19,17 +19,18 @@ public class Vendor {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "vendor_id")
     private Long id;
-    private String name;
+    private String firstName;
+    private String lastName;
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
+    private String phoneNumber;
     private String email;
-    private String password;
     @OneToMany
+    @JoinColumn(name = "books_book_id")
     private List<Book> books;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-
-//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-//    private List<PaperBook> paperBooks;
-//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-//    private List<AudioBook> audioBooks;
-//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-//    private List<eBook> eBooks;
 }

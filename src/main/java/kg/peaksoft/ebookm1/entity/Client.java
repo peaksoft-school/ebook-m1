@@ -23,19 +23,11 @@ public class Client {
     private String PhoneNumber;
     private String email;
     private String password;
-    private Boolean emailConfirm;
-    @OneToMany
-    private List<Book> books;
-//    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-//    private Bucket bucket;
-//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-//    private List<PaperBook> paperBooks;
-//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-//    private List<AudioBook> audioBooks;
-//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-//    private List<eBook> eBooks;
-
-
-
+    private Boolean mailing;
+    @OneToOne
+    private Bucket bucket;
+    @OneToOne
+    @JoinColumn(name = "favorites_books_id")
+    private FavoritesBooks favoritesBooks;
 
 }

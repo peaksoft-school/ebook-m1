@@ -23,14 +23,4 @@ public class FavoritesBooks {
     private List<Book> books;
 
 
-//    @OneToMany
-//    @JoinColumn(name = "paper_book_id")
-//    private List<PaperBook> paperBooks;
-//    @OneToMany
-//    @JoinColumn(name = "audio_book_id")
-//    private List<AudioBook> audioBooks;
-//    @OneToMany
-//    @JoinColumn(name = "ebook_id")
-//    private List<eBook> eBooks;
-
 }

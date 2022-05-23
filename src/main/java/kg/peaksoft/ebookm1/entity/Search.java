@@ -22,15 +22,4 @@ public class Search {
     @OneToMany
     private List<Book> books;
 
-//    @OneToOne
-//    @JoinColumn(name = "paper_book_id")
-//    private PaperBook paperBook;
-//    @OneToOne
-//    @JoinColumn(name = "audio_book_id")
-//    private AudioBook audioBook;
-//    @OneToOne
-//    @JoinColumn(name = "ebook_id")
-//    private eBook eBook;
-
-
 }

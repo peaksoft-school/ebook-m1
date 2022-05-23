@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -17,12 +19,28 @@ import java.util.List;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "book_id")
     private Long id;
-    @ManyToMany
+    private String title;
+    private String author;
+    private String publishingHouse;
+    private String aboutTheBook;
+    @OneToMany
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
+    @Enumerated(EnumType.STRING)
+    private Language bookLanguage;
+    @DateTimeFormat(pattern ="yyyy")
+    private LocalDate yearOfIssue;
+    private int price;
+    private int discount;
+    private Boolean bestseller;
+    @OneToMany
+    private List<Image> image;
+    @OneToOne
     private List<PaperBook> paperBooks;
-    @ManyToMany
+    @OneToOne
     private List<AudioBook> audioBooks;
-    @ManyToMany
+    @OneToOne
     private List<eBook> eBooks;
-    private BookType bookType;
 }

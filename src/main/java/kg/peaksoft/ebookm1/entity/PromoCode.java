@@ -22,15 +22,7 @@ public class PromoCode {
     private String promoName;
     private LocalDateTime startingDay;
     private LocalDateTime finishingDay;
-    private int percent;
-
+    private byte percent;
     @OneToMany
     private List<Book> books;
-
-//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-//    private List<PaperBook> paperBooks;
-//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-//    private List<AudioBook> audioBooks;
-//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-//    private List<eBook> eBooks;
 }
