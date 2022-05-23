@@ -26,8 +26,7 @@ public class DataInitializer {
     CommandLineRunner commandLineRunner(
             UserRepository adminRepository,
             ClientRepository clientRepository,
-            VendorRepository vendorRepository,
-             BookRepository boo) {
+            VendorRepository vendorRepository) {
         return args -> {
 
                 //img
@@ -224,7 +223,7 @@ public class DataInitializer {
                 vendorMask1.setAddress(address1);
                 vendorMask1.setPhoneNumber("+990000222");
                 vendorMask1.setBooks(Arrays.asList(book1));
-                vendorMask1.setUser(user1);
+
 
                 Vendor vendor2 = new Vendor();
                 vendor2.setFirstName("I");
@@ -233,7 +232,7 @@ public class DataInitializer {
                 vendor2.setAddress(address2);
                 vendor2.setPhoneNumber("+990000222");
                 vendor2.setBooks(Arrays.asList(book2));
-                vendor2.setUser(elizabeth);
+
 
                 //search
                 Search search1 = new Search();
@@ -295,12 +294,11 @@ public class DataInitializer {
                 promoCode1.setBooks(Arrays.asList(book1));
 
 
-                adminRepository.save(user1);
-//                vendorRepository.save(vendor2);
-//                clientRepository.save(client1);
-                boo.save(book1);
-//                System.out.println(adminRepository.save(user1));
-////
+
+                System.out.println(adminRepository.save(user1));
+                System.out.println(vendorRepository.save(vendorMask1));
+                System.out.println(vendorRepository.save(vendor2));
+
 //                System.out.println(clientRepository.save(client1));
 //                System.out.println(clientRepository.save(client2));
 

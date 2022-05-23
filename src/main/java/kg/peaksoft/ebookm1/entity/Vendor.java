@@ -28,11 +28,8 @@ public class Vendor {
     private Address address;
     private String phoneNumber;
     private String email;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "books_book_id")
     private List<Book> books;
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 
 }
