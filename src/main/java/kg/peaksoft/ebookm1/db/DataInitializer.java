@@ -7,6 +7,7 @@ import kg.peaksoft.ebookm1.entity.enumClass.Language;
 import kg.peaksoft.ebookm1.entity.orders.OrderStatus;
 import kg.peaksoft.ebookm1.entity.otherClass.Genre;
 import kg.peaksoft.ebookm1.entity.otherClass.Image;
+import kg.peaksoft.ebookm1.entity.otherClass.PromoCode;
 import kg.peaksoft.ebookm1.entity.otherClass.Search;
 import kg.peaksoft.ebookm1.repository.ClientRepository;
 import kg.peaksoft.ebookm1.repository.UserRepository;
