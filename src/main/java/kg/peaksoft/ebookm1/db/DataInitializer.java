@@ -4,11 +4,12 @@ import kg.peaksoft.ebookm1.entity.book.*;
 import kg.peaksoft.ebookm1.entity.enumClass.BookType;
 import kg.peaksoft.ebookm1.entity.*;
 import kg.peaksoft.ebookm1.entity.enumClass.Language;
-import kg.peaksoft.ebookm1.entity.enumClass.OrderStatus;
+import kg.peaksoft.ebookm1.entity.orders.OrderStatus;
 import kg.peaksoft.ebookm1.entity.otherClass.Genre;
 import kg.peaksoft.ebookm1.entity.otherClass.Image;
 import kg.peaksoft.ebookm1.entity.otherClass.Search;
 import kg.peaksoft.ebookm1.repository.ClientRepository;
+import kg.peaksoft.ebookm1.repository.UserRepository;
 import kg.peaksoft.ebookm1.repository.VendorRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +24,7 @@ import java.util.Arrays;
 public class DataInitializer {
     @Bean
     CommandLineRunner commandLineRunner(
-//            UserRepository adminRepository,
+            UserRepository adminRepository,
             ClientRepository clientRepository,
             VendorRepository vendorRepository) {
         return args -> {

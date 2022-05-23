@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.entity.enumClass;
+package kg.peaksoft.ebookm1.entity.orders;
 
 public enum OrderStatus {
     NEW,
