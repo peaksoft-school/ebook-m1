@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.dto.auth;
+package kg.peaksoft.ebookm1.auth;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

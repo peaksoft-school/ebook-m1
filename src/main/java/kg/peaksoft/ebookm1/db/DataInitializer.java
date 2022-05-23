@@ -295,7 +295,7 @@ public class DataInitializer {
 
 
 
-                System.out.println(adminRepository.save(user1));
+//                System.out.println(adminRepository.save(user1));
                 System.out.println(vendorRepository.save(vendorMask1));
                 System.out.println(vendorRepository.save(vendor2));
 
