@@ -16,9 +16,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Genre {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "genre_sequence",
+            sequenceName = "genre_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "genre_sequence")
+    @Column(name = "genre_id")
     private Long id;
     private String bookGenre;
     private int NumberOfBooks;

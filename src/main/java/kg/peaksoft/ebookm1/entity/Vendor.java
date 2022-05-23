@@ -18,18 +18,28 @@ import java.util.List;
 @AllArgsConstructor
 public class Vendor {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "vendor_sequence",
+            sequenceName = "vendor_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+                    generator = "vendor_sequence")
     @Column(name = "vendor_id")
     private Long id;
     private String firstName;
     private String lastName;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "address_id")
+    @JoinTable(name = "address_vendor",
+            joinColumns = @JoinColumn(name = "address_id"),
+            inverseJoinColumns = @JoinColumn(name = "vendor_id"))
     private Address address;
     private String phoneNumber;
     private String email;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "books_book_id")
+    @JoinTable(name = "vendor_books",
+            joinColumns = @JoinColumn(name = "vendor_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> books;
 
 }

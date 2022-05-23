@@ -17,7 +17,13 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "orderDetails_sequence",
+            sequenceName = "orderDetails_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "orderDetails_sequence")
+    @Column(name = "orderDetails_id")
     private Long id;
     @ManyToOne
     @JoinColumn(name = "order_order_id")

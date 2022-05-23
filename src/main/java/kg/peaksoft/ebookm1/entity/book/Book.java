@@ -28,7 +28,7 @@ public class Book {
     private String author;
     private String publishingHouse;
     private int pageVolume;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "genre_id")
     private Genre genre;
     @Enumerated(EnumType.STRING)

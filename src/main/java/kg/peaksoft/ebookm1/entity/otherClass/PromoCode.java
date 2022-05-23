@@ -18,12 +18,20 @@ import java.util.List;
 @AllArgsConstructor
 public class PromoCode {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "promoCode_sequence",
+            sequenceName = "promoCode_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "promoCOde_sequence")
     private Long id;
     private String promoName;
     private LocalDateTime startingDay;
     private LocalDateTime finishingDay;
     private byte percent;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name = "promoCode_books",
+            joinColumns = @JoinColumn(name = "promoCode_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> books;
 }

@@ -16,7 +16,13 @@ import java.util.List;
 @AllArgsConstructor
 public class Bucket {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "bucket_sequence",
+            sequenceName = "bucket_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "bucket_sequence")
+    @Column(name = "bucket_id")
     private Long id;
     @OneToMany
     private List<Book> books;

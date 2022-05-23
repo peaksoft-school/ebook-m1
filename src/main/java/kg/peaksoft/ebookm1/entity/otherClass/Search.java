@@ -17,10 +17,19 @@ import java.util.List;
 @AllArgsConstructor
 public class Search {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "search_sequence",
+            sequenceName = "search_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "search_sequence")
+    @Column(name = "search_id")
     private Long id;
     private String search;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name = "search_books",
+            joinColumns = @JoinColumn(name = "search_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> books;
 
 }

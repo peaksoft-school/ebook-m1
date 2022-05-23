@@ -17,7 +17,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "client_sequence",
+            sequenceName = "client_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+                    generator = "client_sequence")
     private Long id;
     private String firstName;
     private String lastName;
@@ -25,10 +31,15 @@ public class Client {
     private String email;
     private String password;
     private Boolean mailing;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name = "vendor_buckets",
+            joinColumns = @JoinColumn(name = "bucket_id"),
+            inverseJoinColumns = @JoinColumn(name = "vendor_id"))
     private Bucket bucket;
-    @OneToOne
-    @JoinColumn(name = "favorites_books_id")
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name = "vendor_favoritesBooks",
+            joinColumns = @JoinColumn(name = "favoritesBooks_id"),
+            inverseJoinColumns = @JoinColumn(name = "vendor_id"))
     private FavoritesBooks favoritesBooks;
 
 }

@@ -16,7 +16,13 @@ import javax.persistence.*;
 public class Image {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "image_sequence",
+            sequenceName = "image_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "image_sequence")
+    @Column(name = "image_id")
     private Long id;
     private String name;
 

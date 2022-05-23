@@ -17,7 +17,13 @@ import java.util.List;
 public class FavoritesBooks {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "favoritesBooks_sequence",
+            sequenceName = "favoritesBooks_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "favoritesBooks_sequence")
+    @Column(name = "favoritesBooks_id")
     private Long id;
     @OneToMany
     private List<Book> books;
