@@ -20,7 +20,6 @@ public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @Enumerated(EnumType.STRING)
     private String bookGenre;
     private int NumberOfBooks;
 

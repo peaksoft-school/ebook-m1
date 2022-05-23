@@ -27,7 +27,7 @@ public class Book {
     private String title;
     private String author;
     private String publishingHouse;
-    private String aboutTheBook;
+    private int pageVolume;
     @OneToMany
     @JoinColumn(name = "genre_id")
     private Genre genre;

@@ -24,11 +24,11 @@ public class Order {
     private LocalDateTime created;
     private LocalDateTime updated;
     private int sum;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
     @OneToMany
     @JoinColumn(name = "address_id")
     private Address address;
     @ManyToMany
     private List<Client> client;
-    @OneToMany
-    private List<OrderDetails> orderDetails;
 }
