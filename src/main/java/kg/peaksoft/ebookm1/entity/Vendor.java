@@ -1,5 +1,7 @@
 package kg.peaksoft.ebookm1.entity;
 
+import kg.peaksoft.ebookm1.entity.book.Book;
+import kg.peaksoft.ebookm1.entity.otherClass.Address;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,5 +1,8 @@
-package kg.peaksoft.ebookm1.entity;
+package kg.peaksoft.ebookm1.entity.book;
 
+import kg.peaksoft.ebookm1.entity.otherClass.Genre;
+import kg.peaksoft.ebookm1.entity.otherClass.Image;
+import kg.peaksoft.ebookm1.entity.enumClass.Language;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

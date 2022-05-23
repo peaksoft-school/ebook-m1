@@ -1,6 +1,13 @@
 package kg.peaksoft.ebookm1.db;
 
+import kg.peaksoft.ebookm1.entity.book.*;
+import kg.peaksoft.ebookm1.entity.enumClass.BookType;
 import kg.peaksoft.ebookm1.entity.*;
+import kg.peaksoft.ebookm1.entity.enumClass.Language;
+import kg.peaksoft.ebookm1.entity.enumClass.OrderStatus;
+import kg.peaksoft.ebookm1.entity.otherClass.Genre;
+import kg.peaksoft.ebookm1.entity.otherClass.Image;
+import kg.peaksoft.ebookm1.entity.otherClass.Search;
 import kg.peaksoft.ebookm1.repository.ClientRepository;
 import kg.peaksoft.ebookm1.repository.VendorRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -35,7 +42,6 @@ public class DataInitializer {
 
                 //genre1
                 Genre genre1 = new Genre();
-                genre1.setBookType(BookType.PAPER_BOOK);
                 genre1.setBooks(Arrays.asList(book1));
                 genre1.setBookGenre("dystopia");
                 // genre2

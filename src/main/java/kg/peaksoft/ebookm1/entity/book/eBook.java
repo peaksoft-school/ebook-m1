@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.entity;
+package kg.peaksoft.ebookm1.entity.book;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,23 +6,24 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
-
 
 @Entity
-@Table(name = "genres")
+@Table(name = "eBooks")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Genre {
+public class eBook {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "eBook_id")
     private Long id;
-    @Enumerated(EnumType.STRING)
-    private String bookGenre;
-    private int NumberOfBooks;
+    private String bookFragment;
+    @Transient
+    private eBook eBook;
 
 
-}
+
+    }
+

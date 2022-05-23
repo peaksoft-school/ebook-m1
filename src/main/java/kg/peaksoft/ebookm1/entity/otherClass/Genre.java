@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.entity;
+package kg.peaksoft.ebookm1.entity.otherClass;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,18 +8,21 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 
+
 @Entity
-@Table(name = "searches")
+@Table(name = "genres")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Search {
+public class Genre {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    private String search;
-    @OneToMany
-    private List<Book> books;
+    @Enumerated(EnumType.STRING)
+    private String bookGenre;
+    private int NumberOfBooks;
+
 
 }

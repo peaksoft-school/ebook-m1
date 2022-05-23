@@ -1,26 +1,25 @@
-package kg.peaksoft.ebookm1.entity;
+package kg.peaksoft.ebookm1.entity.book;
 
-
+import kg.peaksoft.ebookm1.entity.book.Book;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-
+import java.util.List;
 @Entity
-@Table(name = "addresses")
+@Table(name = "buckets")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Address {
-
+public class Bucket {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    private String country;
-    private String city;
-    private String street;
-    private int index;
+    @OneToMany
+    private List<Book> books;
+    private int amountOfBooks;
+
 }

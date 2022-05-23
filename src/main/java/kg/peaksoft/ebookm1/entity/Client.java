@@ -1,12 +1,13 @@
 package kg.peaksoft.ebookm1.entity;
 
+import kg.peaksoft.ebookm1.entity.book.Bucket;
+import kg.peaksoft.ebookm1.entity.book.FavoritesBooks;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "clients")

@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.entity;
+package kg.peaksoft.ebookm1.entity.otherClass;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
