@@ -28,22 +28,22 @@ public class Book {
     private String author;
     private String publishingHouse;
     private int pageVolume;
-    @OneToMany
-    @JoinColumn(name = "genre_id")
+    @OneToOne
+//    @JoinColumn(name = "genre_id")
     private Genre genre;
     @Enumerated(EnumType.STRING)
     private Language bookLanguage;
     @DateTimeFormat(pattern ="yyyy")
-    private LocalDate yearOfIssue;
+    private byte yearOfIssue;
     private int price;
     private int discount;
     private Boolean bestseller;
     @OneToMany
     private List<Image> image;
-    @OneToOne
+    @OneToMany
     private List<PaperBook> paperBooks;
-    @OneToOne
+    @OneToMany
     private List<AudioBook> audioBooks;
-    @OneToOne
+    @OneToMany
     private List<eBook> eBooks;
 }

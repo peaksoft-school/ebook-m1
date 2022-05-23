@@ -26,7 +26,7 @@ public class Order {
     private int sum;
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
-    @OneToMany
+    @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
     @ManyToMany

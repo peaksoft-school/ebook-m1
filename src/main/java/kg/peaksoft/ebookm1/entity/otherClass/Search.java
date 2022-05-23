@@ -20,7 +20,7 @@ public class Search {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String search;
-    @OneToOne
+    @ManyToMany
     private List<Book> books;
 
 }

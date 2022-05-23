@@ -23,7 +23,7 @@ public class Vendor {
     private Long id;
     private String firstName;
     private String lastName;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id")
     private Address address;
     private String phoneNumber;

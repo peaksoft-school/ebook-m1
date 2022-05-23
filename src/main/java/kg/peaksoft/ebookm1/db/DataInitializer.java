@@ -7,6 +7,7 @@ import kg.peaksoft.ebookm1.entity.orders.Order;
 import kg.peaksoft.ebookm1.entity.orders.OrderDetails;
 import kg.peaksoft.ebookm1.entity.orders.OrderStatus;
 import kg.peaksoft.ebookm1.entity.otherClass.*;
+import kg.peaksoft.ebookm1.repository.BookRepository;
 import kg.peaksoft.ebookm1.repository.ClientRepository;
 import kg.peaksoft.ebookm1.repository.UserRepository;
 import kg.peaksoft.ebookm1.repository.VendorRepository;
@@ -25,7 +26,8 @@ public class DataInitializer {
     CommandLineRunner commandLineRunner(
             UserRepository adminRepository,
             ClientRepository clientRepository,
-            VendorRepository vendorRepository) {
+            VendorRepository vendorRepository,
+             BookRepository boo) {
         return args -> {
 
                 //img
@@ -77,7 +79,8 @@ public class DataInitializer {
                 book1.setBookLanguage(Language.RUSSIAN);
                 book1.setGenre(genre2);
                 book1.setImage(Arrays.asList(image2));
-                book1.setYearOfIssue(LocalDate.parse("1967", DateTimeFormatter.ofPattern("yyyy")));
+//                book1.setYearOfIssue(LocalDate.parse("1967" ,DateTimeFormatter.ofPattern("yyyy")));
+                book1.setYearOfIssue((byte)1967);
                 book1.setAudioBooks(Arrays.asList(audioBook1));
 
 
@@ -93,7 +96,8 @@ public class DataInitializer {
                 book2.setBookLanguage(Language.ENGLISH);
                 book2.setGenre(genre1);
                 book2.setImage(Arrays.asList(image1));
-                book2.setYearOfIssue(LocalDate.parse("1948", DateTimeFormatter.ofPattern("yyyy")));
+//                book2.setYearOfIssue(LocalDate.parse("1948", DateTimeFormatter.ofPattern("yyyy")));
+                book1.setYearOfIssue((byte)1967);
                 book2.setEBooks(Arrays.asList(eBooks1));
 
                 //book3
@@ -108,7 +112,8 @@ public class DataInitializer {
                 book3.setBookLanguage(Language.RUSSIAN);
                 book3.setGenre(genre3);
                 book3.setImage(Arrays.asList(image3));
-                book3.setYearOfIssue(LocalDate.parse("1926", DateTimeFormatter.ofPattern("yyyy")));
+//                book3.setYearOfIssue(LocalDate.parse("1926", DateTimeFormatter.ofPattern("yyyy")));
+                book1.setYearOfIssue((byte)1967);
                 book3.setPaperBooks(Arrays.asList(paperBook1));
 
                 //favoritesClass
@@ -181,6 +186,7 @@ public class DataInitializer {
                 user1.setLastName("Casper");
                 user1.setEmail("jane@test.test");
                 user1.setPassword("pass");
+                user1.setPhoneNumber("+779979960790");
                 user1.setCreated(LocalDateTime.now());
                 user1.setActive(true);
                 user1.setRoles(Arrays.asList(role2));
@@ -192,6 +198,7 @@ public class DataInitializer {
                 elizabeth.setEmail("bennet@test.test");
                 elizabeth.setPassword("darsi");
                 elizabeth.setPhoneNumber("+7700050001");
+                elizabeth.setRoles(Arrays.asList(role1));
                 elizabeth.setCreated(LocalDateTime.now());
                 elizabeth.setActive(true);
 
@@ -288,8 +295,14 @@ public class DataInitializer {
                 promoCode1.setBooks(Arrays.asList(book1));
 
 
-
-
+                adminRepository.save(user1);
+//                vendorRepository.save(vendor2);
+//                clientRepository.save(client1);
+                boo.save(book1);
+//                System.out.println(adminRepository.save(user1));
+////
+//                System.out.println(clientRepository.save(client1));
+//                System.out.println(clientRepository.save(client2));
 
 
 

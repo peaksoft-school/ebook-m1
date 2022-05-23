@@ -14,12 +14,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AudioBook {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "audio_id")
     private Long id;
     private String bookFragment;
-//    public AudioBook audioBook;
 }
 
