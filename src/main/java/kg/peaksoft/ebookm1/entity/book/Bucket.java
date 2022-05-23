@@ -24,7 +24,10 @@ public class Bucket {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "bucket_sequence")
     @Column(name = "bucket_id")
     private Long id;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name = "bucket_book",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "bucket_id"))
     private List<Book> books;
     private int amountOfBooks;
 

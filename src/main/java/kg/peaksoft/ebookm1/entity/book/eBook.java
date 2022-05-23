@@ -16,6 +16,7 @@ import javax.persistence.*;
 public class eBook {
 
     @Id
+
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "eBook_id")
     private Long id;

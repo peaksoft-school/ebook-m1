@@ -18,7 +18,11 @@ import java.util.List;
 @AllArgsConstructor
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "order_sequence",
+            sequenceName = "order_sequence"
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "order_sequence")
     @Column(name = "order_id")
     private Long id;
     private LocalDateTime created;
@@ -26,9 +30,14 @@ public class Order {
     private int sum;
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
-    @OneToOne
-    @JoinColumn(name = "address_id")
+    @OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name = "order_address",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "address_id"))
     private Address address;
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name = "client_orders",
+            joinColumns = @JoinColumn(name = "client_id"),
+            inverseJoinColumns = @JoinColumn(name = "order_id"))
     private List<Client> client;
 }

@@ -25,11 +25,17 @@ public class OrderDetails {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "orderDetails_sequence")
     @Column(name = "orderDetails_id")
     private Long id;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name = "orderDetails",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "orderDetails_id"))
     @JoinColumn(name = "order_order_id")
     private Order order;
     private int amount;
     private int price;
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name = "orderDetails_book",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "orderDetails_id"))
     private List<Book> books;
 }

@@ -15,7 +15,12 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class AudioBook {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "audioBook_sequence",
+            sequenceName = "audioBook_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "audioBook_sequence")
     @Column(name = "audio_id")
     private Long id;
     private String bookFragment;

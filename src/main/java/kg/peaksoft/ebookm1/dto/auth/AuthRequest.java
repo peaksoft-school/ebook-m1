@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.auth;
+package kg.peaksoft.ebookm1.dto.auth;
 
 import lombok.Getter;
 import lombok.Setter;

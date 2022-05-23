@@ -21,14 +21,22 @@ import java.util.List;
 @AllArgsConstructor
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+            name = "book_sequence",
+            sequenceName = "book_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "book_sequence")
     @Column(name = "book_id")
     private Long id;
     private String title;
     private String author;
     private String publishingHouse;
     private int pageVolume;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name = "book_genres",
+            joinColumns = @JoinColumn(name = "genre_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
 //    @JoinColumn(name = "genre_id")
     private Genre genre;
     @Enumerated(EnumType.STRING)
@@ -38,12 +46,24 @@ public class Book {
     private int price;
     private int discount;
     private Boolean bestseller;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name = "images_book",
+            joinColumns = @JoinColumn(name = "image_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Image> image;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name = "paper_books",
+            joinColumns = @JoinColumn(name = "paperBook_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<PaperBook> paperBooks;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+     @JoinTable(name = "audio_books",
+            joinColumns = @JoinColumn(name = "audioBook_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<AudioBook> audioBooks;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+     @JoinTable(name = "electronic_books",
+            joinColumns = @JoinColumn(name = "eBook_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<eBook> eBooks;
 }
