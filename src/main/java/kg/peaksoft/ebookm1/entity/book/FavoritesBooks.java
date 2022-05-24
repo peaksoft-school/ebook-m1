@@ -1,19 +1,17 @@
 package kg.peaksoft.ebookm1.entity.book;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "favoritesBooks")
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
-//@NoArgsConstructor
-//@AllArgsConstructor
+@Builder
 public class FavoritesBooks {
 
     @Id
@@ -25,8 +23,13 @@ public class FavoritesBooks {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "favoritesBooks_sequence")
     @Column(name = "favoritesBooks_id")
     private Long id;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "favoritesBook_books",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "favoritesBooks_id"))
     private List<Book> books;
+    private int quantityOfBooks;
+
 
 
 }

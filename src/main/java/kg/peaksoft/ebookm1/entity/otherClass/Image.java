@@ -1,18 +1,16 @@
 package kg.peaksoft.ebookm1.entity.otherClass;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "images")
-@Setter
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
+@Builder
 public class Image {
 
     @Id
@@ -24,7 +22,7 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "image_sequence")
     @Column(name = "image_id")
     private Long id;
-    private String name;
+    private String image;
 
 
 }

@@ -1,19 +1,18 @@
 package kg.peaksoft.ebookm1.entity.book;
 
 import kg.peaksoft.ebookm1.entity.book.Book;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import kg.peaksoft.ebookm1.entity.orders.OrderDetails;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 @Entity
 @Table(name = "buckets")
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
-//@NoArgsConstructor
-//@AllArgsConstructor
+@Builder
 public class Bucket {
     @Id
     @SequenceGenerator(
@@ -24,11 +23,11 @@ public class Bucket {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "bucket_sequence")
     @Column(name = "bucket_id")
     private Long id;
-    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinTable(name = "bucket_book",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "bucket_id"))
+    @OneToMany(cascade=CascadeType.ALL)
     private List<Book> books;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "orderDetails_id")
+    private List<OrderDetails> orderDetails;
     private int amountOfBooks;
 
 }

@@ -1,18 +1,16 @@
 package kg.peaksoft.ebookm1.entity.book;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "eBooks")
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
-//@NoArgsConstructor
-//@AllArgsConstructor
+@Builder
 public class eBook {
 
     @Id
@@ -20,9 +18,9 @@ public class eBook {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "eBook_id")
     private Long id;
+    @Column(length = 1234)
     private String bookFragment;
-    @Transient
-    private eBook eBook;
+
 
 
 

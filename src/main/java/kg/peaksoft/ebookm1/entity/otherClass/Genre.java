@@ -1,9 +1,7 @@
 package kg.peaksoft.ebookm1.entity.otherClass;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import kg.peaksoft.ebookm1.entity.book.Book;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,10 +9,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "genres")
-@Setter
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
+@Builder
 public class Genre {
     @Id
     @SequenceGenerator(
@@ -26,7 +25,7 @@ public class Genre {
     @Column(name = "genre_id")
     private Long id;
     private String bookGenre;
-    private int NumberOfBooks;
+    private int quantityOfBooks;
 
 
 }

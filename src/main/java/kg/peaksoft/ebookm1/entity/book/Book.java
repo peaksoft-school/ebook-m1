@@ -1,23 +1,27 @@
 package kg.peaksoft.ebookm1.entity.book;
 
-//import kg.peaksoft.ebookm1.entity.otherClass.Genre;
-//import kg.peaksoft.ebookm1.entity.otherClass.Image;
+import kg.peaksoft.ebookm1.entity.enumClass.BookType;
 import kg.peaksoft.ebookm1.entity.enumClass.Language;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import kg.peaksoft.ebookm1.entity.otherClass.Genre;
+import kg.peaksoft.ebookm1.entity.otherClass.Image;
+import kg.peaksoft.ebookm1.entity.otherClass.PromoCode;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Table(name = "books")
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
-//@NoArgsConstructor
-//@AllArgsConstructor
+@Builder
+
 public class Book {
     @Id
     @SequenceGenerator(
@@ -31,38 +35,40 @@ public class Book {
     private String title;
     private String author;
     private String publishingHouse;
-    private int pageVolume;
-//    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-//    @JoinTable(name = "book_genres",
-//            joinColumns = @JoinColumn(name = "genre_id"),
-//            inverseJoinColumns = @JoinColumn(name = "book_id"))
-////    @JoinColumn(name = "genre_id")
-//    private Genre genre;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Genre genre;
     @Enumerated(EnumType.STRING)
     private Language bookLanguage;
-    @DateTimeFormat(pattern ="yyyy")
-    private byte yearOfIssue;
-    private int price;
+    private BookType bookType;
+    private int pageVolume;
+    @Column(length = 1234)
+    private String aboutTheBook;
+    private String bookFragment;
+    @Column(length =4)
+    private int yearOfIssue;
+    private double price;
     private int discount;
     private Boolean bestseller;
-//    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
-//    @JoinTable(name = "images_book",
-//            joinColumns = @JoinColumn(name = "image_id"),
-//            inverseJoinColumns = @JoinColumn(name = "book_id"))
-//    private List<Image> image;
-    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinTable(name = "paper_books",
-            joinColumns = @JoinColumn(name = "paperBook_id"),
+    private int amountOfBooks;
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinTable(name = "images_book",
+            joinColumns = @JoinColumn(name = "image_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private List<PaperBook> paperBooks;
-    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
-     @JoinTable(name = "audio_books",
-            joinColumns = @JoinColumn(name = "audioBook_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private List<AudioBook> audioBooks;
-    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
-     @JoinTable(name = "electronic_books",
-            joinColumns = @JoinColumn(name = "eBook_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private List<eBook> eBooks;
+    private List<Image> image;
+    @OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "paperBook_id")
+    private PaperBook paperBooks;
+    @OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+   @JoinColumn(name = "audioBook_id")
+    private AudioBook audioBooks;
+    @OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "eBook_id")
+    private eBook eBooks;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "bucket_id")
+    private Bucket bucket;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private PromoCode promoCode;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private FavoritesBooks favoritesBooks;
 }

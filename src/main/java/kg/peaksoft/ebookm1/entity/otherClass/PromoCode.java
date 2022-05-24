@@ -1,21 +1,20 @@
 package kg.peaksoft.ebookm1.entity.otherClass;
 
 import kg.peaksoft.ebookm1.entity.book.Book;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Table(name = "promoCodes")
-@Setter
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
+@Builder
 public class PromoCode {
     @Id
     @SequenceGenerator(
@@ -26,10 +25,10 @@ public class PromoCode {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "promoCOde_sequence")
     private Long id;
     private String promoName;
-    private LocalDateTime startingDay;
-    private LocalDateTime finishingDay;
+    private LocalDate startingDay;
+    private LocalDate finishingDay;
     private byte percent;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "promoCode_books",
             joinColumns = @JoinColumn(name = "promoCode_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))

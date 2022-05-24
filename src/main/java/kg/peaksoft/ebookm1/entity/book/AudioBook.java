@@ -1,18 +1,17 @@
 package kg.peaksoft.ebookm1.entity.book;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import javax.persistence.*;
 
 
 @Entity
 @Table(name = "audioBooks")
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
-//@NoArgsConstructor
-//@AllArgsConstructor
+@Builder
 public class AudioBook {
     @Id
     @SequenceGenerator(
@@ -23,6 +22,7 @@ public class AudioBook {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "audioBook_sequence")
     @Column(name = "audio_id")
     private Long id;
-    private String bookFragment;
+    private String audioFragment;
+
 }
 

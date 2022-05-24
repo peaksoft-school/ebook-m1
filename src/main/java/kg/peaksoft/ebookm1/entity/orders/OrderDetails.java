@@ -1,20 +1,20 @@
 package kg.peaksoft.ebookm1.entity.orders;
 
 import kg.peaksoft.ebookm1.entity.book.Book;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import kg.peaksoft.ebookm1.entity.otherClass.Address;
+import kg.peaksoft.ebookm1.entity.otherClass.PromoCode;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "orderDetails")
-@Setter
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
+@Builder
 public class OrderDetails {
     @Id
     @SequenceGenerator(
@@ -26,16 +26,16 @@ public class OrderDetails {
     @Column(name = "orderDetails_id")
     private Long id;
     @ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinTable(name = "order_details",
+    @JoinTable(name = "order_orderdetails",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "orderDetails_id"))
     @JoinColumn(name = "order_order_id")
-    private Order order;
-    private int amount;
-    private int price;
-    @ManyToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinTable(name = "orderDetails_book",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "orderDetails_id"))
-    private List<Book> books;
+    private Address address;
+    private int bookOfAmount;
+    private int discount;
+    private double sum;
+    @OneToOne
+    @JoinColumn(name = "promo_code_id")
+    private PromoCode promoCode;
+    private Double totalPrice;
 }

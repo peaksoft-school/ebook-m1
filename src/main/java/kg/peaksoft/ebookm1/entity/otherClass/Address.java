@@ -1,19 +1,17 @@
 package kg.peaksoft.ebookm1.entity.otherClass;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "addresses")
-@Setter
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
+@Builder
 public class Address {
 
     @Id
@@ -27,6 +25,6 @@ public class Address {
     private Long id;
     private String country;
     private String city;
-    private String street;
-    private int index;
+    private String address;
+    private int postCode;
 }
