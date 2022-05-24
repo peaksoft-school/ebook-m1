@@ -157,6 +157,17 @@ public class DataInitializer {
                 Role role3 = new Role();
                 role3.setName("VENDOR");
 
+                //cl
+//                Client cl = new Client();
+//                cl.setFirstName("Adam");
+//                cl.setLastName("O");
+//                cl.setPhoneNumber("+12924248");
+//                cl.setEmail("adamO@test.test");
+//                cl.setPassword("pasS");
+//                cl.setMailing(true);
+//                cl.setFavoritesBooks(favoritesBook1);
+//                cl.setBucket(bucket2);
+
                 //Jane-client1
                 User client1 = new User();
                 client1.setFirstName("Jane");
@@ -169,35 +180,22 @@ public class DataInitializer {
                 client1.setCreated(LocalDate.now());
                 client1.setRoles(Arrays.asList(role2));
 
-
-
-                //cl
-//                Client cl = new Client();
-//                cl.setFirstName("Adam");
-//                cl.setLastName("O");
-//                cl.setPhoneNumber("+12924248");
-//                cl.setEmail("adamO@test.test");
-//                cl.setPassword("pasS");
-//                cl.setMailing(true);
-//                cl.setFavoritesBooks(favoritesBook1);
-//                cl.setBucket(bucket2);
-
-
                 //uaClient
                 User ua = new User();
                 ua.setFirstName("Ua");
                 ua.setLastName("Wei");
                 ua.setPhoneNumber("+4566924247");
                 ua.setEmail("wei@test.test");
-                ua.setPasswordConfirm(null);
-                ua.setBeVendor(null);
-                ua.setBook(null);
                 ua.setPassword(null);
-                ua.setPromoCode(null);
-                ua.setActive(false);
+                ua.setPasswordConfirm(null);
                 ua.setMailing(false);
-                ua.setFavoritesBooks(favoritesBook2);
+                ua.setBeVendor(null);
                 ua.setBucket(bucket1);
+                ua.setFavoritesBooks(favoritesBook2);
+                ua.setBook(null);
+                ua.setPromoCode(null);
+                ua.setCreated(LocalDate.now());
+                ua.setActive(false);
                 ua.setRoles(Arrays.asList(role2));
 
 
@@ -255,8 +253,7 @@ public class DataInitializer {
 //                mask.setBooks(Arrays.asList(book1));
                 mask.setRoles(Arrays.asList(role3));
 
-
-
+                //vendor2
                 User may = new User();
                 may.setFirstName("May");
                 may.setLastName("Do");
@@ -338,9 +335,9 @@ public class DataInitializer {
 
 
 
-                System.out.println(adminRepository.save(ua));
+//                System.out.println(adminRepository.save(admin));
 //                System.out.println(adminRepository.save(ua));
-//                System.out.println(adminRepository.save(samClient));
+                System.out.println(adminRepository.save(samClient));
 //                System.out.println(adminRepository.save(elizabeth));
 
 //                System.out.println(adminRepository.save(mask));

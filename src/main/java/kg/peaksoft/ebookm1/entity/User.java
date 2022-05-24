@@ -41,13 +41,13 @@ public class User implements UserDetails {
     private Boolean mailing;
     private Boolean beVendor;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "bucket_bucket_id")
+    @JoinColumn(name = "bucket_id")
     private Bucket bucket;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "favorites_books_id")
+    @JoinColumn(name = "favoritesBooks_id")
     private FavoritesBooks favoritesBooks;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "book_book_id_")
+    @JoinColumn(name = "book_id_")
     private List<Book> book;
     @OneToMany(cascade = CascadeType.ALL)
     private List<PromoCode> promoCode;
