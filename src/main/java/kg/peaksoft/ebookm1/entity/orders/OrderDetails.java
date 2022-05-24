@@ -34,8 +34,8 @@ public class OrderDetails {
     private int bookOfAmount;
     private int discount;
     private double sum;
-    @OneToOne
-    @JoinColumn(name = "promo_code_id")
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "promoCode_id")
     private PromoCode promoCode;
     private Double totalPrice;
 }

@@ -23,13 +23,14 @@ public class PromoCode {
             allocationSize = 1
     )
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "promoCOde_sequence")
+    @Column(name = "promoCode_id")
     private Long id;
     private String promoName;
     private LocalDate startingDay;
     private LocalDate finishingDay;
     private byte percent;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "promoCode_books",
+    @JoinTable(name = "promo_books",
             joinColumns = @JoinColumn(name = "promoCode_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> books;

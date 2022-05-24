@@ -50,6 +50,7 @@ public class User implements UserDetails {
     @JoinColumn(name = "book_id_")
     private List<Book> book;
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "promoCode_id")
     private List<PromoCode> promoCode;
     private LocalDate created;
     private boolean isActive;

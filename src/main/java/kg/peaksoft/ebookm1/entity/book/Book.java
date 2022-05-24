@@ -64,11 +64,11 @@ public class Book {
     @OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "eBook_id")
     private eBook eBooks;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "bucket_id")
-    private Bucket bucket;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private PromoCode promoCode;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private FavoritesBooks favoritesBooks;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "bucket_id")
+//    private Bucket bucket;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    private PromoCode promoCode;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    private FavoritesBooks favoritesBooks;
 }
