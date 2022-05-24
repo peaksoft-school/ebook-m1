@@ -11,8 +11,8 @@ import javax.persistence.*;
 @Table(name = "eBooks")
 @Setter
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
 public class eBook {
 
     @Id

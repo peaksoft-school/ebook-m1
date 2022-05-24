@@ -12,8 +12,8 @@ import java.util.List;
 @Table(name = "favoritesBooks")
 @Setter
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
 public class FavoritesBooks {
 
     @Id

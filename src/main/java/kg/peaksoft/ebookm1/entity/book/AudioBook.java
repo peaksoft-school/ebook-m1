@@ -11,8 +11,8 @@ import javax.persistence.*;
 @Table(name = "audioBooks")
 @Setter
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
 public class AudioBook {
     @Id
     @SequenceGenerator(

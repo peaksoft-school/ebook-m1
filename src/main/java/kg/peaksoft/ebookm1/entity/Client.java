@@ -32,14 +32,20 @@ public class Client {
     private String password;
     private Boolean mailing;
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinTable(name = "vendor_buckets",
+    @JoinTable(name = "client_buckets",
             joinColumns = @JoinColumn(name = "bucket_id"),
-            inverseJoinColumns = @JoinColumn(name = "vendor_id"))
+            inverseJoinColumns = @JoinColumn(name = "client_id"))
     private Bucket bucket;
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinTable(name = "vendor_favoritesBooks",
+    @JoinTable(name = "client_favoritesBooks",
             joinColumns = @JoinColumn(name = "favoritesBooks_id"),
-            inverseJoinColumns = @JoinColumn(name = "vendor_id"))
+            inverseJoinColumns = @JoinColumn(name = "client_id"))
     private FavoritesBooks favoritesBooks;
+
+    @OneToOne
+    @JoinTable(name = "client_details",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "client_id"))
+    private User user;
 
 }

@@ -26,7 +26,7 @@ public class OrderDetails {
     @Column(name = "orderDetails_id")
     private Long id;
     @ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinTable(name = "orderDetails",
+    @JoinTable(name = "order_details",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "orderDetails_id"))
     @JoinColumn(name = "order_order_id")

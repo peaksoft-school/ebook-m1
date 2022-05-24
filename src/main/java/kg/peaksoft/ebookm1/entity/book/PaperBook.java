@@ -13,8 +13,8 @@ import java.util.List;
 @Table(name = "paperBooks")
 @Setter
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
 
 public class PaperBook {
     @Id

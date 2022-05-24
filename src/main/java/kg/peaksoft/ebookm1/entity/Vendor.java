@@ -1,7 +1,8 @@
 package kg.peaksoft.ebookm1.entity;
 
+//import kg.peaksoft.ebookm1.entity.book.Book;
+//import kg.peaksoft.ebookm1.entity.otherClass.Address;
 import kg.peaksoft.ebookm1.entity.book.Book;
-import kg.peaksoft.ebookm1.entity.otherClass.Address;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,7 +34,7 @@ public class Vendor {
     @JoinTable(name = "address_vendor",
             joinColumns = @JoinColumn(name = "address_id"),
             inverseJoinColumns = @JoinColumn(name = "vendor_id"))
-    private Address address;
+//    private Address address;
     private String phoneNumber;
     private String email;
     @OneToMany(cascade = CascadeType.ALL)

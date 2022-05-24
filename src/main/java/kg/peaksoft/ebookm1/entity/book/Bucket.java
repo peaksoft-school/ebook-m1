@@ -12,8 +12,8 @@ import java.util.List;
 @Table(name = "buckets")
 @Setter
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
 public class Bucket {
     @Id
     @SequenceGenerator(
