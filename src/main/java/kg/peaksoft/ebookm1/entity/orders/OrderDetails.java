@@ -23,13 +23,10 @@ public class OrderDetails {
             allocationSize = 1
     )
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "orderDetails_sequence")
-    @Column(name = "orderDetails_id")
+    @Column(name = "order_details_id")
     private Long id;
     @ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinTable(name = "order_orderdetails",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "orderDetails_id"))
-    @JoinColumn(name = "order_order_id")
+    @JoinColumn(name = "address_id")
     private Address address;
     private int bookOfAmount;
     private int discount;

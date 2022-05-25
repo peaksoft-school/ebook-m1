@@ -4,14 +4,10 @@ import kg.peaksoft.ebookm1.entity.enumClass.BookType;
 import kg.peaksoft.ebookm1.entity.enumClass.Language;
 import kg.peaksoft.ebookm1.entity.otherClass.Genre;
 import kg.peaksoft.ebookm1.entity.otherClass.Image;
-import kg.peaksoft.ebookm1.entity.otherClass.PromoCode;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.format.annotation.DateTimeFormat;
+
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity

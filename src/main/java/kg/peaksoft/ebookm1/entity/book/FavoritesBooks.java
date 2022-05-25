@@ -21,12 +21,12 @@ public class FavoritesBooks {
             allocationSize = 1
     )
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "favoritesBooks_sequence")
-    @Column(name = "favoritesBooks_id")
+    @Column(name = "favorites_book_id")
     private Long id;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "favoritesBook_books",
+    @JoinTable(name = "favorites_books_book",
             joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "favoritesBooks_id"))
+            inverseJoinColumns = @JoinColumn(name = "favorites_book_id"))
     private List<Book> books;
     private int quantityOfBooks;
 

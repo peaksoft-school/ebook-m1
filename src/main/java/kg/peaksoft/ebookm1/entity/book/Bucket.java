@@ -24,9 +24,10 @@ public class Bucket {
     @Column(name = "bucket_id")
     private Long id;
     @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name = "book_id")
     private List<Book> books;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "orderDetails_id")
+    @JoinColumn(name = "order_details_id")
     private List<OrderDetails> orderDetails;
     private int amountOfBooks;
 

@@ -4,15 +4,10 @@ import kg.peaksoft.ebookm1.entity.book.*;
 import kg.peaksoft.ebookm1.entity.*;
 import kg.peaksoft.ebookm1.entity.enumClass.BookType;
 import kg.peaksoft.ebookm1.entity.enumClass.Language;
-//import kg.peaksoft.ebookm1.entity.orders.Order;
-//import kg.peaksoft.ebookm1.entity.orders.OrderDetails;
-//import kg.peaksoft.ebookm1.entity.orders.OrderStatus;
-//import kg.peaksoft.ebookm1.entity.otherClass.*;
-//import kg.peaksoft.ebookm1.entity.orders.Order;
 import kg.peaksoft.ebookm1.entity.orders.OrderDetails;
 import kg.peaksoft.ebookm1.entity.otherClass.*;
 import kg.peaksoft.ebookm1.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -43,10 +38,12 @@ public class DataInitializer {
                 Genre genre1 = new Genre();
                 genre1.setBookGenre("dystopia");
                 genre1.setQuantityOfBooks(33);
+
                 // genre2
                 Genre genre2 = new Genre();
                 genre2.setBookGenre("fantasy");
                 genre2.setQuantityOfBooks(77);
+
                 //genre3
                 Genre genre3 = new Genre();
                 genre3.setBookGenre("poetry");
@@ -61,6 +58,7 @@ public class DataInitializer {
                 paperBook1.setFragment("Никого со мной нет.\n" +
                                                 "Я один…\n "+
                                                "И — разбитое зеркало…");
+
 
                 //audioBook
                 AudioBook audioBook1 = new AudioBook();
@@ -124,21 +122,23 @@ public class DataInitializer {
                 book3.setImage(Arrays.asList(image3));
                 book3.setPaperBooks(paperBook1);
 
-                //favoritesClass
+                //favoritesBook1
 
                 FavoritesBooks favoritesBook1 = new FavoritesBooks();
                 favoritesBook1.setQuantityOfBooks(22);
                 favoritesBook1.setBooks(Arrays.asList(book1));
 
+                //favoritesBook2
                 FavoritesBooks favoritesBook2 = new FavoritesBooks();
                 favoritesBook2.setQuantityOfBooks(99);
                 favoritesBook2.setBooks(Arrays.asList(book2));
 
+                //favoritesBook3
                 FavoritesBooks favoritesBook3 = new FavoritesBooks();
                 favoritesBook3.setQuantityOfBooks(100);
                 favoritesBook3.setBooks(Arrays.asList(book3));
 
-                //promo
+                //promo1
                 PromoCode promoCode1 = new PromoCode();
                 promoCode1.setPromoName("BroBig");
                 promoCode1.setStartingDay(LocalDate.of(2022, 6, 2));
@@ -146,7 +146,7 @@ public class DataInitializer {
                 promoCode1.setPercent((byte) 10);
                 promoCode1.setBooks(Arrays.asList(book1));
                 
-                //promo
+                //promo2
                 PromoCode promoHappy = new PromoCode();
                 promoHappy.setPromoName("happiness");
                 promoHappy.setStartingDay(LocalDate.of(2022, 4, 11));
@@ -154,7 +154,7 @@ public class DataInitializer {
                 promoHappy.setPercent((byte) 7);
                 promoHappy.setBooks(Arrays.asList(book2));
                 
-                //promo
+                //promo3
                 PromoCode promobe = new PromoCode();
                 promobe.setPromoName("bebe");
                 promobe.setStartingDay(LocalDate.of(2022, 1, 30));
@@ -162,13 +162,14 @@ public class DataInitializer {
                 promobe.setPercent((byte) 3);
                 promobe.setBooks(Arrays.asList(book3));
 
-                //address
+                //address1
                 Address address1 = new Address();
                 address1.setCountry("NYC");
                 address1.setCity("Long Island");
                 address1.setAddress("");
                 address1.setPostCode(1122);
 
+                //address2
                 Address address2 = new Address();
                 address2.setCountry("England");
                 address2.setCity("Hertfordshire");
@@ -176,56 +177,60 @@ public class DataInitializer {
                 address2.setPostCode(7722);
 
 
-                //orderDetails
+                //orderDetails1
                 OrderDetails orderDetail1 = new OrderDetails();
                 orderDetail1.setBookOfAmount(33);
                 orderDetail1.setSum(1000);
                 orderDetail1.setDiscount(20);
-                orderDetail1.setPromoCode(promoCode1);
+//                orderDetail1.setPromoCode(promoCode1);
                 orderDetail1.setTotalPrice(1299.99);
                 orderDetail1.setAddress(address1);
 
 
+                //orderDetails2
                 OrderDetails orderDetail2 = new OrderDetails();
                 orderDetail2.setBookOfAmount(77);
                 orderDetail2.setSum(1059);
                 orderDetail2.setDiscount(10);
-                orderDetail2.setPromoCode(promobe);
+//                orderDetail2.setPromoCode(promobe);
                 orderDetail2.setTotalPrice(9999.99);
                 orderDetail2.setAddress(address2);
 
+                //orderDetails3
                 OrderDetails orderDetail3 = new OrderDetails();
                 orderDetail2.setBookOfAmount(11);
                 orderDetail2.setSum(5843);
                 orderDetail2.setDiscount(30);
-                orderDetail2.setPromoCode(promoHappy);
+//                orderDetail2.setPromoCode(promoHappy);
                 orderDetail2.setTotalPrice(5778.9);
                 orderDetail2.setAddress(address1);
 
                 //bucket1
                 Bucket bucket1 = new Bucket();
-                bucket1.setAmountOfBooks(33);
                 bucket1.setBooks(Arrays.asList(book1));
                 bucket1.setOrderDetails(Arrays.asList(orderDetail2));
+                bucket1.setAmountOfBooks(33);
 
                 //bucket2
                 Bucket bucket2 = new Bucket();
-                bucket2.setAmountOfBooks(77);
                 bucket2.setBooks(Arrays.asList(book2));
                 bucket2.setOrderDetails(Arrays.asList(orderDetail1));
+                bucket2.setAmountOfBooks(77);
+
                 //bucket3
                 Bucket bucket3 = new Bucket();
-                bucket3.setAmountOfBooks(11);
                 bucket3.setBooks(Arrays.asList(book3));
                 bucket3.setOrderDetails(Arrays.asList(orderDetail3));
+                bucket3.setAmountOfBooks(11);
 
-                //role
+                //role1
                 Role role1 = new Role();
                 role1.setName("ADMIN");
 
                 //role2
                 Role role2 = new Role();
                 role2.setName("CLIENT");
+
                 //role3
                 Role role3 = new Role();
                 role3.setName("VENDOR");
@@ -253,27 +258,20 @@ public class DataInitializer {
                 client1.setCreated(LocalDate.now());
                 client1.setRoles(Arrays.asList(role2));
 
-                //uaClient
+                //uaClient2
                 User ua = new User();
                 ua.setFirstName("Ua");
                 ua.setLastName("Wei");
-//                ua.setPhoneNumber("+4566924247");
                 ua.setEmail("wei@test.test");
                 ua.setPassword("client2");
                 ua.setMailing(false);
-//                ua.setPasswordConfirm(null);
-//                ua.setMailing(false);
-//                ua.setBeVendor(null);
-                ua.setBucket(bucket1);
                 ua.setFavoritesBooks(favoritesBook2);
-//                ua.setBook(null);
-//                ua.setPromoCode(null);
+                ua.setBucket(bucket1);
                 ua.setCreated(LocalDate.now());
-//                ua.setActive(false);
                 ua.setRoles(Arrays.asList(role2));
 
 
-                //samClient
+                //samClient3
                 User samClient = new User();
                 samClient.setFirstName("Sam");
                 samClient.setLastName("L");
@@ -282,20 +280,21 @@ public class DataInitializer {
                 samClient.setMailing(true);
                 samClient.setFavoritesBooks(favoritesBook3);
                 samClient.setBucket(bucket3);
+                samClient.setCreated(LocalDate.now());
                 samClient.setRoles(Arrays.asList(role2));
 
 
-                //user-elizabeth
+                //elizabethClient4
                 User elizabeth = new User();
                 elizabeth.setFirstName("Elizabeth");
                 elizabeth.setLastName("Bennet");
                 elizabeth.setEmail("bennet@test.test");
                 elizabeth.setPassword("darsi");
                 samClient.setMailing(true);
-                samClient.setBucket(bucket2);
-                elizabeth.setRoles(Arrays.asList(role2));
-                elizabeth.setCreated(LocalDate.now());
                 samClient.setFavoritesBooks(favoritesBook2);
+                samClient.setBucket(bucket2);
+                elizabeth.setCreated(LocalDate.now());
+                elizabeth.setRoles(Arrays.asList(role2));
 
 
                 //admin
@@ -305,16 +304,14 @@ public class DataInitializer {
                 admin.setRoles(Arrays.asList(role1));
 
 
-
-
-                //Vendor
+                //Vendor1
                 User mask = new User();
                 mask.setFirstName("I");
                 mask.setLastName("Mask");
                 mask.setEmail("mask@test.test");
                 mask.setPhoneNumber("+990000222");
-                mask.setPassword("vendor2");
-//                mask.setBooks(Arrays.asList(book1));
+                mask.setBook(Arrays.asList(book1));
+                mask.setPromoCode(Arrays.asList(promobe));
                 mask.setRoles(Arrays.asList(role3));
 
                 //vendor2
@@ -322,31 +319,33 @@ public class DataInitializer {
                 may.setFirstName("May");
                 may.setLastName("Do");
                 may.setEmail("may@test.test");
-                may.setPassword("vendor");
                 may.setPhoneNumber("+5550000452");
+                may.setBook(Arrays.asList(book2));  //whito sell book
+                may.setPromoCode(Arrays.asList(promoHappy));
                 mask.setRoles(Arrays.asList(role3));
 
-                //vendor2
+                //vendor3
                 User moon = new User();
                 moon.setFirstName("Moon");
                 moon.setLastName("Sailor");
                 moon.setEmail("sailor@test.test");
-                moon.setPassword("vendorYellow");
                 moon.setPhoneNumber("+000003344");
+                may.setBook(Arrays.asList(book3));
+                may.setPromoCode(Arrays.asList(promoHappy));
                 moon.setRoles(Arrays.asList(role3));
 
-
+                // save
 
 //                System.out.println(adminRepository.save(admin));
 
-//                System.out.println(adminRepository.save(ua));
-//                System.out.println(adminRepository.save(samClient));
-//                System.out.println(adminRepository.save(elizabeth));
-//                System.out.println(adminRepository.save(client1));
+                System.out.println(adminRepository.save(ua));
+                System.out.println(adminRepository.save(samClient));
+                System.out.println(adminRepository.save(elizabeth));
+                System.out.println(adminRepository.save(client1));
 
 //                System.out.println(adminRepository.save(moon));
-//                System.out.println(adminRepository.save(mask));
-//                System.out.println(adminRepository.save(may));
+                System.out.println(adminRepository.save(mask));
+                System.out.println(adminRepository.save(may));
 
 
 
