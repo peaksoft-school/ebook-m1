@@ -166,7 +166,7 @@ public class DataInitializer {
                 Address address1 = new Address();
                 address1.setCountry("NYC");
                 address1.setCity("Long Island");
-                address1.setAddress("");
+                address1.setAddress("street L");
                 address1.setPostCode(1122);
 
                 //address2
@@ -177,12 +177,14 @@ public class DataInitializer {
                 address2.setPostCode(7722);
 
 
+
+
                 //orderDetails1
                 OrderDetails orderDetail1 = new OrderDetails();
                 orderDetail1.setBookOfAmount(33);
                 orderDetail1.setSum(1000);
                 orderDetail1.setDiscount(20);
-//                orderDetail1.setPromoCode(promoCode1);
+                orderDetail1.setPromoCode(promoCode1);
                 orderDetail1.setTotalPrice(1299.99);
                 orderDetail1.setAddress(address1);
 
@@ -192,7 +194,7 @@ public class DataInitializer {
                 orderDetail2.setBookOfAmount(77);
                 orderDetail2.setSum(1059);
                 orderDetail2.setDiscount(10);
-//                orderDetail2.setPromoCode(promobe);
+                orderDetail2.setPromoCode(promobe);
                 orderDetail2.setTotalPrice(9999.99);
                 orderDetail2.setAddress(address2);
 
@@ -201,7 +203,7 @@ public class DataInitializer {
                 orderDetail2.setBookOfAmount(11);
                 orderDetail2.setSum(5843);
                 orderDetail2.setDiscount(30);
-//                orderDetail2.setPromoCode(promoHappy);
+                orderDetail2.setPromoCode(promoHappy);
                 orderDetail2.setTotalPrice(5778.9);
                 orderDetail2.setAddress(address1);
 
@@ -310,8 +312,6 @@ public class DataInitializer {
                 mask.setLastName("Mask");
                 mask.setEmail("mask@test.test");
                 mask.setPhoneNumber("+990000222");
-                mask.setBook(Arrays.asList(book1));
-                mask.setPromoCode(Arrays.asList(promobe));
                 mask.setRoles(Arrays.asList(role3));
 
                 //vendor2
@@ -320,8 +320,8 @@ public class DataInitializer {
                 may.setLastName("Do");
                 may.setEmail("may@test.test");
                 may.setPhoneNumber("+5550000452");
-                may.setBook(Arrays.asList(book2));  //whito sell book
-                may.setPromoCode(Arrays.asList(promoHappy));
+//                may.setBook(Arrays.asList(book2));  //whito sell book
+//                may.setPromoCode(Arrays.asList(promoHappy));
                 mask.setRoles(Arrays.asList(role3));
 
                 //vendor3
@@ -330,22 +330,20 @@ public class DataInitializer {
                 moon.setLastName("Sailor");
                 moon.setEmail("sailor@test.test");
                 moon.setPhoneNumber("+000003344");
-                may.setBook(Arrays.asList(book3));
-                may.setPromoCode(Arrays.asList(promoHappy));
                 moon.setRoles(Arrays.asList(role3));
 
                 // save
 
 //                System.out.println(adminRepository.save(admin));
 
-                System.out.println(adminRepository.save(ua));
+//                System.out.println(adminRepository.save(ua));
                 System.out.println(adminRepository.save(samClient));
-                System.out.println(adminRepository.save(elizabeth));
-                System.out.println(adminRepository.save(client1));
+//                System.out.println(adminRepository.save(elizabeth));
+//                System.out.println(adminRepository.save(client1));
 
 //                System.out.println(adminRepository.save(moon));
-                System.out.println(adminRepository.save(mask));
-                System.out.println(adminRepository.save(may));
+//                System.out.println(adminRepository.save(mask));
+//                System.out.println(adminRepository.save(may));
 
 
 
