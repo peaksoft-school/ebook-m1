@@ -1,5 +1,6 @@
 package kg.peaksoft.ebookm1.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -34,6 +35,9 @@ public class User implements UserDetails {
     private String password;
     private LocalDateTime created;
     private boolean isActive;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    List<Book> books;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
             CascadeType.DETACH}, fetch = FetchType.EAGER)
