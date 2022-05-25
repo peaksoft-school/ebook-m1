@@ -19,9 +19,9 @@ public class Role {
     @Id
     @GeneratedValue(generator = "role_gen", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "role_gen", sequenceName = "role_seq", allocationSize = 1)
+    @Column(name = "roles_id")
     private Long id;
     private String name;
-
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
 }

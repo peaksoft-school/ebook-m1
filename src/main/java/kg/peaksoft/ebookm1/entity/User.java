@@ -1,11 +1,16 @@
 package kg.peaksoft.ebookm1.entity;
 
+import kg.peaksoft.ebookm1.entity.book.Book;
+import kg.peaksoft.ebookm1.entity.book.Bucket;
+import kg.peaksoft.ebookm1.entity.book.FavoritesBooks;
+import kg.peaksoft.ebookm1.entity.otherClass.PromoCode;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,11 +37,26 @@ public class User implements UserDetails {
     private String phoneNumber;
     private String email;
     private String password;
-    private LocalDateTime created;
+    private String passwordConfirm;
+    private Boolean mailing;
+    private Boolean beVendor;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "bucket_id")
+    private Bucket bucket;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "favoritesBooks_id")
+    private FavoritesBooks favoritesBooks;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "book_id_")
+    private List<Book> book;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "promoCode_id")
+    private List<PromoCode> promoCode;
+    private LocalDate created;
     private boolean isActive;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
-            CascadeType.DETACH}, fetch = FetchType.EAGER)
+            CascadeType.DETACH})
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "roles_id"))
