@@ -37,8 +37,9 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/jwt/**").permitAll()
-                .antMatchers( "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                .antMatchers("/api/public/**").permitAll()
+                .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                .antMatchers("/api/users/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
