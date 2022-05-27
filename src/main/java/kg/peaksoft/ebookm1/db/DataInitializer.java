@@ -58,9 +58,9 @@ public class DataInitializer {
             client.setRoles(Arrays.asList(role2));
             client.setCreated(LocalDateTime.now());
 
-            System.out.println(userRepository.save(admin));
-            System.out.println(userRepository.save(vendor));
-            System.out.println(userRepository.save(client));
+//            System.out.println(userRepository.save(admin));
+//            System.out.println(userRepository.save(vendor));
+//            System.out.println(userRepository.save(client));
 //
 
 
