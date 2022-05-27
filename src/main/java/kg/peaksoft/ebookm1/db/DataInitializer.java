@@ -43,11 +43,12 @@ public class DataInitializer {
             User vendor = new User();
             vendor.setFirstName("Vendor");
             vendor.setLastName("Vendor");
-            vendor.setEmail(" vendor@gmail.com");
+            vendor.setEmail("vendor@gmail.com");
             vendor.setPassword("$2a$12$nlOTMXn.DhalfwkJK.cj1emE59OSFTDazeoaT/pAC5W11RkczKsp6\n");
             vendor.setPhoneNumber("+797979797");
             vendor.setCreated(LocalDateTime.now());
             vendor.setRoles(Arrays.asList(role3));
+
 
             User client = new User();
             client.setFirstName("Client");
