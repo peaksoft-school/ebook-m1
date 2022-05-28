@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import kg.peaksoft.ebookm1.dto.book.BookResponse;
 import kg.peaksoft.ebookm1.entity.Book;
+import kg.peaksoft.ebookm1.entity.Promocode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,4 +22,5 @@ public class CustomerResponse {
     private String email;
     private String password;
     private List<Book> bookList;
+    private List<Promocode> promocodeList;
 }

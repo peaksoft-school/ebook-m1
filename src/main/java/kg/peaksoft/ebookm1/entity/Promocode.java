@@ -1,9 +1,11 @@
 package kg.peaksoft.ebookm1.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -16,11 +18,15 @@ public class Promocode {
     private Long id;
     private String promoname;
     private int amountofpromo;
+    private LocalDate startingDay;
+    private LocalDate finishingDay;
     @ManyToOne()
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     @OneToMany(mappedBy ="promocode")
+    @JsonIgnore
     List<Book> books;
 
 

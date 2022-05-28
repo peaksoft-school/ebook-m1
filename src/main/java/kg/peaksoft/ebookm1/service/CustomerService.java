@@ -1,7 +1,9 @@
 package kg.peaksoft.ebookm1.service;
 
 import kg.peaksoft.ebookm1.dto.book.BookRequest;
+import kg.peaksoft.ebookm1.dto.promocode.PromocodeRequest;
 import kg.peaksoft.ebookm1.entity.Book;
+import kg.peaksoft.ebookm1.entity.Promocode;
 import kg.peaksoft.ebookm1.mapper.CustomerEditMapper;
 import kg.peaksoft.ebookm1.mapper.CustomerViewMapper;
 import kg.peaksoft.ebookm1.dto.customer.CustomerRequest;
@@ -33,7 +35,7 @@ public class CustomerService {
         userRepository.save(user);
         return viewMapper.viewUser(user);
     }
-
+ //  addBook button function section  starts  ==========================================================
     public CustomerResponse addBookToVendor(BookRequest bookRequest,Long id){
         Book book =  bookEditMapper.createNewBook(bookRequest);
         User user = userRepository.findById(id).get();
@@ -57,6 +59,18 @@ public class CustomerService {
         bookRepository.delete(book);
         userRepository.save(user);
         return viewMapper.viewUser(user);
+
+    }
+
+    //  addBook button function section  ends  ==========================================================
+
+
+    // addPromocode section starts   ====================================================
+
+
+    public CustomerResponse addPromocode(PromocodeRequest promocodeRequest){
+        Promocode promocode = new Promocode();
+        return null;
 
     }
 
