@@ -40,6 +40,7 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/public/**").permitAll()
                 .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                 .antMatchers("/api/users/**").permitAll()
+                .antMatchers("/api/books/**").hasAnyAuthority("ADMIN", "VENDOR")
                 .anyRequest()
                 .authenticated()
                 .and()
