@@ -3,9 +3,11 @@ package kg.peaksoft.ebookm1.dto.book;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import kg.peaksoft.ebookm1.dto.enums.BookLanguage;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class BookRequest {
 

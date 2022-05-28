@@ -63,21 +63,6 @@ public class BookEditMapper {
         book.setDiscount(bookRequest.getDiscount());
         book.setBestseller(bookRequest.getBestseller());
 
-        EBook eBook = new EBook();
-        eBook.setEBookFragment(bookRequest.getEBookFragment());
-        eBook.setBook(book);
-        book.setEBook(eBook);
-
-        PaperBook paperBook = new PaperBook();
-        paperBook.setPaperBookFragment(bookRequest.getPaperBookFragment());
-        paperBook.setBook(book);
-        book.setPaperBook(paperBook);
-
-        AudioBook audioBook = new AudioBook();
-        audioBook.setAudioFragment(bookRequest.getAudioBookFragment());
-        audioBook.setBook(book);
-        book.setAudioBook(audioBook);
-
         Genre genre = new Genre();
         genre.setGenreName(bookRequest.getGenreName());
         genre.setQuantityOfBooks(bookRequest.getQuantityOfBooks());

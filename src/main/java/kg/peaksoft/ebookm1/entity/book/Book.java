@@ -5,13 +5,12 @@ import kg.peaksoft.ebookm1.dto.enums.BookLanguage;
 import kg.peaksoft.ebookm1.entity.others.Basket;
 import kg.peaksoft.ebookm1.entity.others.Favorite;
 import kg.peaksoft.ebookm1.entity.others.Promo;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

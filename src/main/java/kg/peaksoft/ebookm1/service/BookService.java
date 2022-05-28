@@ -31,12 +31,12 @@ public class BookService {
         return viewMapper.viewBook(repository.save(book));
     }
 
-    public BookResponse getByIdBook(Long id) {
+    public BookResponse getBookById(Long id) {
         Book book = repository.findById(id).get();
         return viewMapper.viewBook(book);
     }
 
-    public BookResponse deleteByIdBook(Long id) {
+    public BookResponse deleteBookById(Long id) {
         Book book = repository.findById(id).get();
         repository.deleteById(id);
         System.out.print("Successfully deleted: ");

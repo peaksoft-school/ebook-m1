@@ -8,9 +8,11 @@ import kg.peaksoft.ebookm1.entity.book.EBook;
 import kg.peaksoft.ebookm1.entity.book.Genre;
 import kg.peaksoft.ebookm1.entity.book.PaperBook;
 import kg.peaksoft.ebookm1.entity.others.Promo;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class BookResponse {
 

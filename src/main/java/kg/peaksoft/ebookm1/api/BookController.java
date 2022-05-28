@@ -15,38 +15,39 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/books")
 @Tag(name = "Book", description = "The Book API")
+@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 5400)
 public class BookController {
 
     private final BookService bookService;
 
-    @Operation(summary = "User with role ADMIN can create")
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @Operation(summary = "Method create", description = "User with role VENDOR can create")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'VENDOR')")
     @PostMapping
     public BookResponse createBook(@RequestBody BookRequest request) {
         return bookService.createBook(request);
     }
 
-    @Operation(summary = "User with role ADMIN can update")
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @Operation(summary = "Method update by id", description = "User with role ADMIN and VENDOR can update")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'VENDOR')")
     @PutMapping("{id}")
     public BookResponse updateBook(@PathVariable Long id, @RequestBody BookRequest request) {
         return bookService.updateBook(id, request);
     }
 
-    @Operation(summary = "Allows all users to get a user by ID")
+    @Operation(summary =  "Method get by id", description = "Allows all users to get a book by ID")
     @GetMapping("{id}")
-    public BookResponse getByIdBook(@PathVariable Long id) {
-        return bookService.getByIdBook(id);
+    public BookResponse getBookById(@PathVariable Long id) {
+        return bookService.getBookById(id);
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
-    @Operation(summary = "User with role ADMIN can delete")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'VENDOR')")
+    @Operation(summary = "Method delete by id", description = "User with role ADMIN and VENDOR can delete")
     @DeleteMapping("{id}")
-    public BookResponse deleteByIdBook(@PathVariable Long id) {
-        return bookService.deleteByIdBook(id);
+    public BookResponse deleteBookById(@PathVariable Long id) {
+        return bookService.deleteBookById(id);
     }
 
-    @Operation(summary = "Allows to get all users from the database")
+    @Operation(summary = "Method get all", description = "Allows to get all books from the database")
     @GetMapping
     public List<BookResponse> getAllBooks() {
         return bookService.getAllBooks();
