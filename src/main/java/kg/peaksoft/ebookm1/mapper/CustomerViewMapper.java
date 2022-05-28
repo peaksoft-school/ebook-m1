@@ -25,6 +25,7 @@ public class CustomerViewMapper {
         response.setFirstName(user.getFirstName());
         response.setLastName(user.getLastName());
         response.setEmail(user.getEmail());
+        response.setPassword(user.getPassword());
         response.setBookList(user.getBooks());
         return response;
     }

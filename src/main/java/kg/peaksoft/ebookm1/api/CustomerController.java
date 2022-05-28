@@ -27,6 +27,15 @@ public class CustomerController {
     public CustomerResponse addBookToVendor(@PathVariable long id,@RequestBody BookRequest request){
         return userService.addBookToVendor(request,id);
     }
+    @PutMapping("/updateBook/{customerId}/{bookId}")
+    public CustomerResponse updateBook(@PathVariable long customerId,@PathVariable long bookId,@RequestBody BookRequest request){
+        return userService.updateBookVendor(customerId,bookId,request);
+    }
+    @DeleteMapping("/deleteBook/{customerId}/{bookId}")
+    public CustomerResponse deleteBook(@PathVariable long customerId,@PathVariable long bookId){
+        return userService.deleteBookVendor(customerId,bookId);
+    }
+
     @PutMapping("{id}")
     public CustomerResponse updateUser(@PathVariable long id,
                                    @RequestBody CustomerRequest request) {

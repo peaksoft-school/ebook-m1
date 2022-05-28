@@ -22,7 +22,7 @@ public class CustomerService {
 
     private final CustomerEditMapper editMapper;
     private final CustomerViewMapper viewMapper;
-    private final UserRepository repository;
+    private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final BookEditMapper bookEditMapper;
     private final BookRepository bookRepository;
@@ -30,37 +30,54 @@ public class CustomerService {
     public CustomerResponse create(CustomerRequest request) {
         User user = editMapper.createCustomer(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        repository.save(user);
+        userRepository.save(user);
         return viewMapper.viewUser(user);
     }
 
     public CustomerResponse addBookToVendor(BookRequest bookRequest,Long id){
         Book book =  bookEditMapper.createNewBook(bookRequest);
-        User user = repository.findById(id).get();
+        User user = userRepository.findById(id).get();
         book.setUser(user);
         bookRepository.save(book);
-        repository.save(user);
+        userRepository.save(user);
         return viewMapper.viewUser(user);
+    }
+    public CustomerResponse updateBookVendor(Long userId, Long bookId, BookRequest bookRequest){
+        User user = userRepository.findById(userId).get();
+        Book book = bookRepository.findById(bookId).get();
+        bookEditMapper.updateBook(book,bookRequest);
+        book.setUser(user);
+        bookRepository.save(book);
+        userRepository.save(user);
+        return viewMapper.viewUser(user);
+    }
+    public CustomerResponse deleteBookVendor(Long userId, Long bookId){
+        User user = userRepository.findById(userId).get();
+        Book book = bookRepository.findById(bookId).get();
+        bookRepository.delete(book);
+        userRepository.save(user);
+        return viewMapper.viewUser(user);
+
     }
 
     public CustomerResponse update(CustomerRequest request, Long id) {
-        User user = repository.findById(id).get();
+        User user = userRepository.findById(id).get();
         editMapper.updateUser(user, request);
-        return viewMapper.viewUser(repository.save(user));
+        return viewMapper.viewUser(userRepository.save(user));
     }
 
     public CustomerResponse getById(Long id) {
-        User user = repository.findById(id).get();
+        User user = userRepository.findById(id).get();
         return viewMapper.viewUser(user);
     }
 
     public List<CustomerResponse> getAllUsers() {
-        return viewMapper.viewUsers(repository.findAll());
+        return viewMapper.viewUsers(userRepository.findAll());
     }
 
     public CustomerResponse deleteById(Long id) {
-        User user = repository.findById(id).get();
-        repository.deleteById(id);
+        User user = userRepository.findById(id).get();
+        userRepository.deleteById(id);
         return viewMapper.viewUser(user);
     }
 
