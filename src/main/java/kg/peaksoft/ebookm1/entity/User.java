@@ -36,6 +36,9 @@ public class User implements UserDetails {
     private LocalDateTime created;
     private boolean isActive;
 
+    @OneToMany(mappedBy = "user")
+    private List<Promocode> promocode;
+
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     List<Book> books;
 
