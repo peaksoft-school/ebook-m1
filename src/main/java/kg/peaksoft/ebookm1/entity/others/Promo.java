@@ -9,7 +9,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "promo_id")
+@Table(name = "promos")
 public class Promo {
 
     private static final String SEQ_NAME = "promo_generator";

@@ -1,11 +1,16 @@
 package kg.peaksoft.ebookm1.entity;
 
+import kg.peaksoft.ebookm1.entity.book.Book;
+import kg.peaksoft.ebookm1.entity.others.Basket;
+import kg.peaksoft.ebookm1.entity.others.Favorite;
+import kg.peaksoft.ebookm1.entity.others.Promo;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,7 +35,9 @@ public class User implements UserDetails {
     @Column(name = "last_name")
     private String lastName;
     private String phoneNumber;
+    @Email(message = "Email should be valid")
     private String email;
+    @Column(unique = true)
     private String password;
     private LocalDateTime created;
     private boolean isActive;
@@ -40,8 +47,23 @@ public class User implements UserDetails {
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "roles_id"))
-
     private List<Role> roles;
+
+    @OneToMany
+    @JoinColumn(name = "vendor_id")
+    private List<Book> books;
+
+    @OneToMany
+    @JoinColumn(name = "vendor_id")
+    private List<Promo> promos;
+
+    @OneToOne
+    @JoinColumn(name = "basket_id")
+    private Basket basket;
+
+    @OneToOne
+    @JoinColumn(name = "favorite_id")
+    private Favorite favorite;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
