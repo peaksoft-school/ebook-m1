@@ -4,18 +4,21 @@ import kg.peaksoft.ebookm1.dto.book.BookRequest;
 import kg.peaksoft.ebookm1.dto.promocode.PromocodeRequest;
 import kg.peaksoft.ebookm1.entity.Book;
 import kg.peaksoft.ebookm1.entity.Promocode;
-import kg.peaksoft.ebookm1.mapper.CustomerEditMapper;
-import kg.peaksoft.ebookm1.mapper.CustomerViewMapper;
+import kg.peaksoft.ebookm1.mapper.customer.CustomerEditMapper;
+import kg.peaksoft.ebookm1.mapper.customer.CustomerViewMapper;
 import kg.peaksoft.ebookm1.dto.customer.CustomerRequest;
 import kg.peaksoft.ebookm1.dto.customer.CustomerResponse;
 import kg.peaksoft.ebookm1.entity.User;
 import kg.peaksoft.ebookm1.mapper.book.BookEditMapper;
+import kg.peaksoft.ebookm1.mapper.promocode.PromocodeEditMapper;
 import kg.peaksoft.ebookm1.repository.BookRepository;
+import kg.peaksoft.ebookm1.repository.PromocodeRepository;
 import kg.peaksoft.ebookm1.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,6 +31,8 @@ public class CustomerService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final BookEditMapper bookEditMapper;
     private final BookRepository bookRepository;
+    private final PromocodeEditMapper promocodeEditMapper;
+    private final PromocodeRepository promocodeRepository;
 
     public CustomerResponse create(CustomerRequest request) {
         User user = editMapper.createCustomer(request);
@@ -68,10 +73,21 @@ public class CustomerService {
     // addPromocode section starts   ====================================================
 
 
-    public CustomerResponse addPromocode(PromocodeRequest promocodeRequest){
-        Promocode promocode = new Promocode();
-        return null;
+    public CustomerResponse addPromocode(PromocodeRequest promocodeRequest,Long id){
+        Promocode promocode = promocodeEditMapper.create(promocodeRequest);
+        User user = userRepository.findById(id).get();
+        List<Book> bookList = user.getBooks();
 
+        for (Book book:bookList
+             ) {
+            book.setPromocode(promocode);
+
+        }
+
+        promocode.setUser(user);
+        promocodeRepository.save(promocode);
+        userRepository.save(user);
+        return viewMapper.viewUser(user);
     }
 
     public CustomerResponse update(CustomerRequest request, Long id) {

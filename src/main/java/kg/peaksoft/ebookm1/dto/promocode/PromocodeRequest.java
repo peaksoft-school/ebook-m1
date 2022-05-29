@@ -14,7 +14,7 @@ public class PromocodeRequest {
 
     private String promoname;
     private int amountofpromo;
-    private LocalDate startingDay;
-    private LocalDate finishingDay;
+    private LocalDate startingday;
+    private LocalDate finishingday;
 
 }

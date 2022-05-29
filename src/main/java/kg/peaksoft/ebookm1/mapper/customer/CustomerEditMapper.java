@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.mapper;
+package kg.peaksoft.ebookm1.mapper.customer;
 
 import kg.peaksoft.ebookm1.dto.book.BookRequest;
 import kg.peaksoft.ebookm1.dto.customer.CustomerRequest;
@@ -39,13 +39,6 @@ public class CustomerEditMapper {
         user.setLastName(customerRequest.getLastName());
         user.setEmail(customerRequest.getEmail());
         user.setPassword(customerRequest.getPassword());
-        return user;
-    }
-    public User addBook(User user, BookRequest bookRequest) {
-        List<Book> bookList = new ArrayList<>();
-        Book book = new Book();
-        bookList.add(book);
-        user.setBooks(bookList);
         return user;
     }
 }

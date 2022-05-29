@@ -19,10 +19,12 @@ public class BookEditMapper {
     public Book createNewBook(BookRequest bookRequest){
         Book book = new Book();
         book.setBook(bookRequest.getName());
+        book.setPrice(bookRequest.getPrice());
         return book;
     }
     public Book updateBook(Book book, BookRequest bookRequest){
         book.setBook(bookRequest.getName());
+        book.setPrice(bookRequest.getPrice());
         return book;
     }
 }

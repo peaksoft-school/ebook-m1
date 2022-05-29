@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.mapper;
+package kg.peaksoft.ebookm1.mapper.customer;
 
 
 import kg.peaksoft.ebookm1.dto.customer.CustomerResponse;
@@ -27,6 +27,7 @@ public class CustomerViewMapper {
         response.setEmail(user.getEmail());
         response.setPassword(user.getPassword());
         response.setBookList(user.getBooks());
+        response.setPromocodeList(user.getPromocode());
         return response;
     }
 

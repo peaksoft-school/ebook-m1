@@ -3,6 +3,7 @@ package kg.peaksoft.ebookm1.api;
 import kg.peaksoft.ebookm1.dto.book.BookRequest;
 import kg.peaksoft.ebookm1.dto.customer.CustomerRequest;
 import kg.peaksoft.ebookm1.dto.customer.CustomerResponse;
+import kg.peaksoft.ebookm1.dto.promocode.PromocodeRequest;
 import kg.peaksoft.ebookm1.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -36,6 +37,11 @@ public class CustomerController {
         return userService.deleteBookVendor(customerId,bookId);
     }
 
+
+    @PostMapping("/addPromocode/{id}")
+    public CustomerResponse addPromocode(@PathVariable long id,@RequestBody PromocodeRequest promocodeRequest){
+        return userService.addPromocode(promocodeRequest,id);
+    }
     @PutMapping("{id}")
     public CustomerResponse updateUser(@PathVariable long id,
                                    @RequestBody CustomerRequest request) {

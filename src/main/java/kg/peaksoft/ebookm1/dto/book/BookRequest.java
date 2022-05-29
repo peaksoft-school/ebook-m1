@@ -11,5 +11,7 @@ import lombok.NoArgsConstructor;
 public class BookRequest {
 
     private String name;
+    private int price;
+    private Long promocodeid;
 
 }
