@@ -2,6 +2,7 @@ package kg.peaksoft.ebookm1.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import kg.peaksoft.ebookm1.entity.book.Book;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -25,9 +26,9 @@ public class Promocode {
     @JsonIgnore
     private User user;
 
-    @OneToMany(mappedBy ="promocode")
-    @JsonIgnore
-    List<Book> books;
+//    @OneToMany(mappedBy ="promocode")
+//    @JsonIgnore
+//    List<Book> books;
 
 
 }
