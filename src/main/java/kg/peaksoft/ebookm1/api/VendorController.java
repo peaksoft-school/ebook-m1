@@ -54,6 +54,19 @@ public class VendorController {
         return userService.addPromocode(promocodeRequest, id);
     }
 
+
+    @PutMapping("/updatePromocode/{vendorId}/{promoCodeId}")
+    @Operation(summary = "Update promocode of vendors profile")
+    public VendorResponse updatePromocode(@PathVariable long vendorId, @PathVariable long promoCodeIdId, @RequestBody PromocodeRequest promocodeRequest) {
+        return userService.updatePromocode(promocodeRequest, vendorId, promoCodeIdId);
+    }
+
+    @DeleteMapping("/deleteBook/{vendorId}/{promoCodeId}")
+    @Operation(summary = "Delete promocode from vendors profile")
+    public VendorResponse deletePromocode(@PathVariable long vendorId, @PathVariable long promoCodeId) {
+        return userService.deletePromocode(vendorId, promoCodeId);
+    }
+
     @PutMapping("{id}")
     @Operation(summary = "Update vendors")
     public VendorResponse updateVendor(@PathVariable long id,

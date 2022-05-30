@@ -35,7 +35,7 @@ public class VendorService {
     private final PromocodeRepository promocodeRepository;
 
     public VendorResponse create(VendorRequest request) {
-        User user = editMapper.createCustomer(request);
+        User user = editMapper.createVendor(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         userRepository.save(user);
         return viewMapper.viewUser(user);
@@ -43,7 +43,7 @@ public class VendorService {
 
     public VendorResponse update(VendorRequest request, Long id) {
         User user = userRepository.findById(id).get();
-        editMapper.updateUser(user, request);
+        editMapper.updateVendor(user, request);
         return viewMapper.viewUser(userRepository.save(user));
     }
 
@@ -98,13 +98,33 @@ public class VendorService {
         Promocode promocode = promocodeEditMapper.create(promocodeRequest);
         User user = userRepository.findById(id).get();
         List<Book> bookList = user.getBooks();
-
         for (Book book : bookList
         ) {
             book.setPromocode(promocode);
         }
         promocode.setUser(user);
         promocodeRepository.save(promocode);
+        userRepository.save(user);
+        return viewMapper.viewUser(user);
+    }
+    public VendorResponse updatePromocode(PromocodeRequest promocodeRequest, Long vendorId, Long promoCodeId) {
+        User user = userRepository.findById(vendorId).get();
+        Promocode promocode = promocodeRepository.findById(promoCodeId).get();
+        promocodeEditMapper.update(promocode,promocodeRequest);
+        List<Book> bookList = user.getBooks();
+        for (Book book : bookList
+        ) {
+            book.setPromocode(promocode);
+        }
+        promocode.setUser(user);
+        promocodeRepository.save(promocode);
+        userRepository.save(user);
+        return viewMapper.viewUser(user);
+    }
+    public VendorResponse deletePromocode(Long vendorId, Long promoCodeId) {
+        User user = userRepository.findById(vendorId).get();
+        Promocode promocode = promocodeRepository.findById(promoCodeId).get();
+        promocodeRepository.delete(promocode);
         userRepository.save(user);
         return viewMapper.viewUser(user);
     }
