@@ -37,7 +37,7 @@ public class User implements UserDetails {
     private LocalDateTime created;
     private boolean isActive;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Promocode> promocode;
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
