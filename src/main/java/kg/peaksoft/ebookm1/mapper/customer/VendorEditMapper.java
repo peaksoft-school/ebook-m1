@@ -12,7 +12,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class CustomerEditMapper {
+public class VendorEditMapper {
 
     private final RoleRepository roleRepository;
 

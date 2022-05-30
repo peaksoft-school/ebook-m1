@@ -4,7 +4,7 @@ import kg.peaksoft.ebookm1.dto.book.BookRequest;
 import kg.peaksoft.ebookm1.dto.customer.VendorResponse;
 import kg.peaksoft.ebookm1.dto.customer.VendorRequest;
 import kg.peaksoft.ebookm1.dto.promocode.PromocodeRequest;
-import kg.peaksoft.ebookm1.service.CustomerService;
+import kg.peaksoft.ebookm1.service.VendorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ import java.util.List;
 @PreAuthorize("hasAnyAuthority('ADMIN')")
 public class VendorController {
 
-    private final CustomerService userService;
+    private final VendorService userService;
 
     @PostMapping
     public VendorResponse createUser(@RequestBody VendorRequest request) {

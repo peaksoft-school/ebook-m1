@@ -1,6 +1,7 @@
 package kg.peaksoft.ebookm1.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import kg.peaksoft.ebookm1.entity.book.Book;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

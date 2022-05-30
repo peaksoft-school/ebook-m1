@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class CustomerViewMapper {
+public class VendorViewMapper {
 
 
     public VendorResponse viewUser(User user) {

@@ -1,16 +1,17 @@
 package kg.peaksoft.ebookm1.service;
 
+import kg.peaksoft.ebookm1.book.BookEditMapper;
 import kg.peaksoft.ebookm1.dto.book.BookRequest;
 import kg.peaksoft.ebookm1.dto.promocode.PromocodeRequest;
-import kg.peaksoft.ebookm1.entity.Book;
 import kg.peaksoft.ebookm1.entity.Promocode;
-import kg.peaksoft.ebookm1.mapper.customer.CustomerEditMapper;
-import kg.peaksoft.ebookm1.mapper.customer.CustomerViewMapper;
+import kg.peaksoft.ebookm1.entity.book.Book;
+import kg.peaksoft.ebookm1.mapper.customer.VendorEditMapper;
+import kg.peaksoft.ebookm1.mapper.customer.VendorViewMapper;
 import kg.peaksoft.ebookm1.dto.customer.VendorRequest;
 import kg.peaksoft.ebookm1.dto.customer.VendorResponse;
 import kg.peaksoft.ebookm1.entity.User;
-import kg.peaksoft.ebookm1.mapper.book.BookEditMapper;
 import kg.peaksoft.ebookm1.mapper.promocode.PromocodeEditMapper;
+
 import kg.peaksoft.ebookm1.repository.BookRepository;
 import kg.peaksoft.ebookm1.repository.PromocodeRepository;
 import kg.peaksoft.ebookm1.repository.UserRepository;
@@ -22,10 +23,10 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CustomerService {
+public class VendorService {
 
-    private final CustomerEditMapper editMapper;
-    private final CustomerViewMapper viewMapper;
+    private final VendorEditMapper editMapper;
+    private final VendorViewMapper viewMapper;
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final BookEditMapper bookEditMapper;
@@ -41,7 +42,7 @@ public class CustomerService {
     }
  //  addBook button function section  starts  ==========================================================
     public VendorResponse addBookToVendor(BookRequest bookRequest, Long id){
-        Book book =  bookEditMapper.createNewBook(bookRequest);
+        Book book =  bookEditMapper.createBook(bookRequest);
         User user = userRepository.findById(id).get();
         book.setUser(user);
         bookRepository.save(book);
@@ -65,7 +66,6 @@ public class CustomerService {
         return viewMapper.viewUser(user);
 
     }
-
     //  addBook button function section  ends  ==========================================================
 
 
@@ -79,7 +79,7 @@ public class CustomerService {
 
         for (Book book:bookList
              ) {
-            book.setPromocode(promocode);
+            book.setPromo(promocode);
 
         }
 
