@@ -15,17 +15,17 @@ public class PromocodeEditMapper {
 
     public Promocode create(PromocodeRequest promocodeRequest){
         Promocode promocode = new Promocode();
-        promocode.setPromoName(promocodeRequest.getPromo_name());
-        promocode.setStartingDay(promocodeRequest.getStarting_day());
-        promocode.setFinishingDay(promocodeRequest.getFinishing_day());
-        promocode.setAmountOfPromo(promocodeRequest.getAmount_of_promo());
+        promocode.setPromoName(promocodeRequest.getPromoName());
+        promocode.setAmountOfPromo(promocodeRequest.getAmountOfPromo());
+        promocode.setStartingDay(promocodeRequest.getStartingDay());
+        promocode.setFinishingDay(promocodeRequest.getFinishingDay());
         return promocode;
     }
     public Promocode update(Promocode promocode,PromocodeRequest promocodeRequest){
-        promocode.setPromoName(promocodeRequest.getPromo_name());
-        promocode.setStartingDay(promocodeRequest.getStarting_day());
-        promocode.setFinishingDay(promocodeRequest.getFinishing_day());
-        promocode.setAmountOfPromo(promocodeRequest.getAmount_of_promo());
+        promocode.setPromoName(promocodeRequest.getPromoName());
+        promocode.setAmountOfPromo(promocodeRequest.getAmountOfPromo());
+        promocode.setStartingDay(promocodeRequest.getStartingDay());
+        promocode.setFinishingDay(promocodeRequest.getFinishingDay());
         return promocode;
     }
 }

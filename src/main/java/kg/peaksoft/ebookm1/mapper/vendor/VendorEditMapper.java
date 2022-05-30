@@ -23,6 +23,7 @@ public class VendorEditMapper {
         User user = new User();
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
+        user.setPhoneNumber(request.getPhoneNumber());
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
         List<Role> roleList = new ArrayList<>();
@@ -35,6 +36,7 @@ public class VendorEditMapper {
     public User updateVendor(User user, VendorRequest vendorRequest) {
         user.setFirstName(vendorRequest.getFirstName());
         user.setLastName(vendorRequest.getLastName());
+        user.setPhoneNumber(vendorRequest.getPhoneNumber());
         user.setEmail(vendorRequest.getEmail());
         user.setPassword(vendorRequest.getPassword());
         return user;

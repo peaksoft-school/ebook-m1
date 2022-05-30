@@ -37,6 +37,7 @@ public class VendorService {
     public VendorResponse create(VendorRequest request) {
         User user = editMapper.createVendor(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.isActive();
         userRepository.save(user);
         return viewMapper.viewUser(user);
     }

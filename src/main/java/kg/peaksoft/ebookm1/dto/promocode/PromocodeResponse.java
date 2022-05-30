@@ -16,8 +16,8 @@ import java.time.LocalDate;
 public class PromocodeResponse {
 
     private Long id;
-    private String promo_name;
-    private int amount_of_promo;
-    private LocalDate starting_day;
-    private LocalDate finishing_day;
+    private String promoName;
+    private int amountOfPromo;
+    private LocalDate startingDay;
+    private LocalDate finishingDay;
 }

@@ -24,7 +24,9 @@ public class VendorViewMapper {
         }
         response.setFirstName(user.getFirstName());
         response.setLastName(user.getLastName());
+        response.setPhoneNumber(user.getPhoneNumber());
         response.setEmail(user.getEmail());
+        response.setIsActive(true);
         response.setPassword(user.getPassword());
         response.setBookList(user.getBooks());
         response.setPromocodeList(user.getPromocode());

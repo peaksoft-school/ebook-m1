@@ -18,8 +18,10 @@ public class VendorResponse {
     private Long id;
     private String firstName;
     private String lastName;
+    private String phoneNumber;
     private String email;
     private String password;
+    private Boolean isActive;
     private List<Book> bookList;
     private List<Promocode> promocodeList;
 }
