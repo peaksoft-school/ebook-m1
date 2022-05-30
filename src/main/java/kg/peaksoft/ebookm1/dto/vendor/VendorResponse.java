@@ -1,10 +1,10 @@
-package kg.peaksoft.ebookm1.dto.customer;
+package kg.peaksoft.ebookm1.dto.vendor;
 
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import kg.peaksoft.ebookm1.entity.Book;
 import kg.peaksoft.ebookm1.entity.Promocode;
+import kg.peaksoft.ebookm1.entity.book.Book;
 import lombok.Getter;
 import lombok.Setter;
 

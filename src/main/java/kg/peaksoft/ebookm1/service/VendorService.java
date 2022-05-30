@@ -5,10 +5,10 @@ import kg.peaksoft.ebookm1.dto.book.BookRequest;
 import kg.peaksoft.ebookm1.dto.promocode.PromocodeRequest;
 import kg.peaksoft.ebookm1.entity.Promocode;
 import kg.peaksoft.ebookm1.entity.book.Book;
-import kg.peaksoft.ebookm1.mapper.customer.VendorEditMapper;
-import kg.peaksoft.ebookm1.mapper.customer.VendorViewMapper;
-import kg.peaksoft.ebookm1.dto.customer.VendorRequest;
-import kg.peaksoft.ebookm1.dto.customer.VendorResponse;
+import kg.peaksoft.ebookm1.mapper.vendor.VendorEditMapper;
+import kg.peaksoft.ebookm1.mapper.vendor.VendorViewMapper;
+import kg.peaksoft.ebookm1.dto.vendor.VendorRequest;
+import kg.peaksoft.ebookm1.dto.vendor.VendorResponse;
 import kg.peaksoft.ebookm1.entity.User;
 import kg.peaksoft.ebookm1.mapper.promocode.PromocodeEditMapper;
 

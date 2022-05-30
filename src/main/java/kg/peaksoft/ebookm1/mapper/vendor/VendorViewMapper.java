@@ -1,7 +1,7 @@
-package kg.peaksoft.ebookm1.mapper.customer;
+package kg.peaksoft.ebookm1.mapper.vendor;
 
 
-import kg.peaksoft.ebookm1.dto.customer.VendorResponse;
+import kg.peaksoft.ebookm1.dto.vendor.VendorResponse;
 import kg.peaksoft.ebookm1.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

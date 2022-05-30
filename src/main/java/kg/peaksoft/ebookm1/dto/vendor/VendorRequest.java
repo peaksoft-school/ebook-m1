@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.dto.customer;
+package kg.peaksoft.ebookm1.dto.vendor;
 
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;

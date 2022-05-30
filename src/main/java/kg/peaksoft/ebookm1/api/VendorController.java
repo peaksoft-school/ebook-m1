@@ -1,8 +1,10 @@
 package kg.peaksoft.ebookm1.api;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.ebookm1.dto.book.BookRequest;
-import kg.peaksoft.ebookm1.dto.customer.VendorResponse;
-import kg.peaksoft.ebookm1.dto.customer.VendorRequest;
+import kg.peaksoft.ebookm1.dto.vendor.VendorRequest;
+import kg.peaksoft.ebookm1.dto.vendor.VendorResponse;
 import kg.peaksoft.ebookm1.dto.promocode.PromocodeRequest;
 import kg.peaksoft.ebookm1.service.VendorService;
 import lombok.RequiredArgsConstructor;
@@ -13,35 +15,44 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/customers")
+@CrossOrigin
+@RequestMapping("/api/vendors")
 @PreAuthorize("hasAnyAuthority('ADMIN')")
+@Tag(name = "Vendor", description = "The vendors API")
 public class VendorController {
 
     private final VendorService userService;
 
     @PostMapping
-    public VendorResponse createUser(@RequestBody VendorRequest request) {
+    @Operation(summary = "New Vendor user creation")
+    public VendorResponse createVendor(@RequestBody VendorRequest request) {
         return userService.create(request);
     }
 
     @PostMapping("/addBook/{id}")
-    public VendorResponse addBookToVendor(@PathVariable long id, @RequestBody BookRequest request){
-        return userService.addBookToVendor(request,id);
+    @Operation(summary = "New book added to vendors profile")
+    public VendorResponse addBookToVendor(@PathVariable long id, @RequestBody BookRequest request) {
+        return userService.addBookToVendor(request, id);
     }
-    @PutMapping("/updateBook/{customerId}/{bookId}")
-    public VendorResponse updateBook(@PathVariable long customerId, @PathVariable long bookId, @RequestBody BookRequest request){
-        return userService.updateBookVendor(customerId,bookId,request);
+
+    @PutMapping("/updateBook/{vendorId}/{bookId}")
+    @Operation(summary = "Update book of vendors profile")
+    public VendorResponse updateBook(@PathVariable long vendorId, @PathVariable long bookId, @RequestBody BookRequest request) {
+        return userService.updateBookVendor(vendorId, bookId, request);
     }
-    @DeleteMapping("/deleteBook/{customerId}/{bookId}")
-    public VendorResponse deleteBook(@PathVariable long customerId, @PathVariable long bookId){
-        return userService.deleteBookVendor(customerId,bookId);
+
+    @DeleteMapping("/deleteBook/{vendorId}/{bookId}")
+    @Operation(summary = "Delete book from vendors profile")
+    public VendorResponse deleteBook(@PathVariable long vendorId, @PathVariable long bookId) {
+        return userService.deleteBookVendor(vendorId, bookId);
     }
 
 
     @PostMapping("/addPromocode/{id}")
-    public VendorResponse addPromocode(@PathVariable long id, @RequestBody PromocodeRequest promocodeRequest){
-        return userService.addPromocode(promocodeRequest,id);
+    public VendorResponse addPromocode(@PathVariable long id, @RequestBody PromocodeRequest promocodeRequest) {
+        return userService.addPromocode(promocodeRequest, id);
     }
+
     @PutMapping("{id}")
     public VendorResponse updateUser(@PathVariable long id,
                                      @RequestBody VendorRequest request) {
