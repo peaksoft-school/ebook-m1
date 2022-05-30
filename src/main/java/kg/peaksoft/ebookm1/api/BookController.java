@@ -39,16 +39,6 @@ public class BookController {
     }
 
 
-//
-//    @DeleteMapping("{id}")
-//    public CustomerResponse deleteByIdUser(@PathVariable long id,
-//                                       @RequestBody CustomerRequest request) {
-//        return userService.deleteById(id);
-//    }
-//
-//    @GetMapping
-//    public List<CustomerResponse> getAllUsers() {
-//        return userService.getAllUsers();
-//    }
+
 
 }
