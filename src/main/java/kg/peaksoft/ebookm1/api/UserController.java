@@ -1,5 +1,7 @@
 package kg.peaksoft.ebookm1.api;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.ebookm1.dto.user.UserRequest;
 import kg.peaksoft.ebookm1.dto.user.UserResponse;
 import kg.peaksoft.ebookm1.service.UserService;
@@ -12,35 +14,42 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
+@CrossOrigin
 @PreAuthorize("hasAnyAuthority('ADMIN')")
+@Tag(name = "User", description = "The User API")
 public class UserController {
 
     private final UserService userService;
 
-    @PostMapping
+    @PostMapping("/create")
+    @Operation(summary = "User with role ADMIN can create")
     public UserResponse createUser(@RequestBody UserRequest request) {
         return userService.create(request);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/update/{id}")
+    @Operation(summary = "User with role ADMIN can update")
     public UserResponse updateUser(@PathVariable long id,
                                    @RequestBody UserRequest request) {
         return userService.update(request, id);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/getById/{id}")
+    @Operation(summary = "Allows all users to get a user by ID")
     public UserResponse getByIdUser(@PathVariable long id,
                                     @RequestBody UserRequest request) {
         return userService.getById(id);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/deleteById/{id}")
+    @Operation(summary = "User with role ADMIN can delete")
     public UserResponse deleteByIdUser(@PathVariable long id,
                                        @RequestBody UserRequest request) {
         return userService.deleteById(id);
     }
 
-    @GetMapping
+    @GetMapping("/getAll")
+    @Operation(summary = "Allows to get all users from the database")
     public List<UserResponse> getAllUsers() {
         return userService.getAllUsers();
     }
