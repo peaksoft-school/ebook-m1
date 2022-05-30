@@ -2,10 +2,7 @@ package kg.peaksoft.ebookm1.mapper.book;
 
 
 import kg.peaksoft.ebookm1.dto.book.BookRequest;
-import kg.peaksoft.ebookm1.dto.book.BookResponse;
-import kg.peaksoft.ebookm1.dto.customer.CustomerRequest;
 import kg.peaksoft.ebookm1.entity.Book;
-import kg.peaksoft.ebookm1.entity.User;
 import kg.peaksoft.ebookm1.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

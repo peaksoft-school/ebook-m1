@@ -1,8 +1,6 @@
 package kg.peaksoft.ebookm1.mapper.customer;
 
-import kg.peaksoft.ebookm1.dto.book.BookRequest;
-import kg.peaksoft.ebookm1.dto.customer.CustomerRequest;
-import kg.peaksoft.ebookm1.entity.Book;
+import kg.peaksoft.ebookm1.dto.customer.VendorRequest;
 import kg.peaksoft.ebookm1.entity.Role;
 import kg.peaksoft.ebookm1.entity.User;
 import kg.peaksoft.ebookm1.repository.RoleRepository;
@@ -18,7 +16,7 @@ public class CustomerEditMapper {
 
     private final RoleRepository roleRepository;
 
-    public User createCustomer(CustomerRequest request) {
+    public User createCustomer(VendorRequest request) {
         if (request == null) {
             return null;
         }
@@ -34,7 +32,7 @@ public class CustomerEditMapper {
         return user;
     }
 
-    public User updateUser(User user, CustomerRequest customerRequest) {
+    public User updateUser(User user, VendorRequest customerRequest) {
         user.setFirstName(customerRequest.getFirstName());
         user.setLastName(customerRequest.getLastName());
         user.setEmail(customerRequest.getEmail());

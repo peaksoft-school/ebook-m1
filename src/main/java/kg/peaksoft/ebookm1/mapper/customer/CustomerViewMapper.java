@@ -1,7 +1,7 @@
 package kg.peaksoft.ebookm1.mapper.customer;
 
 
-import kg.peaksoft.ebookm1.dto.customer.CustomerResponse;
+import kg.peaksoft.ebookm1.dto.customer.VendorResponse;
 import kg.peaksoft.ebookm1.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -14,11 +14,11 @@ import java.util.List;
 public class CustomerViewMapper {
 
 
-    public CustomerResponse viewUser(User user) {
+    public VendorResponse viewUser(User user) {
         if (user == null) {
             return null;
         }
-        CustomerResponse response = new CustomerResponse();
+        VendorResponse response = new VendorResponse();
         if (user.getId() != null) {
             response.setId(Long.valueOf(user.getId()));
         }
@@ -31,8 +31,8 @@ public class CustomerViewMapper {
         return response;
     }
 
-    public List<CustomerResponse> viewUsers(List<User> users) {
-        List<CustomerResponse> responses = new ArrayList<>();
+    public List<VendorResponse> viewUsers(List<User> users) {
+        List<VendorResponse> responses = new ArrayList<>();
         for (User user : users) {
             responses.add(viewUser(user));
         }
