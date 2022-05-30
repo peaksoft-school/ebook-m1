@@ -16,7 +16,7 @@ public class VendorEditMapper {
 
     private final RoleRepository roleRepository;
 
-    public User createCustomer(VendorRequest request) {
+    public User createVendor(VendorRequest request) {
         if (request == null) {
             return null;
         }
@@ -32,11 +32,11 @@ public class VendorEditMapper {
         return user;
     }
 
-    public User updateUser(User user, VendorRequest customerRequest) {
-        user.setFirstName(customerRequest.getFirstName());
-        user.setLastName(customerRequest.getLastName());
-        user.setEmail(customerRequest.getEmail());
-        user.setPassword(customerRequest.getPassword());
+    public User updateVendor(User user, VendorRequest vendorRequest) {
+        user.setFirstName(vendorRequest.getFirstName());
+        user.setLastName(vendorRequest.getLastName());
+        user.setEmail(vendorRequest.getEmail());
+        user.setPassword(vendorRequest.getPassword());
         return user;
     }
 }

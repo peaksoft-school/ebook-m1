@@ -49,29 +49,34 @@ public class VendorController {
 
 
     @PostMapping("/addPromocode/{id}")
+    @Operation(summary = "New promocode added to vendors profile")
     public VendorResponse addPromocode(@PathVariable long id, @RequestBody PromocodeRequest promocodeRequest) {
         return userService.addPromocode(promocodeRequest, id);
     }
 
     @PutMapping("{id}")
-    public VendorResponse updateUser(@PathVariable long id,
+    @Operation(summary = "Update vendors")
+    public VendorResponse updateVendor(@PathVariable long id,
                                      @RequestBody VendorRequest request) {
         return userService.update(request, id);
     }
 
     @GetMapping("{id}")
-    public VendorResponse getByIdUser(@PathVariable long id,
+    @Operation(summary = "Get vendor user")
+    public VendorResponse getByIdVendor(@PathVariable long id,
                                       @RequestBody VendorRequest request) {
         return userService.getById(id);
     }
 
     @DeleteMapping("{id}")
-    public VendorResponse deleteByIdUser(@PathVariable long id,
+    @Operation(summary = "Delete Vendor user")
+    public VendorResponse deleteByIdVendor(@PathVariable long id,
                                          @RequestBody VendorRequest request) {
         return userService.deleteById(id);
     }
 
     @GetMapping
+    @Operation(summary = "Get All vendors")
     public List<VendorResponse> getAllUsers() {
         return userService.getAllUsers();
     }

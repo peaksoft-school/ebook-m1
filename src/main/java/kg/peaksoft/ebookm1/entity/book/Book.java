@@ -2,6 +2,7 @@ package kg.peaksoft.ebookm1.entity.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import kg.peaksoft.ebookm1.dto.enums.BookLanguage;
+import kg.peaksoft.ebookm1.entity.Promocode;
 import kg.peaksoft.ebookm1.entity.User;
 import kg.peaksoft.ebookm1.entity.others.Basket;
 import kg.peaksoft.ebookm1.entity.others.Favorite;
@@ -77,4 +78,9 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "promocode_id")
+    private Promocode promocode;
+
 }

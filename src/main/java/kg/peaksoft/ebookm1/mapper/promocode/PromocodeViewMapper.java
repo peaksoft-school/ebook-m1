@@ -18,18 +18,18 @@ public class PromocodeViewMapper {
     public PromocodeResponse viewPromoMapper(Promocode promocode){
         PromocodeResponse response = new PromocodeResponse();
         response.setId(promocode.getId());
-        response.setPromoname(promocode.getPromoname());
-        response.setStartingDay(promocode.getStartingDay());
-        response.setFinishingDay(promocode.getFinishingDay());
-        response.setAmountofpromo(promocode.getAmountofpromo());
+        response.setPromo_name(promocode.getPromoName());
+        response.setStarting_day(promocode.getStartingDay());
+        response.setFinishing_day(promocode.getFinishingDay());
+        response.setAmount_of_promo(promocode.getAmountOfPromo());
 
         return response;
     }
     public List<PromocodeResponse> promocodeResponseList (List<Promocode> promocodes){
         List<PromocodeResponse> responseList =  new ArrayList<>();
-        for (Promocode listtenGelenTumPromocodelariTekTekAliyor:promocodes
+        for (Promocode promocode:promocodes
              ) {
-            responseList.add(viewPromoMapper(listtenGelenTumPromocodelariTekTekAliyor));
+            responseList.add(viewPromoMapper(promocode));
         }
         return responseList;
     }

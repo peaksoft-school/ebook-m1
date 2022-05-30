@@ -17,8 +17,8 @@ public class Promocode {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String promoname;
-    private int amountofpromo;
+    private String promoName;
+    private int amountOfPromo;
     private LocalDate startingDay;
     private LocalDate finishingDay;
     @ManyToOne()
@@ -26,9 +26,9 @@ public class Promocode {
     @JsonIgnore
     private User user;
 
-//    @OneToMany(mappedBy ="promocode")
-//    @JsonIgnore
-//    List<Book> books;
+    @OneToMany(mappedBy ="promocode")
+    @JsonIgnore
+    List<Book> books;
 
 
 }
