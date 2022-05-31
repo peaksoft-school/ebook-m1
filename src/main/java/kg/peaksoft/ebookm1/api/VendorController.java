@@ -90,7 +90,7 @@ public class VendorController {
     }
 
     @Operation(summary = "Delete promocode from vendors profile")
-    @DeleteMapping("/deleteBook/{vendorId}/{promoCodeId}")
+    @DeleteMapping("/deletePromocode/{vendorId}/{promoCodeId}")
     public VendorResponse deletePromocode(@PathVariable long vendorId, @PathVariable long promoCodeId) {
         return userService.deletePromocode(vendorId, promoCodeId);
     }
