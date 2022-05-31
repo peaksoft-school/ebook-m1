@@ -53,8 +53,8 @@ public class VendorService {
         return viewMapper.viewUser(user);
     }
 
-    public List<VendorResponse> getAllUsers() {
-        return viewMapper.viewUsers(userRepository.findAll());
+    public List<VendorResponse> getAllVendors() {
+        return viewMapper.viewVendors();
     }
 
     public VendorResponse deleteById(Long id) {

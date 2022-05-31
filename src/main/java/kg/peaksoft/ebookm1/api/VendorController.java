@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/vendors")
-@PreAuthorize("hasAnyAuthority('ADMIN', 'VENDOR')")
+@PreAuthorize("hasAnyAuthority('ADMIN','VENDOR')")
 @Tag(name = "Vendor", description = "The vendors API")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 public class VendorController {
@@ -24,14 +24,14 @@ public class VendorController {
     private final VendorService userService;
 
     @Operation(summary = "Method create", description = "User with role VENDOR can create")
-    @PreAuthorize("hasAnyAuthority('VENDOR')")
+//    @PreAuthorize("hasAnyAuthority('VENDOR')")
     @PostMapping
     public VendorResponse createVendor(@RequestBody VendorRequest request) {
         return userService.create(request);
     }
 
     @Operation(summary = "Method update by id", description = "User with role VENDOR can update")
-    @PreAuthorize("hasAnyAuthority('VENDOR')")
+//    @PreAuthorize("hasAnyAuthority('VENDOR')")
     @PutMapping("{id}")
     public VendorResponse updateVendor(@PathVariable long id,
                                        @RequestBody VendorRequest request) {
@@ -56,7 +56,7 @@ public class VendorController {
     @Operation(summary = "Method all", description = "Allows to get all VENDORS from the database")
     @GetMapping
     public List<VendorResponse> getAllVendor() {
-        return userService.getAllUsers();
+        return userService.getAllVendors();
     }
 
     @Operation(summary = "New book added to vendors profile")
@@ -94,7 +94,5 @@ public class VendorController {
     public VendorResponse deletePromocode(@PathVariable long vendorId, @PathVariable long promoCodeId) {
         return userService.deletePromocode(vendorId, promoCodeId);
     }
-
-
 
 }

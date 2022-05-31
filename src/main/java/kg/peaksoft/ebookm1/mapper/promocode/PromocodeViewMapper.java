@@ -18,10 +18,10 @@ public class PromocodeViewMapper {
     public PromocodeResponse viewPromoMapper(Promocode promocode){
         PromocodeResponse response = new PromocodeResponse();
         response.setId(promocode.getId());
-        response.setPromo_name(promocode.getPromoName());
-        response.setStarting_day(promocode.getStartingDay());
-        response.setFinishing_day(promocode.getFinishingDay());
-        response.setAmount_of_promo(promocode.getAmountOfPromo());
+        response.setPromoName(promocode.getPromoName());
+        response.setStartingDay(promocode.getStartingDay());
+        response.setFinishingDay(promocode.getFinishingDay());
+        response.setAmountOfPromo(promocode.getAmountOfPromo());
 
         return response;
     }
