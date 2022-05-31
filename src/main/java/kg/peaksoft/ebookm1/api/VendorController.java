@@ -20,13 +20,13 @@ import java.util.List;
 public class VendorController {
 
     private final VendorService service;
-
-    @Operation(summary = "Method create", description = "User with role VENDOR can create")
-    @PreAuthorize("hasAnyAuthority('VENDOR')")
-    @PostMapping
-    public VendorResponse createVendor(@RequestBody VendorRequest request) {
-        return service.create(request);
-    }
+//
+//    @Operation(summary = "Method create", description = "User with role VENDOR can create")
+//    @PreAuthorize("hasAnyAuthority('VENDOR')")
+//    @PostMapping
+//    public VendorResponse createVendor(@RequestBody VendorRequest request) {
+//        return service.create(request);
+//    }
 
     @Operation(summary = "Method update by id", description = "User with role VENDOR can update")
     @PreAuthorize("hasAnyAuthority('VENDOR')")
@@ -48,9 +48,9 @@ public class VendorController {
         return service.deleteById(id);
     }
 
-    @Operation(summary = "Method all", description = "Allows to get all VENDORS from the database")
-    @GetMapping
-    public List<VendorResponse> getAllVendors() {
-        return service.getAll();
-    }
+//    @Operation(summary = "Method all", description = "Allows to get all VENDORS from the database")
+//    @GetMapping
+//    public List<VendorResponse> getAllVendors() {
+//        return service.getAll();
+//    }
 }

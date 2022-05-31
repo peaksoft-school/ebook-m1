@@ -1,13 +1,21 @@
 package kg.peaksoft.ebookm1.mapper.vendor;
 
 import kg.peaksoft.ebookm1.dto.vendor.VendorRequest;
+import kg.peaksoft.ebookm1.entity.Role;
 import kg.peaksoft.ebookm1.entity.User;
+import kg.peaksoft.ebookm1.repository.RoleRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class VendorEditMapper {
+
+    private final RoleRepository roleRepository;
 
     public User createVendor(VendorRequest request) {
         if (request == null) {
@@ -21,6 +29,11 @@ public class VendorEditMapper {
         vendor.setPassword(request.getPassword());
         vendor.setCreated(LocalDateTime.now());
         vendor.setActive(true);
+        
+        List<Role> roles = new ArrayList<>();
+        Role role = roleRepository.findById(2L).get();
+        roles.add(role);
+        vendor.setRoles(roles);
         return vendor;
     }
 

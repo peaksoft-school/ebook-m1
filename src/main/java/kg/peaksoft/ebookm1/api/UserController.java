@@ -21,11 +21,11 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/create")
-    @Operation(summary = "User with role ADMIN can create")
-    public UserResponse createUser(@RequestBody UserRequest request) {
-        return userService.create(request);
-    }
+//    @PostMapping("/create")
+//    @Operation(summary = "User with role ADMIN can create")
+//    public UserResponse createUser(@RequestBody UserRequest request) {
+//        return userService.create(request);
+//    }
 
     @PutMapping("/update/{id}")
     @Operation(summary = "User with role ADMIN can update")
@@ -48,10 +48,10 @@ public class UserController {
         return userService.deleteById(id);
     }
 
-    @GetMapping("/getAll")
-    @Operation(summary = "Allows to get all users from the database")
-    public List<UserResponse> getAllUsers() {
-        return userService.getAllUsers();
-    }
+//    @GetMapping("/getAll")
+//    @Operation(summary = "Allows to get all users from the database")
+//    public List<UserResponse> getAllUsers() {
+//        return userService.getAllUsers();
+//    }
 
 }

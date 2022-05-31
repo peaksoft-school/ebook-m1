@@ -32,7 +32,7 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("user with email not found"));
     }
 
-    public UserResponse create(UserRequest request) {
+    public UserResponse createClient(UserRequest request) {
         User user = editMapper.createUser(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.isActive();
@@ -51,8 +51,12 @@ public class UserService implements UserDetailsService {
         return viewMapper.viewUser(user);
     }
 
-    public List<UserResponse> getAllUsers() {
-        return viewMapper.viewUsers(repository.findAll());
+//    public List<UserResponse> getAllUsers() {
+//        return viewMapper.viewUsers(repository.findAll());
+//    }
+
+    public List<UserResponse> getAllClients() {
+        return viewMapper.viewClients();
     }
 
     public UserResponse deleteById(Long id) {

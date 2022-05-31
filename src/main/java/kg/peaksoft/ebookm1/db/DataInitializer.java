@@ -21,15 +21,15 @@ public class DataInitializer {
 
             //role1
             Role role1 = new Role();
-            role1.setName("ROLE_ADMIN");
+            role1.setName("ADMIN");
 
             //role2
             Role role2 = new Role();
-            role2.setName("ROLE_CLIENT");
+            role2.setName("CLIENT");
 
             //role3
             Role role3 = new Role();
-            role3.setName("ROLE_VENDOR");
+            role3.setName("VENDOR");
 
 
             User admin = new User();
@@ -61,7 +61,7 @@ public class DataInitializer {
 //            System.out.println(userRepository.save(admin));
 //            System.out.println(userRepository.save(vendor));
 //            System.out.println(userRepository.save(client));
-//
+
 
 
         };

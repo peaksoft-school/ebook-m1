@@ -2,14 +2,17 @@ package kg.peaksoft.ebookm1.service;
 
 import kg.peaksoft.ebookm1.dto.vendor.VendorRequest;
 import kg.peaksoft.ebookm1.dto.vendor.VendorResponse;
+import kg.peaksoft.ebookm1.entity.Role;
 import kg.peaksoft.ebookm1.entity.User;
 import kg.peaksoft.ebookm1.mapper.vendor.VendorEditMapper;
 import kg.peaksoft.ebookm1.mapper.vendor.VendorViewMapper;
+import kg.peaksoft.ebookm1.repository.RoleRepository;
 import kg.peaksoft.ebookm1.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,7 +49,11 @@ public class VendorService {
         return viewMapper.viewVendor(vendor);
     }
 
-    public List<VendorResponse> getAll() {
-        return viewMapper.viewVendors(repository.findAll());
+//    public List<VendorResponse> getAll() {
+//        return viewMapper.viewVendors(repository.findAll());
+//    }
+
+    public List<VendorResponse> getAllVendors() {
+        return viewMapper.viewVendors();
     }
 }
