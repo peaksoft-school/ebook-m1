@@ -24,10 +24,7 @@ public class BookRequest {
     private int amountOfBooks;
     private int discount;
     private Boolean bestseller;
-
     private String eBookFragment;
-
     private String paperBookFragment;
-
     private String audioBookFragment;
 }

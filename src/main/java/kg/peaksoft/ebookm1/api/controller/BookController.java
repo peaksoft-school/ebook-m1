@@ -48,7 +48,7 @@ public class BookController {
         return bookService.updateBook(id, request);
     }
 
-    @Operation(summary =  "Method get by id", description = "Allows all users to get a book by ID")
+    @Operation(summary =  "Method get by id", description = "Allows all users to get a book by Id")
     @GetMapping("{id}")
     public BookResponse getBookById(@PathVariable Long id) {
         return bookService.getBookById(id);

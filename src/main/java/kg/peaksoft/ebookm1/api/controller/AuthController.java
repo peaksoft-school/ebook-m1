@@ -52,13 +52,13 @@ public class AuthController {
         }
     }
 
-    @Operation(summary = "All users can register", description = "Sign up/sign customer layout")
+    @Operation(summary = "Method create client", description = "Sign up/sign customer layout")
     @PostMapping("/customer")
     public ClientResponse create(@RequestBody ClientRequest userRequest) {
         return userService.createClient(userRequest);
     }
 
-    @Operation(summary = "Method create", description = "Sign up/sign vendor layout")
+    @Operation(summary = "Method create vendor", description = "Sign up/sign vendor layout")
     @PostMapping("/vendor")
     public VendorResponse create(@RequestBody VendorRequest request) {
         return vendorService.create(request);

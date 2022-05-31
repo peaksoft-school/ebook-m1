@@ -30,20 +30,20 @@ public class AdminController {
     private final BookService bookService;
 
     //Admin
-    @Operation(summary = "Method get all admins", description = "Allows to get all ADMINS from the database")
+    @Operation(summary = "Method get all admins", description = "ADMINS from the database")
     @GetMapping("/getAllAdmins")
     public List<AdminResponse> getAllAdmins() {
         return adminService.getAllAdmins();
     }
 
     @Operation(summary = "Method update", description = "User with role ADMIN can update")
-    @GetMapping("/updatAdmin/{id}")
+    @GetMapping("/updateAdmin/{id}")
     public AdminResponse updateAdmin(@PathVariable Long id, @RequestBody AdminRequest request) {
         return adminService.updateAdmin(id, request);
     }
 
     // Vendor
-    @Operation(summary = "Method get by id", description = "Allows all users to get a VENDOR by ID")
+    @Operation(summary = "Method get by id", description = "User with role ADMIN to get a VENDOR by Id")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @GetMapping("/getVendorById/{id}")
     public VendorResponse getVendorById(@PathVariable Long id) {
@@ -57,7 +57,7 @@ public class AdminController {
         return vendorService.deleteById(id);
     }
 
-    @Operation(summary = "Method all vendors", description = "Allows to get all VENDORS from the database")
+    @Operation(summary = "Method all vendors", description = "Admin to get all VENDORS from the database")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @GetMapping("/getAllVendors")
     public List<VendorResponse> getAllVendors() {
@@ -65,17 +65,17 @@ public class AdminController {
     }
 
     // Client
-    @Operation(summary = "Allows all users to get a user by ID")
+    @Operation(summary = "Method get Client by id",description = "User with role ADMIN get a client by Id")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     @GetMapping("/getClientById/{id}")
-    public ClientResponse getByIdUser(@PathVariable long id) {
+    public ClientResponse getClientById(@PathVariable long id) {
         return clientService.getById(id);
     }
 
-    @Operation(summary = "User with role ADMIN can delete")
+    @Operation(summary = "Method delete Client by id",description = "User with role ADMIN can delete")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'VENDOR')")
     @DeleteMapping("/deleteClientById/{id}")
-    public ClientResponse deleteByIdUser(@PathVariable long id) {
+    public ClientResponse deleteClientById(@PathVariable long id) {
         return clientService.deleteById(id);
     }
 
@@ -87,7 +87,7 @@ public class AdminController {
     }
 
     //Book
-    @Operation(summary = "Method get all", description = "Allows to get all books from the database")
+    @Operation(summary = "Method get all books", description = "Allows to get all books from the database")
     @GetMapping("/getAllBooks")
     public List<BookResponse> getAllBooks() {
         return bookService.getAllBooks();
