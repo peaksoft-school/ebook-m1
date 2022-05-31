@@ -1,7 +1,7 @@
 package kg.peaksoft.ebookm1.dataBase.entity.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import kg.peaksoft.ebookm1.dataBase.enums.BookLanguage;
+import kg.peaksoft.ebookm1.api.playLoads.enums.BookLanguage;
 import kg.peaksoft.ebookm1.dataBase.entity.others.Basket;
 import kg.peaksoft.ebookm1.dataBase.entity.others.Favorite;
 import lombok.*;

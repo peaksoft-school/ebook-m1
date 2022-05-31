@@ -2,7 +2,7 @@ package kg.peaksoft.ebookm1.api.playLoads.dto.book;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import kg.peaksoft.ebookm1.dataBase.enums.BookLanguage;
+import kg.peaksoft.ebookm1.api.playLoads.enums.BookLanguage;
 import lombok.Getter;
 import lombok.Setter;
 
