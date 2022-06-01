@@ -14,6 +14,7 @@ import java.util.function.Function;
 
 @Component
 public class JwtTokenUtil {
+
     @Value("${jwtSecret}")
     private String jwtSecret;
     private final Long JWT_TOKEN_VALIDITY = 7 * 24 * 60 * 60 * 1000L; //1 week
@@ -40,7 +41,6 @@ public class JwtTokenUtil {
     public <T> T getClaimFromToken(String token, Function<Claims, T> claimsTFunction) {
         final Claims claims = getAllClaimFromToken(token);
         return claimsTFunction.apply(claims);
-
     }
 
     private Claims getAllClaimFromToken(String token) {
@@ -57,7 +57,6 @@ public class JwtTokenUtil {
 
     public String getUserNameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
-
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
