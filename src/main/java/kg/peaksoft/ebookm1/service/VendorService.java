@@ -35,11 +35,6 @@ public class VendorService {
         return viewMapper.viewVendor(repository.save(vendor));
     }
 
-    public VendorResponse getById(Long id) {
-        User vendor = repository.findById(id).get();
-        return viewMapper.viewVendor(vendor);
-    }
-
     public VendorResponse deleteById(Long id) {
         User vendor = repository.findById(id).get();
         repository.deleteById(id);

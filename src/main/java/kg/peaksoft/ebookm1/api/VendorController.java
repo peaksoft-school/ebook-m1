@@ -26,12 +26,6 @@ public class VendorController {
         return service.update(id, request);
     }
 
-    @Operation(summary = "Method get by id", description = "Allows all users to get a VENDOR by ID")
-    @GetMapping("{id}")
-    public VendorResponse getVendorById(@PathVariable Long id) {
-        return service.getById(id);
-    }
-
     @Operation(summary = "<Method delete by id", description = "User with role ADMIN and VENDOR can deleted")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'VENDOR')")
     @DeleteMapping("{id}")
