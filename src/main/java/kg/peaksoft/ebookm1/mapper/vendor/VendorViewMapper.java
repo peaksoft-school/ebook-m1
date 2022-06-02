@@ -36,9 +36,6 @@ public class VendorViewMapper {
         return response;
     }
 
-
-
-
     public List<VendorResponse> viewVendors() {
        List<VendorResponse> vendorUsers = new ArrayList<>();
        Role role = roleRepository.findById(2l).get();
