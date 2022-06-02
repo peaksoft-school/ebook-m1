@@ -7,6 +7,7 @@ import kg.peaksoft.ebookm1.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,25 +21,28 @@ public class VendorEditMapper {
         if (request == null) {
             return null;
         }
-        User user = new User();
-        user.setFirstName(request.getFirstName());
-        user.setLastName(request.getLastName());
-        user.setPhoneNumber(request.getPhoneNumber());
-        user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
-        List<Role> roleList = new ArrayList<>();
-        Role role  = roleRepository.findById(2L).get();
-        roleList.add(role);
-        user.setRoles(roleList);
-        return user;
+        User vendor = new User();
+        vendor.setFirstName(request.getFirstName());
+        vendor.setLastName(request.getLastName());
+        vendor.setPhoneNumber(request.getPhoneNumber());
+        vendor.setEmail(request.getEmail());
+        vendor.setPassword(request.getPassword());
+        vendor.setCreated(LocalDateTime.now());
+        vendor.setActive(true);
+        
+        List<Role> roles = new ArrayList<>();
+        Role role = roleRepository.findById(2L).get();
+        roles.add(role);
+        vendor.setRoles(roles);
+        return vendor;
     }
 
-    public User updateVendor(User user, VendorRequest vendorRequest) {
-        user.setFirstName(vendorRequest.getFirstName());
-        user.setLastName(vendorRequest.getLastName());
-        user.setPhoneNumber(vendorRequest.getPhoneNumber());
-        user.setEmail(vendorRequest.getEmail());
-        user.setPassword(vendorRequest.getPassword());
-        return user;
+    public User updateVendor(User vendor, VendorRequest request) {
+        vendor.setFirstName(request.getFirstName());
+        vendor.setLastName(request.getLastName());
+        vendor.setPhoneNumber(request.getPhoneNumber());
+        vendor.setEmail(request.getEmail());
+        vendor.setPassword(request.getPassword());
+        return vendor;
     }
 }

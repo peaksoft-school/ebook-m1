@@ -1,6 +1,5 @@
 package kg.peaksoft.ebookm1.mapper.vendor;
 
-
 import kg.peaksoft.ebookm1.dto.vendor.VendorResponse;
 import kg.peaksoft.ebookm1.entity.Role;
 import kg.peaksoft.ebookm1.entity.User;
@@ -15,36 +14,31 @@ import java.util.List;
 @RequiredArgsConstructor
 public class VendorViewMapper {
 
-    public final RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
-    public VendorResponse viewUser(User user) {
-        if (user == null) {
+    public VendorResponse viewVendor(User vendor) {
+        if (vendor == null) {
             return null;
         }
         VendorResponse response = new VendorResponse();
-        if (user.getId() != null) {
-            response.setId(Long.valueOf(user.getId()));
+        if (vendor.getId() != null) {
+            response.setId(vendor.getId());
         }
-        response.setFirstName(user.getFirstName());
-        response.setLastName(user.getLastName());
-        response.setPhoneNumber(user.getPhoneNumber());
-        response.setEmail(user.getEmail());
+        response.setFirstName(vendor.getFirstName());
+        response.setLastName(vendor.getLastName());
+        response.setPhoneNumber(vendor.getPhoneNumber());
+        response.setEmail(vendor.getEmail());
+        response.setCreated(vendor.getCreated());
         response.setIsActive(true);
-        response.setPassword(user.getPassword());
-        response.setBookList(user.getBooks());
-        response.setPromocodeList(user.getPromocode());
         return response;
     }
 
     public List<VendorResponse> viewVendors() {
-       List<VendorResponse> vendorUsers = new ArrayList<>();
-       Role role = roleRepository.findById(2l).get();
-
-        for (User user: role.getUsers()
-             ) {
-            vendorUsers.add(viewUser(user));
+        List<VendorResponse> vendorUsers = new ArrayList<>();
+        Role role = roleRepository.findById(2L).get();
+        for (User user : role.getUsers()) {
+            vendorUsers.add(viewVendor(user));
         }
-
         return vendorUsers;
     }
 }
