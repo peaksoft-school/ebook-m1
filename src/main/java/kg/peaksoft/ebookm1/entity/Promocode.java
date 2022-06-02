@@ -4,6 +4,8 @@ package kg.peaksoft.ebookm1.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import kg.peaksoft.ebookm1.entity.book.Book;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,7 +13,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "promocodes")
-@Data
+@Getter
+@Setter
 public class Promocode {
 
     @Id
