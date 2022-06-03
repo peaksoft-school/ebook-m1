@@ -1,5 +1,7 @@
 package kg.peaksoft.ebookm1.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import kg.peaksoft.ebookm1.entity.book.Book;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -34,6 +36,12 @@ public class User implements UserDetails {
     private String password;
     private LocalDateTime created;
     private boolean isActive;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Promocode> promocode;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    List<Book> books;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
             CascadeType.DETACH}, fetch = FetchType.EAGER)
@@ -76,4 +84,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return isActive;
     }
+
+
 }

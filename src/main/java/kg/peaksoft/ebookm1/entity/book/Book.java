@@ -2,6 +2,8 @@ package kg.peaksoft.ebookm1.entity.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import kg.peaksoft.ebookm1.dto.enums.BookLanguage;
+import kg.peaksoft.ebookm1.entity.Promocode;
+import kg.peaksoft.ebookm1.entity.User;
 import kg.peaksoft.ebookm1.entity.others.Basket;
 import kg.peaksoft.ebookm1.entity.others.Favorite;
 import kg.peaksoft.ebookm1.entity.others.Promo;
@@ -57,19 +59,32 @@ public class Book {
     @JoinColumn(name = "audioBook_id")
     private AudioBook audioBook;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "basket_id")
     private Basket basket;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "promo_id")
     private Promo promo;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "favorite_id")
     private Favorite favorite;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "promocode_id")
+    private Promocode promocode;
+
 }
