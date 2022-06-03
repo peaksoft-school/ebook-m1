@@ -36,42 +36,42 @@ public class VendorController {
     }
     @Operation(summary = "Method to add new book", description = "Vendor can add new book to his profile")
     @PreAuthorize("hasAnyAuthority('VENDOR')")
-    @PostMapping("/{id}")
+    @PostMapping("/add-new-book/{id}")
     public VendorResponse addBookToVendor(@PathVariable long id, @RequestBody BookRequest request) {
         return service.addBookToVendor(request, id);
     }
 
     @Operation(summary = "Method to update vendor's book", description = "Vendor can update his books from his book list")
     @PreAuthorize("hasAnyAuthority('VENDOR')")
-    @PutMapping("/{vendorId}/{bookId}")
+    @PutMapping("/update-book/{vendorId}/{bookId}")
     public VendorResponse updateBook(@PathVariable long vendorId, @PathVariable long bookId, @RequestBody BookRequest request) {
         return service.updateBookVendor(vendorId, bookId, request);
     }
 
     @Operation(summary = "Method to delete book", description = "Vendor and ADMIN can delete book from his book list")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'VENDOR')")
-    @DeleteMapping("/{vendorId}/{bookId}")
+    @DeleteMapping("/delete-book/{vendorId}/{bookId}")
     public VendorResponse deleteBook(@PathVariable long vendorId, @PathVariable long bookId) {
         return service.deleteBookVendor(vendorId, bookId);
     }
 
     @Operation(summary = "Method to add new promocode", description = "Vendor can add new promocode to his profile")
     @PreAuthorize("hasAnyAuthority('VENDOR')")
-    @PostMapping("/{id}")
+    @PostMapping("/add-promo/{id}")
     public VendorResponse addPromoCode(@PathVariable long id, @RequestBody PromocodeRequest promocodeRequest) {
         return service.addPromocode(promocodeRequest, id);
     }
 
     @Operation(summary = "Method to update vendor's promocode", description = "Vendor can update his books from his promocode list")
     @PreAuthorize("hasAnyAuthority('VENDOR')")
-    @PutMapping("/{vendorId}/{promoCodeId}")
+    @PutMapping("/update-promo/{vendorId}/{promoCodeId}")
     public VendorResponse updatePromoCode(@PathVariable long vendorId, @PathVariable long promoCodeId, @RequestBody PromocodeRequest promocodeRequest) {
         return service.updatePromocode(promocodeRequest, vendorId, promoCodeId);
     }
 
     @Operation(summary = "Method to delete book", description = "Vendor and ADMIN can delete promocode from his book list")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'VENDOR')")
-    @DeleteMapping("/{vendorId}/{promoCodeId}")
+    @DeleteMapping("/delete-promo/{vendorId}/{promoCodeId}")
     public VendorResponse deletePromocode(@PathVariable long vendorId, @PathVariable long promoCodeId) {
         return service.deletePromocode(vendorId, promoCodeId);
     }
