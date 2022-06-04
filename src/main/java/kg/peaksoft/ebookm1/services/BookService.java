@@ -1,5 +1,6 @@
 package kg.peaksoft.ebookm1.services;
 
+import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponseView;
 import kg.peaksoft.ebookm1.dataBase.mappers.book.BookEditMapper;
 import kg.peaksoft.ebookm1.dataBase.mappers.book.BookViewMapper;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookRequest;
@@ -7,6 +8,8 @@ import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponse;
 import kg.peaksoft.ebookm1.dataBase.entities.book.Book;
 import kg.peaksoft.ebookm1.dataBase.repositories.BookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,5 +48,13 @@ public class BookService {
 
     public List<BookResponse> getAllBooks() {
         return viewMapper.viewBooks(repository.findAll());
+    }
+
+    public BookResponseView searchAndPagination(String name, int page, int size) {
+        BookResponseView responseView = new BookResponseView();
+        Pageable pageable = PageRequest.of(page, size);
+        responseView.setBookResponses((viewMapper.viewBooks
+                (viewMapper.searchBook(name, pageable))));
+        return responseView;
     }
 }

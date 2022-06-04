@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookRequest;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponse;
+import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponseView;
 import kg.peaksoft.ebookm1.services.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -34,7 +35,7 @@ public class BookController {
         return bookService.updateBook(id, request);
     }
 
-    @Operation(summary =  "Method get by id", description = "Allows all users to get a book by ID")
+    @Operation(summary = "Method get by id", description = "Allows all users to get a book by ID")
     @GetMapping("{id}")
     public BookResponse getBookById(@PathVariable Long id) {
         return bookService.getBookById(id);
@@ -52,4 +53,13 @@ public class BookController {
     public List<BookResponse> getAllBooks() {
         return bookService.getAllBooks();
     }
- }
+
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_VENDOR')")
+    @GetMapping("/search")
+    @Operation(summary = "Users with Admin and Vendor role can search.")
+    public BookResponseView searchAndPagination(@RequestParam(name = "name", required = false)
+                                                        String name, @RequestParam int page,
+                                                @RequestParam int size) {
+        return bookService.searchAndPagination(name, page - 1, size);
+    }
+}
