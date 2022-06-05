@@ -54,9 +54,9 @@ public class BookController {
         return bookService.getAllBooks();
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_VENDOR')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_VENDOR','ROLE_CLIENT')")
+    @Operation(summary = "Allows to search all books from the database")
     @GetMapping("/search")
-    @Operation(summary = "Users with Admin and Vendor role can search.")
     public BookResponseView searchAndPagination(@RequestParam(name = "name", required = false)
                                                         String name, @RequestParam int page,
                                                 @RequestParam int size) {
