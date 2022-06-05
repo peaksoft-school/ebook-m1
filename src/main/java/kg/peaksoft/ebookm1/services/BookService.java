@@ -8,8 +8,10 @@ import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponse;
 import kg.peaksoft.ebookm1.dataBase.entities.book.Book;
 import kg.peaksoft.ebookm1.dataBase.repositories.BookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,5 +58,15 @@ public class BookService {
         responseView.setBookResponses((viewMapper.viewBooks
                 (viewMapper.searchBook(name, pageable))));
         return responseView;
+    }
+
+    public Page<Book> getBookPagination(Integer pageNumber, Integer pageSize, String sortProperty) {
+        Pageable pageable = null;
+        if(null!=sortProperty){
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC,sortProperty);
+        }else {
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC,"name");
+        }
+        return repository.findAll(pageable);
     }
 }

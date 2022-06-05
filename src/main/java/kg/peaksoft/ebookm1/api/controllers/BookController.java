@@ -5,8 +5,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookRequest;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponse;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponseView;
+import kg.peaksoft.ebookm1.dataBase.entities.book.Book;
 import kg.peaksoft.ebookm1.services.BookService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,5 +63,14 @@ public class BookController {
                                                         String name, @RequestParam int page,
                                                 @RequestParam int size) {
         return bookService.searchAndPagination(name, page - 1, size);
+    }
+
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_VENDOR','ROLE_CLIENT')")
+    @Operation(summary = "Allows to sort all books from the database")
+    @GetMapping( "/sort/{pageNumber}/{pageSize}/{sortProperty}")
+    public Page<Book> sortAndPagination(@PathVariable Integer pageNumber,
+                                     @PathVariable Integer pageSize,
+                                     @PathVariable String sortProperty) {
+        return bookService.getBookPagination(pageNumber, pageSize, sortProperty);
     }
 }
