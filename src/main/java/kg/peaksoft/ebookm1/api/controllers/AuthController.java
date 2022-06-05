@@ -45,7 +45,7 @@ public class AuthController {
         }
     }
 
-    @Operation(summary = "Method create vendor", description = "Sign up/sign vendor layout")
+    @Operation(summary = "Method registration vendor", description = "Sign up/sign vendor layout")
     @PostMapping("/vendor")
     public VendorResponse registration(@RequestBody VendorRequest request) {
         return vendorService.create(request);
