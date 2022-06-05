@@ -71,6 +71,6 @@ public class BookController {
     public Page<Book> sortAndPagination(@PathVariable Integer pageNumber,
                                      @PathVariable Integer pageSize,
                                      @PathVariable String sortProperty) {
-        return bookService.getBookPagination(pageNumber, pageSize, sortProperty);
+        return bookService.sortAndPagination(pageNumber, pageSize, sortProperty);
     }
 }

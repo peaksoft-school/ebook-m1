@@ -60,7 +60,7 @@ public class BookService {
         return responseView;
     }
 
-    public Page<Book> getBookPagination(Integer pageNumber, Integer pageSize, String sortProperty) {
+    public Page<Book> sortAndPagination(Integer pageNumber, Integer pageSize, String sortProperty) {
         Pageable pageable = null;
         if(null!=sortProperty){
             pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC,sortProperty);
