@@ -75,6 +75,7 @@ public class Book {
     @JoinColumn(name = "favorite_id")
     private Favorite favorite;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
