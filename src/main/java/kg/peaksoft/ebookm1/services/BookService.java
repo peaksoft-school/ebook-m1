@@ -52,7 +52,11 @@ public class BookService {
 
     public String countBooks(Long vendorId) {
         User vendor = vendorRepository.findById(vendorId).get();
-        return vendor + " book quantity: " + repository.count();
+        List<Book> booksOfVendor = new ArrayList<>();
+        for (Book count: vendor.getBooks()) {
+            booksOfVendor.add(count);
+        }
+        return vendor + " book quantity: " + booksOfVendor.size();
     }
 
     public List<BookResponse> getAllVendorBooks(Long vendorId) {
