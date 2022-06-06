@@ -1,5 +1,6 @@
 package kg.peaksoft.ebookm1.dataBase.entities.security;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import kg.peaksoft.ebookm1.dataBase.entities.book.Book;
 import kg.peaksoft.ebookm1.dataBase.entities.others.Promocode;
 import lombok.*;
@@ -40,6 +41,7 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Promocode> promocode;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Book> books;
 
@@ -49,6 +51,11 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "roles_id"))
     private List<Role> roles;
+
+    @Override
+    public String toString() {
+        return "Vendor: " + firstName;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
