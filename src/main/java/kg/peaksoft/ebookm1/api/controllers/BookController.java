@@ -60,9 +60,8 @@ public class BookController {
     @Operation(summary = "Allows to search all books from the database")
     @GetMapping("/search")
     public BookResponseView searchAndPagination(@RequestParam(name = "name", required = false)
-                                                        String name, @RequestParam int page,
-                                                @RequestParam int size) {
-        return bookService.searchAndPagination(name, page - 1, size);
+                                                        String name, @RequestParam int page) {
+        return bookService.searchAndPagination(name, page - 1);
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_VENDOR','ROLE_CLIENT')")

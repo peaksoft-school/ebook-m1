@@ -52,7 +52,8 @@ public class BookService {
         return viewMapper.viewBooks(repository.findAll());
     }
 
-    public BookResponseView searchAndPagination(String name, int page, int size) {
+    public BookResponseView searchAndPagination(String name, int page) {
+        int size=10;
         BookResponseView responseView = new BookResponseView();
         Pageable pageable = PageRequest.of(page, size);
         responseView.setBookResponses((viewMapper.viewBooks
