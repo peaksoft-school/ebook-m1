@@ -20,11 +20,25 @@ public class BookController {
 
     private final BookService bookService;
 
-    @Operation(summary = "Method create", description = "User with role VENDOR can create")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_VENDOR')")
-    @PostMapping
-    public BookResponse createBook(@RequestBody BookRequest request) {
-        return bookService.createBook(request);
+    @Operation(summary = "Method create audio book", description = "User with role VENDOR can create")
+    @PreAuthorize("hasAnyAuthority('VENDOR')")
+    @PostMapping("/createAudiobook")
+    public BookResponse createAudioBook(@RequestBody BookRequest request) {
+        return bookService.createAudioBook(request);
+    }
+
+    @Operation(summary = "Method create eBook", description = "User with role VENDOR can create")
+    @PreAuthorize("hasAnyAuthority('VENDOR')")
+    @PostMapping("/createEBook")
+    public BookResponse createEBook(@RequestBody BookRequest request) {
+        return bookService.createEBook(request);
+    }
+
+    @Operation(summary = "Method create paper book", description = "User with role VENDOR can create")
+    @PreAuthorize("hasAnyAuthority('VENDOR')")
+    @PostMapping("/createPaperBook")
+    public BookResponse createPaperBook(@RequestBody BookRequest request) {
+        return bookService.createPaperBook(request);
     }
 
     @Operation(summary = "Method update by id", description = "User with role ADMIN and VENDOR can update")

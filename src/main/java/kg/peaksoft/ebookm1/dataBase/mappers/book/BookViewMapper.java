@@ -32,10 +32,9 @@ public class BookViewMapper {
         response.setDiscount(book.getDiscount());
         response.setBestseller(book.getBestseller());
 
+        response.setAudioBook(book.getAudioBook());
         response.setEBook(book.getEBook());
         response.setPaperBook(book.getPaperBook());
-        response.setAudioBook(book.getAudioBook());
-        response.setGenre(book.getGenre());
         return response;
     }
 

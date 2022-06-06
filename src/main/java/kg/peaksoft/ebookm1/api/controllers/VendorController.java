@@ -34,11 +34,25 @@ public class VendorController {
         return service.deleteById(id);
     }
 
-    @Operation(summary = "Method to add new book", description = "Vendor can add new book to his profile")
+    @Operation(summary = "Method to add new audio book", description = "Vendor can add new book to his profile")
     @PreAuthorize("hasAnyAuthority('ROLE_VENDOR')")
-    @PostMapping("/book/{id}")
-    public VendorResponse addBookToVendor(@PathVariable long id, @RequestBody BookRequest request) {
-        return service.addBookToVendor(request, id);
+    @PostMapping("/audio-book/{id}")
+    public VendorResponse addAudioBookToVendor(@PathVariable long id, @RequestBody BookRequest request) {
+        return service.addAudioBookToVendor(request, id);
+    }
+
+    @Operation(summary = "Method to add new electronic book", description = "Vendor can add new book to his profile")
+    @PreAuthorize("hasAnyAuthority('ROLE_VENDOR')")
+    @PostMapping("/e-book/{id}")
+    public VendorResponse addEBookToVendor(@PathVariable long id, @RequestBody BookRequest request) {
+        return service.addEBookToVendor(request, id);
+    }
+
+    @Operation(summary = "Method to add new paper book", description = "Vendor can add new book to his profile")
+    @PreAuthorize("hasAnyAuthority('ROLE_VENDOR')")
+    @PostMapping("/paper-book/{id}")
+    public VendorResponse addPaperBookToVendor(@PathVariable long id, @RequestBody BookRequest request) {
+        return service.addPaperBookToVendor(request, id);
     }
 
     @Operation(summary = "Method to update vendor's book", description = "Vendor can update his books from his book list")

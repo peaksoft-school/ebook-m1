@@ -1,11 +1,13 @@
 package kg.peaksoft.ebookm1.services;
 
+import kg.peaksoft.ebookm1.dataBase.entities.book.PaperBook;
 import kg.peaksoft.ebookm1.dataBase.mappers.book.BookEditMapper;
 import kg.peaksoft.ebookm1.dataBase.mappers.book.BookViewMapper;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookRequest;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponse;
 import kg.peaksoft.ebookm1.dataBase.entities.book.Book;
 import kg.peaksoft.ebookm1.dataBase.repositories.BookRepository;
+import kg.peaksoft.ebookm1.dataBase.repositories.PaperBookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +20,22 @@ public class BookService {
     private final BookRepository repository;
     private final BookEditMapper editMapper;
     private final BookViewMapper viewMapper;
+    private final PaperBookRepository paperBookRepository;
 
-    public BookResponse createBook(BookRequest request) {
-        Book book = editMapper.createBook(request);
+    public BookResponse createAudioBook(BookRequest request) {
+        Book book = editMapper.createAudioBook(request);
+        repository.save(book);
+        return viewMapper.viewBook(book);
+    }
+
+    public BookResponse createEBook(BookRequest request) {
+        Book book = editMapper.createEBook(request);
+        repository.save(book);
+        return viewMapper.viewBook(book);
+    }
+
+    public BookResponse createPaperBook(BookRequest request) {
+        Book book = editMapper.createPaperBook(request);
         repository.save(book);
         return viewMapper.viewBook(book);
     }
@@ -39,7 +54,6 @@ public class BookService {
     public BookResponse deleteBookById(Long id) {
         Book book = repository.findById(id).get();
         repository.deleteById(id);
-        System.out.print("Successfully deleted: ");
         return viewMapper.viewBook(book);
     }
 

@@ -32,5 +32,4 @@ public class BookResponse {
     private EBook eBook;
     private PaperBook paperBook;
     private AudioBook audioBook;
-    private Genre genre;
 }

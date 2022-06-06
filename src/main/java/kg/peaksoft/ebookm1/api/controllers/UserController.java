@@ -4,9 +4,11 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.ebookm1.api.payloads.dto.user.UserRequest;
 import kg.peaksoft.ebookm1.api.payloads.dto.user.UserResponse;
-import kg.peaksoft.ebookm1.services.UserService;
+import kg.peaksoft.ebookm1.dataBase.entities.book.AudioBook;
+import kg.peaksoft.ebookm1.dataBase.entities.book.EBook;
+import kg.peaksoft.ebookm1.dataBase.entities.book.PaperBook;
+import kg.peaksoft.ebookm1.services.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,11 +17,13 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
-@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 @Tag(name = "User", description = "The User API")
 public class UserController {
 
     private final UserService userService;
+    private final AudioBookService audioBookService;
+    private final EBookService eBookService;
+    private final PaperBookService paperBookService;
 
     @Operation(summary = "Method create", description = "User with role ADMIN can create")
     @PostMapping
@@ -49,5 +53,24 @@ public class UserController {
     @GetMapping
     public List<UserResponse> getAllUsers() {
         return userService.getAllUsers();
+    }
+
+    // Books
+    @Operation(summary = "Method get all audio books", description = "Allows to get all audio books from the database")
+    @GetMapping("/audio-books")
+    public List<AudioBook>  getAllAudioBooks() {
+        return audioBookService.getAllAudioBooks();
+    }
+
+    @Operation(summary = "Method get all electronic book", description = "Allows to get electronic books from the database")
+    @GetMapping("/e-books")
+    public List<EBook> getAllEbooks() {
+        return eBookService.getAllEBooks();
+    }
+
+    @Operation(summary = "Method get all paper books", description = "Allows to get paper books from the database")
+    @GetMapping("/paper-books")
+    public List<PaperBook> getAllPaperBooks() {
+        return paperBookService.getAllPaperBooks();
     }
 }
