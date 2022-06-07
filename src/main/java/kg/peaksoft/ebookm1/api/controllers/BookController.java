@@ -27,13 +27,6 @@ public class BookController {
         return bookService.createBook(request);
     }
 
-    @Operation(summary = "Method update by id", description = "User with role ADMIN and VENDOR can update")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_VENDOR')")
-    @PutMapping("{id}")
-    public BookResponse updateBook(@PathVariable Long id, @RequestBody BookRequest request) {
-        return bookService.updateBook(id, request);
-    }
-
     @Operation(summary =  "Method get by id", description = "Allows all users to get a book by ID")
     @GetMapping("{id}")
     public BookResponse getBookById(@PathVariable Long id) {

@@ -62,6 +62,8 @@ public class BookEditMapper {
         book.setAmountOfBooks(bookRequest.getAmountOfBooks());
         book.setDiscount(bookRequest.getDiscount());
         book.setBestseller(bookRequest.getBestseller());
+        book.setStatus(bookRequest.getStatus());
+        book.setComments(bookRequest.getComments());
 
         Genre genre = new Genre();
         genre.setGenreName(bookRequest.getGenreName());

@@ -1,5 +1,6 @@
 package kg.peaksoft.ebookm1.services;
 
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.RequestStatus;
 import kg.peaksoft.ebookm1.dataBase.entities.security.User;
 import kg.peaksoft.ebookm1.dataBase.mappers.book.BookEditMapper;
 import kg.peaksoft.ebookm1.dataBase.mappers.book.BookViewMapper;
@@ -49,6 +50,9 @@ public class BookService {
     public List<BookResponse> getAllBooks() {
         return viewMapper.viewBooks(repository.findAll());
     }
+    public List<BookResponse> getAllSubmittedBooks(){
+       return viewMapper.viewBooks(repository.findAllByStatus(RequestStatus.SUBMITTED));
+    }
 
     public String countBooks(Long vendorId) {
         User vendor = vendorRepository.findById(vendorId).get();
@@ -67,4 +71,5 @@ public class BookService {
         }
         return responses;
     }
+
 }
