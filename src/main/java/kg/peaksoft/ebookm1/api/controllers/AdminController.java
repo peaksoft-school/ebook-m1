@@ -59,7 +59,9 @@ public class AdminController {
         return bookService.getAllSubmittedBooks();
     }
 
-    @Operation(summary = "Method update by id", description = "User with role ADMIN and VENDOR can update")
+    @Operation(summary = "Method update by id", description = "User with role ADMIN can change request status " +
+            "to following words:APPROVED OR REJECTED." +
+            "In case of changing to REJECT, admin, should describe his decision")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_VENDOR')")
     @PutMapping("/book-request/{id}")
     public BookResponse updateBook(@PathVariable Long id, @RequestBody BookRequest request) {
