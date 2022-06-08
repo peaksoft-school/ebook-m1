@@ -2,6 +2,7 @@ package kg.peaksoft.ebookm1.api.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import kg.peaksoft.ebookm1.api.payloads.dto.book.BookRequest;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponse;
 import kg.peaksoft.ebookm1.api.payloads.dto.vendor.VendorResponse;
 import kg.peaksoft.ebookm1.services.BookService;
@@ -50,5 +51,20 @@ public class AdminController {
     @GetMapping("/vendor-books/{vendorId}")
     public List<BookResponse> getAllVendorBooks(@PathVariable Long vendorId) {
         return bookService.getAllVendorBooks(vendorId);
+    }
+
+    @Operation(summary = "Method get all books with status-submitted", description = "Admin can  get all VENDOR'S submitted books from the database")
+    @GetMapping("/book-request")
+    public List<BookResponse> getAllSubmittedBooks() {
+        return bookService.getAllSubmittedBooks();
+    }
+
+    @Operation(summary = "Method update by id", description = "User with role ADMIN can change request status " +
+            "to following words:APPROVED OR REJECTED." +
+            "In case of changing to REJECT, admin, should describe his decision")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_VENDOR')")
+    @PutMapping("/book-request/{id}")
+    public BookResponse updateBook(@PathVariable Long id, @RequestBody BookRequest request) {
+        return bookService.updateBook(id, request);
     }
 }

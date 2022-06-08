@@ -1,5 +1,6 @@
 package kg.peaksoft.ebookm1.dataBase.repositories;
 
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.RequestStatus;
 import kg.peaksoft.ebookm1.dataBase.entities.book.Book;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,4 +18,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             "or upper(b.title) like concat('%', :name, '%') " +
             "or upper(b.bookLanguage) like concat('%', :name, '%')")
     List<Book> searchAndPagination(@Param("name") String name, Pageable pageable);
+
+    List<Book> findAllByStatus(RequestStatus requestStatus);
 }
