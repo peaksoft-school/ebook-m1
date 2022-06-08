@@ -2,6 +2,7 @@ package kg.peaksoft.ebookm1.services;
 
 import kg.peaksoft.ebookm1.dataBase.entities.book.PaperBook;
 import kg.peaksoft.ebookm1.dataBase.entities.security.User;
+import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponseView;
 import kg.peaksoft.ebookm1.dataBase.mappers.book.BookEditMapper;
 import kg.peaksoft.ebookm1.dataBase.mappers.book.BookViewMapper;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookRequest;
@@ -11,6 +12,10 @@ import kg.peaksoft.ebookm1.dataBase.repositories.BookRepository;
 import kg.peaksoft.ebookm1.dataBase.repositories.UserRepository;
 import kg.peaksoft.ebookm1.dataBase.repositories.PaperBookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -51,6 +56,7 @@ public class BookService {
     public BookResponse deleteBookById(Long id) {
         Book book = repository.findById(id).get();
         repository.deleteById(id);
+        System.out.print("Successfully deleted: ");
         return viewMapper.viewBook(book);
     }
 
@@ -74,5 +80,24 @@ public class BookService {
             responses.add(viewMapper.viewBook(book));
         }
         return responses;
+    }
+
+    public BookResponseView searchAndPagination(String name, int page) {
+        int size=10;
+        BookResponseView responseView = new BookResponseView();
+        Pageable pageable = PageRequest.of(page, size);
+        responseView.setBookResponses((viewMapper.viewBooks
+                (viewMapper.searchBook(name, pageable))));
+        return responseView;
+    }
+
+    public Page<Book> sortAndPagination(Integer pageNumber, Integer pageSize, String sortProperty) {
+        Pageable pageable = null;
+        if(null!=sortProperty){
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC,sortProperty);
+        }else {
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC,"name");
+        }
+        return repository.findAll(pageable);
     }
 }
