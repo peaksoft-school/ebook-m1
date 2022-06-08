@@ -1,5 +1,6 @@
 package kg.peaksoft.ebookm1.services;
 
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.RequestStatus;
 import kg.peaksoft.ebookm1.dataBase.entities.security.User;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponseView;
 import kg.peaksoft.ebookm1.dataBase.mappers.book.BookEditMapper;
@@ -72,6 +73,10 @@ public class BookService {
             responses.add(viewMapper.viewBook(book));
         }
         return responses;
+    }
+
+    public List<BookResponse> getAllSubmittedBooks(){
+        return viewMapper.viewBooks(repository.findAllByStatus(RequestStatus.SUBMITTED));
     }
 
     public BookResponseView searchAndPagination(String name, int page) {
