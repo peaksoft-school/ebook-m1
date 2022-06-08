@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.services;
 
-import kg.peaksoft.ebookm1.dataBase.entities.book.PaperBook;
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.RequestStatus;
 import kg.peaksoft.ebookm1.dataBase.entities.security.User;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponseView;
 import kg.peaksoft.ebookm1.dataBase.mappers.book.BookEditMapper;
@@ -10,7 +10,6 @@ import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponse;
 import kg.peaksoft.ebookm1.dataBase.entities.book.Book;
 import kg.peaksoft.ebookm1.dataBase.repositories.BookRepository;
 import kg.peaksoft.ebookm1.dataBase.repositories.UserRepository;
-import kg.peaksoft.ebookm1.dataBase.repositories.PaperBookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,14 +29,8 @@ public class BookService {
     private final BookViewMapper viewMapper;
     private final UserRepository vendorRepository;
 
-    public BookResponse createEBook(BookRequest request) {
-        Book book = editMapper.createEBook(request);
-        repository.save(book);
-        return viewMapper.viewBook(book);
-    }
-
-    public BookResponse createPaperBook(BookRequest request) {
-        Book book = editMapper.createPaperBook(request);
+    public BookResponse createBook(BookRequest request) {
+        Book book = editMapper.createBook(request);
         repository.save(book);
         return viewMapper.viewBook(book);
     }
@@ -80,6 +73,10 @@ public class BookService {
             responses.add(viewMapper.viewBook(book));
         }
         return responses;
+    }
+
+    public List<BookResponse> getAllSubmittedBooks(){
+        return viewMapper.viewBooks(repository.findAllByStatus(RequestStatus.SUBMITTED));
     }
 
     public BookResponseView searchAndPagination(String name, int page) {

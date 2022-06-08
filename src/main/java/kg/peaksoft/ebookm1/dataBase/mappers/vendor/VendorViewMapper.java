@@ -30,6 +30,8 @@ public class VendorViewMapper {
         response.setEmail(vendor.getEmail());
         response.setCreated(vendor.getCreated());
         response.setIsActive(true);
+        response.setBookList(vendor.getBooks());
+        response.setPromocodes(vendor.getPromocode());
         return response;
     }
 

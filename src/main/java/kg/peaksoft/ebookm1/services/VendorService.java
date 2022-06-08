@@ -1,5 +1,6 @@
 package kg.peaksoft.ebookm1.services;
 
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.RequestStatus;
 import kg.peaksoft.ebookm1.dataBase.mappers.book.BookEditMapper;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookRequest;
 import kg.peaksoft.ebookm1.api.payloads.dto.promocode.PromocodeRequest;
@@ -58,26 +59,9 @@ public class VendorService {
     }
 
     //  addBook button function section  starts  ==========================================================
-    public VendorResponse addAudioBookToVendor(BookRequest bookRequest, Long id) {
-        Book book = bookEditMapper.createAudioBook(bookRequest);
-        User user = repository.findById(id).get();
-        book.setUser(user);
-        bookRepository.save(book);
-        repository.save(user);
-        return viewMapper.viewVendor(user);
-    }
-
-    public VendorResponse addEBookToVendor(BookRequest bookRequest, Long id) {
-        Book book = bookEditMapper.createEBook(bookRequest);
-        User user = repository.findById(id).get();
-        book.setUser(user);
-        bookRepository.save(book);
-        repository.save(user);
-        return viewMapper.viewVendor(user);
-    }
-
-    public VendorResponse addPaperBookToVendor(BookRequest bookRequest, Long id) {
-        Book book = bookEditMapper.createPaperBook(bookRequest);
+    public VendorResponse addBookToVendor(BookRequest bookRequest, Long id) {
+        Book book = bookEditMapper.createBook(bookRequest);
+        book.setStatus(RequestStatus.SUBMITTED);
         User user = repository.findById(id).get();
         book.setUser(user);
         bookRepository.save(book);
