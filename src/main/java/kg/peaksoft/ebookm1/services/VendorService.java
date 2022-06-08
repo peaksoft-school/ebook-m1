@@ -59,8 +59,28 @@ public class VendorService {
     }
 
     //  addBook button function section  starts  ==========================================================
-    public VendorResponse addBookToVendor(BookRequest bookRequest, Long id) {
-        Book book = bookEditMapper.createBook(bookRequest);
+    public VendorResponse addAudioBookToVendor(BookRequest bookRequest, Long id) {
+        Book book = bookEditMapper.createAudioBook(bookRequest);
+        book.setStatus(RequestStatus.SUBMITTED);
+        User user = repository.findById(id).get();
+        book.setUser(user);
+        bookRepository.save(book);
+        repository.save(user);
+        return viewMapper.viewVendor(user);
+    }
+
+    public VendorResponse addEBookToVendor(BookRequest bookRequest, Long id) {
+        Book book = bookEditMapper.createEBook(bookRequest);
+        book.setStatus(RequestStatus.SUBMITTED);
+        User user = repository.findById(id).get();
+        book.setUser(user);
+        bookRepository.save(book);
+        repository.save(user);
+        return viewMapper.viewVendor(user);
+    }
+
+    public VendorResponse addPaperBookToVendor(BookRequest bookRequest, Long id) {
+        Book book = bookEditMapper.createPaperBook(bookRequest);
         book.setStatus(RequestStatus.SUBMITTED);
         User user = repository.findById(id).get();
         book.setUser(user);

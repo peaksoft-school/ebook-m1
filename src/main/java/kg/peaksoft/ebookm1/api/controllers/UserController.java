@@ -2,9 +2,11 @@ package kg.peaksoft.ebookm1.api.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponse;
 import kg.peaksoft.ebookm1.api.payloads.dto.user.UserRequest;
 import kg.peaksoft.ebookm1.api.payloads.dto.user.UserResponse;
 import kg.peaksoft.ebookm1.dataBase.entities.book.AudioBook;
+import kg.peaksoft.ebookm1.dataBase.entities.book.Book;
 import kg.peaksoft.ebookm1.dataBase.entities.book.EBook;
 import kg.peaksoft.ebookm1.dataBase.entities.book.PaperBook;
 import kg.peaksoft.ebookm1.services.*;
@@ -24,6 +26,7 @@ public class UserController {
     private final AudioBookService audioBookService;
     private final EBookService eBookService;
     private final PaperBookService paperBookService;
+    private final BookService bookService;
 
     @Operation(summary = "Method create", description = "User with role ADMIN can create")
     @PostMapping
@@ -62,7 +65,7 @@ public class UserController {
         return audioBookService.getAllAudioBooks();
     }
 
-    @Operation(summary = "Method get all electronic book", description = "Allows to get electronic books from the database")
+    @Operation(summary = "Method get all electronic books", description = "Allows to get electronic books from the database")
     @GetMapping("/e-books")
     public List<EBook> getAllEbooks() {
         return eBookService.getAllEBooks();
@@ -72,5 +75,17 @@ public class UserController {
     @GetMapping("/paper-books")
     public List<PaperBook> getAllPaperBooks() {
         return paperBookService.getAllPaperBooks();
+    }
+
+    @Operation(summary = "Method get all books", description = "Allows to get all books from the database")
+    @GetMapping("/books")
+    public List<BookResponse> getAllBooks() {
+        return bookService.getAllBooks();
+    }
+
+    @Operation(summary = "Method get by id", description = "Allows all users to get a book by ID")
+    @GetMapping("/book/{id}")
+    public BookResponse getBookById(@PathVariable Long id) {
+        return bookService.getBookById(id);
     }
 }

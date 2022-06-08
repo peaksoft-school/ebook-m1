@@ -29,11 +29,23 @@ public class BookService {
     private final BookViewMapper viewMapper;
     private final UserRepository vendorRepository;
 
-    public BookResponse createBook(BookRequest request) {
-        Book book = editMapper.createBook(request);
-        repository.save(book);
-        return viewMapper.viewBook(book);
-    }
+//    public BookResponse createAudioBook(BookRequest request) {
+//        Book book = editMapper.createAudioBook(request);
+//        repository.save(book);
+//        return viewMapper.viewBook(book);
+//    }
+//
+//    public BookResponse createEBook(BookRequest request) {
+//        Book book = editMapper.createEBook(request);
+//        repository.save(book);
+//        return viewMapper.viewBook(book);
+//    }
+//
+//    public BookResponse createPaperBook(BookRequest request) {
+//        Book book = editMapper.createPaperBook(request);
+//        repository.save(book);
+//        return viewMapper.viewBook(book);
+//    }
 
     public BookResponse updateBook(Long id, BookRequest request) {
         Book book = repository.findById(id).get();
@@ -46,12 +58,11 @@ public class BookService {
         return viewMapper.viewBook(book);
     }
 
-    public BookResponse deleteBookById(Long id) {
-        Book book = repository.findById(id).get();
-        repository.deleteById(id);
-        System.out.print("Successfully deleted: ");
-        return viewMapper.viewBook(book);
-    }
+//    public BookResponse deleteBookById(Long id) {
+//        Book book = repository.findById(id).get();
+//        repository.deleteById(id);
+//        return viewMapper.viewBook(book);
+//    }
 
     public List<BookResponse> getAllBooks() {
         return viewMapper.viewBooks(repository.findAll());

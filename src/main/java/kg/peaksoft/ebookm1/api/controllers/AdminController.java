@@ -53,6 +53,12 @@ public class AdminController {
         return bookService.getAllVendorBooks(vendorId);
     }
 
+    @Operation(summary = "Method get all books", description = "Allows to get all books from the database")
+    @GetMapping("/books")
+    public List<BookResponse> getAllBooks() {
+        return bookService.getAllBooks();
+    }
+
     @Operation(summary = "Method get all books with status-submitted", description = "Admin can  get all VENDOR'S submitted books from the database")
     @GetMapping("/book-request")
     public List<BookResponse> getAllSubmittedBooks() {

@@ -22,6 +22,7 @@ public class VendorController {
 
     private final VendorService service;
 
+    // Vendors
     @Operation(summary = "Method update by id", description = "User with role VENDOR can update")
     @PreAuthorize("hasAnyAuthority('ROLE_VENDOR')")
     @PutMapping("{id}")
@@ -36,6 +37,7 @@ public class VendorController {
         return service.deleteById(id);
     }
 
+    // Books
     @Operation(summary = "Method to add new audio book", description = "Vendor can add new book to his profile")
     @PreAuthorize("hasAnyAuthority('ROLE_VENDOR')")
     @PostMapping("/audio-book/{id}")
@@ -71,6 +73,7 @@ public class VendorController {
         return service.deleteBookVendor(vendorId, bookId);
     }
 
+    // Promo code
     @Operation(summary = "Method to add new promo code", description = "Vendor can add new promo code to his profile")
     @PreAuthorize("hasAnyAuthority('ROLE_VENDOR')")
     @PostMapping("/promo/{id}")

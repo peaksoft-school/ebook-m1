@@ -2,6 +2,7 @@ package kg.peaksoft.ebookm1.dataBase.mappers.book;
 
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponse;
 import kg.peaksoft.ebookm1.dataBase.entities.book.Book;
+import kg.peaksoft.ebookm1.dataBase.entities.book.PaperBook;
 import kg.peaksoft.ebookm1.dataBase.repositories.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +16,6 @@ import java.util.List;
 public class BookViewMapper {
 
     private final BookRepository repository;
-
 
     public BookResponse viewBook(Book book) {
         if (book == null) {
@@ -38,10 +38,9 @@ public class BookViewMapper {
         response.setAmountOfBooks(book.getAmountOfBooks());
         response.setDiscount(book.getDiscount());
         response.setBestseller(book.getBestseller());
+        response.setAudioBook(book.getAudioBook());
         response.setEBook(book.getEBook());
         response.setPaperBook(book.getPaperBook());
-        response.setAudioBook(book.getAudioBook());
-        response.setGenre(book.getGenre());
         response.setPromocode(book.getPromocode());
         response.setStatus(book.getStatus());
         response.setComments(book.getComments());
