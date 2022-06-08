@@ -2,7 +2,6 @@ package kg.peaksoft.ebookm1.dataBase.mappers.book;
 
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponse;
 import kg.peaksoft.ebookm1.dataBase.entities.book.Book;
-import kg.peaksoft.ebookm1.dataBase.entities.book.PaperBook;
 import kg.peaksoft.ebookm1.dataBase.repositories.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;

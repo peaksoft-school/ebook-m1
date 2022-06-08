@@ -2,8 +2,6 @@ package kg.peaksoft.ebookm1.api.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import kg.peaksoft.ebookm1.api.payloads.dto.book.BookRequest;
-import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponse;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponseView;
 import kg.peaksoft.ebookm1.dataBase.entities.book.Book;
 import kg.peaksoft.ebookm1.services.BookService;
@@ -11,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor

@@ -6,7 +6,6 @@ import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponse;
 import kg.peaksoft.ebookm1.api.payloads.dto.user.UserRequest;
 import kg.peaksoft.ebookm1.api.payloads.dto.user.UserResponse;
 import kg.peaksoft.ebookm1.dataBase.entities.book.AudioBook;
-import kg.peaksoft.ebookm1.dataBase.entities.book.Book;
 import kg.peaksoft.ebookm1.dataBase.entities.book.EBook;
 import kg.peaksoft.ebookm1.dataBase.entities.book.PaperBook;
 import kg.peaksoft.ebookm1.services.*;
