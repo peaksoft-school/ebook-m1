@@ -31,10 +31,9 @@ public class BookResponse {
     private int amountOfBooks;
     private int discount;
     private Boolean bestseller;
+    private AudioBook audioBook;
     private EBook eBook;
     private PaperBook paperBook;
-    private AudioBook audioBook;
-    private Genre genre;
     private Promocode promocode;
     private RequestStatus status;
     private String comments;

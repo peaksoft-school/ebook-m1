@@ -28,7 +28,6 @@ public class Book {
     @SequenceGenerator(name = SEQ_NAME, sequenceName = SEQ_NAME, allocationSize = 1)
     private Long id;
     private String image;
-    @Column(unique = true)
     private String title;
     private String author;
     private String publishingHouse;

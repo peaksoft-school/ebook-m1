@@ -29,12 +29,6 @@ public class BookService {
     private final BookViewMapper viewMapper;
     private final UserRepository vendorRepository;
 
-    public BookResponse createBook(BookRequest request) {
-        Book book = editMapper.createBook(request);
-        repository.save(book);
-        return viewMapper.viewBook(book);
-    }
-
     public BookResponse updateBook(Long id, BookRequest request) {
         Book book = repository.findById(id).get();
         editMapper.updateBook(book, request);
@@ -43,13 +37,6 @@ public class BookService {
 
     public BookResponse getBookById(Long id) {
         Book book = repository.findById(id).get();
-        return viewMapper.viewBook(book);
-    }
-
-    public BookResponse deleteBookById(Long id) {
-        Book book = repository.findById(id).get();
-        repository.deleteById(id);
-        System.out.print("Successfully deleted: ");
         return viewMapper.viewBook(book);
     }
 

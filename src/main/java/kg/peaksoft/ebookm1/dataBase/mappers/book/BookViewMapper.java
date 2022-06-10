@@ -16,7 +16,6 @@ public class BookViewMapper {
 
     private final BookRepository repository;
 
-
     public BookResponse viewBook(Book book) {
         if (book == null) {
             return null;
@@ -38,10 +37,9 @@ public class BookViewMapper {
         response.setAmountOfBooks(book.getAmountOfBooks());
         response.setDiscount(book.getDiscount());
         response.setBestseller(book.getBestseller());
+        response.setAudioBook(book.getAudioBook());
         response.setEBook(book.getEBook());
         response.setPaperBook(book.getPaperBook());
-        response.setAudioBook(book.getAudioBook());
-        response.setGenre(book.getGenre());
         response.setPromocode(book.getPromocode());
         response.setStatus(book.getStatus());
         response.setComments(book.getComments());
