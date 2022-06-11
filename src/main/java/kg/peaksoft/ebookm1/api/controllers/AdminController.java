@@ -81,7 +81,8 @@ public class AdminController {
     @Operation(summary = "Allows to filter by GENRE and TYPE-OF-BOOK from the database")
     @GetMapping("/book/filter")
     public List<BookResponse> filter(@RequestParam(value = "genere",required = false) Genere genre,
-                                     @RequestParam(value = "typeofbook",required = false) TypeOfBook typeOfBook) {
-        return bookService.filterByGenreAndTypeOfBooks(genre,typeOfBook);
+                                     @RequestParam(value = "typeofbook",required = false) TypeOfBook typeOfBook,
+                                     @RequestParam(value = "page",required = false) int page) {
+        return bookService.filterByGenreAndTypeOfBooks(genre,typeOfBook,page-1);
     }
 }

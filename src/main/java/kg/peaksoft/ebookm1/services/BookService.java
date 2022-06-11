@@ -89,8 +89,10 @@ public class BookService {
         return repository.findAll(pageable);
     }
 
-    public List<BookResponse> filterByGenreAndTypeOfBooks(Genere genre, TypeOfBook typeOfBook){
+    public List<BookResponse> filterByGenreAndTypeOfBooks(Genere genre, TypeOfBook typeOfBook,int page){
+        int size=10;
         Specification<Book> filter = BookSpecification.getFilter(genre,typeOfBook);
-        return viewMapper.viewBooks(repository.findAll(filter));
+        Pageable pageable = PageRequest.of(page, size);
+        return viewMapper.viewBooks(repository.findAll(filter,pageable));
     }
 }

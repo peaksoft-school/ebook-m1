@@ -28,7 +28,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     List<Book> findAllByStatus(RequestStatus requestStatus);
 
-    List<Book> findAll(Specification<Book> specification);
+    List<Book> findAll(Specification<Book> specification,Pageable pageable);
 
 
 }
