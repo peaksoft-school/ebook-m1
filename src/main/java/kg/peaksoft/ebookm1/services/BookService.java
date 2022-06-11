@@ -1,6 +1,9 @@
 package kg.peaksoft.ebookm1.services;
 
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.Genere;
 import kg.peaksoft.ebookm1.api.payloads.dto.enums.RequestStatus;
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.TypeOfBook;
+import kg.peaksoft.ebookm1.dataBase.entities.bookSpecification.BookSpecification;
 import kg.peaksoft.ebookm1.dataBase.entities.security.User;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponseView;
 import kg.peaksoft.ebookm1.dataBase.mappers.book.BookEditMapper;
@@ -15,6 +18,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -83,5 +87,10 @@ public class BookService {
             pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC,"name");
         }
         return repository.findAll(pageable);
+    }
+
+    public List<BookResponse> filterByGenreAndTypeOfBooks(Genere genre, TypeOfBook typeOfBook){
+        Specification<Book> filter = BookSpecification.getFilter(genre,typeOfBook);
+        return viewMapper.viewBooks(repository.findAll(filter));
     }
 }

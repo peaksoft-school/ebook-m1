@@ -2,7 +2,9 @@ package kg.peaksoft.ebookm1.dataBase.entities.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import kg.peaksoft.ebookm1.api.payloads.dto.enums.BookLanguage;
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.Genere;
 import kg.peaksoft.ebookm1.api.payloads.dto.enums.RequestStatus;
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.TypeOfBook;
 import kg.peaksoft.ebookm1.dataBase.entities.others.Basket;
 import kg.peaksoft.ebookm1.dataBase.entities.others.Favorite;
 import kg.peaksoft.ebookm1.dataBase.entities.others.Promocode;
@@ -47,6 +49,12 @@ public class Book {
     @Enumerated(EnumType.STRING)
     private RequestStatus status;
     private String comments;
+
+    @Enumerated(EnumType.STRING)
+    private TypeOfBook typeOfBook;
+
+    @Enumerated(EnumType.STRING)
+    private Genere genere;
 
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)

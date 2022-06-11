@@ -3,7 +3,9 @@ package kg.peaksoft.ebookm1.api.payloads.dto.book;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import kg.peaksoft.ebookm1.api.payloads.dto.enums.BookLanguage;
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.Genere;
 import kg.peaksoft.ebookm1.api.payloads.dto.enums.RequestStatus;
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.TypeOfBook;
 import kg.peaksoft.ebookm1.dataBase.entities.book.AudioBook;
 import kg.peaksoft.ebookm1.dataBase.entities.book.EBook;
 import kg.peaksoft.ebookm1.dataBase.entities.book.Genre;
@@ -37,4 +39,6 @@ public class BookResponse {
     private Promocode promocode;
     private RequestStatus status;
     private String comments;
+    private Genere genere;
+    private TypeOfBook typeOfBook;
 }

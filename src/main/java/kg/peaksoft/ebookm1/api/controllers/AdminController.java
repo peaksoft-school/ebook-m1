@@ -4,7 +4,11 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookRequest;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponse;
+import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponseView;
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.Genere;
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.TypeOfBook;
 import kg.peaksoft.ebookm1.api.payloads.dto.vendor.VendorResponse;
+import kg.peaksoft.ebookm1.dataBase.entities.book.Genre;
 import kg.peaksoft.ebookm1.services.BookService;
 import kg.peaksoft.ebookm1.services.VendorService;
 import lombok.RequiredArgsConstructor;
@@ -72,5 +76,12 @@ public class AdminController {
     @PutMapping("/book-request/{id}")
     public BookResponse updateBook(@PathVariable Long id, @RequestBody BookRequest request) {
         return bookService.updateBook(id, request);
+    }
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_VENDOR','ROLE_CLIENT')")
+    @Operation(summary = "Allows to search all books from the database")
+    @GetMapping("/book/filter")
+    public List<BookResponse> filter(@RequestParam(value = "genere",required = false) Genere genre,
+                                     @RequestParam(value = "typeofbook",required = false) TypeOfBook typeOfBook) {
+        return bookService.filterByGenreAndTypeOfBooks(genre,typeOfBook);
     }
 }

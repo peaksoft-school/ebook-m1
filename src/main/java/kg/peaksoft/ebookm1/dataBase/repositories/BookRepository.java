@@ -1,9 +1,14 @@
 package kg.peaksoft.ebookm1.dataBase.repositories;
 
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.Genere;
 import kg.peaksoft.ebookm1.api.payloads.dto.enums.RequestStatus;
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.TypeOfBook;
 import kg.peaksoft.ebookm1.dataBase.entities.book.Book;
+import kg.peaksoft.ebookm1.dataBase.entities.book.Genre;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -20,4 +25,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> searchAndPagination(@Param("name") String name, Pageable pageable);
 
     List<Book> findAllByStatus(RequestStatus requestStatus);
+
+    List<Book> findAll(Specification<Book> specification);
+
+
 }

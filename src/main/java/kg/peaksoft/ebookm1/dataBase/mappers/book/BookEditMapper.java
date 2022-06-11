@@ -25,6 +25,8 @@ public class BookEditMapper {
         book.setAmountOfBooks(bookRequest.getAmountOfBooks());
         book.setDiscount(bookRequest.getDiscount());
         book.setBestseller(bookRequest.getBestseller());
+        book.setGenere(bookRequest.getGenere());
+        book.setTypeOfBook(bookRequest.getTypeOfBook());
         AudioBook audioBook = new AudioBook();
         audioBook.setAudioFragment(bookRequest.getAudioBookFragment());
         audioBook.setBook(book);
@@ -50,6 +52,8 @@ public class BookEditMapper {
         book.setAmountOfBooks(bookRequest.getAmountOfBooks());
         book.setDiscount(bookRequest.getDiscount());
         book.setBestseller(bookRequest.getBestseller());
+        book.setGenere(bookRequest.getGenere());
+        book.setTypeOfBook(bookRequest.getTypeOfBook());
 
         EBook eBook = new EBook();
         eBook.setEBookFragment(bookRequest.getEBookFragment());
@@ -76,6 +80,8 @@ public class BookEditMapper {
         book.setAmountOfBooks(bookRequest.getAmountOfBooks());
         book.setDiscount(bookRequest.getDiscount());
         book.setBestseller(bookRequest.getBestseller());
+        book.setGenere(bookRequest.getGenere());
+        book.setTypeOfBook(bookRequest.getTypeOfBook());
 
         PaperBook paperBook = new PaperBook();
         paperBook.setPaperBookFragment(bookRequest.getPaperBookFragment());
@@ -100,6 +106,8 @@ public class BookEditMapper {
         book.setBestseller(bookRequest.getBestseller());
         book.setStatus(bookRequest.getStatus());
         book.setComments(bookRequest.getComments());
+        book.setGenere(bookRequest.getGenere());
+        book.setTypeOfBook(bookRequest.getTypeOfBook());
         return book;
     }
 }
