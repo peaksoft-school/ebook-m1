@@ -78,7 +78,7 @@ public class AdminController {
         return bookService.updateBook(id, request);
     }
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_VENDOR','ROLE_CLIENT')")
-    @Operation(summary = "Allows to search all books from the database")
+    @Operation(summary = "Allows to filter by GENRE and TYPE-OF-BOOK from the database")
     @GetMapping("/book/filter")
     public List<BookResponse> filter(@RequestParam(value = "genere",required = false) Genere genre,
                                      @RequestParam(value = "typeofbook",required = false) TypeOfBook typeOfBook) {

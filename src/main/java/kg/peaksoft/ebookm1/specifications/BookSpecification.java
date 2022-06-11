@@ -1,9 +1,8 @@
-package kg.peaksoft.ebookm1.dataBase.entities.bookSpecification;
+package kg.peaksoft.ebookm1.specifications;
 
 import kg.peaksoft.ebookm1.api.payloads.dto.enums.Genere;
 import kg.peaksoft.ebookm1.api.payloads.dto.enums.TypeOfBook;
 import kg.peaksoft.ebookm1.dataBase.entities.book.Book;
-import kg.peaksoft.ebookm1.dataBase.entities.book.Genre;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
@@ -21,7 +20,7 @@ public class BookSpecification  {
             if (typeOfBook != null) {
                 predicates.add(criteriaBuilder.equal(root.get("typeOfBook"),typeOfBook));
             }
-            
+
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         });
     }

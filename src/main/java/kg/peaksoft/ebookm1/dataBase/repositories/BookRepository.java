@@ -21,6 +21,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Query("select b from Book b where upper(b.author) like concat('%',:name,'%') " +
             "or upper(b.publishingHouse) like concat('%', :name, '%') " +
             "or upper(b.title) like concat('%', :name, '%') " +
+            "or upper(b.genere)like concat('%', :name, '%') "+
+            "or upper(b.typeOfBook)like concat('%', :name, '%') "+
             "or upper(b.bookLanguage) like concat('%', :name, '%')")
     List<Book> searchAndPagination(@Param("name") String name, Pageable pageable);
 

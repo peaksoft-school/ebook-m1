@@ -3,7 +3,7 @@ package kg.peaksoft.ebookm1.services;
 import kg.peaksoft.ebookm1.api.payloads.dto.enums.Genere;
 import kg.peaksoft.ebookm1.api.payloads.dto.enums.RequestStatus;
 import kg.peaksoft.ebookm1.api.payloads.dto.enums.TypeOfBook;
-import kg.peaksoft.ebookm1.dataBase.entities.bookSpecification.BookSpecification;
+import kg.peaksoft.ebookm1.specifications.BookSpecification;
 import kg.peaksoft.ebookm1.dataBase.entities.security.User;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponseView;
 import kg.peaksoft.ebookm1.dataBase.mappers.book.BookEditMapper;
