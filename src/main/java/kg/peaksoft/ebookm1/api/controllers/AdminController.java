@@ -77,12 +77,19 @@ public class AdminController {
     public BookResponse updateBook(@PathVariable Long id, @RequestBody BookRequest request) {
         return bookService.updateBook(id, request);
     }
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_VENDOR','ROLE_CLIENT')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "Allows to filter by GENRE and TYPE-OF-BOOK from the database")
     @GetMapping("/book/filter")
     public List<BookResponse> filter(@RequestParam(value = "genere",required = false) Genere genre,
                                      @RequestParam(value = "typeofbook",required = false) TypeOfBook typeOfBook,
                                      @RequestParam(value = "page",required = false) int page) {
         return bookService.filterByGenreAndTypeOfBooks(genre,typeOfBook,page-1);
+    }
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @Operation(summary = "Allows to search all books from the database")
+    @GetMapping("/search")
+    public BookResponseView searchAndPagination(@RequestParam(name = "name", required = false)
+                                                        String name, @RequestParam int page) {
+        return bookService.searchAndPagination(name, page - 1);
     }
 }
