@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.services;
 
-import kg.peaksoft.ebookm1.api.payloads.dto.enums.Genere;
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.Genre;
 import kg.peaksoft.ebookm1.api.payloads.dto.enums.RequestStatus;
 import kg.peaksoft.ebookm1.api.payloads.dto.enums.TypeOfBook;
 import kg.peaksoft.ebookm1.specifications.BookSpecification;
@@ -89,7 +89,7 @@ public class BookService {
         return repository.findAll(pageable);
     }
 
-    public List<BookResponse> filterByGenreAndTypeOfBooks(Genere genre, TypeOfBook typeOfBook,int page){
+    public List<BookResponse> filterByGenreAndTypeOfBooks(Genre genre, TypeOfBook typeOfBook, int page){
         int size=10;
         Specification<Book> filter = BookSpecification.getFilter(genre,typeOfBook);
         Pageable pageable = PageRequest.of(page, size);

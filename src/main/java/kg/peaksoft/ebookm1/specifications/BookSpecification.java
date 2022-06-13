@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.specifications;
 
-import kg.peaksoft.ebookm1.api.payloads.dto.enums.Genere;
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.Genre;
 import kg.peaksoft.ebookm1.api.payloads.dto.enums.TypeOfBook;
 import kg.peaksoft.ebookm1.dataBase.entities.book.Book;
 import org.springframework.data.jpa.domain.Specification;
@@ -11,11 +11,11 @@ import java.util.List;
 
 public class BookSpecification  {
 
-    public static Specification<Book> getFilter(Genere genere, TypeOfBook typeOfBook){
+    public static Specification<Book> getFilter(Genre genre, TypeOfBook typeOfBook){
         return ((root, query, criteriaBuilder) ->{
             List<Predicate> predicates = new ArrayList<>();
-            if (genere != null) {
-              predicates.add(criteriaBuilder.equal(root.get("genere"),genere));
+            if (genre != null) {
+              predicates.add(criteriaBuilder.equal(root.get("genre"),genre));
             }
             if (typeOfBook != null) {
                 predicates.add(criteriaBuilder.equal(root.get("typeOfBook"),typeOfBook));

@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.api.payloads.dto.enums;
 
-public enum Genere {
+public enum Genre {
 
     DETECTIVE,ACTION_ADVENTURE, MYSTERY, HORROR,THRILLER_SUSPENSE,
     HISTORICAL_FICTION, ROMANCE, YOUNG_ADULT,BIOGRAPHY, FOOD_DRINK,

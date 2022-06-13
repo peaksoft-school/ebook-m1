@@ -43,7 +43,7 @@ public class BookViewMapper {
         response.setPromocode(book.getPromocode());
         response.setStatus(book.getStatus());
         response.setComments(book.getComments());
-        response.setGenere(book.getGenere());
+        response.setGenreEnum(book.getGenreEnum());
         response.setTypeOfBook(book.getTypeOfBook());
         return response;
     }
