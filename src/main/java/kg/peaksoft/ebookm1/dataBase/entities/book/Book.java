@@ -2,11 +2,14 @@ package kg.peaksoft.ebookm1.dataBase.entities.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import kg.peaksoft.ebookm1.api.payloads.dto.enums.BookLanguage;
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.Genre;
 import kg.peaksoft.ebookm1.api.payloads.dto.enums.RequestStatus;
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.TypeOfBook;
 import kg.peaksoft.ebookm1.dataBase.entities.others.Basket;
 import kg.peaksoft.ebookm1.dataBase.entities.others.Favorite;
 import kg.peaksoft.ebookm1.dataBase.entities.others.Promocode;
 import kg.peaksoft.ebookm1.dataBase.entities.security.User;
+
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -48,6 +51,12 @@ public class Book {
     private RequestStatus status;
     private String comments;
 
+    @Enumerated(EnumType.STRING)
+    private TypeOfBook typeOfBook;
+
+    @Enumerated(EnumType.STRING)
+    private Genre genreEnum;
+
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "eBook_id")
@@ -66,7 +75,7 @@ public class Book {
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "genre_id")
-    private Genre genre;
+    private kg.peaksoft.ebookm1.dataBase.entities.book.Genre genre;
 
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)

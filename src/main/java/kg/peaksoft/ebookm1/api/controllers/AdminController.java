@@ -4,6 +4,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookRequest;
 import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponse;
+import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponseView;
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.Genre;
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.TypeOfBook;
 import kg.peaksoft.ebookm1.api.payloads.dto.vendor.VendorResponse;
 import kg.peaksoft.ebookm1.services.BookService;
 import kg.peaksoft.ebookm1.services.VendorService;
@@ -72,5 +75,20 @@ public class AdminController {
     @PutMapping("/book-request/{id}")
     public BookResponse updateBook(@PathVariable Long id, @RequestBody BookRequest request) {
         return bookService.updateBook(id, request);
+    }
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @Operation(summary = "Allows to filter by GENRE and TYPE-OF-BOOK from the database")
+    @GetMapping("/book/filter")
+    public List<BookResponse> filter(@RequestParam(value = "genre",required = false) Genre genre,
+                                     @RequestParam(value = "typeofbook",required = false) TypeOfBook typeOfBook,
+                                     @RequestParam(value = "page",required = false) int page) {
+        return bookService.filterByGenreAndTypeOfBooks(genre,typeOfBook,page-1);
+    }
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @Operation(summary = "Allows to search all books from the database")
+    @GetMapping("/search")
+    public BookResponseView searchAndPagination(@RequestParam(name = "name", required = false)
+                                                        String name, @RequestParam int page) {
+        return bookService.searchAndPagination(name, page - 1);
     }
 }

@@ -3,7 +3,9 @@ package kg.peaksoft.ebookm1.api.payloads.dto.book;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import kg.peaksoft.ebookm1.api.payloads.dto.enums.BookLanguage;
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.Genre;
 import kg.peaksoft.ebookm1.api.payloads.dto.enums.RequestStatus;
+import kg.peaksoft.ebookm1.api.payloads.dto.enums.TypeOfBook;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,4 +32,6 @@ public class BookRequest {
     private String paperBookFragment;
     private RequestStatus status;
     private String comments;
+    private Genre genreEnum;
+    private TypeOfBook typeOfBook;
 }
