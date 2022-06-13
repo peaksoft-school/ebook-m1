@@ -78,7 +78,13 @@
 			<artifactId>springdoc-openapi-ui</artifactId>
 			<version>1.6.7</version>
 		</dependency>
-    </dependencies>
+		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk</artifactId>
+			<version>1.12.237</version>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>
