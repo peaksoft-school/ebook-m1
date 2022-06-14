@@ -43,4 +43,14 @@ public class VendorViewMapper {
         }
         return vendorUsers;
     }
+
+    public VendorResponse viewVendorById(User vendor) {
+        VendorResponse response = new VendorResponse();
+        response.setFirstName(vendor.getFirstName());
+        response.setLastName(vendor.getLastName());
+        response.setPhoneNumber(vendor.getPhoneNumber());
+        response.setEmail(vendor.getEmail());
+        response.setCreated(vendor.getCreated());
+        return response;
+    }
 }

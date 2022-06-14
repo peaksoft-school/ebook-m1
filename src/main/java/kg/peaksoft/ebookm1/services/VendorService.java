@@ -14,6 +14,7 @@ import kg.peaksoft.ebookm1.dataBase.mappers.vendor.VendorEditMapper;
 import kg.peaksoft.ebookm1.dataBase.mappers.vendor.VendorViewMapper;
 import kg.peaksoft.ebookm1.dataBase.repositories.BookRepository;
 import kg.peaksoft.ebookm1.dataBase.repositories.PromocodeRepository;
+import kg.peaksoft.ebookm1.dataBase.repositories.RoleRepository;
 import kg.peaksoft.ebookm1.dataBase.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -33,6 +34,7 @@ public class VendorService {
     private final BookRepository bookRepository;
     private final PromocodeEditMapper promocodeEditMapper;
     private final PromocodeRepository promocodeRepository;
+    private final RoleRepository roleRepository;
 
     public VendorResponse create(VendorRequest request) {
         User vendor = editMapper.createVendor(request);
@@ -56,6 +58,11 @@ public class VendorService {
 
     public List<VendorResponse> getAllVendors() {
         return viewMapper.viewVendors();
+    }
+
+    public VendorResponse gitById(Long id) {
+        User vendor = repository.findById(id).get();
+        return viewMapper.viewVendorById(vendor);
     }
 
     //  addBook button function section  starts  ==========================================================
