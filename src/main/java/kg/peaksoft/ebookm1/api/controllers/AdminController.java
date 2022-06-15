@@ -64,8 +64,8 @@ public class AdminController {
 
     @Operation(summary = "Method get all books with status-submitted", description = "Admin can  get all VENDOR'S submitted books from the database")
     @GetMapping("/book-request")
-    public List<BookResponse> getAllSubmittedBooks() {
-        return bookService.getAllSubmittedBooks();
+    public List<BookResponse> getAllSubmittedBooks(@RequestParam(value = "page",required = false)int page) {
+        return bookService.getAllSubmittedBooks(page-1);
     }
 
     @Operation(summary = "Method update by id", description = "User with role ADMIN can change request status " +
