@@ -66,8 +66,10 @@ public class BookService {
         return responses;
     }
 
-    public List<BookResponse> getAllSubmittedBooks(){
-        return viewMapper.viewBooks(repository.findAllByStatus(RequestStatus.SUBMITTED));
+    public List<BookResponse> getAllSubmittedBooks(int page){
+        int size = 10;
+        Pageable pageable = PageRequest.of(page,size);
+        return viewMapper.viewBooks(repository.findAllByStatus(RequestStatus.SUBMITTED,pageable));
     }
 
     public List<BookResponse> getAllBooksByType(TypeOfBook typeOfBook,int page){

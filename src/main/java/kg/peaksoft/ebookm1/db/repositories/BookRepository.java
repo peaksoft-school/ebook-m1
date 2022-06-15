@@ -23,7 +23,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             "or upper(b.bookLanguage) like concat('%', :name, '%')")
     List<Book> searchAndPagination(@Param("name") String name, Pageable pageable);
 
-    List<Book> findAllByStatus(RequestStatus requestStatus);
+    List<Book> findAllByStatus(RequestStatus requestStatus,Pageable pageable);
 
     List<Book> findAll(Specification<Book> specification,Pageable pageable);
 
