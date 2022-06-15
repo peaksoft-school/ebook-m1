@@ -49,6 +49,12 @@ public class AdminController {
         return new ResponseEntity<>("Successfully removed vendor by id: " + vendorId, HttpStatus.OK);
     }
 
+    @Operation(summary = "Method get by id", description = "Admin can get the vendor by id and view the profile.")
+    @GetMapping("/vendor-profile/{vendorId}")
+    public VendorResponse getVendorById(@PathVariable Long vendorId) {
+        return vendorService.gitById(vendorId);
+    }
+
     // Books
     @Operation(summary = "Method get all vendor books", description = "Admin can to get all VENDOR'S books from the database")
     @GetMapping("/vendor-books/{vendorId}")
