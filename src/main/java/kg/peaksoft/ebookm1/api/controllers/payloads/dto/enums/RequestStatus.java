@@ -1,0 +1,7 @@
+package kg.peaksoft.ebookm1.api.controllers.payloads.dto.enums;
+
+public enum RequestStatus {
+    SUBMITTED,
+    APPROVED,
+    REJECTED
+}

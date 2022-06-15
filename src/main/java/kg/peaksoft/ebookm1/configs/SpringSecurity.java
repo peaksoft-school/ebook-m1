@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.configs;
 
-import kg.peaksoft.ebookm1.services.UserService;
+import kg.peaksoft.ebookm1.db.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
