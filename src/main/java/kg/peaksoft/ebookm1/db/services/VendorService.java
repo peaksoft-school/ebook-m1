@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.db.services;
 
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.enums.RequestStatus;
+import kg.peaksoft.ebookm1.db.enums.RequestStatus;
 import kg.peaksoft.ebookm1.db.mappers.book.BookEditMapper;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookRequest;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.promocode.PromocodeRequest;

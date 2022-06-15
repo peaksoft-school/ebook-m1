@@ -1,10 +1,10 @@
 package kg.peaksoft.ebookm1.db.entities.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.enums.BookLanguage;
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.enums.Genre;
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.enums.RequestStatus;
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.enums.TypeOfBook;
+import kg.peaksoft.ebookm1.db.enums.BookLanguage;
+import kg.peaksoft.ebookm1.db.enums.Genre;
+import kg.peaksoft.ebookm1.db.enums.RequestStatus;
+import kg.peaksoft.ebookm1.db.enums.TypeOfBook;
 import kg.peaksoft.ebookm1.db.entities.others.Basket;
 import kg.peaksoft.ebookm1.db.entities.others.Favorite;
 import kg.peaksoft.ebookm1.db.entities.others.Promocode;

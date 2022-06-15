@@ -1,7 +1,7 @@
 package kg.peaksoft.ebookm1.db.repositories.specifications;
 
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.enums.Genre;
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.enums.TypeOfBook;
+import kg.peaksoft.ebookm1.db.enums.Genre;
+import kg.peaksoft.ebookm1.db.enums.TypeOfBook;
 import kg.peaksoft.ebookm1.db.entities.book.Book;
 import org.springframework.data.jpa.domain.Specification;
 

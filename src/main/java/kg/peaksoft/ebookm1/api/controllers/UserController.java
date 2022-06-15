@@ -3,7 +3,7 @@ package kg.peaksoft.ebookm1.api.controllers;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookResponse;
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.enums.TypeOfBook;
+import kg.peaksoft.ebookm1.db.enums.TypeOfBook;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.user.UserRequest;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.user.UserResponse;
 import kg.peaksoft.ebookm1.db.services.BookService;
