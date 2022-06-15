@@ -57,10 +57,9 @@ public class UserController {
     @Operation(summary = "Method get all books by type",
             description = "Allows to get all type books {AUDIO_BOOK,PAPER_BOOK,E_BOOK} from the database")
     @GetMapping("/books/type")
-
-    public List<BookResponse>  getAllBooksByType(@RequestParam(value = "typeOfBook")TypeOfBook typeOfBook,
-                                                 @RequestParam(value = "page",required = false)int page) {
-        return bookService.getAllBooksByType(typeOfBook,page-1);
+    public List<BookResponse> getAllBooksByType(@RequestParam(value = "typeOfBook") TypeOfBook typeOfBook,
+                                                @RequestParam(value = "page", required = false) int page) {
+        return bookService.getAllBooksByType(typeOfBook, page - 1);
     }
 
     @Operation(summary = "Method get all books", description = "Allows to get all books from the database")
