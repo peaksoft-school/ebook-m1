@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.db.services;
+package kg.peaksoft.ebookm1.db.repositories;
 
 import org.springframework.web.multipart.MultipartFile;
 

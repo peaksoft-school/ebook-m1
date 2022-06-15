@@ -3,6 +3,7 @@ package kg.peaksoft.ebookm1.db.services;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.*;
 import com.amazonaws.util.IOUtils;
+import kg.peaksoft.ebookm1.db.repositories.FileServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
