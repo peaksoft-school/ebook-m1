@@ -6,10 +6,12 @@ import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponseView;
 import kg.peaksoft.ebookm1.dataBase.entities.book.Book;
 import kg.peaksoft.ebookm1.services.BookService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/books")
@@ -24,6 +26,7 @@ public class BookController {
     @GetMapping("/search")
     public BookResponseView searchAndPagination(@RequestParam(name = "name", required = false)
                                                         String name, @RequestParam int page) {
+        log.info("Inside Book controller search and pagination book method");
         return bookService.searchAndPagination(name, page - 1);
     }
 
@@ -33,6 +36,7 @@ public class BookController {
     public Page<Book> sortAndPagination(@PathVariable Integer pageNumber,
                                      @PathVariable Integer pageSize,
                                      @PathVariable String sortProperty) {
+        log.info("Inside Book controller sort and pagination book method");
         return bookService.sortAndPagination(pageNumber, pageSize, sortProperty);
     }
 }

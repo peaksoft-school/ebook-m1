@@ -8,9 +8,11 @@ import kg.peaksoft.ebookm1.api.payloads.dto.vendor.VendorRequest;
 import kg.peaksoft.ebookm1.api.payloads.dto.vendor.VendorResponse;
 import kg.peaksoft.ebookm1.services.VendorService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/vendors")
@@ -25,6 +27,7 @@ public class VendorController {
     @PreAuthorize("hasAnyAuthority('ROLE_VENDOR')")
     @PutMapping("{id}")
     public VendorResponse updateById(@PathVariable Long id, @RequestBody VendorRequest request) {
+        log.info("Inside Vendor controller update vendor by id method");
         return service.update(id, request);
     }
 
@@ -32,6 +35,7 @@ public class VendorController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_VENDOR')")
     @DeleteMapping("{id}")
     public VendorResponse deleteById(@PathVariable Long id) {
+        log.info("Inside Vendor controller delete vendor by id method");
         return service.deleteById(id);
     }
 
@@ -40,6 +44,7 @@ public class VendorController {
     @PreAuthorize("hasAnyAuthority('ROLE_VENDOR')")
     @PostMapping("/audio-book/{id}")
     public VendorResponse addAudioBookToVendor(@PathVariable long id, @RequestBody BookRequest request) {
+        log.info("Inside Vendor controller add audio book to vendor method");
         return service.addAudioBookToVendor(request, id);
     }
 
@@ -47,6 +52,7 @@ public class VendorController {
     @PreAuthorize("hasAnyAuthority('ROLE_VENDOR')")
     @PostMapping("/e-book/{id}")
     public VendorResponse addEBookToVendor(@PathVariable long id, @RequestBody BookRequest request) {
+        log.info("Inside Vendor controller add ebook to vendor method");
         return service.addEBookToVendor(request, id);
     }
 
@@ -54,6 +60,7 @@ public class VendorController {
     @PreAuthorize("hasAnyAuthority('ROLE_VENDOR')")
     @PostMapping("/paper-book/{id}")
     public VendorResponse addPaperBookToVendor(@PathVariable long id, @RequestBody BookRequest request) {
+        log.info("Inside Vendor controller add paper book to vendor method");
         return service.addPaperBookToVendor(request, id);
     }
 
@@ -61,6 +68,7 @@ public class VendorController {
     @PreAuthorize("hasAnyAuthority('ROLE_VENDOR')")
     @PutMapping("/book/{vendorId}/{bookId}")
     public VendorResponse updateBook(@PathVariable long vendorId, @PathVariable long bookId, @RequestBody BookRequest request) {
+        log.info("Inside Vendor controller update book by id method");
         return service.updateBookVendor(vendorId, bookId, request);
     }
 
@@ -68,6 +76,7 @@ public class VendorController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_VENDOR')")
     @DeleteMapping("/book/{vendorId}/{bookId}")
     public VendorResponse deleteBook(@PathVariable long vendorId, @PathVariable long bookId) {
+        log.info("Inside the provider's controller is a method for deleting their books");
         return service.deleteBookVendor(vendorId, bookId);
     }
 
@@ -76,6 +85,7 @@ public class VendorController {
     @PreAuthorize("hasAnyAuthority('ROLE_VENDOR')")
     @PostMapping("/promo/{id}")
     public VendorResponse addPromoCode(@PathVariable long id, @RequestBody PromocodeRequest promocodeRequest) {
+        log.info("Inside Vendor controller add promo code to vendor method");
         return service.addPromocode(promocodeRequest, id);
     }
 
@@ -83,6 +93,7 @@ public class VendorController {
     @PreAuthorize("hasAnyAuthority('ROLE_VENDOR')")
     @PutMapping("/promo/{vendorId}/{promoCodeId}")
     public VendorResponse updatePromoCode(@PathVariable long vendorId, @PathVariable long promoCodeId, @RequestBody PromocodeRequest promocodeRequest) {
+        log.info("Inside the Vendor controller, update the promo code of the vendor method");
         return service.updatePromocode(promocodeRequest, vendorId, promoCodeId);
     }
 
@@ -90,6 +101,7 @@ public class VendorController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_VENDOR')")
     @DeleteMapping("/promo/{vendorId}/{promoCodeId}")
     public VendorResponse deletePromoCode(@PathVariable long vendorId, @PathVariable long promoCodeId) {
+        log.info("Inside the Vendor controller, delete the promo code of the vendor method");
         return service.deletePromocode(vendorId, promoCodeId);
     }
 }

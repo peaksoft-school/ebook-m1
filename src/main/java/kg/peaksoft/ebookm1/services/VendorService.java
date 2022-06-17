@@ -14,14 +14,15 @@ import kg.peaksoft.ebookm1.dataBase.mappers.vendor.VendorEditMapper;
 import kg.peaksoft.ebookm1.dataBase.mappers.vendor.VendorViewMapper;
 import kg.peaksoft.ebookm1.dataBase.repositories.BookRepository;
 import kg.peaksoft.ebookm1.dataBase.repositories.PromocodeRepository;
-import kg.peaksoft.ebookm1.dataBase.repositories.RoleRepository;
 import kg.peaksoft.ebookm1.dataBase.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class VendorService {
@@ -34,34 +35,38 @@ public class VendorService {
     private final BookRepository bookRepository;
     private final PromocodeEditMapper promocodeEditMapper;
     private final PromocodeRepository promocodeRepository;
-    private final RoleRepository roleRepository;
 
     public VendorResponse create(VendorRequest request) {
         User vendor = editMapper.createVendor(request);
         vendor.setPassword(passwordEncoder.encode(request.getPassword()));
         vendor.isActive();
         repository.save(vendor);
+        log.info("The vendor has successfully registered: {}", vendor.getFirstName());
         return viewMapper.viewVendor(vendor);
     }
 
     public VendorResponse update(Long id, VendorRequest request) {
         User vendor = repository.findById(id).get();
         editMapper.updateVendor(vendor, request);
+        log.info("The vendor has successfully updated his data: {}", vendor.getFirstName());
         return viewMapper.viewVendor(repository.save(vendor));
     }
 
     public VendorResponse deleteById(Long id) {
         User vendor = repository.findById(id).get();
         repository.deleteById(id);
+        log.info("The vendor was successfully removed by ID from the database: {}", vendor.getFirstName());
         return viewMapper.viewVendor(vendor);
     }
 
     public List<VendorResponse> getAllVendors() {
+        log.info("Getting all vendors: ");
         return viewMapper.viewVendors();
     }
 
     public VendorResponse gitById(Long id) {
         User vendor = repository.findById(id).get();
+        log.info("getting a vendor by id: {}", vendor.getFirstName());
         return viewMapper.viewVendorById(vendor);
     }
 
@@ -73,6 +78,7 @@ public class VendorService {
         book.setUser(user);
         bookRepository.save(book);
         repository.save(user);
+        log.info("The vendor has successfully added his book to the database: {}", user.getFirstName());
         return viewMapper.viewVendor(user);
     }
 
@@ -83,6 +89,7 @@ public class VendorService {
         book.setUser(user);
         bookRepository.save(book);
         repository.save(user);
+        log.info("The vendor has successfully added his book to the database: {}", user.getFirstName());
         return viewMapper.viewVendor(user);
     }
 
@@ -93,6 +100,7 @@ public class VendorService {
         book.setUser(user);
         bookRepository.save(book);
         repository.save(user);
+        log.info("The vendor has successfully added his book to the database: {}", book.getTitle());
         return viewMapper.viewVendor(user);
     }
 
@@ -103,6 +111,7 @@ public class VendorService {
         book.setUser(user);
         bookRepository.save(book);
         repository.save(user);
+        log.info("The vendor has successfully updated the book data: {}", book.getTitle());
         return viewMapper.viewVendor(user);
     }
 
@@ -111,6 +120,7 @@ public class VendorService {
         Book book = bookRepository.findById(bookId).get();
         bookRepository.delete(book);
         repository.save(user);
+        log.info("The vendor has successfully deleted his book: {}", book.getTitle());
         return viewMapper.viewVendor(user);
     }
     //  addBook button function section  ends  ==========================================================
@@ -126,6 +136,7 @@ public class VendorService {
         promocode.setUser(user);
         promocodeRepository.save(promocode);
         repository.save(user);
+        log.info("The vendor has successfully added a promo code: {}", promocode.getPromoName());
         return viewMapper.viewVendor(user);
     }
 
@@ -140,6 +151,7 @@ public class VendorService {
         promocode.setUser(user);
         promocodeRepository.save(promocode);
         repository.save(user);
+        log.info("The vendor has successfully updated the promo code: {}", promocode.getPromoName());
         return viewMapper.viewVendor(user);
     }
 
@@ -148,6 +160,7 @@ public class VendorService {
         Promocode promocode = promocodeRepository.findById(promoCodeId).get();
         promocodeRepository.delete(promocode);
         repository.save(user);
+        log.info("The seller has successfully deleted the promo code: {}", promocode.getPromoName());
         return viewMapper.viewVendor(user);
     }
 }

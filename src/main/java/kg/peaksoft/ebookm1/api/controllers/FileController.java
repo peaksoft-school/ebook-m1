@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.ebookm1.services.AWSS3Service;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpStatus;
@@ -18,12 +19,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/s3")
+@RequestMapping("/api/file")
 @Tag(name = "AWS S3", description = "The AWS S3 API")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
-public class S3Controller {
+public class FileController {
 
     private final AWSS3Service s3Service;
     private final AmazonS3 s3;
@@ -40,6 +42,7 @@ public class S3Controller {
         String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
         s3.putObject(bucketName, fileName, modifiedFile);
         modifiedFile.delete();
+        log.info("Inside S3Controller Method of uploading a file to s3 server");
         return new ResponseEntity<>("The file has been uploaded successfully: " + fileName, HttpStatus.OK);
     }
 
@@ -48,6 +51,7 @@ public class S3Controller {
     public ResponseEntity<ByteArrayResource> download(@PathVariable("fileName") String fileName) {
         byte[] data = s3Service.downloadFile(fileName);
         ByteArrayResource arrayResource = new ByteArrayResource(data);
+        log.info("Inside the S3Controller, the method of downloading a file from the s3 server");
         return ResponseEntity
                 .ok()
                 .contentLength(data.length)
@@ -60,6 +64,7 @@ public class S3Controller {
     @Operation(summary = "Method delete file", description = "Vendor can delete the file from the bucket s3")
     @DeleteMapping
     public String deleteFile(@RequestParam String fileName) {
+        log.info("Inside the S3Сontroller, the method is deleting a file from the s3 server");
         return s3Service.deleteFile(fileName);
     }
 
@@ -67,6 +72,7 @@ public class S3Controller {
     @Operation(summary = "Method get all files", description = "Vendor get all files from the bucket s3")
     @GetMapping
     public List<String> getAllFiles() {
+        log.info("Inside S3Controller Method of getting all files from s3 server");
         return s3Service.listAllFiles();
     }
 }

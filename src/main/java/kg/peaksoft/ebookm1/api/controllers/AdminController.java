@@ -11,6 +11,7 @@ import kg.peaksoft.ebookm1.api.payloads.dto.vendor.VendorResponse;
 import kg.peaksoft.ebookm1.services.BookService;
 import kg.peaksoft.ebookm1.services.VendorService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "Admin", description = "The Admin API")
@@ -33,12 +35,14 @@ public class AdminController {
     @Operation(summary = "Method all vendors", description = "Admin to get all VENDORS from the database")
     @GetMapping("/vendors")
     public List<VendorResponse> getAllVendors() {
+        log.info("Inside Admin controller get all vendors method");
         return vendorService.getAllVendors();
     }
 
     @Operation(summary = "Vendor's book count method", description = "Admin can to get all VENDOR'S count books from the database")
     @GetMapping("/count-books/{vendorId}")
     public String countBooks(@PathVariable Long vendorId) {
+        log.info("Inside Admin controller count vendor books method");
         return bookService.countBooks(vendorId);
     }
 
@@ -46,12 +50,14 @@ public class AdminController {
     @DeleteMapping("/vendor/{vendorId}")
     public ResponseEntity<String> deleteById(@PathVariable Long vendorId) {
         vendorService.deleteById(vendorId);
+        log.info("Inside Admin controller delete vendor bu id method");
         return new ResponseEntity<>("Successfully removed vendor by id: " + vendorId, HttpStatus.OK);
     }
 
     @Operation(summary = "Method get by id", description = "Admin can get the vendor by id and view the profile.")
     @GetMapping("/vendor-profile/{vendorId}")
     public VendorResponse getVendorById(@PathVariable Long vendorId) {
+        log.info("Inside Admin controller get vendor by id method");
         return vendorService.gitById(vendorId);
     }
 
@@ -59,18 +65,21 @@ public class AdminController {
     @Operation(summary = "Method get all vendor books", description = "Admin can to get all VENDOR'S books from the database")
     @GetMapping("/vendor-books/{vendorId}")
     public List<BookResponse> getAllVendorBooks(@PathVariable Long vendorId) {
+        log.info("Inside Admin controller get all vendor books method");
         return bookService.getAllVendorBooks(vendorId);
     }
 
     @Operation(summary = "Method get all books", description = "Allows to get all books from the database")
     @GetMapping("/books")
     public List<BookResponse> getAllBooks() {
+        log.info("Inside Admin controller get all books method");
         return bookService.getAllBooks();
     }
 
     @Operation(summary = "Method get all books with status-submitted", description = "Admin can  get all VENDOR'S submitted books from the database")
     @GetMapping("/book-request")
     public List<BookResponse> getAllSubmittedBooks(@RequestParam(value = "page",required = false)int page) {
+        log.info("Inside Admin controller get all submitted books method");
         return bookService.getAllSubmittedBooks(page-1);
     }
 
@@ -80,6 +89,7 @@ public class AdminController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_VENDOR')")
     @PutMapping("/book-request/{id}")
     public BookResponse updateBook(@PathVariable Long id, @RequestBody BookRequest request) {
+        log.info("Inside the Admin controller the method of changing the status of the book");
         return bookService.updateBook(id, request);
     }
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
@@ -88,6 +98,7 @@ public class AdminController {
     public List<BookResponse> filter(@RequestParam(value = "genre",required = false) Genre genre,
                                      @RequestParam(value = "typeofbook",required = false) TypeOfBook typeOfBook,
                                      @RequestParam(value = "page",required = false) int page) {
+        log.info("Inside Admin controller filter book method");
         return bookService.filterByGenreAndTypeOfBooks(genre,typeOfBook,page-1);
     }
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
@@ -95,6 +106,7 @@ public class AdminController {
     @GetMapping("/search")
     public BookResponseView searchAndPagination(@RequestParam(name = "name", required = false)
                                                         String name, @RequestParam int page) {
+        log.info("Inside Admin controller search and pagination book method");
         return bookService.searchAndPagination(name, page - 1);
     }
 }

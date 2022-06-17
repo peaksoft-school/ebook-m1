@@ -13,12 +13,14 @@ import kg.peaksoft.ebookm1.exceptions.ExceptionType;
 import kg.peaksoft.ebookm1.dataBase.repositories.UserRepository;
 import kg.peaksoft.ebookm1.services.VendorService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/public")
@@ -38,6 +40,7 @@ public class AuthController {
             UsernamePasswordAuthenticationToken authenticationToken =
                     new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword());
             User user = repository.findByEmail(authenticationToken.getName()).get();
+            log.info("Inside AuthController get login method");
             return ResponseEntity.ok()
                     .body(authMapper.view(jwtTokenUtil.generateToken(user), ExceptionType.SUCCESSFULLY, user));
         } catch (BadCredentialsException e) {
@@ -48,6 +51,7 @@ public class AuthController {
     @Operation(summary = "Method registration vendor", description = "Sign up/sign vendor layout")
     @PostMapping("/vendor")
     public VendorResponse registration(@RequestBody VendorRequest request) {
+        log.info("Inside AuthController registration vendor method");
         return vendorService.create(request);
     }
 }
