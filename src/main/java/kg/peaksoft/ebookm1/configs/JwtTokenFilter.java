@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.configs;
 
-import kg.peaksoft.ebookm1.services.UserService;
+import kg.peaksoft.ebookm1.db.services.UserService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
