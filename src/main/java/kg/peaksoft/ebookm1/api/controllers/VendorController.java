@@ -2,11 +2,11 @@ package kg.peaksoft.ebookm1.api.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import kg.peaksoft.ebookm1.api.payloads.dto.book.BookRequest;
-import kg.peaksoft.ebookm1.api.payloads.dto.promocode.PromocodeRequest;
-import kg.peaksoft.ebookm1.api.payloads.dto.vendor.VendorRequest;
-import kg.peaksoft.ebookm1.api.payloads.dto.vendor.VendorResponse;
-import kg.peaksoft.ebookm1.services.VendorService;
+import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookRequest;
+import kg.peaksoft.ebookm1.api.controllers.payloads.dto.promocode.PromocodeRequest;
+import kg.peaksoft.ebookm1.api.controllers.payloads.dto.vendor.VendorRequest;
+import kg.peaksoft.ebookm1.api.controllers.payloads.dto.vendor.VendorResponse;
+import kg.peaksoft.ebookm1.db.services.VendorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -40,28 +40,11 @@ public class VendorController {
     }
 
     // Books
-    @Operation(summary = "Method to add new audio book", description = "Vendor can add new book to his profile")
+    @Operation(summary = "Method to add new book", description = "Vendor can add new book to his profile")
     @PreAuthorize("hasAnyAuthority('ROLE_VENDOR')")
-    @PostMapping("/audio-book/{id}")
-    public VendorResponse addAudioBookToVendor(@PathVariable long id, @RequestBody BookRequest request) {
-        log.info("Inside Vendor controller add audio book to vendor method");
-        return service.addAudioBookToVendor(request, id);
-    }
-
-    @Operation(summary = "Method to add new electronic book", description = "Vendor can add new book to his profile")
-    @PreAuthorize("hasAnyAuthority('ROLE_VENDOR')")
-    @PostMapping("/e-book/{id}")
-    public VendorResponse addEBookToVendor(@PathVariable long id, @RequestBody BookRequest request) {
-        log.info("Inside Vendor controller add ebook to vendor method");
-        return service.addEBookToVendor(request, id);
-    }
-
-    @Operation(summary = "Method to add new paper book", description = "Vendor can add new book to his profile")
-    @PreAuthorize("hasAnyAuthority('ROLE_VENDOR')")
-    @PostMapping("/paper-book/{id}")
-    public VendorResponse addPaperBookToVendor(@PathVariable long id, @RequestBody BookRequest request) {
-        log.info("Inside Vendor controller add paper book to vendor method");
-        return service.addPaperBookToVendor(request, id);
+    @PostMapping("/book/{id}")
+    public VendorResponse addBookToVendor(@PathVariable long id, @RequestBody BookRequest request) {
+        return service.addBookToVendor(request, id);
     }
 
     @Operation(summary = "Method to update vendor's book", description = "Vendor can update his books from his book list")

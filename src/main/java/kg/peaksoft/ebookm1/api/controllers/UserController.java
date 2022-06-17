@@ -2,13 +2,12 @@ package kg.peaksoft.ebookm1.api.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponse;
-import kg.peaksoft.ebookm1.api.payloads.dto.user.UserRequest;
-import kg.peaksoft.ebookm1.api.payloads.dto.user.UserResponse;
-import kg.peaksoft.ebookm1.dataBase.entities.book.AudioBook;
-import kg.peaksoft.ebookm1.dataBase.entities.book.EBook;
-import kg.peaksoft.ebookm1.dataBase.entities.book.PaperBook;
-import kg.peaksoft.ebookm1.services.*;
+import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookResponse;
+import kg.peaksoft.ebookm1.db.enums.TypeOfBook;
+import kg.peaksoft.ebookm1.api.controllers.payloads.dto.user.UserRequest;
+import kg.peaksoft.ebookm1.api.controllers.payloads.dto.user.UserResponse;
+import kg.peaksoft.ebookm1.db.services.BookService;
+import kg.peaksoft.ebookm1.db.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +23,6 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    private final AudioBookService audioBookService;
-    private final EBookService eBookService;
-    private final PaperBookService paperBookService;
     private final BookService bookService;
 
     @Operation(summary = "Method create", description = "User with role ADMIN can create")
@@ -65,25 +61,12 @@ public class UserController {
     }
 
     // Books
-    @Operation(summary = "Method get all audio books", description = "Allows to get all audio books from the database")
-    @GetMapping("/audio-books")
-    public List<AudioBook>  getAllAudioBooks() {
-        log.info("Inside Client controller get all audio book method");
-        return audioBookService.getAllAudioBooks();
-    }
-
-    @Operation(summary = "Method get all electronic books", description = "Allows to get electronic books from the database")
-    @GetMapping("/e-books")
-    public List<EBook> getAllEbooks() {
-        log.info("Inside Client controller get all e-book method");
-        return eBookService.getAllEBooks();
-    }
-
-    @Operation(summary = "Method get all paper books", description = "Allows to get paper books from the database")
-    @GetMapping("/paper-books")
-    public List<PaperBook> getAllPaperBooks() {
-        log.info("Inside Client controller get all paper book method");
-        return paperBookService.getAllPaperBooks();
+    @Operation(summary = "Method get all books by type",
+            description = "Allows to get all type books {AUDIO_BOOK,PAPER_BOOK,E_BOOK} from the database")
+    @GetMapping("/books/type")
+    public List<BookResponse> getAllBooksByType(@RequestParam(value = "typeOfBook") TypeOfBook typeOfBook,
+                                                @RequestParam(value = "page", required = false) int page) {
+        return bookService.getAllBooksByType(typeOfBook, page - 1);
     }
 
     @Operation(summary = "Method get all books", description = "Allows to get all books from the database")

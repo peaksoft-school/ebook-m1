@@ -2,9 +2,9 @@ package kg.peaksoft.ebookm1.api.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import kg.peaksoft.ebookm1.api.payloads.dto.book.BookResponseView;
-import kg.peaksoft.ebookm1.dataBase.entities.book.Book;
-import kg.peaksoft.ebookm1.services.BookService;
+import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookResponseView;
+import kg.peaksoft.ebookm1.db.entities.book.Book;
+import kg.peaksoft.ebookm1.db.services.BookService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
