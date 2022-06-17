@@ -66,6 +66,7 @@ public class UserController {
     @GetMapping("/books/type")
     public List<BookResponse> getAllBooksByType(@RequestParam(value = "typeOfBook") TypeOfBook typeOfBook,
                                                 @RequestParam(value = "page", required = false) int page) {
+        log.info("Inside the client controller, a method to get all books by type");
         return bookService.getAllBooksByType(typeOfBook, page - 1);
     }
 

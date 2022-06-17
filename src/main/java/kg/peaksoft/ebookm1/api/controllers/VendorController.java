@@ -44,6 +44,7 @@ public class VendorController {
     @PreAuthorize("hasAnyAuthority('ROLE_VENDOR')")
     @PostMapping("/book/{id}")
     public VendorResponse addBookToVendor(@PathVariable long id, @RequestBody BookRequest request) {
+        log.info("Inside Vendor controller add book to vendor method");
         return service.addBookToVendor(request, id);
     }
 
