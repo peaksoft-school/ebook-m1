@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.configs;
 
-import kg.peaksoft.ebookm1.db.services.UserService;
+import kg.peaksoft.ebookm1.db.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,10 +15,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SpringSecurity extends WebSecurityConfigurerAdapter {
 
-    private final UserService userService;
+    private final ClientService userService;
     private final JwtTokenFilter jwtTokenFilter;
 
-    public SpringSecurity(UserService userService, JwtTokenFilter jwtTokenFilter) {
+    public SpringSecurity(ClientService userService, JwtTokenFilter jwtTokenFilter) {
         this.userService = userService;
         this.jwtTokenFilter = jwtTokenFilter;
     }
@@ -37,7 +37,7 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/public/**").permitAll()
                 .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                .antMatchers("/api/users/**").permitAll()
+                .antMatchers("/api/clients/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_CLIENT")
                 .antMatchers("/api/books/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_VENDOR")
                 .antMatchers("/api/vendors/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_VENDOR")
                 .antMatchers("/api/s3/**").permitAll()

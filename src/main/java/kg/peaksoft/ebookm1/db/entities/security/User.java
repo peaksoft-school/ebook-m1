@@ -2,8 +2,14 @@ package kg.peaksoft.ebookm1.db.entities.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import kg.peaksoft.ebookm1.db.entities.book.Book;
+import kg.peaksoft.ebookm1.db.entities.others.Basket;
+import kg.peaksoft.ebookm1.db.entities.others.HistoryOperation;
 import kg.peaksoft.ebookm1.db.entities.others.Promocode;
-import lombok.*;
+import kg.peaksoft.ebookm1.db.entities.others.WishList;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -45,12 +51,31 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Book> books;
 
+    @JsonIgnore
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
             CascadeType.DETACH}, fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "roles_id"))
     private List<Role> roles;
+
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "basket_id")
+    private Basket basket;
+
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "wishList_id")
+    private WishList wishList;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
+            CascadeType.DETACH})
+    @JoinTable(name = "users_histories",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "history_id"))
+    private List<HistoryOperation> historyOperation;
 
     @Override
     public String toString() {
