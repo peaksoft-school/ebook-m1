@@ -32,7 +32,7 @@ public class ClientService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("user with email not found"));
     }
 
-    public ClientResponse create(ClientRequest request) {
+    public ClientResponse registration(ClientRequest request) {
         User user = editMapper.createUser(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.isActive();
