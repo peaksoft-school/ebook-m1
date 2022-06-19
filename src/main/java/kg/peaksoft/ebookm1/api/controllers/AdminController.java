@@ -50,7 +50,7 @@ public class AdminController {
     @DeleteMapping("/vendor/{vendorId}")
     public ResponseEntity<String> deleteById(@PathVariable Long vendorId) {
         vendorService.deleteById(vendorId);
-        log.info("Inside Admin controller delete vendor bu id method");
+        log.info("Inside Admin controller delete vendor by id method");
         return new ResponseEntity<>("Successfully removed vendor by id: " + vendorId, HttpStatus.OK);
     }
 

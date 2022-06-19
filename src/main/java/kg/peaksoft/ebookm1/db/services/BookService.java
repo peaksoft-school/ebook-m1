@@ -49,7 +49,7 @@ public class BookService {
     }
 
     public List<BookResponse> getAllBooks() {
-        log.info("Getting books all: ");
+        log.info("Getting all books: ");
         return viewMapper.viewBooks(repository.findAll());
     }
 
@@ -76,7 +76,7 @@ public class BookService {
     public List<BookResponse> getAllSubmittedBooks(int page){
         int size = 10;
         Pageable pageable = PageRequest.of(page,size);
-        log.info("Getting all the books sent to the application: ");
+        log.info("Getting all the books from the submitted application: ");
         return viewMapper.viewBooks(repository.findAllByStatus(RequestStatus.SUBMITTED,pageable));
     }
 

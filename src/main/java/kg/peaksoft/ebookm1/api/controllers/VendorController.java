@@ -60,7 +60,7 @@ public class VendorController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_VENDOR')")
     @DeleteMapping("/book/{vendorId}/{bookId}")
     public VendorResponse deleteBook(@PathVariable long vendorId, @PathVariable long bookId) {
-        log.info("Inside the provider's controller is a method for deleting their books");
+        log.info("Inside the Vendor controller is a method for deleting their books");
         return service.deleteBookVendor(vendorId, bookId);
     }
 
