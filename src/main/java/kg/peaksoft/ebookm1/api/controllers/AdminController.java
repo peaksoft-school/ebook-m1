@@ -6,7 +6,6 @@ import kg.peaksoft.ebookm1.api.controllers.payloads.dto.basket.BasketResponse;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookRequest;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookResponse;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookResponseView;
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.client.ClientRequest;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.client.ClientResponse;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.vendor.VendorResponse;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.wishlist.WishListResponse;
@@ -84,10 +83,8 @@ public class AdminController {
 
     @Operation(summary = "Method get all books with status-submitted", description = "Admin can  get all VENDOR'S submitted books from the database")
     @GetMapping("/book-request")
-    public List<BookResponse> getAllSubmittedBooks(@RequestParam(value = "page",required = false)int page) {
-        log.info("Inside Admin controller get all submitted books method");
-        return bookService.getAllSubmittedBooks(page-1);
     public List<BookResponse> getAllSubmittedBooks(@RequestParam(value = "page", required = false) int page) {
+        log.info("Inside Admin controller get all submitted books method");
         return bookService.getAllSubmittedBooks(page - 1);
     }
 
@@ -100,16 +97,14 @@ public class AdminController {
         log.info("Inside the Admin controller the method of changing the status of the book");
         return bookService.updateBook(id, request);
     }
+
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "Allows to filter by GENRE and TYPE-OF-BOOK from the database")
     @GetMapping("/book/filter")
-    public List<BookResponse> filter(@RequestParam(value = "genre",required = false) Genre genre,
-                                     @RequestParam(value = "typeofbook",required = false) TypeOfBook typeOfBook,
-                                     @RequestParam(value = "page",required = false) int page) {
-        return bookService.filterByGenreAndTypeOfBooks(genre,typeOfBook,page-1);
     public List<BookResponse> filter(@RequestParam(value = "genre", required = false) Genre genre,
                                      @RequestParam(value = "typeofbook", required = false) TypeOfBook typeOfBook,
                                      @RequestParam(value = "page", required = false) int page) {
+        log.info("Inside the admin controller is the filter book method");
         return bookService.filterByGenreAndTypeOfBooks(genre, typeOfBook, page - 1);
     }
 
@@ -126,19 +121,21 @@ public class AdminController {
     @Operation(summary = "Method all clients", description = "Admin to get all CLIENTS from the database")
     @GetMapping("/clients")
     public List<ClientResponse> getAllClients() {
+        log.info("Inside the Admin controller is the method of getting all clients");
         return userService.getAllClients();
     }
 
     @Operation(summary = "A user with the ADMIN role can get clients by Id from the database")
     @GetMapping("/client-profile/{clientId}")
-    public ClientResponse getById(@PathVariable Long clientId,
-                                  @RequestBody ClientRequest request) {
+    public ClientResponse getById(@PathVariable Long clientId) {
+        log.info("Inside the Admin controller is the method of getting client by id");
         return userService.getById(clientId);
     }
 
     @Operation(summary = "Method delete by id", description = "User with role ADMIN and CLIENT can delete")
     @DeleteMapping("/clients/{id}")
     public ResponseEntity<String> deleteByIdClient(@PathVariable Long id) {
+        log.info("Inside the administrator controller, the method of deleting the client by id");
         userService.deleteById(id);
         return new ResponseEntity<>("Successfully removed client by id: " + id, HttpStatus.OK);
     }
@@ -147,18 +144,21 @@ public class AdminController {
     @Operation(summary = "Method get basket by ID", description = "The ADMIN and the CLIENT can get the basket by ID")
     @GetMapping("/baskets/{basketId}")
     public BasketResponse getBasketById(@PathVariable long basketId) {
+        log.info("Inside the administrator controller is the method of getting the basket by id");
         return basketService.getBasketById(basketId);
     }
 
     @Operation(summary = "Method get all baskets", description = "The CLIENT and the ADMIN can get all the baskets")
     @GetMapping("/baskets")
     public List<BasketResponse> getAllBaskets() {
+        log.info("Inside Admin controller get all baskets method");
         return basketService.getAllBaskets();
     }
 
     @Operation(summary = "Method get all purchased books", description = "The CLIENT and the ADMIN can get all the purchased books")
     @GetMapping("/purchased-books")
     public List<BasketResponse> getAllPurchasedBooks() {
+        log.info("Inside Admin controller get all purchased-books method");
         return basketService.getAllPurchasedBooks();
     }
 
@@ -166,12 +166,14 @@ public class AdminController {
     @Operation(summary = "Method get wishlist by ID", description = "The ADMIN and the CLIENT can get the wishlist by ID")
     @GetMapping("/wishlists/{wishlistId}")
     public WishListResponse getWishListById(@PathVariable long wishlistId) {
+        log.info("Inside the administrator controller is the method of getting the wishlist by id");
         return wishListService.getWishListById(wishlistId);
     }
 
     @Operation(summary = "Method get all wishlists", description = "The CLIENT and the ADMIN can get all the wishlists")
     @GetMapping("/wishlists")
     public List<WishListResponse> getAllWishLists() {
+        log.info("Inside Admin controller get all wishlists method");
         return wishListService.getAllWishLists();
     }
 
@@ -179,6 +181,7 @@ public class AdminController {
     @Operation(summary = "CLIENT's history operation", description = "CLIENT's can have the history operation")
     @GetMapping("/history/{clientId}")
     public ClientResponse getUserHistory(@PathVariable long clientId) {
+        log.info("Inside the Admin controller, the view client history method");
         return userService.getClientHistory(clientId);
     }
 
@@ -186,6 +189,7 @@ public class AdminController {
     @Operation(summary = "Method delete history by ID", description = "The CLIENT and ADMIN can delete history operation")
     @DeleteMapping("/delete-history/{clientId}")
     public void deleteClientHistory(@PathVariable long clientId) {
+        log.info("Inside the controller admin, the delete client history method");
         userService.deleteClientHistory(clientId);
     }
 }

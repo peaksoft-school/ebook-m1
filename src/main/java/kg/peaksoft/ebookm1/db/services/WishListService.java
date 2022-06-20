@@ -12,10 +12,12 @@ import kg.peaksoft.ebookm1.db.repositories.HistoryOperationRepository;
 import kg.peaksoft.ebookm1.db.repositories.UserRepository;
 import kg.peaksoft.ebookm1.db.repositories.WishListRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class WishListService {
@@ -33,18 +35,22 @@ public class WishListService {
         HistoryOperation wishListOperation = new HistoryOperation(wishList, client);
         historyOperationRepo.save(wishListOperation);
         client.getHistoryOperation().add(wishListOperation);
+        log.info("The client adds books to wishlist: {}", book.getTitle());
         return viewMapper.viewWishList(wishListRepository.save(wishList));
     }
 
     public WishListResponse getWishListById(Long id) {
+        log.info("Getting wishlist by id: {}", id);
         return viewMapper.viewWishList(wishListRepository.findById(id).get());
     }
 
     public void deleteWishList(Long wishListId) {
+        log.info("Deleted wishlist by id: {}", wishListId);
         wishListRepository.delete(wishListRepository.findById(wishListId).get());
     }
 
     public List<WishListResponse> getAllWishLists() {
+        log.info("Getting all wishlists");
         return viewMapper.viewAllWishLists(wishListRepository.findAll());
     }
 }

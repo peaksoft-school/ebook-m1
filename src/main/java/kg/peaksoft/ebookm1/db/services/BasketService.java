@@ -14,10 +14,12 @@ import kg.peaksoft.ebookm1.db.repositories.BookRepository;
 import kg.peaksoft.ebookm1.db.repositories.HistoryOperationRepository;
 import kg.peaksoft.ebookm1.db.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class BasketService {
@@ -36,27 +38,33 @@ public class BasketService {
         HistoryOperation basketOperation = new HistoryOperation(basket, client);
         historyOperationRepo.save(basketOperation);
         client.getHistoryOperation().add(basketOperation);
+        log.info("The client adds books to basket: {}", book.getId() + " - book id");
         return viewMapper.viewBasket(basketRepository.save(basket));
     }
 
     public BasketResponse updateBasket(BasketRequest basketRequest, long clientId) {
+        log.info("updating the contents of the shopping basket: ");
         return viewMapper.viewBasket(basketRepository.save(editMapper.updateBasket
                 (basketRepository.findById(basketRequest.getBasketId()).get(), basketRequest)));
     }
 
     public BasketResponse getBasketById(Long id) {
+        log.info("Getting basket by id: {}", id + " - book id");
         return viewMapper.viewBasket(basketRepository.findById(id).get());
     }
 
     public void deleteBasket(Long basketId) {
+        log.info("Deleted basket by id: {}", basketId + " - basket id");
         basketRepository.delete(basketRepository.findById(basketId).get());
     }
 
     public List<BasketResponse> getAllBaskets() {
+        log.info("Getting all baskets: ");
         return viewMapper.viewAllBaskets(basketRepository.findAll());
     }
 
     public List<BasketResponse> getAllPurchasedBooks() {
+        log.info("Getting all purchased books");
         return viewMapper.viewAllBaskets(basketRepository.findAllByStatus(PurchaseStatus.FINISHED));
     }
 }

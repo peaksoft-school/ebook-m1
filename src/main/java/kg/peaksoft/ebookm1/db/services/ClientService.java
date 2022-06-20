@@ -30,7 +30,6 @@ public class ClientService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.error("User with email not found: ");
         return repository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("user with email not found"));
     }
@@ -53,16 +52,19 @@ public class ClientService implements UserDetailsService {
 
     public ClientResponse getById(Long id) {
         User client = repository.findById(id).get();
+        log.info("Getting client by id: {}", client.getFirstName());
         return viewMapper.viewUser(client);
     }
 
     public List<ClientResponse> getAllClients() {
+        log.info("Getting all clients: ");
         return viewMapper.viewClients();
     }
 
     public ClientResponse deleteById(Long id) {
         User user = repository.findById(id).get();
         repository.deleteById(id);
+        log.info("Successfully deleted client by id: {}", user.getFirstName());
         return viewMapper.viewUser(user);
     }
 

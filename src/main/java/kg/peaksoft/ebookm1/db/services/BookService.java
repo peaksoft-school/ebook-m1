@@ -38,13 +38,13 @@ public class BookService {
     public BookResponse updateBook(Long id, BookRequest request) {
         Book book = repository.findById(id).get();
         editMapper.updateBook(book, request);
-        log.error("Failed book to update: {}", book.getTitle());
+        log.info("Successfully updated the book by id: {}", book.getId()  + " - book id");
         return viewMapper.viewBook(repository.save(book));
     }
 
     public BookResponse getBookById(Long id) {
         Book book = repository.findById(id).get();
-        log.info("Getting book by id: {}", book.getTitle());
+        log.info("Getting book by id: {}", id + " - book id");
         return viewMapper.viewBook(book);
     }
 
@@ -59,7 +59,7 @@ public class BookService {
         for (Book count: vendor.getBooks()) {
             booksOfVendor.add(count);
         }
-        log.info("Vendor's book quantities: {}", booksOfVendor.size());
+        log.info("Vendor's book quantities: {}", booksOfVendor.size() + ": count books");
         return vendor + " book quantity: " + booksOfVendor.size();
     }
 
@@ -83,6 +83,7 @@ public class BookService {
     public List<BookResponse> getAllBooksByType(TypeOfBook typeOfBook,int page){
         int size = 10;
         Pageable pageable = PageRequest.of(page,size);
+        log.info("Getting books by type: ");
         return viewMapper.viewBooks(repository.findBooksByTypeOfBook(typeOfBook,pageable));
     }
 

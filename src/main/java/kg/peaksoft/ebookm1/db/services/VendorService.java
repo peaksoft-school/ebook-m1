@@ -14,7 +14,6 @@ import kg.peaksoft.ebookm1.db.mappers.vendor.VendorEditMapper;
 import kg.peaksoft.ebookm1.db.mappers.vendor.VendorViewMapper;
 import kg.peaksoft.ebookm1.db.repositories.BookRepository;
 import kg.peaksoft.ebookm1.db.repositories.PromocodeRepository;
-import kg.peaksoft.ebookm1.db.repositories.RoleRepository;
 import kg.peaksoft.ebookm1.db.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

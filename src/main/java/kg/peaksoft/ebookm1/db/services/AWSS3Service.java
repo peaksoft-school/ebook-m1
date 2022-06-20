@@ -36,6 +36,7 @@ public class AWSS3Service implements FileServiceImpl {
             log.info("The file (photo, video, audio, etc.) has been successfully uploaded to S3: {}", file1.getName());
             return putObjectResult.getContentMd5();
         } catch (IOException e) {
+            log.error("Failed to save file to S3");
             throw new RuntimeException(e);
         }
     }
@@ -46,7 +47,7 @@ public class AWSS3Service implements FileServiceImpl {
         S3ObjectInputStream objectContent = object.getObjectContent();
         try {
             byte[] content = IOUtils.toByteArray(objectContent);
-            log.info("The file (photo, video, audio, etc.) has been downloaded successfully: {}", content);
+            log.info("The file (photo, video, audio, etc.) has been downloaded successfully: {}", content + " - content");
             return content;
         } catch (IOException e) {
             log.error("The file (photo, video, audio, etc.) could not be downloaded: {}", e.getMessage());
@@ -57,7 +58,7 @@ public class AWSS3Service implements FileServiceImpl {
     @Override
     public String deleteFile(String fileName) {
         s3.deleteObject(bucketName, fileName);
-        log.info("The file was successfully deleted: {}", fileName);
+        log.info("The file was successfully deleted: {}", fileName + " - file name");
         return "The file was successfully deleted!";
     }
 

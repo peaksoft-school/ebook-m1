@@ -62,6 +62,7 @@ public class AuthController {
     @Operation(summary = "Method registration client", description = "Registration client layout")
     @PostMapping("/client")
     public ClientResponse registration(@RequestBody ClientRequest request) {
+        log.info("Inside AuthController registration client method");
         return userService.registration(request);
     }
 }
