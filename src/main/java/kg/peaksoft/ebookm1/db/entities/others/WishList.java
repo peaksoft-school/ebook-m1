@@ -3,7 +3,6 @@ package kg.peaksoft.ebookm1.db.entities.others;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import kg.peaksoft.ebookm1.db.entities.book.Book;
 import kg.peaksoft.ebookm1.db.entities.security.User;
-import kg.peaksoft.ebookm1.db.enums.PurchaseStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,38 +11,31 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-import static javax.persistence.CascadeType.ALL;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "baskets")
-public class Basket {
+@Table(name = "wishlists")
+public class WishList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer quantity;
     private LocalDate createdDate;
-    @Enumerated(EnumType.STRING)
-    private PurchaseStatus status;
 
-    @ManyToOne(cascade = ALL)
+    @JsonIgnore
+    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "book_id")
     private Book book;
 
-    @JsonIgnore
-    @OneToOne(cascade = ALL)
-    @JoinColumn(name = "user_id")
-    private User client;
-
-    public Basket(Integer quantity, Book book, User client, PurchaseStatus status) {
-        this.quantity = quantity;
+    public WishList(User user, Book book) {
         this.createdDate = LocalDate.now();
+        this.user = user;
         this.book = book;
-        this.client = client;
-        this.status = status;
     }
 }

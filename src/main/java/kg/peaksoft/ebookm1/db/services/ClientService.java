@@ -1,10 +1,10 @@
 package kg.peaksoft.ebookm1.db.services;
 
-import kg.peaksoft.ebookm1.db.mappers.user.UserEditMapper;
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.user.UserRequest;
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.user.UserResponse;
-import kg.peaksoft.ebookm1.db.mappers.user.UserViewMapper;
+import kg.peaksoft.ebookm1.api.controllers.payloads.dto.client.ClientRequest;
+import kg.peaksoft.ebookm1.api.controllers.payloads.dto.client.ClientResponse;
 import kg.peaksoft.ebookm1.db.entities.security.User;
+import kg.peaksoft.ebookm1.db.mappers.client.ClientEditMapper;
+import kg.peaksoft.ebookm1.db.mappers.client.ClientViewMapper;
 import kg.peaksoft.ebookm1.db.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,12 +21,12 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class UserService implements UserDetailsService {
+public class ClientService implements UserDetailsService {
 
     private final UserRepository repository;
     private final BCryptPasswordEncoder passwordEncoder;
-    private final UserEditMapper editMapper;
-    private final UserViewMapper viewMapper;
+    private final ClientEditMapper editMapper;
+    private final ClientViewMapper viewMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -35,7 +35,7 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("user with email not found"));
     }
 
-    public UserResponse create(UserRequest request) {
+    public ClientResponse registration(ClientRequest request) {
         User user = editMapper.createUser(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.isActive();
@@ -44,25 +44,35 @@ public class UserService implements UserDetailsService {
         return viewMapper.viewUser(user);
     }
 
-    public UserResponse update(UserRequest request, Long id) {
+    public ClientResponse update(ClientRequest request, Long id) {
         User user = repository.findById(id).get();
         editMapper.updateUser(user, request);
         log.info("The client has successfully updated his data: {}", user.getFirstName());
         return viewMapper.viewUser(repository.save(user));
     }
 
-    public UserResponse getById(Long id) {
+    public ClientResponse getById(Long id) {
+        User client = repository.findById(id).get();
+        return viewMapper.viewUser(client);
+    }
+
+    public List<ClientResponse> getAllClients() {
+        return viewMapper.viewClients();
+    }
+
+    public ClientResponse deleteById(Long id) {
+        User user = repository.findById(id).get();
+        repository.deleteById(id);
+        return viewMapper.viewUser(user);
+    }
+
+    public ClientResponse getClientHistory(Long id) {
         User user = repository.findById(id).get();
         log.info("Getting a client by id: {}", user.getFirstName());
         return viewMapper.viewUser(user);
     }
 
-    public List<UserResponse> getAllUsers() {
-        log.info("Getting all clients: ");
-        return viewMapper.viewUsers(repository.findAll());
-    }
-
-    public UserResponse deleteById(Long id) {
+    public ClientResponse deleteClientHistory(Long id) {
         User user = repository.findById(id).get();
         repository.deleteById(id);
         log.info("The client was successfully removed by ID from the database: {}", user.getFirstName());

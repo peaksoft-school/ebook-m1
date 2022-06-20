@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.configs;
 
-import kg.peaksoft.ebookm1.db.services.UserService;
+import kg.peaksoft.ebookm1.db.services.ClientService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,10 +18,10 @@ import java.io.IOException;
 @Component
 public class JwtTokenFilter extends OncePerRequestFilter {
 
-    private final UserService userService;
+    private final ClientService userService;
     private final JwtTokenUtil jwtTokenUtil;
 
-    public JwtTokenFilter(UserService userService, JwtTokenUtil jwtTokenUtil) {
+    public JwtTokenFilter(ClientService userService, JwtTokenUtil jwtTokenUtil) {
         this.userService = userService;
         this.jwtTokenUtil = jwtTokenUtil;
     }

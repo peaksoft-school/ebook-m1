@@ -2,16 +2,19 @@ package kg.peaksoft.ebookm1.api.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import kg.peaksoft.ebookm1.configs.JwtTokenUtil;
-import kg.peaksoft.ebookm1.db.mappers.auth.AuthMapper;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.auth.AuthRequest;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.auth.AuthResponse;
+import kg.peaksoft.ebookm1.api.controllers.payloads.dto.client.ClientRequest;
+import kg.peaksoft.ebookm1.api.controllers.payloads.dto.client.ClientResponse;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.vendor.VendorRequest;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.vendor.VendorResponse;
+import kg.peaksoft.ebookm1.configs.JwtTokenUtil;
 import kg.peaksoft.ebookm1.db.entities.security.User;
-import kg.peaksoft.ebookm1.exceptions.ExceptionType;
+import kg.peaksoft.ebookm1.db.mappers.auth.AuthMapper;
 import kg.peaksoft.ebookm1.db.repositories.UserRepository;
+import kg.peaksoft.ebookm1.db.services.ClientService;
 import kg.peaksoft.ebookm1.db.services.VendorService;
+import kg.peaksoft.ebookm1.exceptions.ExceptionType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -32,6 +35,7 @@ public class AuthController {
     private final UserRepository repository;
     private final AuthMapper authMapper;
     private final VendorService vendorService;
+    private final ClientService userService;
 
     @PostMapping("/login")
     @Operation(summary = "All users can authenticate", description = "login all users")
@@ -53,5 +57,11 @@ public class AuthController {
     public VendorResponse registration(@RequestBody VendorRequest request) {
         log.info("Inside AuthController registration vendor method");
         return vendorService.create(request);
+    }
+
+    @Operation(summary = "Method registration client", description = "Registration client layout")
+    @PostMapping("/client")
+    public ClientResponse registration(@RequestBody ClientRequest request) {
+        return userService.registration(request);
     }
 }

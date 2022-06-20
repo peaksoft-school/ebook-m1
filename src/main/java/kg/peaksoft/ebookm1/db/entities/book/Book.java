@@ -1,16 +1,16 @@
 package kg.peaksoft.ebookm1.db.entities.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import kg.peaksoft.ebookm1.db.entities.others.Promocode;
+import kg.peaksoft.ebookm1.db.entities.security.User;
 import kg.peaksoft.ebookm1.db.enums.BookLanguage;
 import kg.peaksoft.ebookm1.db.enums.Genre;
 import kg.peaksoft.ebookm1.db.enums.RequestStatus;
 import kg.peaksoft.ebookm1.db.enums.TypeOfBook;
-import kg.peaksoft.ebookm1.db.entities.others.Basket;
-import kg.peaksoft.ebookm1.db.entities.others.Favorite;
-import kg.peaksoft.ebookm1.db.entities.others.Promocode;
-import kg.peaksoft.ebookm1.db.entities.security.User;
-
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -56,16 +56,6 @@ public class Book {
 
     @Enumerated(EnumType.STRING)
     private Genre genreEnum;
-
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "basket_id")
-    private Basket basket;
-
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "favorite_id")
-    private Favorite favorite;
 
     @JsonIgnore
     @ManyToOne
