@@ -2,7 +2,7 @@
     <!-- Use shutdownHook so that we can close gracefully and finish the log drain -->
     <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
     <appender name="LogzioLogbackAppender" class="io.logz.logback.LogzioLogbackAppender">
-        <token>IWRjttukRicLXnktUMoblfcXkUdtJfUv</token>
+        <token>nKBehLpuvXNBJHsKXWwkktKyRrpUQDST</token>
         <logzioUrl>https://listener-eu.logz.io:8071</logzioUrl>
         <logzioType>java-application</logzioType>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
@@ -10,7 +10,17 @@
         </filter>
     </appender>
 
-    <root level="debug">
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %black(%d{ISO8601}) %highlight(%-5level) [%blue(%t)] %yellow(%C{1.}): %msg%n%throwable
+            </Pattern>
+        </layout>
+    </appender>
+
+
+    <root level="info">
         <appender-ref ref="LogzioLogbackAppender"/>
+        <appender-ref ref="Console"/>
     </root>
 </configuration>
