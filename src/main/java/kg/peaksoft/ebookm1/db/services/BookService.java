@@ -14,6 +14,7 @@ import kg.peaksoft.ebookm1.db.entities.book.Book;
 import kg.peaksoft.ebookm1.db.repositories.BookRepository;
 import kg.peaksoft.ebookm1.db.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +25,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class BookService {
@@ -36,15 +38,18 @@ public class BookService {
     public BookResponse updateBook(Long id, BookRequest request) {
         Book book = repository.findById(id).get();
         editMapper.updateBook(book, request);
+        log.info("Successfully updated the book by id: {}", book.getId()  + " - book id");
         return viewMapper.viewBook(repository.save(book));
     }
 
     public BookResponse getBookById(Long id) {
         Book book = repository.findById(id).get();
+        log.info("Getting book by id: {}", id + " - book id");
         return viewMapper.viewBook(book);
     }
 
     public List<BookResponse> getAllBooks() {
+        log.info("Getting all books: ");
         return viewMapper.viewBooks(repository.findAll());
     }
 
@@ -54,6 +59,7 @@ public class BookService {
         for (Book count: vendor.getBooks()) {
             booksOfVendor.add(count);
         }
+        log.info("Vendor's book quantities: {}", booksOfVendor.size() + ": count books");
         return vendor + " book quantity: " + booksOfVendor.size();
     }
 
@@ -63,18 +69,21 @@ public class BookService {
         for (Book book : vendor.getBooks()) {
             responses.add(viewMapper.viewBook(book));
         }
+        log.info("Getting all the vendor's books: {}", responses);
         return responses;
     }
 
     public List<BookResponse> getAllSubmittedBooks(int page){
         int size = 10;
         Pageable pageable = PageRequest.of(page,size);
+        log.info("Getting all the books from the submitted application: ");
         return viewMapper.viewBooks(repository.findAllByStatus(RequestStatus.SUBMITTED,pageable));
     }
 
     public List<BookResponse> getAllBooksByType(TypeOfBook typeOfBook,int page){
         int size = 10;
         Pageable pageable = PageRequest.of(page,size);
+        log.info("Getting books by type: ");
         return viewMapper.viewBooks(repository.findBooksByTypeOfBook(typeOfBook,pageable));
     }
 
@@ -84,6 +93,7 @@ public class BookService {
         Pageable pageable = PageRequest.of(page, size);
         responseView.setBookResponses((viewMapper.viewBooks
                 (viewMapper.searchBook(name, pageable))));
+        log.info("Book search: ");
         return responseView;
     }
 
@@ -94,6 +104,7 @@ public class BookService {
         }else {
             pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC,"name");
         }
+        log.info("Book sort: ");
         return repository.findAll(pageable);
     }
 
@@ -101,6 +112,7 @@ public class BookService {
         int size=10;
         Specification<Book> filter = BookSpecification.getFilter(genre,typeOfBook);
         Pageable pageable = PageRequest.of(page, size);
+        log.info("Sorting by genre and type: ");
         return viewMapper.viewBooks(repository.findAll(filter,pageable));
     }
 }
