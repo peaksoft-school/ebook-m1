@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.api.controllers.payloads.dto.user;
+package kg.peaksoft.ebookm1.api.controllers.payloads.dto.history;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -8,11 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class UserRequest {
+public class HistoryRequest {
 
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-    private String email;
-    private String password;
+    private Long userId;
 }
