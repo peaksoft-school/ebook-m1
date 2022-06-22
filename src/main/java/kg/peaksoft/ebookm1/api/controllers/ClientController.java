@@ -68,10 +68,9 @@ public class ClientController {
     public List<BookResponse> getAllApprovedBookByGenreAndType(@RequestParam(value = "genreEnum", required = false) Genre genreEnum,
                                                                @RequestParam(value = "typeOfBook", required = false) TypeOfBook typeOfBook,
                                                                @RequestParam(value = "page", required = false) int page,
-                                                               @RequestParam(value = "sort",required = false)String sort)  {
-        return bookService.getAllApprovedBookByGenreAndType(genreEnum, typeOfBook, page - 1,sort);
+                                                               @RequestParam(value = "sort", required = false) String sort) {
+        return bookService.getAllApprovedBookByGenreAndType(genreEnum, typeOfBook, page - 1, sort);
     }
-
 
 
     @Operation(summary = "Method get by id", description = "Allows all users to get a book by ID")
@@ -81,16 +80,16 @@ public class ClientController {
         return bookService.getBookById(id);
     }
 
-
     @Operation(summary = "Allows to search all books from the database")
     @GetMapping("/search")
     public BookResponseView searchAndPagination(@RequestParam(name = "name", required = false) String name,
                                                 @RequestParam(value = "page", required = false) Integer page) {
-        return bookService.searchAndPagination(name, page-1);
+        return bookService.searchAndPagination(name, page - 1);
     }
+
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_VENDOR','ROLE_CLIENT')")
     @Operation(summary = "Allows to sort all books from the database")
-    @GetMapping( "/sort/{pageNumber}/{pageSize}/{sortProperty}")
+    @GetMapping("/sort/{pageNumber}/{pageSize}/{sortProperty}")
     public Page<Book> sortAndPagination(@PathVariable Integer pageNumber,
                                         @PathVariable Integer pageSize,
                                         @PathVariable String sortProperty) {
