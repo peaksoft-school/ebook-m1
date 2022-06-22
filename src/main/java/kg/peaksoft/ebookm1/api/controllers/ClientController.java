@@ -72,7 +72,6 @@ public class ClientController {
         return bookService.getAllApprovedBookByGenreAndType(genreEnum, typeOfBook, page - 1);
     }
 
-
     @Operation(summary = "Method get by id", description = "Allows all users to get a book by ID")
     @GetMapping("/book/{id}")
     public BookResponse getBookById(@PathVariable Long id) {
@@ -87,7 +86,6 @@ public class ClientController {
         return bookService.searchAndPagination(name, page - 1);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_VENDOR','ROLE_CLIENT')")
     @Operation(summary = "Allows to sort all books from the database")
     @GetMapping("/sort/{pageNumber}/{pageSize}/{sortProperty}")
     public Page<Book> sortAndPagination(@PathVariable Integer pageNumber,
