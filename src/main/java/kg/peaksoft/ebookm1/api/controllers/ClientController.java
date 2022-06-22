@@ -18,12 +18,14 @@ import kg.peaksoft.ebookm1.db.services.BookService;
 import kg.peaksoft.ebookm1.db.services.ClientService;
 import kg.peaksoft.ebookm1.db.services.WishListService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/public")
@@ -41,6 +43,7 @@ public class ClientController {
     @Operation(summary = "Method update", description = "A user who has only the CLIENT role can update")
     @PutMapping("client/{id}")
     public ClientResponse updateById(@PathVariable long id, @RequestBody ClientRequest request) {
+        log.info("Inside the client controller, the update method client by id");
         return userService.update(request, id);
     }
 
@@ -48,6 +51,7 @@ public class ClientController {
     @Operation(summary = "Method delete by id", description = "Users with the ADMIN and CLIENT roles can delete")
     @DeleteMapping("client/{id}")
     public ClientResponse deleteById(@PathVariable long id) {
+        log.info("Inside the client controller, the delete method  client by id");
         return userService.deleteById(id);
     }
 
@@ -64,14 +68,16 @@ public class ClientController {
     public List<BookResponse> getAllApprovedBookByGenreAndType(@RequestParam(value = "genreEnum", required = false) Genre genreEnum,
                                                                @RequestParam(value = "typeOfBook", required = false) TypeOfBook typeOfBook,
                                                                @RequestParam(value = "page", required = false) int page,
-                                                               @RequestParam(value = "sort",required = false)String sort
-                                                               ) {
+                                                               @RequestParam(value = "sort",required = false)String sort)  {
         return bookService.getAllApprovedBookByGenreAndType(genreEnum, typeOfBook, page - 1,sort);
     }
+
+
 
     @Operation(summary = "Method get by id", description = "Allows all users to get a book by ID")
     @GetMapping("/book/{id}")
     public BookResponse getBookById(@PathVariable Long id) {
+        log.info("Inside the client controller, method getting book by id");
         return bookService.getBookById(id);
     }
 
@@ -97,6 +103,7 @@ public class ClientController {
     @PostMapping("client/baskets/{clientId}")
     public BasketResponse addBasket(@RequestBody BasketRequest request,
                                     @PathVariable long clientId) {
+        log.info("Inside the client controller, method add book in basket");
         return basketService.addBasket(request, clientId);
     }
 
@@ -105,6 +112,7 @@ public class ClientController {
     @PutMapping("client/baskets/{clientId}")
     public BasketResponse updateBasket(@RequestBody BasketRequest request,
                                        @PathVariable long clientId) {
+        log.info("Inside the client controller, update basket method");
         return basketService.updateBasket(request, clientId);
     }
 
@@ -112,6 +120,7 @@ public class ClientController {
     @Operation(summary = "Method get basket by ID", description = "The ADMIN and the CLIENT can get the basket by ID")
     @GetMapping("client/baskets/{basketId}")
     public BasketResponse getBasketById(@PathVariable long basketId) {
+        log.info("Inside the client controller, method getting basket by id");
         return basketService.getBasketById(basketId);
     }
 
@@ -119,6 +128,7 @@ public class ClientController {
     @Operation(summary = "Method get all baskets", description = "The CLIENT and the ADMIN can get all the baskets")
     @GetMapping("client/baskets")
     public List<BasketResponse> getAllBaskets() {
+        log.info("Inside the client controller, method get all baskets");
         return basketService.getAllBaskets();
     }
 
@@ -126,6 +136,7 @@ public class ClientController {
     @Operation(summary = "Method delete basket by ID", description = "The CLIENT can delete his basket")
     @DeleteMapping("client/baskets/{basketId}")
     public void deleteBasketById(@PathVariable long basketId) {
+        log.info("Inside the client controller, method delete basket by id");
         basketService.deleteBasket(basketId);
     }
 
@@ -135,6 +146,7 @@ public class ClientController {
     @PostMapping("client/wishlists/{clientId}")
     public WishListResponse addWishlist(@RequestBody WishListRequest request,
                                         @PathVariable long clientId) {
+        log.info("Inside the client controller, method add book in wishlist");
         return wishListService.addWishList(request, clientId);
     }
 
@@ -142,6 +154,7 @@ public class ClientController {
     @Operation(summary = "Method get wishlist by ID", description = "The ADMIN and the CLIENT can get the wishlist by ID")
     @GetMapping("client/wishlists/{wishlistId}")
     public WishListResponse getWishListById(@PathVariable long wishlistId) {
+        log.info("Inside the client controller, method getting wishlist by id");
         return wishListService.getWishListById(wishlistId);
     }
 
@@ -149,6 +162,7 @@ public class ClientController {
     @Operation(summary = "Method get all wishlists", description = "The CLIENT and the ADMIN can get all the wishlists")
     @GetMapping("client/wishlists")
     public List<WishListResponse> getAllWishLists() {
+        log.info("Inside the client controller, get all wishlists method");
         return wishListService.getAllWishLists();
     }
 
@@ -156,6 +170,7 @@ public class ClientController {
     @Operation(summary = "Method delete wishlist by ID", description = "The CLIENT can delete his wishlist")
     @DeleteMapping("/wishlists/{wishlistId}")
     public void deleteWishListById(@PathVariable long wishlistId) {
+        log.info("Inside the client controller, method delete wishlist by id");
         wishListService.deleteWishList(wishlistId);
     }
 
@@ -164,6 +179,7 @@ public class ClientController {
     @Operation(summary = "CLIENT's history operations", description = "The CLIENT and the ADMIN can get all the CLIENT's histories")
     @GetMapping("client/history/{clientId}")
     public ClientResponse getUserHistory(@PathVariable long clientId) {
+        log.info("Inside the Client controller, the view client history method");
         return userService.getClientHistory(clientId);
     }
 
@@ -171,6 +187,7 @@ public class ClientController {
     @Operation(summary = "Method delete history by ID", description = "The CLIENT and ADMIN can delete history operation")
     @DeleteMapping("client/history/{clientId}")
     public void deleteClientHistory(@PathVariable long clientId) {
+        log.info("Inside the Client controller, the delete client history method");
         userService.deleteClientHistory(clientId);
     }
 }
