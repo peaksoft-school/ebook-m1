@@ -67,9 +67,9 @@ public class ClientController {
     @GetMapping("/books/filter")
     public List<BookResponse> getAllApprovedBookByGenreAndType(@RequestParam(value = "genreEnum", required = false) Genre genreEnum,
                                                                @RequestParam(value = "typeOfBook", required = false) TypeOfBook typeOfBook,
-                                                               @RequestParam(value = "page", required = false) int page,
-                                                               @RequestParam(value = "sort", required = false) String sort) {
-        return bookService.getAllApprovedBookByGenreAndType(genreEnum, typeOfBook, page - 1, sort);
+                                                               @RequestParam(value = "page", required = false) int page
+                                                               ) {
+        return bookService.getAllApprovedBookByGenreAndType(genreEnum, typeOfBook, page - 1);
     }
 
 
