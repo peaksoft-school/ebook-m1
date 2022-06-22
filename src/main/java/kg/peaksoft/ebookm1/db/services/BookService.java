@@ -33,9 +33,15 @@ public class BookService {
     private final BookViewMapper viewMapper;
     private final UserRepository vendorRepository;
 
-    public BookResponse updateBook(Long id, BookRequest request) {
-        Book book = repository.findById(id).get();
+    public BookResponse updateBook(Long bookId, BookRequest request) {
+        Book book = repository.findById(bookId).get();
         editMapper.updateBook(book, request);
+        return viewMapper.viewBook(repository.save(book));
+    }
+    public BookResponse updateRequestStatus(Long bookId, BookRequest request) {
+        Book book = repository.findById(bookId).get();
+        book.setStatus(request.getStatus());
+        book.setComments(request.getComments());
         return viewMapper.viewBook(repository.save(book));
     }
 
@@ -72,13 +78,26 @@ public class BookService {
         return viewMapper.viewBooks(repository.findAllByStatus(RequestStatus.SUBMITTED,pageable));
     }
 
-    public List<BookResponse> getAllBooksByType(TypeOfBook typeOfBook,int page){
+    public List<BookResponse> getAllApprovedBooks(int page){
         int size = 10;
         Pageable pageable = PageRequest.of(page,size);
-        return viewMapper.viewBooks(repository.findBooksByTypeOfBook(typeOfBook,pageable));
+        return viewMapper.viewBooks(repository.findAllByStatus(RequestStatus.APPROVED,pageable));
     }
 
-    public BookResponseView searchAndPagination(String name, int page) {
+    public List<BookResponse> getAllApprovedBookByGenreAndType(Genre genreEnum,TypeOfBook typeOfBook,int page,String sortProperty){
+        int size = 10;
+        Pageable pageable = null;
+        Specification<Book> filter = BookSpecification.getByStatusAndTypeOfBook(genreEnum,typeOfBook,RequestStatus.APPROVED);
+
+        if(null!=sortProperty){
+            pageable = PageRequest.of(page, size, Sort.Direction.ASC,sortProperty);
+        }else {
+            pageable = PageRequest.of(page, size, Sort.Direction.ASC,"sort");
+        }
+        return viewMapper.viewBooks(repository.findAll(filter,pageable));
+    }
+
+    public BookResponseView searchAndPagination(String name, Integer page) {
         int size=10;
         BookResponseView responseView = new BookResponseView();
         Pageable pageable = PageRequest.of(page, size);
@@ -97,9 +116,9 @@ public class BookService {
         return repository.findAll(pageable);
     }
 
-    public List<BookResponse> filterByGenreAndTypeOfBooks(Genre genre, TypeOfBook typeOfBook, int page){
+    public List<BookResponse> filterByGenreAndTypeOfBooks(Genre genreEnum, TypeOfBook typeOfBook, int page){
         int size=10;
-        Specification<Book> filter = BookSpecification.getFilter(genre,typeOfBook);
+        Specification<Book> filter = BookSpecification.getFilter(genreEnum,typeOfBook);
         Pageable pageable = PageRequest.of(page, size);
         return viewMapper.viewBooks(repository.findAll(filter,pageable));
     }

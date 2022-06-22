@@ -84,18 +84,18 @@ public class AdminController {
             "to following words:APPROVED OR REJECTED." +
             "In case of changing to REJECT, admin, should describe his decision")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_VENDOR')")
-    @PutMapping("/book-request/{id}")
-    public BookResponse updateBook(@PathVariable Long id, @RequestBody BookRequest request) {
-        return bookService.updateBook(id, request);
+    @PutMapping("/book-request/{bookId}")
+    public BookResponse updateBook(@PathVariable Long bookId, @RequestBody BookRequest request) {
+        return bookService.updateRequestStatus(bookId, request);
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "Allows to filter by GENRE and TYPE-OF-BOOK from the database")
     @GetMapping("/book/filter")
-    public List<BookResponse> filter(@RequestParam(value = "genre", required = false) Genre genre,
+    public List<BookResponse> filter(@RequestParam(value = "genreEnum", required = false) Genre genreEnum,
                                      @RequestParam(value = "typeofbook", required = false) TypeOfBook typeOfBook,
                                      @RequestParam(value = "page", required = false) int page) {
-        return bookService.filterByGenreAndTypeOfBooks(genre, typeOfBook, page - 1);
+        return bookService.filterByGenreAndTypeOfBooks(genreEnum, typeOfBook, page - 1);
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")

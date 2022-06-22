@@ -81,6 +81,7 @@ public class VendorService {
         Book book = bookRepository.findById(bookId).get();
         bookEditMapper.updateBook(book, bookRequest);
         book.setUser(user);
+        book.setStatus(RequestStatus.SUBMITTED);
         bookRepository.save(book);
         repository.save(user);
         return viewMapper.viewVendor(user);
