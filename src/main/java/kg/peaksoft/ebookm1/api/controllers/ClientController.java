@@ -69,6 +69,7 @@ public class ClientController {
                                                                @RequestParam(value = "typeOfBook", required = false) TypeOfBook typeOfBook,
                                                                @RequestParam(value = "page", required = false) int page
                                                                ) {
+        log.info("Inside the client controller, method for getting books by type");
         return bookService.getAllApprovedBookByGenreAndType(genreEnum, typeOfBook, page - 1);
     }
 
