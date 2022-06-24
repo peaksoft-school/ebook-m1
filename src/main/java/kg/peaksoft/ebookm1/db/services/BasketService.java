@@ -34,12 +34,21 @@ public class BasketService {
     public BasketResponse addBasket(BasketRequest basketRequest, long clientId) {
         User client = userRepository.findById(clientId).get();
         Book book = bookRepository.findById(basketRequest.getBookId()).get();
+        double amountOfBook = book.getAmountOfBooks()-(basketRequest.getQuantity());
+        book.setAmountOfBooks((int)amountOfBook);
         Basket basket = new Basket(basketRequest.getQuantity(), book, client, basketRequest.getPurchaseStatus());
         HistoryOperation basketOperation = new HistoryOperation(basket, client);
         historyOperationRepo.save(basketOperation);
         client.getHistoryOperation().add(basketOperation);
         log.info("The client adds books to basket: {}", book.getId() + " - book id");
         return viewMapper.viewBasket(basketRepository.save(basket));
+    }
+
+    public BasketResponse manageOrder(BasketRequest basketRequest, long clientId) {
+        log.info("updating the contents of the shopping basket: ");
+//        double discount= book.getPrice()-(book.getPromocode().getAmountOfPromo()/100);
+        return viewMapper.viewBasket(basketRepository.save(editMapper.updateBasket
+                (basketRepository.findById(basketRequest.getBasketId()).get(), basketRequest)));
     }
 
     public BasketResponse updateBasket(BasketRequest basketRequest, long clientId) {

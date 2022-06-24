@@ -3,6 +3,7 @@ package kg.peaksoft.ebookm1.db.services;
 import kg.peaksoft.ebookm1.db.enums.Genre;
 import kg.peaksoft.ebookm1.db.enums.RequestStatus;
 import kg.peaksoft.ebookm1.db.enums.TypeOfBook;
+import kg.peaksoft.ebookm1.db.repositories.PromocodeRepository;
 import kg.peaksoft.ebookm1.db.repositories.specifications.BookSpecification;
 import kg.peaksoft.ebookm1.db.entities.security.User;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookResponseView;
@@ -34,6 +35,7 @@ public class BookService {
     private final BookEditMapper editMapper;
     private final BookViewMapper viewMapper;
     private final UserRepository vendorRepository;
+    private final PromocodeRepository promocodeRepository;
 
     public BookResponse updateBook(Long id, BookRequest request) {
         Book book = repository.findById(id).get();
@@ -114,5 +116,15 @@ public class BookService {
         Pageable pageable = PageRequest.of(page, size);
         log.info("Sorting by genre and type: ");
         return viewMapper.viewBooks(repository.findAll(filter,pageable));
+    }
+
+    public BookResponseView filterByPromocode(String promocode,int page){
+        int size= 10;
+        log.info("Searching promocode: ");
+        BookResponseView responseView = new BookResponseView();
+        Pageable pageable = PageRequest.of(page, size);
+        responseView.setBookResponses(viewMapper.viewBooks(viewMapper.searchPromo(promocode,pageable)));
+
+        return responseView;
     }
 }

@@ -7,13 +7,11 @@ import kg.peaksoft.ebookm1.api.controllers.payloads.dto.basket.BasketResponse;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookResponse;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.client.ClientRequest;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.client.ClientResponse;
+import kg.peaksoft.ebookm1.api.controllers.payloads.dto.promocode.PromocodeResponse;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.wishlist.WishListRequest;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.wishlist.WishListResponse;
 import kg.peaksoft.ebookm1.db.enums.TypeOfBook;
-import kg.peaksoft.ebookm1.db.services.BasketService;
-import kg.peaksoft.ebookm1.db.services.BookService;
-import kg.peaksoft.ebookm1.db.services.ClientService;
-import kg.peaksoft.ebookm1.db.services.WishListService;
+import kg.peaksoft.ebookm1.db.services.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -34,6 +32,7 @@ public class ClientController {
     private final BookService bookService;
     private final BasketService basketService;
     private final WishListService wishListService;
+    private final PromoService promoService;
 
     @PreAuthorize("hasAnyAuthority('ROLE_CLIENT')")
     @Operation(summary = "Method update", description = "A user who has only the CLIENT role can update")
@@ -167,5 +166,11 @@ public class ClientController {
     public void deleteClientHistory(@PathVariable long clientId) {
         log.info("Inside the Client controller, the delete client history method");
         userService.deleteClientHistory(clientId);
+    }
+    //Promo code
+    @GetMapping("/activate-promo")
+    public List<PromocodeResponse> activationOfPromoCode(@RequestParam(value = "promoName",required = false)String promoName,
+                                                         @RequestParam(value = "page",required = false)int page ){
+        return promoService.getAllPromoRelatedBooks(promoName,page-1);
     }
 }

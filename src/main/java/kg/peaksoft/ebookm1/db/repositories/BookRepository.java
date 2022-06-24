@@ -29,6 +29,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     List<Book> findBooksByTypeOfBook(TypeOfBook typeOfBook,Pageable pageable);
 
+    @Query("select promo from Book b JOIN b.promocode promo where promo.promoName like  concat('%',:promoName,'%')")
+    List<Book> findPromoCode(@Param("promoName") String promoName,Pageable pageable);
 
 
 }

@@ -57,4 +57,9 @@ public class BookViewMapper {
         String text = name == null ? "" : name;
         return repository.searchAndPagination(text.toUpperCase(), pageable);
     }
+    public List<Book> searchPromo(String name, Pageable pageable) {
+        String text = name == null ? "" : name;
+        return repository.findPromoCode(text.toUpperCase(), pageable);
+    }
+
 }

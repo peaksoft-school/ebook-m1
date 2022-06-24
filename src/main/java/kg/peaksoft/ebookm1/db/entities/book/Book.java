@@ -63,7 +63,7 @@ public class Book {
     private User user;
 
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "promocode_id")
     private Promocode promocode;
 }
