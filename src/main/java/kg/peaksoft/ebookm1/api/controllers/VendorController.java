@@ -71,6 +71,7 @@ public class VendorController {
     @Operation(summary = "Method get all vendor books", description = "Admin can to get all VENDOR'S books from the database")
     @GetMapping("/vendor-books/{vendorId}")
     public List<BookResponse> getAllVendorBooks(@PathVariable Long vendorId) {
+        log.info("Inside the Vendor controller, method for getting all the books of vendor");
         return bookService.getAllVendorBooks(vendorId);
     }
 

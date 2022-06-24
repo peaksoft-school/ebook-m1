@@ -59,6 +59,7 @@ public class ClientController {
     @Operation(summary = "Method get all books with status-approved", description = "All users can  get all VENDOR'S approved books from the database")
     @GetMapping("/books")
     public List<BookResponse> getAllApprovedBooks(@RequestParam(value = "page", required = false) int page) {
+        log.info("Inside the client controller get all approved books");
         return bookService.getAllApprovedBooks(page - 1);
     }
 
@@ -69,7 +70,7 @@ public class ClientController {
                                                                @RequestParam(value = "typeOfBook", required = false) TypeOfBook typeOfBook,
                                                                @RequestParam(value = "page", required = false) int page
                                                                ) {
-        log.info("Inside the client controller, method for getting books by type");
+        log.info("Inside the client controller, method for filtering approved books by Genre and Type");
         return bookService.getAllApprovedBookByGenreAndType(genreEnum, typeOfBook, page - 1);
     }
 
@@ -84,6 +85,7 @@ public class ClientController {
     @GetMapping("/search")
     public BookResponseView searchAndPagination(@RequestParam(name = "name", required = false) String name,
                                                 @RequestParam(value = "page", required = false) Integer page) {
+        log.info("Inside the client controller, method for searching and pagination");
         return bookService.searchAndPagination(name, page - 1);
     }
 
@@ -92,6 +94,7 @@ public class ClientController {
     public Page<Book> sortAndPagination(@PathVariable Integer pageNumber,
                                         @PathVariable Integer pageSize,
                                         @PathVariable String sortProperty) {
+        log.info("Inside client controller, method for sorting and pagination");
         return bookService.sortAndPagination(pageNumber, pageSize, sortProperty);
     }
 

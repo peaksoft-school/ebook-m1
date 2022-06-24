@@ -94,8 +94,8 @@ public class AdminController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_VENDOR')")
     @PutMapping("/book-request/{bookId}")
     public BookResponse updateBook(@PathVariable Long bookId, @RequestBody BookRequest request) {
-        log.info("Inside the Admin controller the method of changing the status of the book");
-        return bookService.updateBook(bookId, request);
+        log.info("Inside the Admin controller the method of changing the status of the book and adding comments");
+        return bookService.updateRequestStatus(bookId, request);
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")

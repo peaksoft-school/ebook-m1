@@ -45,6 +45,7 @@ public class BookService {
         Book book = repository.findById(bookId).get();
         book.setStatus(request.getStatus());
         book.setComments(request.getComments());
+        log.info("Successfully updated requested book status to: {}", book.getStatus());
         return viewMapper.viewBook(repository.save(book));
     }
 
@@ -97,6 +98,7 @@ public class BookService {
         int size = 10;
         Pageable pageable = PageRequest.of(page, size);
         Specification<Book> filter = BookSpecification.getByStatusAndTypeOfBook(genreEnum, typeOfBook, RequestStatus.APPROVED);
+        log.info("Method for filtering all books by genre and type: ");
         return viewMapper.viewBooks(repository.findAll(filter, pageable));
     }
 
