@@ -26,15 +26,13 @@ public class BookSpecification  {
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         });
     }
-    public static Specification<Promocode> getPromocode(String promoName,RequestStatus status){
+    public static Specification<Promocode> getPromocode(String promoName){
         return ((root, query, criteriaBuilder) ->{
             List<Predicate> predicates = new ArrayList<>();
             if (promoName != null) {
                 predicates.add(criteriaBuilder.equal(root.get("promoName"),promoName));
             }
-            if (status != null) {
-                predicates.add(criteriaBuilder.equal(root.get("status"),status));
-            }
+
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         });
     }

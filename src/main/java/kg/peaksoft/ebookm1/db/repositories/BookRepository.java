@@ -24,13 +24,12 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> searchAndPagination(@Param("name") String name, Pageable pageable);
 
     List<Book> findAllByStatus(RequestStatus requestStatus,Pageable pageable);
+    List<Book> findAllByStatus(RequestStatus requestStatus);
 
     List<Book> findAll(Specification<Book> specification,Pageable pageable);
 
     List<Book> findBooksByTypeOfBook(TypeOfBook typeOfBook,Pageable pageable);
 
-    @Query("select promo from Book b JOIN b.promocode promo where promo.promoName like  concat('%',:promoName,'%')")
-    List<Book> findPromoCode(@Param("promoName") String promoName,Pageable pageable);
 
 
 }

@@ -12,6 +12,7 @@ import java.util.List;
 @Repository
 public interface PromocodeRepository extends JpaRepository<Promocode, Long> {
 
-    List<Promocode> findAllByPromoName(String name,Pageable pageable);
+    Promocode findPromocodeByPromoName(String name);
+
     List<Promocode> findAll(Specification<Promocode> specification,Pageable pageable);
 }

@@ -11,4 +11,5 @@ import java.util.List;
 public interface BasketRepository extends JpaRepository<Basket, Long> {
 
     List<Basket> findAllByStatus(PurchaseStatus purchaseStatus);
+
 }

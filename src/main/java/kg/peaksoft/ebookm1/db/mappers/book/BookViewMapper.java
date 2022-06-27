@@ -42,6 +42,7 @@ public class BookViewMapper {
         response.setComments(book.getComments());
         response.setGenreEnum(book.getGenreEnum());
         response.setTypeOfBook(book.getTypeOfBook());
+        response.setDay(book.getDay());
         return response;
     }
 
@@ -56,10 +57,6 @@ public class BookViewMapper {
     public List<Book> searchBook(String name, Pageable pageable) {
         String text = name == null ? "" : name;
         return repository.searchAndPagination(text.toUpperCase(), pageable);
-    }
-    public List<Book> searchPromo(String name, Pageable pageable) {
-        String text = name == null ? "" : name;
-        return repository.findPromoCode(text.toUpperCase(), pageable);
     }
 
 }

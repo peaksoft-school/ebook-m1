@@ -167,10 +167,18 @@ public class ClientController {
         log.info("Inside the Client controller, the delete client history method");
         userService.deleteClientHistory(clientId);
     }
-    //Promo code
+
     @GetMapping("/activate-promo")
-    public List<PromocodeResponse> activationOfPromoCode(@RequestParam(value = "promoName",required = false)String promoName,
-                                                         @RequestParam(value = "page",required = false)int page ){
-        return promoService.getAllPromoRelatedBooks(promoName,page-1);
+    public PromocodeResponse activationOfPromoCode(@RequestParam(value = "promoName",required = false)String promoName
+                                                          ){
+        return promoService.getPromocodeByName(promoName);
     }
+
+    @PutMapping("/basket-pro/{basketId}/{bookId}")
+    public BasketResponse basketPromo(@PathVariable(name = "basketId")long basketId,@PathVariable(name = "bookId") long bookId,
+                                        @RequestParam(name = "name")String name){
+        log.info("Promo code is activated: ");
+        return basketService.promoCodeCalculation(basketId,bookId,name);
+    }
+
 }

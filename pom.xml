@@ -84,7 +84,7 @@
 			<artifactId>aws-java-sdk</artifactId>
 			<version>1.12.237</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.logz.logback/logzio-logback-appender -->
+<!--		 https://mvnrepository.com/artifact/io.logz.logback/logzio-logback-appender-->
 		<dependency>
 			<groupId>io.logz.logback</groupId>
 			<artifactId>logzio-logback-appender</artifactId>

@@ -1,6 +1,7 @@
 package kg.peaksoft.ebookm1.db.entities.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import kg.peaksoft.ebookm1.db.entities.others.Basket;
 import kg.peaksoft.ebookm1.db.entities.others.Promocode;
 import kg.peaksoft.ebookm1.db.entities.security.User;
 import kg.peaksoft.ebookm1.db.enums.BookLanguage;
@@ -15,6 +16,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -66,4 +68,9 @@ public class Book {
     @ManyToOne()
     @JoinColumn(name = "promocode_id")
     private Promocode promocode;
+
+//    @OneToMany(mappedBy = "book")
+//    private List<Basket> baskets;
+
+    private Long day;
 }

@@ -34,4 +34,5 @@ public class BookRequest {
     private String comments;
     private Genre genreEnum;
     private TypeOfBook typeOfBook;
+    private Double basketPrice;
 }

@@ -17,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Slf4j
@@ -34,8 +36,8 @@ public class BasketService {
     public BasketResponse addBasket(BasketRequest basketRequest, long clientId) {
         User client = userRepository.findById(clientId).get();
         Book book = bookRepository.findById(basketRequest.getBookId()).get();
-        double amountOfBook = book.getAmountOfBooks()-(basketRequest.getQuantity());
-        book.setAmountOfBooks((int)amountOfBook);
+        double amountOfBook = book.getAmountOfBooks() - (basketRequest.getQuantity());
+        book.setAmountOfBooks((int) amountOfBook);
         Basket basket = new Basket(basketRequest.getQuantity(), book, client, basketRequest.getPurchaseStatus());
         HistoryOperation basketOperation = new HistoryOperation(basket, client);
         historyOperationRepo.save(basketOperation);
@@ -59,11 +61,13 @@ public class BasketService {
 
     public BasketResponse getBasketById(Long id) {
         log.info("Getting basket by id: {}", id + " - book id");
+
         return viewMapper.viewBasket(basketRepository.findById(id).get());
     }
 
     public void deleteBasket(Long basketId) {
         log.info("Deleted basket by id: {}", basketId + " - basket id");
+
         basketRepository.delete(basketRepository.findById(basketId).get());
     }
 
@@ -75,5 +79,30 @@ public class BasketService {
     public List<BasketResponse> getAllPurchasedBooks() {
         log.info("Getting all purchased books");
         return viewMapper.viewAllBaskets(basketRepository.findAllByStatus(PurchaseStatus.FINISHED));
+    }
+
+    public BasketResponse promoCodeCalculation(Long baskedId, Long bookId, String promoName) {
+        Basket basket = basketRepository.findById(baskedId).get();
+        Book book = bookRepository.findById(bookId).get();
+        if (promoName.matches("(.*)" + book.getPromocode().getPromoName() + "(.*)")) {
+            LocalDate currentTime = LocalDate.now();
+            LocalDate expirationDate = (book.getPromocode().getFinishingDay());
+            long day = currentTime.until(expirationDate, ChronoUnit.DAYS);
+            if (day >= 0) {
+                book.setDay(day);
+                double percentage = (basket.getBasketPrice() * book.getPromocode().getAmountOfPromo()) / 100;
+                double discount = basket.getBasketPrice() - percentage;
+                basket.setBasketPrice(discount);
+                basket.setStatus(PurchaseStatus.FINISHED);
+                log.info("Promo code successfully activated: ", basket.getBasketPrice());
+            } else {
+                basket.setBasketPrice(book.getPrice());
+                log.info("Promo code expired");
+            }
+        } else {
+            basket.setBasketPrice(book.getPrice());
+            log.info("Promo code not valid");
+        }
+        return viewMapper.viewBasket(basketRepository.save(basket));
     }
 }
