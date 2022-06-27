@@ -87,6 +87,7 @@ public class VendorService {
         Book book = bookRepository.findById(bookId).get();
         bookEditMapper.updateBook(book, bookRequest);
         book.setUser(user);
+        book.setStatus(RequestStatus.SUBMITTED);
         bookRepository.save(book);
         repository.save(user);
         log.info("The vendor has successfully updated the book data: {}", book.getTitle());

@@ -3,16 +3,19 @@ package kg.peaksoft.ebookm1.api.controllers;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookRequest;
+import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookResponse;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.promocode.PromocodeRequest;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.vendor.VendorRequest;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.vendor.VendorResponse;
+import kg.peaksoft.ebookm1.db.services.BookService;
 import kg.peaksoft.ebookm1.db.services.VendorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.List;
 @Slf4j
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/vendors")
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 public class VendorController {
 
     private final VendorService service;
+    private final BookService bookService;
 
     // Vendors
     @Operation(summary = "Method update by id", description = "User with role VENDOR can update")
@@ -62,6 +66,13 @@ public class VendorController {
     public VendorResponse deleteBook(@PathVariable long vendorId, @PathVariable long bookId) {
         log.info("Inside the Vendor controller is a method for deleting their books");
         return service.deleteBookVendor(vendorId, bookId);
+    }
+
+    @Operation(summary = "Method get all vendor books", description = "Admin can to get all VENDOR'S books from the database")
+    @GetMapping("/vendor-books/{vendorId}")
+    public List<BookResponse> getAllVendorBooks(@PathVariable Long vendorId) {
+        log.info("Inside the Vendor controller, method for getting all the books of vendor");
+        return bookService.getAllVendorBooks(vendorId);
     }
 
     // Promo code
