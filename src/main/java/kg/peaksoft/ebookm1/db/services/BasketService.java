@@ -46,13 +46,6 @@ public class BasketService {
         return viewMapper.viewBasket(basketRepository.save(basket));
     }
 
-    public BasketResponse manageOrder(BasketRequest basketRequest, long clientId) {
-        log.info("updating the contents of the shopping basket: ");
-//        double discount= book.getPrice()-(book.getPromocode().getAmountOfPromo()/100);
-        return viewMapper.viewBasket(basketRepository.save(editMapper.updateBasket
-                (basketRepository.findById(basketRequest.getBasketId()).get(), basketRequest)));
-    }
-
     public BasketResponse updateBasket(BasketRequest basketRequest, long clientId) {
         log.info("updating the contents of the shopping basket: ");
         return viewMapper.viewBasket(basketRepository.save(editMapper.updateBasket
@@ -67,8 +60,10 @@ public class BasketService {
 
     public void deleteBasket(Long basketId) {
         log.info("Deleted basket by id: {}", basketId + " - basket id");
-
-        basketRepository.delete(basketRepository.findById(basketId).get());
+        Basket basket = basketRepository.findById(basketId).get();
+        int addBackAmountOfBook = basket.getBook().getAmountOfBooks()+basket.getQuantity();
+        basket.getBook().setAmountOfBooks(addBackAmountOfBook);
+        basketRepository.delete(basket);
     }
 
     public List<BasketResponse> getAllBaskets() {
