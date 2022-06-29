@@ -84,7 +84,6 @@ public class BasketService {
             LocalDate expirationDate = (book.getPromocode().getFinishingDay());
             long day = currentTime.until(expirationDate, ChronoUnit.DAYS);
             if (day >= 0) {
-                book.setDay(day);
                 double percentage = (basket.getBasketPrice() * book.getPromocode().getAmountOfPromo()) / 100;
                 double discount = basket.getBasketPrice() - percentage;
                 basket.setBasketPrice(discount);

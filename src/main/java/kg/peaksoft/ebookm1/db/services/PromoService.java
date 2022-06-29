@@ -30,12 +30,6 @@ public class PromoService {
     private final BookRepository bookRepository;
 
 
-    public List<PromocodeResponse> getAllPromoRelatedBooks(String name, int page){
-        int size =10;
-        Pageable pageable = PageRequest.of(page,size);
-        Specification<Promocode> filter = BookSpecification.getPromocode(name);
-        return promocodeViewMapper.promocodeResponseList(promocodeRepository.findAll(filter,pageable));
-    }
     public PromocodeResponse getPromocodeByName(String name){
         String text = name==null?" ":name;
         Promocode promocode= promocodeRepository.findPromocodeByPromoName(text.toLowerCase(Locale.ROOT));

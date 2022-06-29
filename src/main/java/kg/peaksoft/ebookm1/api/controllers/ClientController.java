@@ -190,13 +190,15 @@ public class ClientController {
         userService.deleteClientHistory(clientId);
     }
 
-    @GetMapping("/activate-promo")
+    @GetMapping("/promo-code-activation")
+    @Operation(summary = "Method can get all books with promocode", description = "The CLIENT can get all book with promocode")
     public PromocodeResponse activationOfPromoCode(@RequestParam(value = "promoName",required = false)String promoName
                                                           ){
         return promoService.getPromocodeByName(promoName);
     }
 
-    @PutMapping("/basket-pro/{basketId}/{bookId}")
+    @PutMapping("/promo-code-managing/{basketId}/{bookId}")
+    @Operation(summary = "Method for managing discount operations", description = "The CLIENT can check promocode whether his promocode valid or not")
     public BasketResponse basketPromo(@PathVariable(name = "basketId")long basketId,@PathVariable(name = "bookId") long bookId,
                                         @RequestParam(name = "name")String name){
         log.info("Promo code is activated: ");
