@@ -135,38 +135,4 @@ public class BookService {
         log.info("Sorting by genre and type: ");
         return viewMapper.viewBooks(repository.findAll(filter, pageable));
     }
-
-//    public BookResponseView filterByPromocode(String promocode,int page){
-//        int size= 10;
-//        log.info("Searching promocode: ");
-//        BookResponseView responseView = new BookResponseView();
-//        Pageable pageable = PageRequest.of(page, size);
-//        responseView.setBookResponses(viewMapper.viewBooks(viewMapper.searchPromo(promocode,pageable)));
-//
-//        return responseView;
-//    }
-
-    public BookResponse calculationOfPromoPrice(Long bookId, String promoName){
-//        String text = promoName==null?"":promoName;
-//        Promocode promocode = promocodeRepository.findPromocodeByPromoName(promoName);
-        Book book = repository.findById(bookId).get();
-        if (promoName.matches("(.*)"+book.getPromocode().getPromoName()+"(.*)")) {
-            LocalDate currentTime = LocalDate.now();
-            LocalDate expirationDate= (book.getPromocode().getFinishingDay());
-            long day = currentTime.until(expirationDate, ChronoUnit.DAYS);
-            if (day>=0) {
-                book.setDay(day);
-
-                double discount= book.getPrice()-100;
-                book.setPrice(discount);
-                log.info("Promo code successfully activated: ", book.getPrice());
-            }else {
-                book.setPrice(666);
-            }
-        } else{
-            book.setPrice(555);
-            log.info("Promo code not valid or expired");
-        }
-        return viewMapper.viewBook(repository.save(book));
-    }
 }

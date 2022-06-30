@@ -194,6 +194,7 @@ public class ClientController {
     @Operation(summary = "Method can get all books with promocode", description = "The CLIENT can get all book with promocode")
     public PromocodeResponse activationOfPromoCode(@RequestParam(value = "promoName",required = false)String promoName
                                                           ){
+        log.info("Promo code is activated: ");
         return promoService.getPromocodeByName(promoName);
     }
 
@@ -201,7 +202,7 @@ public class ClientController {
     @Operation(summary = "Method for managing discount operations", description = "The CLIENT can check promocode whether his promocode valid or not")
     public BasketResponse basketPromo(@PathVariable(name = "basketId")long basketId,@PathVariable(name = "bookId") long bookId,
                                         @RequestParam(name = "name")String name){
-        log.info("Promo code is activated: ");
+        log.info("Promo code checked for validation: ");
         return basketService.promoCodeCalculation(basketId,bookId,name);
     }
 

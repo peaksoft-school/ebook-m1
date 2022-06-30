@@ -69,8 +69,4 @@ public class Book {
     @JoinColumn(name = "promocode_id")
     private Promocode promocode;
 
-//    @OneToMany(mappedBy = "book")
-//    private List<Basket> baskets;
-
-    private Long day;
 }

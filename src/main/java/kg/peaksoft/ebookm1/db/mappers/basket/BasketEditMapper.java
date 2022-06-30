@@ -15,12 +15,4 @@ public class BasketEditMapper {
         basket.setStatus(basketRequest.getPurchaseStatus());
         return basket;
     }
-//    public Basket orderCalculation(Basket basket, BasketRequest basketRequest, Promocode promocode) {
-//        if (promocode.getPromoName() == null) {
-//
-//        }basketRequest.getPromocode
-//        basket.setQuantity(basketRequest.getQuantity());
-//        basket.setStatus(basketRequest.getPurchaseStatus());
-//        return basket;
-//    }
 }
