@@ -20,6 +20,7 @@ public class PromocodeViewMapper {
         response.setStartingDay(promocode.getStartingDay());
         response.setFinishingDay(promocode.getFinishingDay());
         response.setAmountOfPromo(promocode.getAmountOfPromo());
+        response.setBookList(promocode.getBooks());
         return response;
     }
 

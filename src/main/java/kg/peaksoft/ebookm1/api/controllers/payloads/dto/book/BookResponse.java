@@ -34,4 +34,6 @@ public class BookResponse {
     private String comments;
     private Genre genreEnum;
     private TypeOfBook typeOfBook;
+    private Long day;
+    private Double basketPrice;
 }

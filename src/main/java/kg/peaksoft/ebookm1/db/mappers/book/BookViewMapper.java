@@ -42,6 +42,7 @@ public class BookViewMapper {
         response.setComments(book.getComments());
         response.setGenreEnum(book.getGenreEnum());
         response.setTypeOfBook(book.getTypeOfBook());
+        response.setDay(book.getDay());
         return response;
     }
 
@@ -57,4 +58,5 @@ public class BookViewMapper {
         String text = name == null ? "" : name;
         return repository.searchAndPagination(text.toUpperCase(), pageable);
     }
+
 }

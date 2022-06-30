@@ -20,6 +20,7 @@ public class BasketViewMapper {
         basketResponse.setClientId(basket.getClient().getId());
         basketResponse.setQuantity(basket.getQuantity());
         basketResponse.setPurchaseStatus(basket.getStatus());
+        basketResponse.setBasketPrice(basket.getBasketPrice());
         return basketResponse;
     }
 

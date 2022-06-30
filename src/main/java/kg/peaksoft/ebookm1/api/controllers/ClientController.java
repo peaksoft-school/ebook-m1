@@ -8,15 +8,13 @@ import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookResponse;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookResponseView;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.client.ClientRequest;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.client.ClientResponse;
+import kg.peaksoft.ebookm1.api.controllers.payloads.dto.promocode.PromocodeResponse;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.wishlist.WishListRequest;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.wishlist.WishListResponse;
 import kg.peaksoft.ebookm1.db.entities.book.Book;
 import kg.peaksoft.ebookm1.db.enums.Genre;
 import kg.peaksoft.ebookm1.db.enums.TypeOfBook;
-import kg.peaksoft.ebookm1.db.services.BasketService;
-import kg.peaksoft.ebookm1.db.services.BookService;
-import kg.peaksoft.ebookm1.db.services.ClientService;
-import kg.peaksoft.ebookm1.db.services.WishListService;
+import kg.peaksoft.ebookm1.db.services.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -37,6 +35,7 @@ public class ClientController {
     private final BookService bookService;
     private final BasketService basketService;
     private final WishListService wishListService;
+    private final PromoService promoService;
 
     @PreAuthorize("hasAnyAuthority('ROLE_CLIENT')")
     @Operation(summary = "Method update", description = "A user who has only the CLIENT role can update")
@@ -190,4 +189,21 @@ public class ClientController {
         log.info("Inside the Client controller, the delete client history method");
         userService.deleteClientHistory(clientId);
     }
+
+    @GetMapping("/promo-code-activation")
+    @Operation(summary = "Method can get all books with promocode", description = "The CLIENT can get all book with promocode")
+    public PromocodeResponse activationOfPromoCode(@RequestParam(value = "promoName",required = false)String promoName
+                                                          ){
+        log.info("Promo code is activated: ");
+        return promoService.getPromocodeByName(promoName);
+    }
+
+    @PutMapping("/promo-code-managing/{basketId}/{bookId}")
+    @Operation(summary = "Method for managing discount operations", description = "The CLIENT can check promocode whether his promocode valid or not")
+    public BasketResponse basketPromo(@PathVariable(name = "basketId")long basketId,@PathVariable(name = "bookId") long bookId,
+                                        @RequestParam(name = "name")String name){
+        log.info("Promo code checked for validation: ");
+        return basketService.promoCodeCalculation(basketId,bookId,name);
+    }
+
 }

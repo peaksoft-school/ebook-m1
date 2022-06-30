@@ -1,8 +1,10 @@
 package kg.peaksoft.ebookm1.db.services;
 
+import kg.peaksoft.ebookm1.db.entities.others.Promocode;
 import kg.peaksoft.ebookm1.db.enums.Genre;
 import kg.peaksoft.ebookm1.db.enums.RequestStatus;
 import kg.peaksoft.ebookm1.db.enums.TypeOfBook;
+import kg.peaksoft.ebookm1.db.repositories.PromocodeRepository;
 import kg.peaksoft.ebookm1.db.repositories.specifications.BookSpecification;
 import kg.peaksoft.ebookm1.db.entities.security.User;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookResponseView;
@@ -22,6 +24,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +38,7 @@ public class BookService {
     private final BookEditMapper editMapper;
     private final BookViewMapper viewMapper;
     private final UserRepository vendorRepository;
+    private final PromocodeRepository promocodeRepository;
 
     public BookResponse updateBook(Long bookId, BookRequest request) {
         Book book = repository.findById(bookId).get();

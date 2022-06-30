@@ -20,4 +20,5 @@ public class BasketResponse {
     private Long clientId;
     private Integer quantity;
     private PurchaseStatus purchaseStatus;
+    private Double basketPrice;
 }

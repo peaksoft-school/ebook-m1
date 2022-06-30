@@ -29,6 +29,7 @@ public class Basket {
     private LocalDate createdDate;
     @Enumerated(EnumType.STRING)
     private PurchaseStatus status;
+    private Double basketPrice;
 
     @ManyToOne(cascade = ALL)
     @JoinColumn(name = "book_id")
@@ -45,5 +46,6 @@ public class Basket {
         this.book = book;
         this.client = client;
         this.status = status;
+        this.basketPrice = book.getPrice();
     }
 }
