@@ -9,9 +9,7 @@ env:
 on:
   push:
     branches: 
-      - master
-
-#   workflow_dispatch:
+      - main
 
 jobs:
   my_ci_part:
