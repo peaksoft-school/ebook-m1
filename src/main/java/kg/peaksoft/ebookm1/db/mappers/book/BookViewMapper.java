@@ -42,7 +42,6 @@ public class BookViewMapper {
         response.setComments(book.getComments());
         response.setGenreEnum(book.getGenreEnum());
         response.setTypeOfBook(book.getTypeOfBook());
-        response.setDay(book.getDay());
         return response;
     }
 
