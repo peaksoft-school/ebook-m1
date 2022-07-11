@@ -21,7 +21,6 @@ jobs:
         with:
           name: artifact
           path: target/eBook-my-0.0.1-SNAPSHOT.jar
-
           
   deploy:
     needs: build
