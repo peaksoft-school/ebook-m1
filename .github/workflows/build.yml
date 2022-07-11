@@ -20,7 +20,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: artifact
-          path: target/eBook-my
+          path: target/ebook-my
           
   deploy:
     needs: build
@@ -42,5 +42,5 @@ jobs:
           environment_name: eBook-env
           version_label: ${{ github.SHA }}
           region: eu-central-1 
-          deployment_package: eBook-my
+          deployment_package: ebook-my
 
