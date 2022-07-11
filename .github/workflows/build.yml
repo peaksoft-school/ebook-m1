@@ -35,7 +35,6 @@ jobs:
       - name: Priny Happy Message for CI finish
         run   : echo "CI Pileline part finished successfully!"
 
-
   my_cd_part:
     runs-on : ubuntu-latest
     needs    : [my_ci_part]
