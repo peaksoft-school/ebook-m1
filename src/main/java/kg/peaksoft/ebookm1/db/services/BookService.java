@@ -113,7 +113,7 @@ public class BookService {
         Pageable pageable = PageRequest.of(page, size);
         responseView.setBookResponses((viewMapper.viewBooks
                 (viewMapper.searchBook(name, pageable))));
-        log.info("Book search: ");
+        log.info("Book search: {}", responseView);
         return responseView;
     }
 
