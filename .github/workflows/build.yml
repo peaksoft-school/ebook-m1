@@ -44,8 +44,8 @@ jobs:
     - name: Configure my AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-         aws-access-key-id     : AKIA6NUGKXQBD2A4JTHK
-         aws-secret-access-key : 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
+         aws-access-key-id     : AKIA6NUGKXQBH7GQWYDJ
+         aws-secret-access-key : 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
          aws-region            : ${{ env.AWS_REGION_NAME }}
        
     - name: Create new ElasticBeanstalk application version
