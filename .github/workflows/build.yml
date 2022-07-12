@@ -1,8 +1,8 @@
 name: CI-CD-Pipelina-to-AWS-ElasticBeanstalk 
 env:
   EB_PACKAGE_S3_BUCKET_NAME : "ebook-mm1"
-  EB_APPLICATION_NAME       : "eBook"
-  EB_ENVIRONMENT_NAME       : "eBook-env"
+  EB_APPLICATION_NAME       : "eBook-m"
+  EB_ENVIRONMENT_NAME       : "eBookm-env"
   DEPLOY_PACKAGE_NAME       : "deploy_${{ github.sha }}.zip"
   AWS_REGION_NAME           : "eu-central-1"
 
