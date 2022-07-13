@@ -7,18 +7,15 @@ import kg.peaksoft.ebookm1.db.entities.book.Book;
 import kg.peaksoft.ebookm1.db.entities.security.Role;
 import kg.peaksoft.ebookm1.db.entities.security.User;
 import kg.peaksoft.ebookm1.db.enums.BookLanguage;
-import kg.peaksoft.ebookm1.db.mappers.book.BookEditMapper;
 import kg.peaksoft.ebookm1.db.mappers.book.BookViewMapper;
 import kg.peaksoft.ebookm1.db.repositories.BookRepository;
-import kg.peaksoft.ebookm1.db.repositories.PromocodeRepository;
 import kg.peaksoft.ebookm1.db.repositories.UserRepository;
-import kg.peaksoft.ebookm1.db.repositories.specifications.BookSpecification;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
@@ -35,8 +32,8 @@ import static kg.peaksoft.ebookm1.db.enums.TypeOfBook.PAPER_BOOK;
 import static kg.peaksoft.ebookm1.db.repositories.specifications.BookSpecification.getByStatusAndTypeOfBook;
 import static kg.peaksoft.ebookm1.db.repositories.specifications.BookSpecification.getFilter;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.BDDAssumptions.given;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class BookServiceTest {
@@ -44,23 +41,11 @@ class BookServiceTest {
     @Mock
     private BookRepository repository;
     @Mock
-    private BookEditMapper editMapper;
-    @Mock
     private BookViewMapper viewMapper;
     @Mock
     private UserRepository vendorRepository;
-    @Mock
-    private PromocodeRepository promocodeRepository;
-    @Mock
-    private BookSpecification bookSpecification;
-    @Mock
-    private Specification<Book> specification;
-    @Mock
-    Pageable pageable;
     @InjectMocks
     private BookService bookService;
-    @Mock
-    private Page page;
 
     private BookResponse bookResponse;
     private BookRequest bookRequest;
@@ -68,7 +53,6 @@ class BookServiceTest {
     private List<BookResponse> responseList = new ArrayList<>();
     private List<Book> bookList = new ArrayList<>();
     private User vendor;
-    private User client;
 
     @BeforeEach
     void prepare() {
@@ -76,21 +60,6 @@ class BookServiceTest {
         vendorRole.setName("ROLE_VENDOR");
         var clientRole = new Role();
         clientRole.setName("ROLE_CLIENT");
-
-
-        client = User.builder()
-                .id(2L)
-                .email("client@gmail.com")
-                .password("1234567")
-                .roles(List.of(clientRole))
-                .firstName("client")
-                .lastName("client")
-//                .books()
-//                .basket()
-//                .isActive()
-                .phoneNumber("+79799999")
-                .build();
-
 
         book1 = Book.builder()
                 .id(1L)
@@ -102,7 +71,6 @@ class BookServiceTest {
                 .bookLanguage(BookLanguage.RUSSIAN)
                 .discount(10)
                 .title("Evgenii Onegin")
-                //.status(SUBMITTED)
                 .genreEnum(ACTION_ADVENTURE)
                 .typeOfBook(PAPER_BOOK)
                 .build();
@@ -135,7 +103,6 @@ class BookServiceTest {
                 .title("Evgenii Onegin")
                 .comments("comment1")
                 .discount(10)
-                // .status(SUBMITTED)
                 .genreEnum(ACTION_ADVENTURE)
                 .typeOfBook(PAPER_BOOK)
                 .build();
@@ -148,8 +115,6 @@ class BookServiceTest {
                 .firstName("Vendor")
                 .lastName("Vendor")
                 .books(List.of(book1))
-//                .basket()
-//                .isActive()
                 .phoneNumber("+797979797")
                 .build();
 

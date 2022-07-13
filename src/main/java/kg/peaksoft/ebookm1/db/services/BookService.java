@@ -1,20 +1,17 @@
 package kg.peaksoft.ebookm1.db.services;
 
-import kg.peaksoft.ebookm1.db.entities.others.Promocode;
+import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookRequest;
+import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookResponse;
+import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookResponseView;
+import kg.peaksoft.ebookm1.db.entities.book.Book;
+import kg.peaksoft.ebookm1.db.entities.security.User;
 import kg.peaksoft.ebookm1.db.enums.Genre;
 import kg.peaksoft.ebookm1.db.enums.RequestStatus;
 import kg.peaksoft.ebookm1.db.enums.TypeOfBook;
-import kg.peaksoft.ebookm1.db.repositories.PromocodeRepository;
-import kg.peaksoft.ebookm1.db.repositories.specifications.BookSpecification;
-import kg.peaksoft.ebookm1.db.entities.security.User;
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookResponseView;
-import kg.peaksoft.ebookm1.db.mappers.book.BookEditMapper;
 import kg.peaksoft.ebookm1.db.mappers.book.BookViewMapper;
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookRequest;
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookResponse;
-import kg.peaksoft.ebookm1.db.entities.book.Book;
 import kg.peaksoft.ebookm1.db.repositories.BookRepository;
 import kg.peaksoft.ebookm1.db.repositories.UserRepository;
+import kg.peaksoft.ebookm1.db.repositories.specifications.BookSpecification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -24,8 +21,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,17 +30,17 @@ import java.util.List;
 public class BookService {
 
     private final BookRepository repository;
-    private final BookEditMapper editMapper;
+    //private final BookEditMapper editMapper;
     private final BookViewMapper viewMapper;
     private final UserRepository vendorRepository;
-    private final PromocodeRepository promocodeRepository;
 
-    public BookResponse updateBook(Long bookId, BookRequest request) {
-        Book book = repository.findById(bookId).get();
-        editMapper.updateBook(book, request);
-        log.info("Successfully updated the book by id: {}", book.getId() + " - book id");
-        return viewMapper.viewBook(repository.save(book));
-    }
+//    public BookResponse updateBook(Long bookId, BookRequest request) {
+//        Book book = repository.findById(bookId).get();
+//        editMapper.updateBook(book, request);
+//        log.info("Successfully updated the book by id: {}", book.getId() + " - book id");
+//        return viewMapper.viewBook(repository.save(book));
+//    }
+
     public BookResponse updateRequestStatus(Long bookId, BookRequest request) {
         Book book = repository.findById(bookId).get();
         book.setStatus(request.getStatus());
