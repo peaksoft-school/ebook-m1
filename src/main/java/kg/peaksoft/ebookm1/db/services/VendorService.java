@@ -97,7 +97,7 @@ public class VendorService {
     public VendorResponse deleteBookVendor(Long userId, Long bookId) {
         User user = repository.findById(userId).get();
         Book book = bookRepository.findById(bookId).get();
-        bookRepository.delete(book);
+        bookRepository.deleteById(bookId);
         repository.save(user);
         log.info("The vendor has successfully deleted his book: {}", book.getTitle());
         return viewMapper.viewVendor(user);

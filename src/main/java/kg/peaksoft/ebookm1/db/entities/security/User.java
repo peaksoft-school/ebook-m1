@@ -48,7 +48,7 @@ public class User implements UserDetails {
     private List<Promocode> promocode;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Book> books;
 
     @JsonIgnore
@@ -90,6 +90,8 @@ public class User implements UserDetails {
         }
         return grantedauthorities;
     }
+
+
 
     @Override
     public String getUsername() {
