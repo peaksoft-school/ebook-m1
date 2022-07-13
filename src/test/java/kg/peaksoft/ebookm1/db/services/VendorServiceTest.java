@@ -1,7 +1,6 @@
 package kg.peaksoft.ebookm1.db.services;
 
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookRequest;
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookResponse;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.promocode.PromocodeRequest;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.vendor.VendorRequest;
 import kg.peaksoft.ebookm1.api.controllers.payloads.dto.vendor.VendorResponse;
@@ -10,7 +9,6 @@ import kg.peaksoft.ebookm1.db.entities.others.Promocode;
 import kg.peaksoft.ebookm1.db.entities.security.Role;
 import kg.peaksoft.ebookm1.db.entities.security.User;
 import kg.peaksoft.ebookm1.db.enums.BookLanguage;
-import kg.peaksoft.ebookm1.db.enums.RequestStatus;
 import kg.peaksoft.ebookm1.db.mappers.book.BookEditMapper;
 import kg.peaksoft.ebookm1.db.mappers.promocode.PromocodeEditMapper;
 import kg.peaksoft.ebookm1.db.mappers.vendor.VendorEditMapper;
@@ -18,9 +16,7 @@ import kg.peaksoft.ebookm1.db.mappers.vendor.VendorViewMapper;
 import kg.peaksoft.ebookm1.db.repositories.BookRepository;
 import kg.peaksoft.ebookm1.db.repositories.PromocodeRepository;
 import kg.peaksoft.ebookm1.db.repositories.UserRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -36,7 +32,6 @@ import static kg.peaksoft.ebookm1.db.enums.Genre.ACTION_ADVENTURE;
 import static kg.peaksoft.ebookm1.db.enums.RequestStatus.SUBMITTED;
 import static kg.peaksoft.ebookm1.db.enums.TypeOfBook.PAPER_BOOK;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -63,7 +58,6 @@ class VendorServiceTest {
 
     private User vendor;
     private BookRequest bookRequest;
-    private BookResponse bookResponse;
     private Book book1;
     private VendorResponse vendorResponse;
     private VendorRequest vendorRequest;
@@ -80,24 +74,6 @@ class VendorServiceTest {
                 .bookLanguage(BookLanguage.RUSSIAN)
                 .discount(10)
                 .title("Evgenii Onegin")
-                //.status(SUBMITTED)
-                .genreEnum(ACTION_ADVENTURE)
-                .typeOfBook(PAPER_BOOK)
-                .build();
-
-        bookResponse = BookResponse.builder()
-                .id(5L)
-                .aboutTheBook("about the book1")
-                .amountOfBooks(10)
-                .author("Pushkin")
-                .basketPrice(1.0)
-                .bestseller(true)
-                .bookFragment("book fragment")
-                .bookLanguage(BookLanguage.RUSSIAN)
-                .title("Evgenii Onegin")
-                .comments("comment1")
-                .day(10L)
-                .discount(10)
                 .genreEnum(ACTION_ADVENTURE)
                 .typeOfBook(PAPER_BOOK)
                 .build();
@@ -130,8 +106,6 @@ class VendorServiceTest {
                 .firstName("Vendor")
                 .lastName("Vendor")
                 .books(List.of(book1))
-//                .basket()
-//                .isActive()
                 .phoneNumber("+797979797")
                 .build();
 
@@ -157,8 +131,6 @@ class VendorServiceTest {
     @DisplayName("Test for create vendor")
     void create() {
         doReturn(vendor).when(editMapper).createVendor(vendorRequest);
-
-        // when(editMapper.createVendor(vendorRequest)).thenReturn(vendor);
         String password = "1234567";
         doReturn(password).when(passwordEncoder).encode(vendorRequest.getPassword());
         vendorResponse.setIsActive(true);
@@ -224,8 +196,8 @@ class VendorServiceTest {
         doReturn(vendor).when(repository).save(vendor);
         vendorResponse.setBookList(List.of(book1));
         doReturn(vendorResponse).when(viewMapper).viewVendor(vendor);
-        assertThat(vendorService.addBookToVendor(bookRequest, 1l)).isEqualTo(vendorResponse);
-        assertThat(vendorService.addBookToVendor(bookRequest, 1l).getBookList()).isNotEmpty();
+        assertThat(vendorService.addBookToVendor(bookRequest, 1L)).isEqualTo(vendorResponse);
+        assertThat(vendorService.addBookToVendor(bookRequest, 1L).getBookList()).isNotEmpty();
     }
 
     @Test
@@ -258,8 +230,10 @@ class VendorServiceTest {
         assertThat(vendorService.deleteBookVendor(1L, 5L).getBookList().size()).isEqualTo(1);
     }
 
-    @Test
-    void addPromocode() {
+    @Nested
+    @DisplayName("Test for promo-code")
+    @Tag("promocode")
+    class PromocodeTest {
         PromocodeRequest promocodeRequest = PromocodeRequest.builder()
                 .promoName("promo1")
                 .amountOfPromo(10)
@@ -273,24 +247,76 @@ class VendorServiceTest {
                 .startingDay(LocalDate.of(2022, 7, 12))
                 .finishingDay(LocalDate.of(2022, 8, 12))
                 .user(vendor)
-                .books(List.of(book1))
                 .build();
-        vendorResponse.setPromocodes(List.of(promocode));
-        doReturn(promocode).when(promocodeEditMapper).create(promocodeRequest);
-        doReturn(Optional.of(vendor)).when(repository).findById(1L);
-        doReturn(promocode).when(promocodeRepository).save(promocode);
-        doReturn(vendor).when(repository).save(vendor);
-        doReturn(vendorResponse).when(viewMapper).viewVendor(vendor);
 
-        assertThat(vendorService.addPromocode(promocodeRequest, 1L).getPromocodes()).isEqualTo(vendorResponse.getPromocodes());
-    }
 
-    @Test
-    void updatePromocode() {
+        @Test
+        void addPromocode() {
+            vendorResponse.setPromocodes(List.of(promocode));
+            doReturn(promocode).when(promocodeEditMapper).create(promocodeRequest);
+            doReturn(Optional.of(vendor)).when(repository).findById(1L);
+            doReturn(promocode).when(promocodeRepository).save(promocode);
+            doReturn(vendor).when(repository).save(vendor);
+            doReturn(vendorResponse).when(viewMapper).viewVendor(vendor);
 
-    }
+            assertThat(vendorService.addPromocode(promocodeRequest, 1L).getPromocodes()).isEqualTo(vendorResponse.getPromocodes());
+        }
 
-    @Test
-    void deletePromocode() {
+        @Test
+        void updatePromocode() {
+            doReturn(Optional.of(vendor)).when(repository).findById(1L);
+            doReturn(Optional.of(promocode)).when(promocodeRepository).findById(10L);
+            doReturn(promocode).when(promocodeEditMapper).update(promocode, promocodeRequest);
+
+            promocode.setPromoName("promo2");
+            book1.setPromocode(promocode);
+            promocode.setUser(vendor);
+            assertThat(promocodeEditMapper.update(promocode, promocodeRequest).getPromoName()).isEqualTo("promo2");
+            doReturn(promocode).when(promocodeRepository).save(promocode);
+
+
+            doReturn(vendor).when(repository).save(vendor);
+            vendorResponse.setPromocodes(List.of(promocode));
+            doReturn(vendorResponse).when(viewMapper).viewVendor(vendor);
+
+            var actual = vendorService.updatePromocode(promocodeRequest, 1L, 10L);
+
+            assertThat(actual.getPromocodes()).isEqualTo(vendorResponse.getPromocodes());
+        }
+
+        @Test
+        void deletePromocode() {
+            Promocode promocode = Promocode.builder()
+                    .id(10L)
+                    .promoName("promo1")
+                    .amountOfPromo(10)
+                    .startingDay(LocalDate.of(2022, 7, 12))
+                    .finishingDay(LocalDate.of(2022, 8, 12))
+                    .user(vendor)
+                    .books(List.of(book1))
+                    .build();
+            Promocode promocode2 = Promocode.builder()
+                    .id(11L)
+                    .promoName("promo11")
+                    .amountOfPromo(10)
+                    .startingDay(LocalDate.of(2022, 7, 12))
+                    .finishingDay(LocalDate.of(2022, 8, 12))
+                    .user(vendor)
+                    .books(List.of(book1))
+                    .build();
+            vendor.setPromocode(List.of(promocode, promocode2));
+            vendorResponse.setPromocodes(List.of(promocode));
+
+            doReturn(Optional.of(vendor)).when(repository).findById(1L);
+
+            doReturn(Optional.of(promocode)).when(promocodeRepository).findById(10L);
+            promocodeRepository.delete(promocode);
+            verify(promocodeRepository, times(1)).delete(promocode);
+
+            doReturn(vendor).when(repository).save(vendor);
+            doReturn(vendorResponse).when(viewMapper).viewVendor(vendor);
+
+            assertThat(vendorService.deletePromocode(1L, 10L).getPromocodes().size()).isOne();
+        }
     }
 }
