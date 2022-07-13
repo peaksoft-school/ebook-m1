@@ -30,16 +30,8 @@ import java.util.List;
 public class BookService {
 
     private final BookRepository repository;
-    //private final BookEditMapper editMapper;
     private final BookViewMapper viewMapper;
     private final UserRepository vendorRepository;
-
-//    public BookResponse updateBook(Long bookId, BookRequest request) {
-//        Book book = repository.findById(bookId).get();
-//        editMapper.updateBook(book, request);
-//        log.info("Successfully updated the book by id: {}", book.getId() + " - book id");
-//        return viewMapper.viewBook(repository.save(book));
-//    }
 
     public BookResponse updateRequestStatus(Long bookId, BookRequest request) {
         Book book = repository.findById(bookId).get();
@@ -108,7 +100,7 @@ public class BookService {
         Pageable pageable = PageRequest.of(page, size);
         responseView.setBookResponses((viewMapper.viewBooks
                 (viewMapper.searchBook(name, pageable))));
-        log.info("Book search: {}", responseView);
+        log.info("Book search: ");
         return responseView;
     }
 
