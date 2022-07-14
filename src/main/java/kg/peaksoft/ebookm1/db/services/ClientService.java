@@ -1,11 +1,11 @@
 package kg.peaksoft.ebookm1.db.services;
 
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.client.ClientRequest;
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.client.ClientResponse;
-import kg.peaksoft.ebookm1.db.entities.security.User;
-import kg.peaksoft.ebookm1.db.mappers.client.ClientEditMapper;
-import kg.peaksoft.ebookm1.db.mappers.client.ClientViewMapper;
-import kg.peaksoft.ebookm1.db.repositories.UserRepository;
+import kg.peaksoft.ebookm1.api.payload.dto.client.ClientRequest;
+import kg.peaksoft.ebookm1.api.payload.dto.client.ClientResponse;
+import kg.peaksoft.ebookm1.db.entity.security.User;
+import kg.peaksoft.ebookm1.db.mapper.ClientEditMapper;
+import kg.peaksoft.ebookm1.db.mapper.ClientViewMapper;
+import kg.peaksoft.ebookm1.db.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;

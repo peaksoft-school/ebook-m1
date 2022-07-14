@@ -1,16 +1,16 @@
 package kg.peaksoft.ebookm1.db.services;
 
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.wishlist.WishListRequest;
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.wishlist.WishListResponse;
-import kg.peaksoft.ebookm1.db.entities.book.Book;
-import kg.peaksoft.ebookm1.db.entities.others.HistoryOperation;
-import kg.peaksoft.ebookm1.db.entities.others.WishList;
-import kg.peaksoft.ebookm1.db.entities.security.User;
-import kg.peaksoft.ebookm1.db.mappers.wishlist.WishListViewMapper;
-import kg.peaksoft.ebookm1.db.repositories.BookRepository;
-import kg.peaksoft.ebookm1.db.repositories.HistoryOperationRepository;
-import kg.peaksoft.ebookm1.db.repositories.UserRepository;
-import kg.peaksoft.ebookm1.db.repositories.WishListRepository;
+import kg.peaksoft.ebookm1.api.payload.dto.wishlist.WishListRequest;
+import kg.peaksoft.ebookm1.api.payload.dto.wishlist.WishListResponse;
+import kg.peaksoft.ebookm1.db.entity.Book;
+import kg.peaksoft.ebookm1.db.entity.HistoryOperation;
+import kg.peaksoft.ebookm1.db.entity.WishList;
+import kg.peaksoft.ebookm1.db.entity.security.User;
+import kg.peaksoft.ebookm1.db.mapper.WishListViewMapper;
+import kg.peaksoft.ebookm1.db.repository.BookRepository;
+import kg.peaksoft.ebookm1.db.repository.HistoryOperationRepository;
+import kg.peaksoft.ebookm1.db.repository.UserRepository;
+import kg.peaksoft.ebookm1.db.repository.WishListRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -1,18 +1,18 @@
 package kg.peaksoft.ebookm1.db.services;
 
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.basket.BasketRequest;
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.basket.BasketResponse;
-import kg.peaksoft.ebookm1.db.entities.book.Book;
-import kg.peaksoft.ebookm1.db.entities.others.Basket;
-import kg.peaksoft.ebookm1.db.entities.others.HistoryOperation;
-import kg.peaksoft.ebookm1.db.entities.security.User;
+import kg.peaksoft.ebookm1.api.payload.dto.basket.BasketRequest;
+import kg.peaksoft.ebookm1.api.payload.dto.basket.BasketResponse;
+import kg.peaksoft.ebookm1.db.entity.Book;
+import kg.peaksoft.ebookm1.db.entity.Basket;
+import kg.peaksoft.ebookm1.db.entity.HistoryOperation;
+import kg.peaksoft.ebookm1.db.entity.security.User;
 import kg.peaksoft.ebookm1.db.enums.PurchaseStatus;
-import kg.peaksoft.ebookm1.db.mappers.basket.BasketEditMapper;
-import kg.peaksoft.ebookm1.db.mappers.basket.BasketViewMapper;
-import kg.peaksoft.ebookm1.db.repositories.BasketRepository;
-import kg.peaksoft.ebookm1.db.repositories.BookRepository;
-import kg.peaksoft.ebookm1.db.repositories.HistoryOperationRepository;
-import kg.peaksoft.ebookm1.db.repositories.UserRepository;
+import kg.peaksoft.ebookm1.db.mapper.BasketEditMapper;
+import kg.peaksoft.ebookm1.db.mapper.BasketViewMapper;
+import kg.peaksoft.ebookm1.db.repository.BasketRepository;
+import kg.peaksoft.ebookm1.db.repository.BookRepository;
+import kg.peaksoft.ebookm1.db.repository.HistoryOperationRepository;
+import kg.peaksoft.ebookm1.db.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -63,7 +63,7 @@ public class BasketService {
         Basket basket = basketRepository.findById(basketId).get();
         int addBackAmountOfBook = basket.getBook().getAmountOfBooks()+basket.getQuantity();
         basket.getBook().setAmountOfBooks(addBackAmountOfBook);
-        basketRepository.delete(basket);
+        basketRepository.deleteById(basket.getId());
     }
 
     public List<BasketResponse> getAllBaskets() {
