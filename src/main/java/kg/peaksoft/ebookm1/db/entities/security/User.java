@@ -6,10 +6,7 @@ import kg.peaksoft.ebookm1.db.entities.others.Basket;
 import kg.peaksoft.ebookm1.db.entities.others.HistoryOperation;
 import kg.peaksoft.ebookm1.db.entities.others.Promocode;
 import kg.peaksoft.ebookm1.db.entities.others.WishList;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,6 +21,7 @@ import java.util.List;
 @Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Getter
 @Setter
 public class User implements UserDetails {
@@ -47,7 +45,7 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Promocode> promocode;
 
-    @JsonIgnore
+    @JsonIgnore//fetch = FetchType.LAZY
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Book> books;
 
@@ -90,8 +88,6 @@ public class User implements UserDetails {
         }
         return grantedauthorities;
     }
-
-
 
     @Override
     public String getUsername() {

@@ -95,6 +95,7 @@ public class VendorService {
     }
 
     public VendorResponse deleteBookVendor(Long userId, Long bookId) {
+
         User user = repository.findById(userId).get();
         Book book = bookRepository.findById(bookId).get();
         bookRepository.deleteById(bookId);
