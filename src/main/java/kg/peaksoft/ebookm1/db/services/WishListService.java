@@ -1,7 +1,7 @@
 package kg.peaksoft.ebookm1.db.services;
 
-import kg.peaksoft.ebookm1.api.payload.dto.wishlist.WishListRequest;
-import kg.peaksoft.ebookm1.api.payload.dto.wishlist.WishListResponse;
+import kg.peaksoft.ebookm1.api.payload.wishlist.WishListRequest;
+import kg.peaksoft.ebookm1.api.payload.wishlist.WishListResponse;
 import kg.peaksoft.ebookm1.db.entity.Book;
 import kg.peaksoft.ebookm1.db.entity.HistoryOperation;
 import kg.peaksoft.ebookm1.db.entity.WishList;

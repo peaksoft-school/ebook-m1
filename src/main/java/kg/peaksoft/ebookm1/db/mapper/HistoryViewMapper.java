@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.db.mapper;
 
-import kg.peaksoft.ebookm1.api.payload.dto.history.HistoryResponse;
+import kg.peaksoft.ebookm1.api.payload.history.HistoryResponse;
 import kg.peaksoft.ebookm1.db.entity.HistoryOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

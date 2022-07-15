@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.api.payload.dto.history;
+package kg.peaksoft.ebookm1.api.payload.history;
 
 import kg.peaksoft.ebookm1.db.entity.Basket;
 import kg.peaksoft.ebookm1.db.entity.WishList;

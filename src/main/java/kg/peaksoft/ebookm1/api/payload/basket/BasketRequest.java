@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.api.payload.dto.basket;
+package kg.peaksoft.ebookm1.api.payload.basket;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

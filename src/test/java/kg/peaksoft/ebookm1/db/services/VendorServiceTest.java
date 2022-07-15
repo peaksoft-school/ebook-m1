@@ -1,9 +1,9 @@
 package kg.peaksoft.ebookm1.db.services;
 
-import kg.peaksoft.ebookm1.api.payload.dto.book.BookRequest;
-import kg.peaksoft.ebookm1.api.payload.dto.promocode.PromocodeRequest;
-import kg.peaksoft.ebookm1.api.payload.dto.vendor.VendorRequest;
-import kg.peaksoft.ebookm1.api.payload.dto.vendor.VendorResponse;
+import kg.peaksoft.ebookm1.api.payload.book.BookRequest;
+import kg.peaksoft.ebookm1.api.payload.promocode.PromocodeRequest;
+import kg.peaksoft.ebookm1.api.payload.vendor.VendorRequest;
+import kg.peaksoft.ebookm1.api.payload.vendor.VendorResponse;
 import kg.peaksoft.ebookm1.db.entity.Book;
 import kg.peaksoft.ebookm1.db.entity.Promocode;
 import kg.peaksoft.ebookm1.db.entity.security.Role;

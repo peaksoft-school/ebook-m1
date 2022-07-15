@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.db.services;
 
-import kg.peaksoft.ebookm1.api.payload.dto.promocode.PromocodeResponse;
+import kg.peaksoft.ebookm1.api.payload.promocode.PromocodeResponse;
 import kg.peaksoft.ebookm1.db.entity.Book;
 import kg.peaksoft.ebookm1.db.entity.Promocode;
 import kg.peaksoft.ebookm1.db.enums.RequestStatus;

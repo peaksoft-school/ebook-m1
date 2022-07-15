@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.db.mapper;
 
-import kg.peaksoft.ebookm1.api.payload.dto.vendor.VendorRequest;
+import kg.peaksoft.ebookm1.api.payload.vendor.VendorRequest;
 import kg.peaksoft.ebookm1.db.entity.security.Role;
 import kg.peaksoft.ebookm1.db.entity.security.User;
 import kg.peaksoft.ebookm1.db.repository.RoleRepository;

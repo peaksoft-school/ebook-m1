@@ -2,11 +2,11 @@ package kg.peaksoft.ebookm1.api.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import kg.peaksoft.ebookm1.api.payload.dto.book.BookRequest;
-import kg.peaksoft.ebookm1.api.payload.dto.book.BookResponse;
-import kg.peaksoft.ebookm1.api.payload.dto.promocode.PromocodeRequest;
-import kg.peaksoft.ebookm1.api.payload.dto.vendor.VendorRequest;
-import kg.peaksoft.ebookm1.api.payload.dto.vendor.VendorResponse;
+import kg.peaksoft.ebookm1.api.payload.book.BookRequest;
+import kg.peaksoft.ebookm1.api.payload.book.BookResponse;
+import kg.peaksoft.ebookm1.api.payload.promocode.PromocodeRequest;
+import kg.peaksoft.ebookm1.api.payload.vendor.VendorRequest;
+import kg.peaksoft.ebookm1.api.payload.vendor.VendorResponse;
 import kg.peaksoft.ebookm1.db.services.BookService;
 import kg.peaksoft.ebookm1.db.services.VendorService;
 import lombok.RequiredArgsConstructor;

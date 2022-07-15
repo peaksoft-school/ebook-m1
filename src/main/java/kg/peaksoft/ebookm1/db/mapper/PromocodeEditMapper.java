@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.db.mapper;
 
-import kg.peaksoft.ebookm1.api.payload.dto.promocode.PromocodeRequest;
+import kg.peaksoft.ebookm1.api.payload.promocode.PromocodeRequest;
 import kg.peaksoft.ebookm1.db.entity.Promocode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

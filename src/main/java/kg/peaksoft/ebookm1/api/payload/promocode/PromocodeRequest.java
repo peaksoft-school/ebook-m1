@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.api.payload.dto.promocode;
+package kg.peaksoft.ebookm1.api.payload.promocode;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

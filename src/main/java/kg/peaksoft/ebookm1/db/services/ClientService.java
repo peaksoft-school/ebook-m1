@@ -1,7 +1,7 @@
 package kg.peaksoft.ebookm1.db.services;
 
-import kg.peaksoft.ebookm1.api.payload.dto.client.ClientRequest;
-import kg.peaksoft.ebookm1.api.payload.dto.client.ClientResponse;
+import kg.peaksoft.ebookm1.api.payload.client.ClientRequest;
+import kg.peaksoft.ebookm1.api.payload.client.ClientResponse;
 import kg.peaksoft.ebookm1.db.entity.security.User;
 import kg.peaksoft.ebookm1.db.mapper.ClientEditMapper;
 import kg.peaksoft.ebookm1.db.mapper.ClientViewMapper;

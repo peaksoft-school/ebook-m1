@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.db.mapper;
 
-import kg.peaksoft.ebookm1.api.payload.dto.book.BookResponse;
+import kg.peaksoft.ebookm1.api.payload.book.BookResponse;
 import kg.peaksoft.ebookm1.db.entity.Book;
 import kg.peaksoft.ebookm1.db.repository.BookRepository;
 import lombok.RequiredArgsConstructor;

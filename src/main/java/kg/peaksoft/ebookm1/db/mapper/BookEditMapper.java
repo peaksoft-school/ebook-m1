@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.db.mapper;
 
-import kg.peaksoft.ebookm1.api.payload.dto.book.BookRequest;
+import kg.peaksoft.ebookm1.api.payload.book.BookRequest;
 import kg.peaksoft.ebookm1.db.entity.Book;
 import org.springframework.stereotype.Component;
 

@@ -2,7 +2,7 @@ package kg.peaksoft.ebookm1.api.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import kg.peaksoft.ebookm1.api.payload.dto.book.BookResponseView;
+import kg.peaksoft.ebookm1.api.payload.book.BookResponseView;
 import kg.peaksoft.ebookm1.db.entity.Book;
 import kg.peaksoft.ebookm1.db.services.BookService;
 import lombok.RequiredArgsConstructor;

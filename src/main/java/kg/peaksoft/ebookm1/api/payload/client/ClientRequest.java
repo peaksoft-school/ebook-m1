@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.api.payload.dto.client;
+package kg.peaksoft.ebookm1.api.payload.client;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

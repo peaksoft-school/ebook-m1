@@ -1,7 +1,7 @@
 package kg.peaksoft.ebookm1.db.services;
 
-import kg.peaksoft.ebookm1.api.payload.dto.basket.BasketRequest;
-import kg.peaksoft.ebookm1.api.payload.dto.basket.BasketResponse;
+import kg.peaksoft.ebookm1.api.payload.basket.BasketRequest;
+import kg.peaksoft.ebookm1.api.payload.basket.BasketResponse;
 import kg.peaksoft.ebookm1.db.entity.Book;
 import kg.peaksoft.ebookm1.db.entity.Basket;
 import kg.peaksoft.ebookm1.db.entity.HistoryOperation;

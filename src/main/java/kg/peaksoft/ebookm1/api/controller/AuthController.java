@@ -2,12 +2,12 @@ package kg.peaksoft.ebookm1.api.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import kg.peaksoft.ebookm1.api.payload.dto.auth.AuthRequest;
-import kg.peaksoft.ebookm1.api.payload.dto.auth.AuthResponse;
-import kg.peaksoft.ebookm1.api.payload.dto.client.ClientRequest;
-import kg.peaksoft.ebookm1.api.payload.dto.client.ClientResponse;
-import kg.peaksoft.ebookm1.api.payload.dto.vendor.VendorRequest;
-import kg.peaksoft.ebookm1.api.payload.dto.vendor.VendorResponse;
+import kg.peaksoft.ebookm1.api.payload.auth.AuthRequest;
+import kg.peaksoft.ebookm1.api.payload.auth.AuthResponse;
+import kg.peaksoft.ebookm1.api.payload.client.ClientRequest;
+import kg.peaksoft.ebookm1.api.payload.client.ClientResponse;
+import kg.peaksoft.ebookm1.api.payload.vendor.VendorRequest;
+import kg.peaksoft.ebookm1.api.payload.vendor.VendorResponse;
 import kg.peaksoft.ebookm1.config.security.JwtTokenUtil;
 import kg.peaksoft.ebookm1.db.entity.security.User;
 import kg.peaksoft.ebookm1.db.mapper.AuthMapper;

@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.api.payload.dto.book;
+package kg.peaksoft.ebookm1.api.payload.book;
 
 import lombok.*;
 

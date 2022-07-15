@@ -1,22 +1,20 @@
-package kg.peaksoft.ebookm1.api.payload.dto.promocode;
+package kg.peaksoft.ebookm1.api.payload.wishlist;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import kg.peaksoft.ebookm1.db.entity.Book;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class PromocodeResponse {
+public class WishListResponse {
 
     private Long id;
-    private String promoName;
-    private int amountOfPromo;
-    private LocalDate startingDay;
-    private LocalDate finishingDay;
-    private List<Book> bookList;
+    private LocalDate createdDate;
+    private Book book;
+    private Long clientId;
 }

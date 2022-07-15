@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.api.payload.dto.book;
+package kg.peaksoft.ebookm1.api.payload.book;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -6,7 +6,6 @@ import kg.peaksoft.ebookm1.db.enums.BookLanguage;
 import kg.peaksoft.ebookm1.db.enums.Genre;
 import kg.peaksoft.ebookm1.db.enums.RequestStatus;
 import kg.peaksoft.ebookm1.db.enums.TypeOfBook;
-import kg.peaksoft.ebookm1.db.entity.Promocode;
 import lombok.*;
 
 @Getter
@@ -15,9 +14,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class BookResponse {
+public class BookRequest {
 
-    private Long id;
     private String image;
     private String title;
     private String author;
@@ -31,11 +29,12 @@ public class BookResponse {
     private int amountOfBooks;
     private int discount;
     private Boolean bestseller;
-    private Promocode promocode;
+    private String audioBookFragment;
+    private String eBookFragment;
+    private String paperBookFragment;
     private RequestStatus status;
     private String comments;
     private Genre genreEnum;
     private TypeOfBook typeOfBook;
-    private Long day;
     private Double basketPrice;
 }

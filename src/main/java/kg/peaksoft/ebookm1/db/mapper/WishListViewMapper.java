@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.db.mapper;
 
-import kg.peaksoft.ebookm1.api.payload.dto.wishlist.WishListResponse;
+import kg.peaksoft.ebookm1.api.payload.wishlist.WishListResponse;
 import kg.peaksoft.ebookm1.db.entity.WishList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

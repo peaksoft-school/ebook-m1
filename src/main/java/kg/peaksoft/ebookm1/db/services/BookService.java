@@ -1,8 +1,8 @@
 package kg.peaksoft.ebookm1.db.services;
 
-import kg.peaksoft.ebookm1.api.payload.dto.book.BookRequest;
-import kg.peaksoft.ebookm1.api.payload.dto.book.BookResponse;
-import kg.peaksoft.ebookm1.api.payload.dto.book.BookResponseView;
+import kg.peaksoft.ebookm1.api.payload.book.BookRequest;
+import kg.peaksoft.ebookm1.api.payload.book.BookResponse;
+import kg.peaksoft.ebookm1.api.payload.book.BookResponseView;
 import kg.peaksoft.ebookm1.db.entity.Book;
 import kg.peaksoft.ebookm1.db.entity.security.User;
 import kg.peaksoft.ebookm1.db.enums.Genre;

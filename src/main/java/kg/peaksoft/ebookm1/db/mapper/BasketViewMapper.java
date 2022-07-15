@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.db.mapper;
 
-import kg.peaksoft.ebookm1.api.payload.dto.basket.BasketResponse;
+import kg.peaksoft.ebookm1.api.payload.basket.BasketResponse;
 import kg.peaksoft.ebookm1.db.entity.Basket;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
