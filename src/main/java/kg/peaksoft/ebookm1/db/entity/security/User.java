@@ -44,7 +44,6 @@ public class User implements UserDetails {
     @JsonIgnore//fetch = FetchType.LAZY
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Book> books;
-
     @JsonIgnore
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
             CascadeType.DETACH}, fetch = FetchType.EAGER)
