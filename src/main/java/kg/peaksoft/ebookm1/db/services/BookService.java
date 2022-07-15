@@ -1,17 +1,17 @@
 package kg.peaksoft.ebookm1.db.services;
 
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookRequest;
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookResponse;
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.book.BookResponseView;
-import kg.peaksoft.ebookm1.db.entities.book.Book;
-import kg.peaksoft.ebookm1.db.entities.security.User;
+import kg.peaksoft.ebookm1.api.payload.dto.book.BookRequest;
+import kg.peaksoft.ebookm1.api.payload.dto.book.BookResponse;
+import kg.peaksoft.ebookm1.api.payload.dto.book.BookResponseView;
+import kg.peaksoft.ebookm1.db.entity.Book;
+import kg.peaksoft.ebookm1.db.entity.security.User;
 import kg.peaksoft.ebookm1.db.enums.Genre;
 import kg.peaksoft.ebookm1.db.enums.RequestStatus;
 import kg.peaksoft.ebookm1.db.enums.TypeOfBook;
-import kg.peaksoft.ebookm1.db.mappers.book.BookViewMapper;
-import kg.peaksoft.ebookm1.db.repositories.BookRepository;
-import kg.peaksoft.ebookm1.db.repositories.UserRepository;
-import kg.peaksoft.ebookm1.db.repositories.specifications.BookSpecification;
+import kg.peaksoft.ebookm1.db.mapper.BookViewMapper;
+import kg.peaksoft.ebookm1.db.repository.BookRepository;
+import kg.peaksoft.ebookm1.db.repository.UserRepository;
+import kg.peaksoft.ebookm1.db.repository.specifications.BookSpecification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;

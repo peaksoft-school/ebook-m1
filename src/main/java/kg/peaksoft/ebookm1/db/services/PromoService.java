@@ -1,12 +1,12 @@
 package kg.peaksoft.ebookm1.db.services;
 
-import kg.peaksoft.ebookm1.api.controllers.payloads.dto.promocode.PromocodeResponse;
-import kg.peaksoft.ebookm1.db.entities.book.Book;
-import kg.peaksoft.ebookm1.db.entities.others.Promocode;
+import kg.peaksoft.ebookm1.api.payload.dto.promocode.PromocodeResponse;
+import kg.peaksoft.ebookm1.db.entity.Book;
+import kg.peaksoft.ebookm1.db.entity.Promocode;
 import kg.peaksoft.ebookm1.db.enums.RequestStatus;
-import kg.peaksoft.ebookm1.db.mappers.promocode.PromocodeViewMapper;
-import kg.peaksoft.ebookm1.db.repositories.BookRepository;
-import kg.peaksoft.ebookm1.db.repositories.PromocodeRepository;
+import kg.peaksoft.ebookm1.db.mapper.PromocodeViewMapper;
+import kg.peaksoft.ebookm1.db.repository.BookRepository;
+import kg.peaksoft.ebookm1.db.repository.PromocodeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
