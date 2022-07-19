@@ -3,6 +3,7 @@ package kg.peaksoft.ebookm1.config;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,17 +13,29 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class S3Config {
 
-    @Value("${accessKey}")
-    private String accessKey;
-    @Value("${secretKey}")
-    private String secretKey;
-    @Value("${region}")
-    private String region;
+//    @Value("${accessKey}")
+//    private String accessKey;
+//    @Value("${secretKey}")
+//    private String secretKey;
+//    @Value("${region}")
+//    private String region;
+
+    public static final AWSCredentials awsCredentials = new BasicAWSCredentials(
+            "AKIA6NUGKXQBOKNDLUXK",
+            "8ldmGdiIw/XtifjuOmI04vOTJJhpGtAy2t5WX6ql"
+    );
 
     @Bean
-    public AmazonS3 s3() {
-        AWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
-        return AmazonS3ClientBuilder.standard().withRegion(region).withCredentials
-                (new AWSStaticCredentialsProvider(awsCredentials)).build();
+    AmazonS3 generateS3Client() {
+        return AmazonS3ClientBuilder.standard().withCredentials(
+                        new AWSStaticCredentialsProvider(awsCredentials))
+                .withRegion(Regions.EU_CENTRAL_1).build();
     }
+
+//    @Bean
+//    public AmazonS3 s3() {
+//        AWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
+//        return AmazonS3ClientBuilder.standard().withRegion(region).withCredentials
+//                (new AWSStaticCredentialsProvider(awsCredentials)).build();
+//    }
 }
