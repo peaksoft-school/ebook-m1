@@ -21,7 +21,7 @@ public class AWSS3Service implements FileServiceImpl {
 
     @Value("${bucketName}")
     private String bucketName;
-    private AmazonS3 s3;
+    private final AmazonS3 s3;
 
     public AWSS3Service(AmazonS3 s3) {
         this.s3 = s3;
