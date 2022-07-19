@@ -47,7 +47,7 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
           use_existing_version_if_available: false
           application_name: eBook
-          environment_name: eBook-env
+          environment_name: eBook-env-1
           version_label: ${{ github.SHA }}
           region: eu-central-1
           deployment_package: ebook-m1.jar
