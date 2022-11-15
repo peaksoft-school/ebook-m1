@@ -40,9 +40,9 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/client")
+@RequestMapping("api/client")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
-@Tag(name = "Client", description = "The Client API")
+@Tag(name = "Client API", description = "The client endpoints")
 public class ClientController {
 
     private final ClientService userService;
