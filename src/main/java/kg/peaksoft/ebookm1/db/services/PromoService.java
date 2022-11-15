@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.db.services;
 
-import kg.peaksoft.ebookm1.api.payload.promocode.PromocodeResponse;
+import kg.peaksoft.ebookm1.api.payload.promocode.PromoCodeResponse;
 import kg.peaksoft.ebookm1.db.entity.Book;
 import kg.peaksoft.ebookm1.db.entity.Promocode;
 import kg.peaksoft.ebookm1.db.enums.RequestStatus;
@@ -25,7 +25,7 @@ public class PromoService {
     private final BookRepository bookRepository;
 
 
-    public PromocodeResponse getPromocodeByName(String name) {
+    public PromoCodeResponse getPromocodeByName(String name) {
         String text = name == null ? " " : name;
         Promocode promocode = promocodeRepository.findPromocodeByPromoName(text.toLowerCase(Locale.ROOT));
         List<Book> book = bookRepository.findAllByStatus(RequestStatus.APPROVED);

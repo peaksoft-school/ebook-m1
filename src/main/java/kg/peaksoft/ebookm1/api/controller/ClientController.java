@@ -7,7 +7,7 @@ import kg.peaksoft.ebookm1.api.payload.basket.BasketResponse;
 import kg.peaksoft.ebookm1.api.payload.book.BookResponse;
 import kg.peaksoft.ebookm1.api.payload.client.ClientRequest;
 import kg.peaksoft.ebookm1.api.payload.client.ClientResponse;
-import kg.peaksoft.ebookm1.api.payload.promocode.PromocodeResponse;
+import kg.peaksoft.ebookm1.api.payload.promocode.PromoCodeResponse;
 import kg.peaksoft.ebookm1.api.payload.wishlist.WishListRequest;
 import kg.peaksoft.ebookm1.api.payload.wishlist.WishListResponse;
 import kg.peaksoft.ebookm1.db.enums.Genre;
@@ -184,7 +184,7 @@ public class ClientController {
 
     @Operation(summary = "Method can get all books with promocode", description = "The CLIENT can get all book with promocode")
     @GetMapping("promo-code-activation")
-    public PromocodeResponse activationOfPromoCode(@RequestParam(value = "promoName", required = false) String promoName
+    public PromoCodeResponse activationOfPromoCode(@RequestParam(value = "promoName", required = false) String promoName
     ) {
         log.info("Promo code is activated: ");
         return promoService.getPromocodeByName(promoName);
