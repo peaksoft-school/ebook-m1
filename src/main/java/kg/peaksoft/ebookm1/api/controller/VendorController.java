@@ -12,7 +12,6 @@ import kg.peaksoft.ebookm1.db.services.VendorService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +28,6 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/vendors")
-@PreAuthorize("hasAnyAuthority('ROLE_VENDOR')")
 @Tag(name = "Vendor API", description = "The Vendor endpoints")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 public class VendorController {
@@ -46,7 +44,6 @@ public class VendorController {
     }
 
     @Operation(summary = "Method delete by id", description = "User with role ADMIN and VENDOR can deleted")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @DeleteMapping("{id}")
     public VendorResponse deleteById(@PathVariable Long id) {
         log.info("Inside Vendor controller delete vendor by id method");
@@ -69,7 +66,6 @@ public class VendorController {
     }
 
     @Operation(summary = "Method to delete book", description = "Vendor and ADMIN can delete book from his book list")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @DeleteMapping("book/{vendorId}/{bookId}")
     public VendorResponse deleteBook(@PathVariable long vendorId, @PathVariable long bookId) {
         log.info("Inside the Vendor controller is a method for deleting their books");
@@ -99,7 +95,6 @@ public class VendorController {
     }
 
     @Operation(summary = "Method to delete book", description = "Vendor and ADMIN can delete promo code from his book list")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @DeleteMapping("promo/{vendorId}/{promoCodeId}")
     public VendorResponse deletePromoCode(@PathVariable long vendorId, @PathVariable long promoCodeId) {
         log.info("Inside the Vendor controller, delete the promo code of the vendor method");
