@@ -1,6 +1,6 @@
 package kg.peaksoft.ebookm1.db.mapper;
 
-import kg.peaksoft.ebookm1.api.payload.promocode.PromocodeRequest;
+import kg.peaksoft.ebookm1.api.payload.promocode.PromoCodeRequest;
 import kg.peaksoft.ebookm1.db.entity.Promocode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class PromocodeEditMapper {
 
-    public Promocode create(PromocodeRequest promocodeRequest) {
+    public Promocode create(PromoCodeRequest promocodeRequest) {
         Promocode promocode = new Promocode();
         promocode.setPromoName(promocodeRequest.getPromoName());
         promocode.setAmountOfPromo(promocodeRequest.getAmountOfPromo());
@@ -18,7 +18,7 @@ public class PromocodeEditMapper {
         return promocode;
     }
 
-    public Promocode update(Promocode promocode, PromocodeRequest promocodeRequest) {
+    public Promocode update(Promocode promocode, PromoCodeRequest promocodeRequest) {
         promocode.setPromoName(promocodeRequest.getPromoName());
         promocode.setAmountOfPromo(promocodeRequest.getAmountOfPromo());
         promocode.setStartingDay(promocodeRequest.getStartingDay());

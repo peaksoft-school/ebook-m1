@@ -3,7 +3,7 @@ package kg.peaksoft.ebookm1.db.services;
 import kg.peaksoft.ebookm1.db.enums.RequestStatus;
 import kg.peaksoft.ebookm1.db.mapper.BookEditMapper;
 import kg.peaksoft.ebookm1.api.payload.book.BookRequest;
-import kg.peaksoft.ebookm1.api.payload.promocode.PromocodeRequest;
+import kg.peaksoft.ebookm1.api.payload.promocode.PromoCodeRequest;
 import kg.peaksoft.ebookm1.api.payload.vendor.VendorRequest;
 import kg.peaksoft.ebookm1.api.payload.vendor.VendorResponse;
 import kg.peaksoft.ebookm1.db.entity.Promocode;
@@ -106,7 +106,7 @@ public class VendorService {
     //  addBook button function section  ends  ==========================================================
 
     // addPromocode section starts   ====================================================
-    public VendorResponse addPromocode(PromocodeRequest promocodeRequest, Long id) {
+    public VendorResponse addPromocode(PromoCodeRequest promocodeRequest, Long id) {
         Promocode promocode = promocodeEditMapper.create(promocodeRequest);
         User user = repository.findById(id).get();
         List<Book> bookList = user.getBooks();
@@ -120,7 +120,7 @@ public class VendorService {
         return viewMapper.viewVendor(user);
     }
 
-    public VendorResponse updatePromocode(PromocodeRequest promocodeRequest, Long vendorId, Long promoCodeId) {
+    public VendorResponse updatePromocode(PromoCodeRequest promocodeRequest, Long vendorId, Long promoCodeId) {
         User user = repository.findById(vendorId).get();
         Promocode promocode = promocodeRepository.findById(promoCodeId).get();
         promocodeEditMapper.update(promocode, promocodeRequest);

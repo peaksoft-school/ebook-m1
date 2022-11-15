@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.ebookm1.api.payload.book.BookRequest;
 import kg.peaksoft.ebookm1.api.payload.book.BookResponse;
-import kg.peaksoft.ebookm1.api.payload.promocode.PromocodeRequest;
+import kg.peaksoft.ebookm1.api.payload.promocode.PromoCodeRequest;
 import kg.peaksoft.ebookm1.api.payload.vendor.VendorRequest;
 import kg.peaksoft.ebookm1.api.payload.vendor.VendorResponse;
 import kg.peaksoft.ebookm1.db.services.BookService;
@@ -86,14 +86,14 @@ public class VendorController {
     // Promo code
     @Operation(summary = "Method to add new promo code", description = "Vendor can add new promo code to his profile")
     @PostMapping("promo/{id}")
-    public VendorResponse addPromoCode(@PathVariable long id, @RequestBody PromocodeRequest promocodeRequest) {
+    public VendorResponse addPromoCode(@PathVariable long id, @RequestBody PromoCodeRequest promocodeRequest) {
         log.info("Inside Vendor controller add promo code to vendor method");
         return service.addPromocode(promocodeRequest, id);
     }
 
     @Operation(summary = "Method to update vendor's promo code", description = "Vendor can update his books from his promo code list")
     @PutMapping("promo/{vendorId}/{promoCodeId}")
-    public VendorResponse updatePromoCode(@PathVariable long vendorId, @PathVariable long promoCodeId, @RequestBody PromocodeRequest promocodeRequest) {
+    public VendorResponse updatePromoCode(@PathVariable long vendorId, @PathVariable long promoCodeId, @RequestBody PromoCodeRequest promocodeRequest) {
         log.info("Inside the Vendor controller, update the promo code of the vendor method");
         return service.updatePromocode(promocodeRequest, vendorId, promoCodeId);
     }
