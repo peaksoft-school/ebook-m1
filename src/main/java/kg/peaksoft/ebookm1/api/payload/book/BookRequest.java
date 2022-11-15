@@ -6,7 +6,11 @@ import kg.peaksoft.ebookm1.db.enums.BookLanguage;
 import kg.peaksoft.ebookm1.db.enums.Genre;
 import kg.peaksoft.ebookm1.db.enums.RequestStatus;
 import kg.peaksoft.ebookm1.db.enums.TypeOfBook;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -37,4 +41,5 @@ public class BookRequest {
     private Genre genreEnum;
     private TypeOfBook typeOfBook;
     private Double basketPrice;
+
 }
