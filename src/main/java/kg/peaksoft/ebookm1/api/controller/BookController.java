@@ -19,29 +19,29 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/books")
-@Tag(name = "Book", description = "The Book API")
+@RequestMapping("api/books")
+@Tag(name = "Book API", description = "The Book endpoints")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
+@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_VENDOR','ROLE_CLIENT')")
 public class BookController {
 
     private final BookService bookService;
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_VENDOR','ROLE_CLIENT')")
     @Operation(summary = "Allows to search all books from the database")
-    @GetMapping("/search")
-    public BookResponseView searchAndPagination(@RequestParam(name = "name", required = false)
-                                                        String name, @RequestParam int page) {
+    @GetMapping("search")
+    public BookResponseView searchAndPagination(@RequestParam(name = "name", required = false) String name,
+                                                @RequestParam int page) {
         log.info("Inside Book controller search and pagination book method");
         return bookService.searchAndPagination(name, page - 1);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_VENDOR','ROLE_CLIENT')")
     @Operation(summary = "Allows to sort all books from the database")
-    @GetMapping( "/sort/{pageNumber}/{pageSize}/{sortProperty}")
+    @GetMapping("sort/{pageNumber}/{pageSize}/{sortProperty}")
     public Page<Book> sortAndPagination(@PathVariable Integer pageNumber,
-                                     @PathVariable Integer pageSize,
-                                     @PathVariable String sortProperty) {
+                                        @PathVariable Integer pageSize,
+                                        @PathVariable String sortProperty) {
         log.info("Inside Book controller sort and pagination book method");
         return bookService.sortAndPagination(pageNumber, pageSize, sortProperty);
     }
+
 }
