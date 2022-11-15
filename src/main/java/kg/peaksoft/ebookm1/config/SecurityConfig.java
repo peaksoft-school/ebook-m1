@@ -1,5 +1,6 @@
-package kg.peaksoft.ebookm1.config.security;
+package kg.peaksoft.ebookm1.config;
 
+import kg.peaksoft.ebookm1.config.security.JwtTokenFilter;
 import kg.peaksoft.ebookm1.db.services.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +15,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SpringSecurity extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final ClientService userService;
     private final JwtTokenFilter jwtTokenFilter;
