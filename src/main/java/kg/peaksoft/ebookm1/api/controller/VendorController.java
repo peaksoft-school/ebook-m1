@@ -55,14 +55,14 @@ public class VendorController {
 
     // Books
     @Operation(summary = "Method to add new book", description = "Vendor can add new book to his profile")
-    @PostMapping("/book/{id}")
+    @PostMapping("book/{id}")
     public VendorResponse addBookToVendor(@PathVariable long id, @RequestBody BookRequest request) {
         log.info("Inside Vendor controller add book to vendor method");
         return service.addBookToVendor(request, id);
     }
 
     @Operation(summary = "Method to update vendor's book", description = "Vendor can update his books from his book list")
-    @PutMapping("/book/{vendorId}/{bookId}")
+    @PutMapping("book/{vendorId}/{bookId}")
     public VendorResponse updateBook(@PathVariable long vendorId, @PathVariable long bookId, @RequestBody BookRequest request) {
         log.info("Inside Vendor controller update book by id method");
         return service.updateBookVendor(vendorId, bookId, request);
@@ -70,14 +70,14 @@ public class VendorController {
 
     @Operation(summary = "Method to delete book", description = "Vendor and ADMIN can delete book from his book list")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @DeleteMapping("/book/{vendorId}/{bookId}")
+    @DeleteMapping("book/{vendorId}/{bookId}")
     public VendorResponse deleteBook(@PathVariable long vendorId, @PathVariable long bookId) {
         log.info("Inside the Vendor controller is a method for deleting their books");
         return service.deleteBookVendor(vendorId, bookId);
     }
 
     @Operation(summary = "Method get all vendor books", description = "Admin can to get all VENDOR'S books from the database")
-    @GetMapping("/vendor-books/{vendorId}")
+    @GetMapping("vendor-books/{vendorId}")
     public List<BookResponse> getAllVendorBooks(@PathVariable Long vendorId) {
         log.info("Inside the Vendor controller, method for getting all the books of vendor");
         return bookService.getAllVendorBooks(vendorId);
@@ -85,14 +85,14 @@ public class VendorController {
 
     // Promo code
     @Operation(summary = "Method to add new promo code", description = "Vendor can add new promo code to his profile")
-    @PostMapping("/promo/{id}")
+    @PostMapping("promo/{id}")
     public VendorResponse addPromoCode(@PathVariable long id, @RequestBody PromocodeRequest promocodeRequest) {
         log.info("Inside Vendor controller add promo code to vendor method");
         return service.addPromocode(promocodeRequest, id);
     }
 
     @Operation(summary = "Method to update vendor's promo code", description = "Vendor can update his books from his promo code list")
-    @PutMapping("/promo/{vendorId}/{promoCodeId}")
+    @PutMapping("promo/{vendorId}/{promoCodeId}")
     public VendorResponse updatePromoCode(@PathVariable long vendorId, @PathVariable long promoCodeId, @RequestBody PromocodeRequest promocodeRequest) {
         log.info("Inside the Vendor controller, update the promo code of the vendor method");
         return service.updatePromocode(promocodeRequest, vendorId, promoCodeId);
@@ -100,7 +100,7 @@ public class VendorController {
 
     @Operation(summary = "Method to delete book", description = "Vendor and ADMIN can delete promo code from his book list")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @DeleteMapping("/promo/{vendorId}/{promoCodeId}")
+    @DeleteMapping("promo/{vendorId}/{promoCodeId}")
     public VendorResponse deletePromoCode(@PathVariable long vendorId, @PathVariable long promoCodeId) {
         log.info("Inside the Vendor controller, delete the promo code of the vendor method");
         return service.deletePromocode(vendorId, promoCodeId);
