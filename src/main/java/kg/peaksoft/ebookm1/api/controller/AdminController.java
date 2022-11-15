@@ -29,10 +29,9 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "Admin API", description = "The admin endpoints")
-@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
-@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 @RequestMapping("api/admin")
+@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
+@Tag(name = "Admin API", description = "The admin endpoints")
 public class AdminController {
 
     private final VendorService vendorService;
