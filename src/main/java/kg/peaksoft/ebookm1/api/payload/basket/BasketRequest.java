@@ -15,4 +15,5 @@ public class BasketRequest {
     private Long bookId;
     private Integer quantity;
     private PurchaseStatus purchaseStatus;
+
 }
