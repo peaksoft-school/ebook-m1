@@ -15,7 +15,7 @@ public class BasketViewMapper {
     public BasketResponse viewBasket(Basket basket) {
         BasketResponse basketResponse = new BasketResponse();
         basketResponse.setBasketId(basket.getId());
-        basketResponse.setCreatedDate(basket.getCreatedDate());
+        basketResponse.setCreatedAt(basket.getCreatedDate());
         basketResponse.setBook(basket.getBook());
         basketResponse.setClientId(basket.getClient().getId());
         basketResponse.setQuantity(basket.getQuantity());
