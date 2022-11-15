@@ -1,8 +1,13 @@
 package kg.peaksoft.ebookm1.service;
 
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.*;
+import com.amazonaws.services.s3.model.ListObjectsV2Result;
+import com.amazonaws.services.s3.model.PutObjectResult;
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.amazonaws.util.IOUtils;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import kg.peaksoft.ebookm1.db.repository.FileServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,20 +17,19 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class StorageService implements FileServiceImpl {
 
     @Value("${application.bucket.name}")
     private String bucketName;
     private final AmazonS3 s3;
-
-    public StorageService(AmazonS3 s3) {
-        this.s3 = s3;
-    }
 
     @Override
     public String saveFile(MultipartFile file) {
@@ -47,7 +51,7 @@ public class StorageService implements FileServiceImpl {
         S3ObjectInputStream objectContent = object.getObjectContent();
         try {
             byte[] content = IOUtils.toByteArray(objectContent);
-            log.info("The file (photo, video, audio, etc.) has been downloaded successfully: {}", content + " - content");
+            log.info("The file (photo, video, audio, etc.) has been downloaded successfully: {}", Arrays.toString(content) + " - content");
             return content;
         } catch (IOException e) {
             log.error("The file (photo, video, audio, etc.) could not be downloaded: {}", e.getMessage());
@@ -71,10 +75,11 @@ public class StorageService implements FileServiceImpl {
     }
 
     private File convertMultiPartToFile(MultipartFile file) throws IOException {
-        File convFile = new File(file.getOriginalFilename());
+        File convFile = new File(Objects.requireNonNull(file.getOriginalFilename()));
         FileOutputStream fos = new FileOutputStream(convFile);
         fos.write(file.getBytes());
         fos.close();
         return convFile;
     }
+
 }
