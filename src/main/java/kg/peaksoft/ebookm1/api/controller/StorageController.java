@@ -32,7 +32,7 @@ import java.util.Objects;
 @RequestMapping("api/files")
 @Tag(name = "AWS S3 API", description = "The AWS S3 endpoints")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
-public class FileController {
+public class StorageController {
 
     private final AWSS3Service s3Service;
     private final AmazonS3 s3;
