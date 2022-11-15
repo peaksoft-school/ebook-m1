@@ -20,7 +20,6 @@ import kg.peaksoft.ebookm1.db.services.WishListService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,7 +48,6 @@ public class ClientController {
     private final PromoService promoService;
 
     @Operation(summary = "Method update", description = "A user who has only the CLIENT role can update")
-    @PreAuthorize("hasAnyAuthority('ROLE_CLIENT')")
     @PutMapping("{id}")
     public ClientResponse updateById(@PathVariable long id, @RequestBody ClientRequest request) {
         log.info("Inside the client controller, the update method client by id");
@@ -57,7 +55,6 @@ public class ClientController {
     }
 
     @Operation(summary = "Method delete by id", description = "Users with the ADMIN and CLIENT roles can delete")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_CLIENT')")
     @DeleteMapping("{id}")
     public ClientResponse deleteById(@PathVariable long id) {
         log.info("Inside the client controller, the delete method  client by id");
@@ -90,7 +87,6 @@ public class ClientController {
 
     //Basket
     @Operation(summary = "Add book to basket", description = "CLIENT can add books to the basket")
-    @PreAuthorize("hasAnyAuthority('ROLE_CLIENT')")
     @PostMapping("baskets/{clientId}")
     public BasketResponse addBasket(@RequestBody BasketRequest request,
                                     @PathVariable long clientId) {
@@ -99,7 +95,6 @@ public class ClientController {
     }
 
     @Operation(summary = "Update basket", description = "CLIENT can update his basket")
-    @PreAuthorize("hasAnyAuthority('ROLE_CLIENT')")
     @PutMapping("baskets/{clientId}")
     public BasketResponse updateBasket(@RequestBody BasketRequest request,
                                        @PathVariable long clientId) {
@@ -108,7 +103,6 @@ public class ClientController {
     }
 
     @Operation(summary = "Get basket by ID", description = "The ADMIN and the CLIENT can get the basket by ID")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_CLIENT')")
     @GetMapping("baskets/{basketId}")
     public BasketResponse getBasketById(@PathVariable long basketId) {
         log.info("Inside the client controller, method getting basket by id");
@@ -116,7 +110,6 @@ public class ClientController {
     }
 
     @Operation(summary = "Method get all baskets", description = "The CLIENT and the ADMIN can get all the baskets")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_CLIENT')")
     @GetMapping("baskets")
     public List<BasketResponse> getAllBaskets() {
         log.info("Inside the client controller, method get all baskets");
@@ -124,7 +117,6 @@ public class ClientController {
     }
 
     @Operation(summary = "Method delete basket by ID", description = "The CLIENT can delete his basket")
-    @PreAuthorize("hasAnyAuthority('ROLE_CLIENT')")
     @DeleteMapping("baskets/{basketId}")
     public void deleteBasketById(@PathVariable long basketId) {
         log.info("Inside the client controller, method delete basket by id");
@@ -133,7 +125,6 @@ public class ClientController {
 
     //WishLists
     @Operation(summary = "Add wishlist to client", description = "CLIENT can add books to the wishlist")
-    @PreAuthorize("hasAnyAuthority('ROLE_CLIENT')")
     @PostMapping("wishlists/{clientId}")
     public WishListResponse addWishlist(@RequestBody WishListRequest request,
                                         @PathVariable long clientId) {
@@ -142,7 +133,6 @@ public class ClientController {
     }
 
     @Operation(summary = "Method get wishlist by ID", description = "The ADMIN and the CLIENT can get the wishlist by ID")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_CLIENT')")
     @GetMapping("wishlists/{wishlistId}")
     public WishListResponse getWishListById(@PathVariable long wishlistId) {
         log.info("Inside the client controller, method getting wishlist by id");
@@ -150,7 +140,6 @@ public class ClientController {
     }
 
     @Operation(summary = "Method get all wishlists", description = "The CLIENT and the ADMIN can get all the wishlists")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_CLIENT')")
     @GetMapping("wishlists")
     public List<WishListResponse> getAllWishLists() {
         log.info("Inside the client controller, get all wishlists method");
@@ -158,7 +147,6 @@ public class ClientController {
     }
 
     @Operation(summary = "Method delete wishlist by ID", description = "The CLIENT can delete his wishlist")
-    @PreAuthorize("hasAnyAuthority('ROLE_CLIENT')")
     @DeleteMapping("wishlists/{wishlistId}")
     public void deleteWishListById(@PathVariable long wishlistId) {
         log.info("Inside the client controller, method delete wishlist by id");
@@ -167,7 +155,6 @@ public class ClientController {
 
     //HistoryOperation
     @Operation(summary = "CLIENT's history operations", description = "The CLIENT and the ADMIN can get all the CLIENT's histories")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_CLIENT')")
     @GetMapping("history/{clientId}")
     public ClientResponse getUserHistory(@PathVariable long clientId) {
         log.info("Inside the Client controller, the view client history method");
@@ -175,7 +162,6 @@ public class ClientController {
     }
 
     @Operation(summary = "Method delete history by ID", description = "The CLIENT and ADMIN can delete history operation")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_CLIENT')")
     @DeleteMapping("history/{clientId}")
     public void deleteClientHistory(@PathVariable long clientId) {
         log.info("Inside the Client controller, the delete client history method");
