@@ -9,7 +9,7 @@ import java.util.Date;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ErrorDTO {
+public class ExceptionResponse {
 
     private Date timestamp;
     private String message;
