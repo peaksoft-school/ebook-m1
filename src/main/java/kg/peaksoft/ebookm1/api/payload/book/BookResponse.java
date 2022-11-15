@@ -7,7 +7,11 @@ import kg.peaksoft.ebookm1.db.enums.Genre;
 import kg.peaksoft.ebookm1.db.enums.RequestStatus;
 import kg.peaksoft.ebookm1.db.enums.TypeOfBook;
 import kg.peaksoft.ebookm1.db.entity.Promocode;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -38,4 +42,5 @@ public class BookResponse {
     private TypeOfBook typeOfBook;
     private Long day;
     private Double basketPrice;
+
 }
