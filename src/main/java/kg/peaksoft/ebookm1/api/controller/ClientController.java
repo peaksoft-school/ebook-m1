@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.ebookm1.api.payload.basket.BasketRequest;
 import kg.peaksoft.ebookm1.api.payload.basket.BasketResponse;
 import kg.peaksoft.ebookm1.api.payload.book.BookResponse;
-import kg.peaksoft.ebookm1.api.payload.book.BookResponseView;
 import kg.peaksoft.ebookm1.api.payload.client.ClientRequest;
 import kg.peaksoft.ebookm1.api.payload.client.ClientResponse;
 import kg.peaksoft.ebookm1.api.payload.promocode.PromocodeResponse;
@@ -88,14 +87,6 @@ public class ClientController {
     public BookResponse getBookById(@PathVariable Long id) {
         log.info("Inside the client controller, method getting book by id");
         return bookService.getBookById(id);
-    }
-
-    @Operation(summary = "Allows to search all books from the database")
-    @GetMapping("search")
-    public BookResponseView searchAndPagination(@RequestParam(name = "name", required = false) String name,
-                                                @RequestParam(value = "page", required = false) Integer page) {
-        log.info("Inside the client controller, method for searching and pagination");
-        return bookService.searchAndPagination(name, page - 1);
     }
 
     //Basket
