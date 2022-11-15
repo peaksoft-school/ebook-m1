@@ -11,4 +11,5 @@ import lombok.Setter;
 public class HistoryRequest {
 
     private Long userId;
+
 }
