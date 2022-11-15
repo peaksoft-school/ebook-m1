@@ -76,8 +76,7 @@ public class ClientController {
     @GetMapping("books/filter")
     public List<BookResponse> getAllApprovedBookByGenreAndType(@RequestParam(value = "genreEnum", required = false) Genre genreEnum,
                                                                @RequestParam(value = "typeOfBook", required = false) TypeOfBook typeOfBook,
-                                                               @RequestParam(value = "page", required = false) int page
-    ) {
+                                                               @RequestParam(value = "page", required = false) int page) {
         log.info("Inside the client controller, method for filtering approved books by Genre and Type");
         return bookService.getAllApprovedBookByGenreAndType(genreEnum, typeOfBook, page - 1);
     }
@@ -90,7 +89,7 @@ public class ClientController {
     }
 
     //Basket
-    @Operation(summary = "Add basket to client", description = "CLIENT can add books to the basket")
+    @Operation(summary = "Add book to basket", description = "CLIENT can add books to the basket")
     @PreAuthorize("hasAnyAuthority('ROLE_CLIENT')")
     @PostMapping("baskets/{clientId}")
     public BasketResponse addBasket(@RequestBody BasketRequest request,
@@ -99,7 +98,7 @@ public class ClientController {
         return basketService.addBasket(request, clientId);
     }
 
-    @Operation(summary = "Method update basket", description = "CLIENT can update his basket")
+    @Operation(summary = "Update basket", description = "CLIENT can update his basket")
     @PreAuthorize("hasAnyAuthority('ROLE_CLIENT')")
     @PutMapping("baskets/{clientId}")
     public BasketResponse updateBasket(@RequestBody BasketRequest request,
@@ -108,7 +107,7 @@ public class ClientController {
         return basketService.updateBasket(request, clientId);
     }
 
-    @Operation(summary = "Method get basket by ID", description = "The ADMIN and the CLIENT can get the basket by ID")
+    @Operation(summary = "Get basket by ID", description = "The ADMIN and the CLIENT can get the basket by ID")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_CLIENT')")
     @GetMapping("baskets/{basketId}")
     public BasketResponse getBasketById(@PathVariable long basketId) {
