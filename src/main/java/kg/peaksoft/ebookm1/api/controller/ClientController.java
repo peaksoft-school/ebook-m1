@@ -14,12 +14,26 @@ import kg.peaksoft.ebookm1.api.payload.wishlist.WishListResponse;
 import kg.peaksoft.ebookm1.db.entity.Book;
 import kg.peaksoft.ebookm1.db.enums.Genre;
 import kg.peaksoft.ebookm1.db.enums.TypeOfBook;
-import kg.peaksoft.ebookm1.db.services.*;
+import kg.peaksoft.ebookm1.db.services.BasketService;
+import kg.peaksoft.ebookm1.db.services.BookService;
+import kg.peaksoft.ebookm1.db.services.ClientService;
+import kg.peaksoft.ebookm1.db.services.PromoService;
+import kg.peaksoft.ebookm1.db.services.WishListService;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -67,7 +81,7 @@ public class ClientController {
     public List<BookResponse> getAllApprovedBookByGenreAndType(@RequestParam(value = "genreEnum", required = false) Genre genreEnum,
                                                                @RequestParam(value = "typeOfBook", required = false) TypeOfBook typeOfBook,
                                                                @RequestParam(value = "page", required = false) int page
-                                                               ) {
+    ) {
         log.info("Inside the client controller, method for filtering approved books by Genre and Type");
         return bookService.getAllApprovedBookByGenreAndType(genreEnum, typeOfBook, page - 1);
     }
@@ -192,18 +206,18 @@ public class ClientController {
 
     @GetMapping("/promo-code-activation")
     @Operation(summary = "Method can get all books with promocode", description = "The CLIENT can get all book with promocode")
-    public PromocodeResponse activationOfPromoCode(@RequestParam(value = "promoName",required = false)String promoName
-                                                          ){
+    public PromocodeResponse activationOfPromoCode(@RequestParam(value = "promoName", required = false) String promoName
+    ) {
         log.info("Promo code is activated: ");
         return promoService.getPromocodeByName(promoName);
     }
 
     @PutMapping("/promo-code-managing/{basketId}/{bookId}")
     @Operation(summary = "Method for managing discount operations", description = "The CLIENT can check promocode whether his promocode valid or not")
-    public BasketResponse basketPromo(@PathVariable(name = "basketId")long basketId,@PathVariable(name = "bookId") long bookId,
-                                        @RequestParam(name = "name")String name){
+    public BasketResponse basketPromo(@PathVariable(name = "basketId") long basketId, @PathVariable(name = "bookId") long bookId,
+                                      @RequestParam(name = "name") String name) {
         log.info("Promo code checked for validation: ");
-        return basketService.promoCodeCalculation(basketId,bookId,name);
+        return basketService.promoCodeCalculation(basketId, bookId, name);
     }
 
 }
