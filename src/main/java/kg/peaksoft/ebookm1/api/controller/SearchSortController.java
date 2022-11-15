@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "Book API", description = "The Book endpoints")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_VENDOR','ROLE_CLIENT')")
-public class BookController {
+public class SearchSortController {
 
     private final BookService bookService;
 
