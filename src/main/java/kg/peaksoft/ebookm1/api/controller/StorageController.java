@@ -3,7 +3,7 @@ package kg.peaksoft.ebookm1.api.controller;
 import com.amazonaws.services.s3.AmazonS3;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import kg.peaksoft.ebookm1.service.AWSS3Service;
+import kg.peaksoft.ebookm1.service.StorageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,7 +34,7 @@ import java.util.Objects;
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 public class StorageController {
 
-    private final AWSS3Service s3Service;
+    private final StorageService s3Service;
     private final AmazonS3 s3;
 
     @Value("application.bucket.name}")

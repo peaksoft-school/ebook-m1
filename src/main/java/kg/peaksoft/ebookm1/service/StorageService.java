@@ -17,13 +17,13 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-public class AWSS3Service implements FileServiceImpl {
+public class StorageService implements FileServiceImpl {
 
     @Value("${application.bucket.name}")
     private String bucketName;
     private final AmazonS3 s3;
 
-    public AWSS3Service(AmazonS3 s3) {
+    public StorageService(AmazonS3 s3) {
         this.s3 = s3;
     }
 
