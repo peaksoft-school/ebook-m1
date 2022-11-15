@@ -11,9 +11,11 @@ import java.util.Set;
 @Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class AuthResponse {
+
     private String jwtToken;
     private String message;
     private String firstName;
     private String email;
     private Set<String> authorities;
+
 }
