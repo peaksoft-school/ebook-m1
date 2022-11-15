@@ -28,10 +28,10 @@ public class VendorViewMapper {
         response.setLastName(vendor.getLastName());
         response.setPhoneNumber(vendor.getPhoneNumber());
         response.setEmail(vendor.getEmail());
-        response.setCreated(vendor.getCreated());
+        response.setCreatedAt(vendor.getCreated());
         response.setIsActive(true);
         response.setBookList(vendor.getBooks());
-        response.setPromocodes(vendor.getPromocode());
+        response.setPromoCodes(vendor.getPromocode());
         return response;
     }
 
@@ -50,7 +50,7 @@ public class VendorViewMapper {
         response.setLastName(vendor.getLastName());
         response.setPhoneNumber(vendor.getPhoneNumber());
         response.setEmail(vendor.getEmail());
-        response.setCreated(vendor.getCreated());
+        response.setCreatedAt(vendor.getCreated());
         return response;
     }
 }

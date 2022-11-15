@@ -4,7 +4,11 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import kg.peaksoft.ebookm1.db.entity.Book;
 import kg.peaksoft.ebookm1.db.entity.Promocode;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,8 +26,9 @@ public class VendorResponse {
     private String lastName;
     private String phoneNumber;
     private String email;
-    private LocalDateTime created;
+    private LocalDateTime createdAt;
     private Boolean isActive;
     private List<Book> bookList;
-    private List<Promocode> promocodes;
+    private List<Promocode> promoCodes;
+
 }
