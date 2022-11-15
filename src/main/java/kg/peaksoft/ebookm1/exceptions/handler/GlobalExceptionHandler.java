@@ -1,5 +1,8 @@
-package kg.peaksoft.ebookm1.exceptions;
+package kg.peaksoft.ebookm1.exceptions.handler;
 
+import kg.peaksoft.ebookm1.exceptions.ExceptionResponse;
+import kg.peaksoft.ebookm1.exceptions.MyException;
+import kg.peaksoft.ebookm1.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
