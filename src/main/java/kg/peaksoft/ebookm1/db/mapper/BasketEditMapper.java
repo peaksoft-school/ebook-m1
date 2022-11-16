@@ -14,4 +14,5 @@ public class BasketEditMapper {
         basket.setStatus(basketRequest.getPurchaseStatus());
         return basket;
     }
+
 }
