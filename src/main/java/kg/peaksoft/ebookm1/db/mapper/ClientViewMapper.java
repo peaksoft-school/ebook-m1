@@ -26,7 +26,7 @@ public class ClientViewMapper {
         }
         response.setFirstName(user.getFirstName());
         response.setEmail(user.getEmail());
-        response.setCreatedAt(user.getCreated());
+        response.setCreatedAt(user.getCreatedAt());
         response.setOperationList(user.getHistoryOperation());
         response.setActive(true);
         return response;

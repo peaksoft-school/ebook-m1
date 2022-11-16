@@ -25,7 +25,7 @@ public class ClientEditMapper {
         user.setFirstName(userRequest.getFirstName());
         user.setEmail(userRequest.getEmail());
         user.setPassword(user.getPassword());
-        user.setCreated(LocalDateTime.now());
+        user.setCreatedAt(LocalDateTime.now());
         user.setActive(true);
 
         List<Role> roles = new ArrayList<>();
@@ -39,7 +39,7 @@ public class ClientEditMapper {
         user.setFirstName(userRequest.getFirstName());
         user.setEmail(userRequest.getEmail());
         user.setPassword(user.getPassword());
-        user.setCreated(LocalDateTime.now());
+        user.setCreatedAt(LocalDateTime.now());
         user.setActive(true);
         return user;
     }

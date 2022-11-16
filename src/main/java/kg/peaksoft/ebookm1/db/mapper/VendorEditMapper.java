@@ -27,7 +27,7 @@ public class VendorEditMapper {
         vendor.setPhoneNumber(request.getPhoneNumber());
         vendor.setEmail(request.getEmail());
         vendor.setPassword(request.getPassword());
-        vendor.setCreated(LocalDateTime.now());
+        vendor.setCreatedAt(LocalDateTime.now());
         vendor.setActive(true);
         
         List<Role> roles = new ArrayList<>();
