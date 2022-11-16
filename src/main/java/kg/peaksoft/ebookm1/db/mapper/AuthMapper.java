@@ -31,4 +31,5 @@ public class AuthMapper {
         }
         authResponse.setAuthorities(authorities);
     }
+
 }
