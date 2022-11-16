@@ -21,12 +21,17 @@ import static javax.persistence.CascadeType.ALL;
 public class Basket {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "basket_gen")
+    @SequenceGenerator(name = "basket_gen", sequenceName = "basket_seq", allocationSize = 1)
     private Long id;
+
     private Integer quantity;
+
     private LocalDate createdDate;
+
     @Enumerated(EnumType.STRING)
     private PurchaseStatus status;
+
     private Double basketPrice;
 
     @ManyToOne(cascade = ALL)
@@ -46,4 +51,5 @@ public class Basket {
         this.status = status;
         this.basketPrice = book.getPrice();
     }
+
 }
