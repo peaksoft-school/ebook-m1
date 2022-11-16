@@ -1,4 +1,4 @@
-create sequence book_generator start 1 increment 1;
+create sequence book_seq start 1 increment 1;
 create sequence role_seq start 1 increment 1;
 create sequence user_seq start 1 increment 1;
 
