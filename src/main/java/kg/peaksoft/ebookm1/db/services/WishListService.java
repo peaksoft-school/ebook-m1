@@ -5,7 +5,7 @@ import kg.peaksoft.ebookm1.api.payload.wishlist.WishListResponse;
 import kg.peaksoft.ebookm1.db.entity.Book;
 import kg.peaksoft.ebookm1.db.entity.HistoryOperation;
 import kg.peaksoft.ebookm1.db.entity.WishList;
-import kg.peaksoft.ebookm1.db.entity.security.User;
+import kg.peaksoft.ebookm1.db.entity.User;
 import kg.peaksoft.ebookm1.db.mapper.WishListViewMapper;
 import kg.peaksoft.ebookm1.db.repository.BookRepository;
 import kg.peaksoft.ebookm1.db.repository.HistoryOperationRepository;

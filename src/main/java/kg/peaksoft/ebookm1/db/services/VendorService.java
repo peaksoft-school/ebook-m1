@@ -7,7 +7,7 @@ import kg.peaksoft.ebookm1.api.payload.promocode.PromoCodeRequest;
 import kg.peaksoft.ebookm1.api.payload.vendor.VendorRequest;
 import kg.peaksoft.ebookm1.api.payload.vendor.VendorResponse;
 import kg.peaksoft.ebookm1.db.entity.Promocode;
-import kg.peaksoft.ebookm1.db.entity.security.User;
+import kg.peaksoft.ebookm1.db.entity.User;
 import kg.peaksoft.ebookm1.db.entity.Book;
 import kg.peaksoft.ebookm1.db.mapper.PromocodeEditMapper;
 import kg.peaksoft.ebookm1.db.mapper.VendorEditMapper;

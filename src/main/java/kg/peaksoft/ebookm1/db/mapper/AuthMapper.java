@@ -2,7 +2,7 @@ package kg.peaksoft.ebookm1.db.mapper;
 
 import kg.peaksoft.ebookm1.api.payload.auth.AuthResponse;
 import kg.peaksoft.ebookm1.db.entity.Role;
-import kg.peaksoft.ebookm1.db.entity.security.User;
+import kg.peaksoft.ebookm1.db.entity.User;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;

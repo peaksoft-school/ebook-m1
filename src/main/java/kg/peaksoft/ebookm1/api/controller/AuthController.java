@@ -9,7 +9,7 @@ import kg.peaksoft.ebookm1.api.payload.client.ClientResponse;
 import kg.peaksoft.ebookm1.api.payload.vendor.VendorRequest;
 import kg.peaksoft.ebookm1.api.payload.vendor.VendorResponse;
 import kg.peaksoft.ebookm1.config.security.JwtTokenUtil;
-import kg.peaksoft.ebookm1.db.entity.security.User;
+import kg.peaksoft.ebookm1.db.entity.User;
 import kg.peaksoft.ebookm1.db.mapper.AuthMapper;
 import kg.peaksoft.ebookm1.db.repository.UserRepository;
 import kg.peaksoft.ebookm1.db.services.ClientService;

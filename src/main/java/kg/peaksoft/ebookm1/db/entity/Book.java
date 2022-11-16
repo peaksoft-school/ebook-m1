@@ -1,7 +1,6 @@
 package kg.peaksoft.ebookm1.db.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import kg.peaksoft.ebookm1.db.entity.security.User;
 import kg.peaksoft.ebookm1.db.enums.BookLanguage;
 import kg.peaksoft.ebookm1.db.enums.Genre;
 import kg.peaksoft.ebookm1.db.enums.RequestStatus;

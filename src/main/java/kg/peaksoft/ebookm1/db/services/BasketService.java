@@ -5,7 +5,7 @@ import kg.peaksoft.ebookm1.api.payload.basket.BasketResponse;
 import kg.peaksoft.ebookm1.db.entity.Book;
 import kg.peaksoft.ebookm1.db.entity.Basket;
 import kg.peaksoft.ebookm1.db.entity.HistoryOperation;
-import kg.peaksoft.ebookm1.db.entity.security.User;
+import kg.peaksoft.ebookm1.db.entity.User;
 import kg.peaksoft.ebookm1.db.enums.PurchaseStatus;
 import kg.peaksoft.ebookm1.db.mapper.BasketEditMapper;
 import kg.peaksoft.ebookm1.db.mapper.BasketViewMapper;

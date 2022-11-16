@@ -4,7 +4,7 @@ import kg.peaksoft.ebookm1.api.payload.book.BookRequest;
 import kg.peaksoft.ebookm1.api.payload.book.BookResponse;
 import kg.peaksoft.ebookm1.api.payload.book.BookResponseView;
 import kg.peaksoft.ebookm1.db.entity.Book;
-import kg.peaksoft.ebookm1.db.entity.security.User;
+import kg.peaksoft.ebookm1.db.entity.User;
 import kg.peaksoft.ebookm1.db.enums.Genre;
 import kg.peaksoft.ebookm1.db.enums.RequestStatus;
 import kg.peaksoft.ebookm1.db.enums.TypeOfBook;

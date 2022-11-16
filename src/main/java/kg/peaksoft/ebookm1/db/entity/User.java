@@ -1,4 +1,4 @@
-package kg.peaksoft.ebookm1.db.entity.security;
+package kg.peaksoft.ebookm1.db.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import kg.peaksoft.ebookm1.db.entity.*;
