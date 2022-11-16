@@ -6,7 +6,7 @@ import kg.peaksoft.ebookm1.api.payload.book.BookRequest;
 import kg.peaksoft.ebookm1.api.payload.promocode.PromoCodeRequest;
 import kg.peaksoft.ebookm1.api.payload.vendor.VendorRequest;
 import kg.peaksoft.ebookm1.api.payload.vendor.VendorResponse;
-import kg.peaksoft.ebookm1.db.entity.Promocode;
+import kg.peaksoft.ebookm1.db.entity.PromoCode;
 import kg.peaksoft.ebookm1.db.entity.User;
 import kg.peaksoft.ebookm1.db.entity.Book;
 import kg.peaksoft.ebookm1.db.mapper.PromocodeEditMapper;
@@ -107,11 +107,11 @@ public class VendorService {
 
     // addPromocode section starts   ====================================================
     public VendorResponse addPromocode(PromoCodeRequest promocodeRequest, Long id) {
-        Promocode promocode = promocodeEditMapper.create(promocodeRequest);
+        PromoCode promocode = promocodeEditMapper.create(promocodeRequest);
         User user = repository.findById(id).get();
         List<Book> bookList = user.getBooks();
         for (Book book : bookList) {
-            book.setPromocode(promocode);
+            book.setPromoCode(promocode);
         }
         promocode.setUser(user);
         promocodeRepository.save(promocode);
@@ -122,11 +122,11 @@ public class VendorService {
 
     public VendorResponse updatePromocode(PromoCodeRequest promocodeRequest, Long vendorId, Long promoCodeId) {
         User user = repository.findById(vendorId).get();
-        Promocode promocode = promocodeRepository.findById(promoCodeId).get();
+        PromoCode promocode = promocodeRepository.findById(promoCodeId).get();
         promocodeEditMapper.update(promocode, promocodeRequest);
         List<Book> bookList = user.getBooks();
         for (Book book : bookList) {
-            book.setPromocode(promocode);
+            book.setPromoCode(promocode);
         }
         promocode.setUser(user);
         promocodeRepository.save(promocode);
@@ -137,7 +137,7 @@ public class VendorService {
 
     public VendorResponse deletePromocode(Long vendorId, Long promoCodeId) {
         User user = repository.findById(vendorId).get();
-        Promocode promocode = promocodeRepository.findById(promoCodeId).get();
+        PromoCode promocode = promocodeRepository.findById(promoCodeId).get();
         promocodeRepository.delete(promocode);
         repository.save(user);
         log.info("The seller has successfully deleted the promo code: {}", promocode.getPromoName());

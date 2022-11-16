@@ -2,11 +2,11 @@ package kg.peaksoft.ebookm1.api.payload.book;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import kg.peaksoft.ebookm1.db.entity.PromoCode;
 import kg.peaksoft.ebookm1.db.enums.BookLanguage;
 import kg.peaksoft.ebookm1.db.enums.Genre;
 import kg.peaksoft.ebookm1.db.enums.RequestStatus;
 import kg.peaksoft.ebookm1.db.enums.TypeOfBook;
-import kg.peaksoft.ebookm1.db.entity.Promocode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,7 +35,7 @@ public class BookResponse {
     private int amountOfBooks;
     private int discount;
     private Boolean bestseller;
-    private Promocode promocode;
+    private PromoCode promocode;
     private RequestStatus status;
     private String comments;
     private Genre genreEnum;

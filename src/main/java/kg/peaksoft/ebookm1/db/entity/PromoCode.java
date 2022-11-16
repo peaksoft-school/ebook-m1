@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Promocode {
+public class PromoCode {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +30,7 @@ public class Promocode {
     @JsonIgnore
     private User user;
 
-    @OneToMany(mappedBy = "promocode")
+    @OneToMany(mappedBy = "promoCode")
     @JsonIgnore
     List<Book> books;
 }

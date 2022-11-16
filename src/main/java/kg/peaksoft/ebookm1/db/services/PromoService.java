@@ -2,7 +2,7 @@ package kg.peaksoft.ebookm1.db.services;
 
 import kg.peaksoft.ebookm1.api.payload.promocode.PromoCodeResponse;
 import kg.peaksoft.ebookm1.db.entity.Book;
-import kg.peaksoft.ebookm1.db.entity.Promocode;
+import kg.peaksoft.ebookm1.db.entity.PromoCode;
 import kg.peaksoft.ebookm1.db.enums.RequestStatus;
 import kg.peaksoft.ebookm1.db.mapper.PromocodeViewMapper;
 import kg.peaksoft.ebookm1.db.repository.BookRepository;
@@ -27,7 +27,7 @@ public class PromoService {
 
     public PromoCodeResponse getPromocodeByName(String name) {
         String text = name == null ? " " : name;
-        Promocode promocode = promocodeRepository.findPromocodeByPromoName(text.toLowerCase(Locale.ROOT));
+        PromoCode promocode = promocodeRepository.findPromocodeByPromoName(text.toLowerCase(Locale.ROOT));
         List<Book> book = bookRepository.findAllByStatus(RequestStatus.APPROVED);
         List<Book> approvedBooks = new ArrayList<>();
         for (Book approved : book

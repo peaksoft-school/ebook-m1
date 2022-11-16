@@ -1,7 +1,6 @@
 package kg.peaksoft.ebookm1.db.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import kg.peaksoft.ebookm1.db.entity.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -39,7 +38,7 @@ public class User implements UserDetails {
     private boolean isActive;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Promocode> promocode;
+    private List<PromoCode> promocode;
 
     @JsonIgnore//fetch = FetchType.LAZY
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -59,7 +58,7 @@ public class User implements UserDetails {
 
     @JsonIgnore
     @OneToOne
-    @JoinColumn(name = "wishList_id")
+    @JoinColumn(name = "wish_list_id")
     private WishList wishList;
 
     @JsonIgnore

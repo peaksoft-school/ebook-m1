@@ -37,7 +37,7 @@ public class BookViewMapper {
         response.setAmountOfBooks(book.getAmountOfBooks());
         response.setDiscount(book.getDiscount());
         response.setBestseller(book.getBestseller());
-        response.setPromocode(book.getPromocode());
+        response.setPromocode(book.getPromoCode());
         response.setStatus(book.getStatus());
         response.setComments(book.getComments());
         response.setGenreEnum(book.getGenreEnum());

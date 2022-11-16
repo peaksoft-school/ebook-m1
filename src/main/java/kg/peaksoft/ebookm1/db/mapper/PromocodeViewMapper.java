@@ -2,7 +2,7 @@ package kg.peaksoft.ebookm1.db.mapper;
 
 
 import kg.peaksoft.ebookm1.api.payload.promocode.PromoCodeResponse;
-import kg.peaksoft.ebookm1.db.entity.Promocode;
+import kg.peaksoft.ebookm1.db.entity.PromoCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PromocodeViewMapper {
 
-    public PromoCodeResponse viewPromoMapper(Promocode promocode) {
+    public PromoCodeResponse viewPromoMapper(PromoCode promocode) {
         PromoCodeResponse response = new PromoCodeResponse();
         response.setId(promocode.getId());
         response.setPromoName(promocode.getPromoName());
@@ -24,9 +24,9 @@ public class PromocodeViewMapper {
         return response;
     }
 
-    public List<PromoCodeResponse> promocodeResponseList(List<Promocode> promocodes) {
+    public List<PromoCodeResponse> promocodeResponseList(List<PromoCode> promoCodes) {
         List<PromoCodeResponse> responseList = new ArrayList<>();
-        for (Promocode promocode : promocodes
+        for (PromoCode promocode : promoCodes
         ) {
             responseList.add(viewPromoMapper(promocode));
         }

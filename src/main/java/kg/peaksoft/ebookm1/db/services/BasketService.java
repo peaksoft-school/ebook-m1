@@ -79,12 +79,12 @@ public class BasketService {
     public BasketResponse promoCodeCalculation(Long baskedId, Long bookId, String promoName) {
         Basket basket = basketRepository.findById(baskedId).get();
         Book book = bookRepository.findById(bookId).get();
-        if (promoName.matches("(.*)" + book.getPromocode().getPromoName() + "(.*)")) {
+        if (promoName.matches("(.*)" + book.getPromoCode().getPromoName() + "(.*)")) {
             LocalDate currentTime = LocalDate.now();
-            LocalDate expirationDate = (book.getPromocode().getFinishingDay());
+            LocalDate expirationDate = (book.getPromoCode().getFinishingDay());
             long day = currentTime.until(expirationDate, ChronoUnit.DAYS);
             if (day >= 0) {
-                double percentage = (basket.getBasketPrice() * book.getPromocode().getAmountOfPromo()) / 100;
+                double percentage = (basket.getBasketPrice() * book.getPromoCode().getAmountOfPromo()) / 100;
                 double discount = basket.getBasketPrice() - percentage;
                 basket.setBasketPrice(discount);
                 basket.setStatus(PurchaseStatus.FINISHED);
