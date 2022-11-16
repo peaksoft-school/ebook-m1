@@ -7,14 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -28,11 +21,16 @@ import java.util.List;
 public class PromoCode {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "promo_code_gen")
+    @SequenceGenerator(name = "promo_code_gen", sequenceName = "promo_code_seq", allocationSize = 1)
     private Long id;
+
     private String promoName;
+
     private int amountOfPromo;
+
     private LocalDate startingDay;
+
     private LocalDate finishingDay;
 
     @ManyToOne()
@@ -43,4 +41,5 @@ public class PromoCode {
     @OneToMany(mappedBy = "promoCode")
     @JsonIgnore
     List<Book> books;
+
 }
