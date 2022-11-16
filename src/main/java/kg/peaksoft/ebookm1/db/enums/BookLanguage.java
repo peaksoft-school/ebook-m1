@@ -5,4 +5,5 @@ public enum BookLanguage {
     KYRGYZ,
     RUSSIAN,
     ENGLISH
+
 }
