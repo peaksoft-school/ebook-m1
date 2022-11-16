@@ -6,7 +6,7 @@
 //import kg.peaksoft.ebookm1.api.payload.vendor.VendorResponse;
 //import kg.peaksoft.ebookm1.db.entity.Book;
 //import kg.peaksoft.ebookm1.db.entity.Promocode;
-//import kg.peaksoft.ebookm1.db.entity.security.Role;
+//import kg.peaksoft.ebookm1.db.entity.Role;
 //import kg.peaksoft.ebookm1.db.entity.security.User;
 //import kg.peaksoft.ebookm1.db.enums.BookLanguage;
 //import kg.peaksoft.ebookm1.db.mapper.BookEditMapper;

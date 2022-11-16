@@ -1,5 +1,6 @@
-package kg.peaksoft.ebookm1.db.entity.security;
+package kg.peaksoft.ebookm1.db.entity;
 
+import kg.peaksoft.ebookm1.db.entity.security.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
