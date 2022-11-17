@@ -64,7 +64,8 @@ public class BasketService {
 
     public void deleteBasket(Long basketId) {
         log.info("Deleted basket by id: {}", basketId + " - basket id");
-        Basket basket = basketRepository.findById(basketId).get();
+        Basket basket = basketRepository.findById(basketId).orElseThrow(()->
+                new NoSuchElementException(Basket.class, basketId));
         int addBackAmountOfBook = basket.getBook().getAmountOfBooks()+basket.getQuantity();
         basket.getBook().setAmountOfBooks(addBackAmountOfBook);
         basketRepository.deleteById(basket.getId());
