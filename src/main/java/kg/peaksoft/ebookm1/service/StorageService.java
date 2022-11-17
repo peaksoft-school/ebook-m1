@@ -19,13 +19,12 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class StorageService implements kg.peaksoft.ebookm1.db.repository.StorageService {
+public class StorageService {
 
     @Value("${application.bucket.name}")
     private String bucketName;
     private final AmazonS3 s3;
 
-    @Override
     public byte[] downloadFile(String fileName) {
         S3Object object = s3.getObject(bucketName, fileName);
         S3ObjectInputStream objectContent = object.getObjectContent();
@@ -39,14 +38,12 @@ public class StorageService implements kg.peaksoft.ebookm1.db.repository.Storage
         }
     }
 
-    @Override
     public String deleteFile(String fileName) {
         s3.deleteObject(bucketName, fileName);
         log.info("The file was successfully deleted: {}", fileName + " - file name");
         return "The file was successfully deleted!";
     }
 
-    @Override
     public List<String> listAllFiles() {
         ListObjectsV2Result listObjectsV2Result = s3.listObjectsV2(bucketName);
         log.info("S3 file list: {}", listObjectsV2Result);
