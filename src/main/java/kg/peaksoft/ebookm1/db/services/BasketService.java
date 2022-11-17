@@ -58,7 +58,8 @@ public class BasketService {
 
     public BasketResponse getBasketById(Long id) {
         log.info("Getting basket by id: {}", id + " - book id");
-        return viewMapper.viewBasket(basketRepository.findById(id).get());
+        return viewMapper.viewBasket(basketRepository.findById(id).orElseThrow(()->
+                new NoSuchElementException(Basket.class, id)));
     }
 
     public void deleteBasket(Long basketId) {
