@@ -13,7 +13,7 @@ import kg.peaksoft.ebookm1.db.mapper.PromoCodeEditMapper;
 import kg.peaksoft.ebookm1.db.mapper.VendorEditMapper;
 import kg.peaksoft.ebookm1.db.mapper.VendorViewMapper;
 import kg.peaksoft.ebookm1.db.repository.BookRepository;
-import kg.peaksoft.ebookm1.db.repository.PromocodeRepository;
+import kg.peaksoft.ebookm1.db.repository.PromoCodeRepository;
 import kg.peaksoft.ebookm1.db.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +34,7 @@ public class VendorService {
     private final BookEditMapper bookEditMapper;
     private final BookRepository bookRepository;
     private final PromoCodeEditMapper promocodeEditMapper;
-    private final PromocodeRepository promocodeRepository;
+    private final PromoCodeRepository promocodeRepository;
 
     public VendorResponse create(VendorRequest request) {
         User vendor = editMapper.createVendor(request);
