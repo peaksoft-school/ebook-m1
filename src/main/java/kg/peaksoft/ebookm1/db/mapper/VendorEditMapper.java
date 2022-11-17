@@ -1,8 +1,8 @@
 package kg.peaksoft.ebookm1.db.mapper;
 
 import kg.peaksoft.ebookm1.api.payload.vendor.VendorRequest;
-import kg.peaksoft.ebookm1.db.entity.security.Role;
-import kg.peaksoft.ebookm1.db.entity.security.User;
+import kg.peaksoft.ebookm1.db.entity.Role;
+import kg.peaksoft.ebookm1.db.entity.User;
 import kg.peaksoft.ebookm1.db.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -27,9 +27,9 @@ public class VendorEditMapper {
         vendor.setPhoneNumber(request.getPhoneNumber());
         vendor.setEmail(request.getEmail());
         vendor.setPassword(request.getPassword());
-        vendor.setCreated(LocalDateTime.now());
+        vendor.setCreatedAt(LocalDateTime.now());
         vendor.setActive(true);
-        
+
         List<Role> roles = new ArrayList<>();
         Role role = roleRepository.findById(2L).get();
         roles.add(role);
@@ -45,4 +45,5 @@ public class VendorEditMapper {
         vendor.setPassword(request.getPassword());
         return vendor;
     }
+
 }

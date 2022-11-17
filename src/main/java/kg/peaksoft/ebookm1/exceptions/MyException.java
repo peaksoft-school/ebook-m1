@@ -15,4 +15,5 @@ public class MyException extends RuntimeException {
         HttpStatus = httpStatus;
         this.message = message1;
     }
+
 }

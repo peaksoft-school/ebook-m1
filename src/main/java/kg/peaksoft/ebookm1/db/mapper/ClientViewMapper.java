@@ -1,8 +1,8 @@
 package kg.peaksoft.ebookm1.db.mapper;
 
 import kg.peaksoft.ebookm1.api.payload.client.ClientResponse;
-import kg.peaksoft.ebookm1.db.entity.security.Role;
-import kg.peaksoft.ebookm1.db.entity.security.User;
+import kg.peaksoft.ebookm1.db.entity.Role;
+import kg.peaksoft.ebookm1.db.entity.User;
 import kg.peaksoft.ebookm1.db.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -26,7 +26,7 @@ public class ClientViewMapper {
         }
         response.setFirstName(user.getFirstName());
         response.setEmail(user.getEmail());
-        response.setCreated(user.getCreated());
+        response.setCreatedAt(user.getCreatedAt());
         response.setOperationList(user.getHistoryOperation());
         response.setActive(true);
         return response;
@@ -40,4 +40,5 @@ public class ClientViewMapper {
         }
         return clients;
     }
+
 }

@@ -1,6 +1,7 @@
 package kg.peaksoft.ebookm1.db.enums;
 
 public enum Genre {
+
     ACTION_ADVENTURE,
     ART_PHOTOGRAPHY,
     BIOGRAPHY,
@@ -19,4 +20,5 @@ public enum Genre {
     TRUE_CRIME,
     THRILLER_SUSPENSE,
     YOUNG_ADULT
+
 }

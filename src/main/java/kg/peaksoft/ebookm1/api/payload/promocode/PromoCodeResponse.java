@@ -2,20 +2,23 @@ package kg.peaksoft.ebookm1.api.payload.promocode;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import lombok.*;
+import kg.peaksoft.ebookm1.db.entity.Book;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class PromocodeRequest {
+public class PromoCodeResponse {
 
+    private Long id;
     private String promoName;
     private int amountOfPromo;
     private LocalDate startingDay;
     private LocalDate finishingDay;
+    private List<Book> bookList;
+
 }

@@ -1,8 +1,8 @@
 package kg.peaksoft.ebookm1.db.mapper;
 
 import kg.peaksoft.ebookm1.api.payload.client.ClientRequest;
-import kg.peaksoft.ebookm1.db.entity.security.Role;
-import kg.peaksoft.ebookm1.db.entity.security.User;
+import kg.peaksoft.ebookm1.db.entity.Role;
+import kg.peaksoft.ebookm1.db.entity.User;
 import kg.peaksoft.ebookm1.db.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -25,7 +25,7 @@ public class ClientEditMapper {
         user.setFirstName(userRequest.getFirstName());
         user.setEmail(userRequest.getEmail());
         user.setPassword(user.getPassword());
-        user.setCreated(LocalDateTime.now());
+        user.setCreatedAt(LocalDateTime.now());
         user.setActive(true);
 
         List<Role> roles = new ArrayList<>();
@@ -39,8 +39,9 @@ public class ClientEditMapper {
         user.setFirstName(userRequest.getFirstName());
         user.setEmail(userRequest.getEmail());
         user.setPassword(user.getPassword());
-        user.setCreated(LocalDateTime.now());
+        user.setCreatedAt(LocalDateTime.now());
         user.setActive(true);
         return user;
     }
+
 }

@@ -1,13 +1,22 @@
 package kg.peaksoft.ebookm1.db.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import kg.peaksoft.ebookm1.db.entity.security.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.time.LocalDate;
 
 @Getter
@@ -19,9 +28,11 @@ import java.time.LocalDate;
 public class HistoryOperation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "history_gen")
+    @SequenceGenerator(name = "history_gen", sequenceName = "history_seq", allocationSize = 1)
     private Long id;
-    private LocalDate createdDate;
+
+    private LocalDate createdAt;
 
     @JsonIgnore
     @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
@@ -39,12 +50,13 @@ public class HistoryOperation {
     public HistoryOperation(Basket basket, User user) {
         this.basket = basket;
         this.user = user;
-        this.createdDate = LocalDate.now();
+        this.createdAt = LocalDate.now();
     }
 
     public HistoryOperation(WishList wishList, User user) {
         this.wishList = wishList;
         this.user = user;
-        this.createdDate = LocalDate.now();
+        this.createdAt = LocalDate.now();
     }
+
 }

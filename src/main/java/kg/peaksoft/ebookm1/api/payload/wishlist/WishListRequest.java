@@ -11,4 +11,5 @@ import lombok.Setter;
 public class WishListRequest {
 
     private Long bookId;
+
 }

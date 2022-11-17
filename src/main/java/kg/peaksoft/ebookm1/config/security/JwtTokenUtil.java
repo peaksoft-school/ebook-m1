@@ -17,9 +17,9 @@ public class JwtTokenUtil {
 
     @Value("${jwtSecret}")
     private String jwtSecret;
-    private final Long JWT_TOKEN_VALIDITY = 7 * 24 * 60 * 60 * 1000L; //1 week
 
     private String createToken(Map<String, Object> claims, String subject) {
+        long JWT_TOKEN_VALIDITY = 7 * 24 * 60 * 60 * 1000L; //1 week
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)
@@ -63,4 +63,5 @@ public class JwtTokenUtil {
         final String username = getUserNameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
+
 }

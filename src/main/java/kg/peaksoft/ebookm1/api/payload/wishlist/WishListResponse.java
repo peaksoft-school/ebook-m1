@@ -14,7 +14,8 @@ import java.time.LocalDate;
 public class WishListResponse {
 
     private Long id;
-    private LocalDate createdDate;
+    private LocalDate createdAt;
     private Book book;
     private Long clientId;
+
 }

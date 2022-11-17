@@ -50,4 +50,5 @@ public class BookEditMapper {
         book.setTypeOfBook(bookRequest.getTypeOfBook());
         return book;
     }
+
 }

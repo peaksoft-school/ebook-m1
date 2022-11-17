@@ -15,7 +15,7 @@ public class WishListViewMapper {
     public WishListResponse viewWishList(WishList wishList) {
         WishListResponse wishListResponse = new WishListResponse();
         wishListResponse.setId(wishList.getId());
-        wishListResponse.setCreatedDate(wishList.getCreatedDate());
+        wishListResponse.setCreatedAt(wishList.getCreatedDate());
         wishListResponse.setBook(wishList.getBook());
         wishListResponse.setClientId(wishList.getUser().getId());
         return wishListResponse;
@@ -28,4 +28,5 @@ public class WishListViewMapper {
         }
         return wishlistResponses;
     }
+
 }

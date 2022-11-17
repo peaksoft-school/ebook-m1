@@ -1,8 +1,8 @@
 package kg.peaksoft.ebookm1.db.mapper;
 
 import kg.peaksoft.ebookm1.api.payload.vendor.VendorResponse;
-import kg.peaksoft.ebookm1.db.entity.security.Role;
-import kg.peaksoft.ebookm1.db.entity.security.User;
+import kg.peaksoft.ebookm1.db.entity.Role;
+import kg.peaksoft.ebookm1.db.entity.User;
 import kg.peaksoft.ebookm1.db.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -28,10 +28,10 @@ public class VendorViewMapper {
         response.setLastName(vendor.getLastName());
         response.setPhoneNumber(vendor.getPhoneNumber());
         response.setEmail(vendor.getEmail());
-        response.setCreated(vendor.getCreated());
+        response.setCreatedAt(vendor.getCreatedAt());
         response.setIsActive(true);
         response.setBookList(vendor.getBooks());
-        response.setPromocodes(vendor.getPromocode());
+        response.setPromoCodes(vendor.getPromoCode());
         return response;
     }
 
@@ -50,7 +50,8 @@ public class VendorViewMapper {
         response.setLastName(vendor.getLastName());
         response.setPhoneNumber(vendor.getPhoneNumber());
         response.setEmail(vendor.getEmail());
-        response.setCreated(vendor.getCreated());
+        response.setCreatedAt(vendor.getCreatedAt());
         return response;
     }
+
 }

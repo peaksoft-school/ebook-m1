@@ -14,5 +14,6 @@ public class HistoryResponse {
     private Long id;
     private Basket basket;
     private WishList wishList;
-    private LocalDate createdDate;
+    private LocalDate createdAt;
+
 }

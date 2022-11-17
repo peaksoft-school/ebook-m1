@@ -6,8 +6,8 @@
 //import kg.peaksoft.ebookm1.api.payload.vendor.VendorResponse;
 //import kg.peaksoft.ebookm1.db.entity.Book;
 //import kg.peaksoft.ebookm1.db.entity.Promocode;
-//import kg.peaksoft.ebookm1.db.entity.security.Role;
-//import kg.peaksoft.ebookm1.db.entity.security.User;
+//import kg.peaksoft.ebookm1.db.entity.Role;
+//import kg.peaksoft.ebookm1.db.entity.User;
 //import kg.peaksoft.ebookm1.db.enums.BookLanguage;
 //import kg.peaksoft.ebookm1.db.mapper.BookEditMapper;
 //import kg.peaksoft.ebookm1.db.mapper.PromocodeEditMapper;
@@ -128,8 +128,8 @@
 //    }
 //
 //    @Test
-//    @DisplayName("Test for create vendor")
-//    void create() {
+//    @DisplayName("Test for register vendor")
+//    void register() {
 //        doReturn(vendor).when(editMapper).createVendor(vendorRequest);
 //        String password = "1234567";
 //        doReturn(password).when(passwordEncoder).encode(vendorRequest.getPassword());
@@ -137,8 +137,8 @@
 //        doReturn(vendor).when(repository).save(vendor);
 //        doReturn(vendorResponse).when(viewMapper).viewVendor(vendor);
 //
-//        assertThat(vendorService.create(vendorRequest)).isEqualTo(vendorResponse);
-//        assertThat(vendorService.create(vendorRequest).getIsActive()).isTrue();
+//        assertThat(vendorService.register(vendorRequest)).isEqualTo(vendorResponse);
+//        assertThat(vendorService.register(vendorRequest).getIsActive()).isTrue();
 //    }
 //
 //    @Test
@@ -251,19 +251,19 @@
 //
 //
 //        @Test
-//        void addPromocode() {
+//        void addPromoCode() {
 //            vendorResponse.setPromocodes(List.of(promocode));
-//            doReturn(promocode).when(promocodeEditMapper).create(promocodeRequest);
+//            doReturn(promocode).when(promocodeEditMapper).register(promocodeRequest);
 //            doReturn(Optional.of(vendor)).when(repository).findById(1L);
 //            doReturn(promocode).when(promocodeRepository).save(promocode);
 //            doReturn(vendor).when(repository).save(vendor);
 //            doReturn(vendorResponse).when(viewMapper).viewVendor(vendor);
 //
-//            assertThat(vendorService.addPromocode(promocodeRequest, 1L).getPromocodes()).isEqualTo(vendorResponse.getPromocodes());
+//            assertThat(vendorService.addPromoCode(promocodeRequest, 1L).getPromocodes()).isEqualTo(vendorResponse.getPromocodes());
 //        }
 //
 //        @Test
-//        void updatePromocode() {
+//        void updatePromoCode() {
 //            doReturn(Optional.of(vendor)).when(repository).findById(1L);
 //            doReturn(Optional.of(promocode)).when(promocodeRepository).findById(10L);
 //            doReturn(promocode).when(promocodeEditMapper).update(promocode, promocodeRequest);
@@ -279,13 +279,13 @@
 //            vendorResponse.setPromocodes(List.of(promocode));
 //            doReturn(vendorResponse).when(viewMapper).viewVendor(vendor);
 //
-//            var actual = vendorService.updatePromocode(promocodeRequest, 1L, 10L);
+//            var actual = vendorService.updatePromoCode(promocodeRequest, 1L, 10L);
 //
 //            assertThat(actual.getPromocodes()).isEqualTo(vendorResponse.getPromocodes());
 //        }
 //
 //        @Test
-//        void deletePromocode() {
+//        void deletePromoCode() {
 //            Promocode promocode = Promocode.builder()
 //                    .id(10L)
 //                    .promoName("promo1")
@@ -316,7 +316,7 @@
 //            doReturn(vendor).when(repository).save(vendor);
 //            doReturn(vendorResponse).when(viewMapper).viewVendor(vendor);
 //
-//            assertThat(vendorService.deletePromocode(1L, 10L).getPromocodes().size()).isOne();
+//            assertThat(vendorService.deletePromoCode(1L, 10L).getPromocodes().size()).isOne();
 //        }
 //    }
 //}

@@ -15,10 +15,11 @@ import java.time.LocalDate;
 public class BasketResponse {
 
     private Long basketId;
-    private LocalDate createdDate;
+    private LocalDate createdAt;
     private Book book;
     private Long clientId;
     private Integer quantity;
     private PurchaseStatus purchaseStatus;
     private Double basketPrice;
+
 }

@@ -5,7 +5,7 @@ import kg.peaksoft.ebookm1.api.payload.basket.BasketResponse;
 import kg.peaksoft.ebookm1.db.entity.Book;
 import kg.peaksoft.ebookm1.db.entity.Basket;
 import kg.peaksoft.ebookm1.db.entity.HistoryOperation;
-import kg.peaksoft.ebookm1.db.entity.security.User;
+import kg.peaksoft.ebookm1.db.entity.User;
 import kg.peaksoft.ebookm1.db.enums.PurchaseStatus;
 import kg.peaksoft.ebookm1.db.mapper.BasketEditMapper;
 import kg.peaksoft.ebookm1.db.mapper.BasketViewMapper;
@@ -13,6 +13,7 @@ import kg.peaksoft.ebookm1.db.repository.BasketRepository;
 import kg.peaksoft.ebookm1.db.repository.BookRepository;
 import kg.peaksoft.ebookm1.db.repository.HistoryOperationRepository;
 import kg.peaksoft.ebookm1.db.repository.UserRepository;
+import kg.peaksoft.ebookm1.exceptions.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -34,8 +35,10 @@ public class BasketService {
     private final HistoryOperationRepository historyOperationRepo;
 
     public BasketResponse addBasket(BasketRequest basketRequest, long clientId) {
-        User client = userRepository.findById(clientId).get();
-        Book book = bookRepository.findById(basketRequest.getBookId()).get();
+        User client = userRepository.findById(clientId).orElseThrow(() ->
+                new NoSuchElementException(User.class, clientId));
+        Book book = bookRepository.findById(basketRequest.getBookId()).orElseThrow(() ->
+                new NoSuchElementException(Book.class, basketRequest.getBookId()));
         double amountOfBook = book.getAmountOfBooks() - (basketRequest.getQuantity());
         book.setAmountOfBooks((int) amountOfBook);
         Basket basket = new Basket(basketRequest.getQuantity(), book, client, basketRequest.getPurchaseStatus());
@@ -46,22 +49,24 @@ public class BasketService {
         return viewMapper.viewBasket(basketRepository.save(basket));
     }
 
-    public BasketResponse updateBasket(BasketRequest basketRequest, long clientId) {
-        log.info("updating the contents of the shopping basket: ");
+    public BasketResponse updateBasket(BasketRequest request, long clientId) {
+        log.info("Updating the contents of the shopping basket: ");
         return viewMapper.viewBasket(basketRepository.save(editMapper.updateBasket
-                (basketRepository.findById(basketRequest.getBasketId()).get(), basketRequest)));
+                (basketRepository.findById(request.getBasketId()).orElseThrow(() ->
+                        new NoSuchElementException(Basket.class, request.getBasketId())), request)));
     }
 
     public BasketResponse getBasketById(Long id) {
         log.info("Getting basket by id: {}", id + " - book id");
-
-        return viewMapper.viewBasket(basketRepository.findById(id).get());
+        return viewMapper.viewBasket(basketRepository.findById(id).orElseThrow(() ->
+                new NoSuchElementException(Basket.class, id)));
     }
 
     public void deleteBasket(Long basketId) {
         log.info("Deleted basket by id: {}", basketId + " - basket id");
-        Basket basket = basketRepository.findById(basketId).get();
-        int addBackAmountOfBook = basket.getBook().getAmountOfBooks()+basket.getQuantity();
+        Basket basket = basketRepository.findById(basketId).orElseThrow(() ->
+                new NoSuchElementException(Basket.class, basketId));
+        int addBackAmountOfBook = basket.getBook().getAmountOfBooks() + basket.getQuantity();
         basket.getBook().setAmountOfBooks(addBackAmountOfBook);
         basketRepository.deleteById(basket.getId());
     }
@@ -76,19 +81,21 @@ public class BasketService {
         return viewMapper.viewAllBaskets(basketRepository.findAllByStatus(PurchaseStatus.FINISHED));
     }
 
-    public BasketResponse promoCodeCalculation(Long baskedId, Long bookId, String promoName) {
-        Basket basket = basketRepository.findById(baskedId).get();
-        Book book = bookRepository.findById(bookId).get();
-        if (promoName.matches("(.*)" + book.getPromocode().getPromoName() + "(.*)")) {
+    public BasketResponse promoCodeCalculation(Long basketId, Long bookId, String promoName) {
+        Basket basket = basketRepository.findById(basketId).orElseThrow(() ->
+                new NoSuchElementException(Basket.class, basketId));
+        Book book = bookRepository.findById(bookId).orElseThrow(() ->
+                new NoSuchElementException(Book.class, bookId));
+        if (promoName.matches("(.*)" + book.getPromoCode().getPromoName() + "(.*)")) {
             LocalDate currentTime = LocalDate.now();
-            LocalDate expirationDate = (book.getPromocode().getFinishingDay());
+            LocalDate expirationDate = (book.getPromoCode().getFinishingDay());
             long day = currentTime.until(expirationDate, ChronoUnit.DAYS);
             if (day >= 0) {
-                double percentage = (basket.getBasketPrice() * book.getPromocode().getAmountOfPromo()) / 100;
+                double percentage = (basket.getBasketPrice() * book.getPromoCode().getAmountOfPromo()) / 100;
                 double discount = basket.getBasketPrice() - percentage;
                 basket.setBasketPrice(discount);
                 basket.setStatus(PurchaseStatus.FINISHED);
-                log.info("Promo code successfully activated: ", basket.getBasketPrice());
+                log.info("Promo code successfully activated: " + basket.getBasketPrice());
             } else {
                 basket.setBasketPrice(book.getPrice());
                 log.info("Promo code expired");
@@ -99,4 +106,5 @@ public class BasketService {
         }
         return viewMapper.viewBasket(basketRepository.save(basket));
     }
+
 }
