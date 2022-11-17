@@ -53,4 +53,5 @@ public class VendorViewMapper {
         response.setCreatedAt(vendor.getCreatedAt());
         return response;
     }
+
 }
