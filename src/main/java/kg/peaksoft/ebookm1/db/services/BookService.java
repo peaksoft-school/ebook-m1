@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @Service
@@ -89,10 +90,10 @@ public class BookService {
         return viewMapper.viewBooks(repository.findAllByStatus(RequestStatus.APPROVED, pageable));
     }
 
-    public List<BookResponse> getAllApprovedBookByGenreAndType(Genre genreEnum, TypeOfBook typeOfBook, int page) {
+    public List<BookResponse> getAllApprovedBookByGenreAndType(Genre genre, TypeOfBook type, int page) {
         int size = 10;
         Pageable pageable = PageRequest.of(page, size);
-        Specification<Book> filter = BookSpecification.getByStatusAndTypeOfBook(genreEnum, typeOfBook, RequestStatus.APPROVED);
+        Specification<Book> filter = BookSpecification.getByStatusAndTypeOfBook(genre, type, RequestStatus.APPROVED);
         log.info("Method for filtering all books by genre and type: ");
         return viewMapper.viewBooks(repository.findAll(filter, pageable));
     }
@@ -101,28 +102,24 @@ public class BookService {
         int size = 10;
         BookResponseView responseView = new BookResponseView();
         Pageable pageable = PageRequest.of(page, size);
-        responseView.setBookResponses((viewMapper.viewBooks
-                (viewMapper.searchBook(name, pageable))));
+        responseView.setBookResponses((viewMapper.viewBooks(viewMapper.searchBook(name, pageable))));
         log.info("Book search: ");
         return responseView;
     }
 
     public Page<Book> sortAndPagination(Integer pageNumber, Integer pageSize, String sortProperty) {
-        Pageable pageable = null;
-        if (null != sortProperty) {
-            pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, sortProperty);
-        } else {
-            pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, "sortProperty");
-        }
+        Pageable pageable;
+        pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, Objects.requireNonNullElse(sortProperty, "sortProperty"));
         log.info("Book sort: ");
         return repository.findAll(pageable);
     }
 
-    public List<BookResponse> filterByGenreAndTypeOfBooks(Genre genreEnum, TypeOfBook typeOfBook, int page) {
+    public List<BookResponse> filterByGenreAndTypeOfBooks(Genre genre, TypeOfBook type, int page) {
         int size = 10;
-        Specification<Book> filter = BookSpecification.getFilter(genreEnum, typeOfBook);
+        Specification<Book> filter = BookSpecification.getFilter(genre, type);
         Pageable pageable = PageRequest.of(page, size);
         log.info("Sorting by genre and type: ");
         return viewMapper.viewBooks(repository.findAll(filter, pageable));
     }
+
 }
