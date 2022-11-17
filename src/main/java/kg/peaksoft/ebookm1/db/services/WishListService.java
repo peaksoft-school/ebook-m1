@@ -29,11 +29,11 @@ public class WishListService {
     private final WishListRepository wishListRepository;
     private final HistoryOperationRepository historyOperationRepo;
 
-    public WishListResponse addWishList(WishListRequest wishListRequest, long clientId) {
+    public WishListResponse addWishList(WishListRequest request, Long clientId) {
         User client = userRepository.findById(clientId).orElseThrow(() ->
                 new NoSuchElementException(User.class, clientId));
-        Book book = bookRepository.findById(wishListRequest.getBookId()).orElseThrow(() ->
-                new NoSuchElementException(Book.class, wishListRequest.getBookId()));
+        Book book = bookRepository.findById(request.getBookId()).orElseThrow(() ->
+                new NoSuchElementException(Book.class, request.getBookId()));
         WishList wishList = new WishList(client, book);
         HistoryOperation wishListOperation = new HistoryOperation(wishList, client);
         historyOperationRepo.save(wishListOperation);
@@ -48,14 +48,15 @@ public class WishListService {
                 new NoSuchElementException(WishList.class, id)));
     }
 
-    public void deleteWishList(Long wishListId) {
-        log.info("Deleted wishlist by id: {}", wishListId);
-        wishListRepository.delete(wishListRepository.findById(wishListId).orElseThrow(() ->
-                new NoSuchElementException(WishList.class, wishListId)));
+    public void deleteWishList(Long id) {
+        log.info("Deleted wishlist by id: {}", id);
+        wishListRepository.delete(wishListRepository.findById(id).orElseThrow(() ->
+                new NoSuchElementException(WishList.class, id)));
     }
 
     public List<WishListResponse> getAllWishLists() {
         log.info("Getting all wishlists");
         return viewMapper.viewAllWishLists(wishListRepository.findAll());
     }
+
 }
