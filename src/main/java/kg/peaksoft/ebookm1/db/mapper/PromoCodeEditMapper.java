@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class PromocodeEditMapper {
+public class PromoCodeEditMapper {
 
     public PromoCode create(PromoCodeRequest promocodeRequest) {
         PromoCode promocode = new PromoCode();
@@ -25,4 +25,5 @@ public class PromocodeEditMapper {
         promocode.setFinishingDay(promocodeRequest.getFinishingDay());
         return promocode;
     }
+
 }

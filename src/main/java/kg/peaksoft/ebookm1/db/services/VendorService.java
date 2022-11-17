@@ -9,7 +9,7 @@ import kg.peaksoft.ebookm1.api.payload.vendor.VendorResponse;
 import kg.peaksoft.ebookm1.db.entity.PromoCode;
 import kg.peaksoft.ebookm1.db.entity.User;
 import kg.peaksoft.ebookm1.db.entity.Book;
-import kg.peaksoft.ebookm1.db.mapper.PromocodeEditMapper;
+import kg.peaksoft.ebookm1.db.mapper.PromoCodeEditMapper;
 import kg.peaksoft.ebookm1.db.mapper.VendorEditMapper;
 import kg.peaksoft.ebookm1.db.mapper.VendorViewMapper;
 import kg.peaksoft.ebookm1.db.repository.BookRepository;
@@ -33,7 +33,7 @@ public class VendorService {
     private final VendorViewMapper viewMapper;
     private final BookEditMapper bookEditMapper;
     private final BookRepository bookRepository;
-    private final PromocodeEditMapper promocodeEditMapper;
+    private final PromoCodeEditMapper promocodeEditMapper;
     private final PromocodeRepository promocodeRepository;
 
     public VendorResponse create(VendorRequest request) {
