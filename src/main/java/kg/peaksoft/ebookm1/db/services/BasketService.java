@@ -49,10 +49,11 @@ public class BasketService {
         return viewMapper.viewBasket(basketRepository.save(basket));
     }
 
-    public BasketResponse updateBasket(BasketRequest basketRequest, long clientId) {
-        log.info("updating the contents of the shopping basket: ");
+    public BasketResponse updateBasket(BasketRequest request, long clientId) {
+        log.info("Updating the contents of the shopping basket: ");
         return viewMapper.viewBasket(basketRepository.save(editMapper.updateBasket
-                (basketRepository.findById(basketRequest.getBasketId()).get(), basketRequest)));
+                (basketRepository.findById(request.getBasketId()).orElseThrow(()->
+                                new NoSuchElementException(Basket.class, request.getBasketId())), request)));
     }
 
     public BasketResponse getBasketById(Long id) {
