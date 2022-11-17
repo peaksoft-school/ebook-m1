@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class BasketEditMapper {
 
-    public Basket updateBasket(Basket basket, BasketRequest basketRequest) {
-        basket.setQuantity(basketRequest.getQuantity());
-        basket.setStatus(basketRequest.getPurchaseStatus());
+    public Basket updateBasket(Basket basket, BasketRequest request) {
+        basket.setQuantity(request.getQuantity());
+        basket.setStatus(request.getPurchaseStatus());
         return basket;
     }
 
