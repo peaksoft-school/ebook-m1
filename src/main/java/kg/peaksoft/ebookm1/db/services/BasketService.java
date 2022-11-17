@@ -13,6 +13,7 @@ import kg.peaksoft.ebookm1.db.repository.BasketRepository;
 import kg.peaksoft.ebookm1.db.repository.BookRepository;
 import kg.peaksoft.ebookm1.db.repository.HistoryOperationRepository;
 import kg.peaksoft.ebookm1.db.repository.UserRepository;
+import kg.peaksoft.ebookm1.exceptions.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -34,8 +35,10 @@ public class BasketService {
     private final HistoryOperationRepository historyOperationRepo;
 
     public BasketResponse addBasket(BasketRequest basketRequest, long clientId) {
-        User client = userRepository.findById(clientId).get();
-        Book book = bookRepository.findById(basketRequest.getBookId()).get();
+        User client = userRepository.findById(clientId).orElseThrow(() ->
+                new NoSuchElementException(User.class, clientId));
+        Book book = bookRepository.findById(basketRequest.getBookId()).orElseThrow(()->
+                new NoSuchElementException(Book.class, basketRequest.getBookId()));
         double amountOfBook = book.getAmountOfBooks() - (basketRequest.getQuantity());
         book.setAmountOfBooks((int) amountOfBook);
         Basket basket = new Basket(basketRequest.getQuantity(), book, client, basketRequest.getPurchaseStatus());
@@ -54,7 +57,6 @@ public class BasketService {
 
     public BasketResponse getBasketById(Long id) {
         log.info("Getting basket by id: {}", id + " - book id");
-
         return viewMapper.viewBasket(basketRepository.findById(id).get());
     }
 
