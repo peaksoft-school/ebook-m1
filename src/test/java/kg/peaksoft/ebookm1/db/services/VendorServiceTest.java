@@ -251,7 +251,7 @@
 //
 //
 //        @Test
-//        void addPromocode() {
+//        void addPromoCode() {
 //            vendorResponse.setPromocodes(List.of(promocode));
 //            doReturn(promocode).when(promocodeEditMapper).register(promocodeRequest);
 //            doReturn(Optional.of(vendor)).when(repository).findById(1L);
@@ -259,11 +259,11 @@
 //            doReturn(vendor).when(repository).save(vendor);
 //            doReturn(vendorResponse).when(viewMapper).viewVendor(vendor);
 //
-//            assertThat(vendorService.addPromocode(promocodeRequest, 1L).getPromocodes()).isEqualTo(vendorResponse.getPromocodes());
+//            assertThat(vendorService.addPromoCode(promocodeRequest, 1L).getPromocodes()).isEqualTo(vendorResponse.getPromocodes());
 //        }
 //
 //        @Test
-//        void updatePromocode() {
+//        void updatePromoCode() {
 //            doReturn(Optional.of(vendor)).when(repository).findById(1L);
 //            doReturn(Optional.of(promocode)).when(promocodeRepository).findById(10L);
 //            doReturn(promocode).when(promocodeEditMapper).update(promocode, promocodeRequest);
@@ -279,13 +279,13 @@
 //            vendorResponse.setPromocodes(List.of(promocode));
 //            doReturn(vendorResponse).when(viewMapper).viewVendor(vendor);
 //
-//            var actual = vendorService.updatePromocode(promocodeRequest, 1L, 10L);
+//            var actual = vendorService.updatePromoCode(promocodeRequest, 1L, 10L);
 //
 //            assertThat(actual.getPromocodes()).isEqualTo(vendorResponse.getPromocodes());
 //        }
 //
 //        @Test
-//        void deletePromocode() {
+//        void deletePromoCode() {
 //            Promocode promocode = Promocode.builder()
 //                    .id(10L)
 //                    .promoName("promo1")
@@ -316,7 +316,7 @@
 //            doReturn(vendor).when(repository).save(vendor);
 //            doReturn(vendorResponse).when(viewMapper).viewVendor(vendor);
 //
-//            assertThat(vendorService.deletePromocode(1L, 10L).getPromocodes().size()).isOne();
+//            assertThat(vendorService.deletePromoCode(1L, 10L).getPromocodes().size()).isOne();
 //        }
 //    }
 //}

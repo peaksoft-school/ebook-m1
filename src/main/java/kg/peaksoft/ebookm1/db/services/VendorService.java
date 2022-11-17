@@ -74,9 +74,9 @@ public class VendorService {
         return viewMapper.viewVendorById(vendor);
     }
 
-    //  addBook button function section
-    public VendorResponse addBookToVendor(BookRequest bookRequest, Long id) {
-        Book book = bookEditMapper.createBook(bookRequest);
+    //  addBook section
+    public VendorResponse addBookToVendor(BookRequest request, Long id) {
+        Book book = bookEditMapper.createBook(request);
         book.setStatus(RequestStatus.SUBMITTED);
         User user = repository.findById(id).orElseThrow(() ->
                 new NoSuchElementException(User.class, id));
@@ -87,12 +87,12 @@ public class VendorService {
         return viewMapper.viewVendor(user);
     }
 
-    public VendorResponse updateBookVendor(Long userId, Long bookId, BookRequest bookRequest) {
+    public VendorResponse updateBookVendor(Long userId, Long bookId, BookRequest request) {
         User user = repository.findById(userId).orElseThrow(() ->
                 new NoSuchElementException(User.class, userId));
         Book book = bookRepository.findById(bookId).orElseThrow(() ->
                 new NoSuchElementException(Book.class, bookId));
-        bookEditMapper.updateBook(book, bookRequest);
+        bookEditMapper.updateBook(book, request);
         book.setUser(user);
         book.setStatus(RequestStatus.SUBMITTED);
         bookRepository.save(book);
@@ -111,11 +111,10 @@ public class VendorService {
         log.info("The vendor has successfully deleted his book: {}", book.getTitle());
         return viewMapper.viewVendor(user);
     }
-    //  addBook button function section  ends  ==========================================================
 
-    // addPromocode section starts   ====================================================
-    public VendorResponse addPromocode(PromoCodeRequest promocodeRequest, Long id) {
-        PromoCode promocode = promocodeEditMapper.create(promocodeRequest);
+    // addPromoCode section
+    public VendorResponse addPromoCode(PromoCodeRequest request, Long id) {
+        PromoCode promocode = promocodeEditMapper.create(request);
         User user = repository.findById(id).orElseThrow(() ->
                 new NoSuchElementException(User.class, id));
         List<Book> bookList = user.getBooks();
@@ -129,12 +128,12 @@ public class VendorService {
         return viewMapper.viewVendor(user);
     }
 
-    public VendorResponse updatePromocode(PromoCodeRequest promocodeRequest, Long vendorId, Long promoCodeId) {
+    public VendorResponse updatePromoCode(PromoCodeRequest request, Long vendorId, Long promoCodeId) {
         User user = repository.findById(vendorId).orElseThrow(() ->
                 new NoSuchElementException(User.class, vendorId));
         PromoCode promocode = promocodeRepository.findById(promoCodeId).orElseThrow(() ->
                 new NoSuchElementException(PromoCode.class, promoCodeId));
-        promocodeEditMapper.update(promocode, promocodeRequest);
+        promocodeEditMapper.update(promocode, request);
         List<Book> bookList = user.getBooks();
         for (Book book : bookList) {
             book.setPromoCode(promocode);
@@ -146,14 +145,15 @@ public class VendorService {
         return viewMapper.viewVendor(user);
     }
 
-    public VendorResponse deletePromocode(Long vendorId, Long promoCodeId) {
+    public VendorResponse deletePromoCode(Long vendorId, Long promoCodeId) {
         User user = repository.findById(vendorId).orElseThrow(() ->
                 new NoSuchElementException(User.class, vendorId));
         PromoCode promocode = promocodeRepository.findById(promoCodeId).orElseThrow(() ->
                 new NoSuchElementException(PromoCode.class, promoCodeId));
         promocodeRepository.delete(promocode);
         repository.save(user);
-        log.info("The seller has successfully deleted the promo code: {}", promocode.getPromoName());
+        log.info("The vendor has successfully deleted the promo code: {}", promocode.getPromoName());
         return viewMapper.viewVendor(user);
     }
+
 }

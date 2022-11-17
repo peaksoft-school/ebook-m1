@@ -84,21 +84,21 @@ public class VendorController {
     @PostMapping("promo/{id}")
     public VendorResponse addPromoCode(@PathVariable long id, @RequestBody PromoCodeRequest promocodeRequest) {
         log.info("Inside Vendor controller add promo code to vendor method");
-        return service.addPromocode(promocodeRequest, id);
+        return service.addPromoCode(promocodeRequest, id);
     }
 
     @Operation(summary = "Method to update vendor's promo code", description = "Vendor can update his books from his promo code list")
     @PutMapping("promo/{vendorId}/{promoCodeId}")
     public VendorResponse updatePromoCode(@PathVariable long vendorId, @PathVariable long promoCodeId, @RequestBody PromoCodeRequest promocodeRequest) {
         log.info("Inside the Vendor controller, update the promo code of the vendor method");
-        return service.updatePromocode(promocodeRequest, vendorId, promoCodeId);
+        return service.updatePromoCode(promocodeRequest, vendorId, promoCodeId);
     }
 
     @Operation(summary = "Method to delete book", description = "Vendor and ADMIN can delete promo code from his book list")
     @DeleteMapping("promo/{vendorId}/{promoCodeId}")
     public VendorResponse deletePromoCode(@PathVariable long vendorId, @PathVariable long promoCodeId) {
         log.info("Inside the Vendor controller, delete the promo code of the vendor method");
-        return service.deletePromocode(vendorId, promoCodeId);
+        return service.deletePromoCode(vendorId, promoCodeId);
     }
 
 }
