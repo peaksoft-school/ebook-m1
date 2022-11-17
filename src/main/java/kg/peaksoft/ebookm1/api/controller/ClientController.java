@@ -173,7 +173,7 @@ public class ClientController {
     public PromoCodeResponse activationOfPromoCode(@RequestParam(value = "promoName", required = false) String promoName
     ) {
         log.info("Promo code is activated: ");
-        return promoService.getPromocodeByName(promoName);
+        return promoService.getPromoCodeByName(promoName);
     }
 
     @Operation(summary = "Method for managing discount operations", description = "The CLIENT can check promocode whether his promocode valid or not")

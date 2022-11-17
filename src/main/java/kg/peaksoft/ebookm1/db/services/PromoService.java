@@ -24,18 +24,14 @@ public class PromoService {
     private final PromoCodeViewMapper promocodeViewMapper;
     private final BookRepository bookRepository;
 
-
-    public PromoCodeResponse getPromocodeByName(String name) {
+    public PromoCodeResponse getPromoCodeByName(String name) {
         String text = name == null ? " " : name;
         PromoCode promocode = promocodeRepository.findPromoCodeByPromoName(text.toLowerCase(Locale.ROOT));
         List<Book> book = bookRepository.findAllByStatus(RequestStatus.APPROVED);
-        List<Book> approvedBooks = new ArrayList<>();
-        for (Book approved : book
-        ) {
-            approvedBooks.add(approved);
-        }
+        List<Book> approvedBooks = new ArrayList<>(book);
         promocode.setBooks(approvedBooks);
         log.info("All approved books with related promo code:");
         return promocodeViewMapper.viewPromoMapper(promocode);
     }
+
 }
