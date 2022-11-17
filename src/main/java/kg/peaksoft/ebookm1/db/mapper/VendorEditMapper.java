@@ -29,7 +29,7 @@ public class VendorEditMapper {
         vendor.setPassword(request.getPassword());
         vendor.setCreatedAt(LocalDateTime.now());
         vendor.setActive(true);
-        
+
         List<Role> roles = new ArrayList<>();
         Role role = roleRepository.findById(2L).get();
         roles.add(role);
@@ -45,4 +45,5 @@ public class VendorEditMapper {
         vendor.setPassword(request.getPassword());
         return vendor;
     }
+
 }
