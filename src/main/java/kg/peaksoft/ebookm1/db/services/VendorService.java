@@ -15,6 +15,7 @@ import kg.peaksoft.ebookm1.db.mapper.VendorViewMapper;
 import kg.peaksoft.ebookm1.db.repository.BookRepository;
 import kg.peaksoft.ebookm1.db.repository.PromoCodeRepository;
 import kg.peaksoft.ebookm1.db.repository.UserRepository;
+import kg.peaksoft.ebookm1.exceptions.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -36,7 +37,7 @@ public class VendorService {
     private final PromoCodeEditMapper promocodeEditMapper;
     private final PromoCodeRepository promocodeRepository;
 
-    public VendorResponse create(VendorRequest request) {
+    public VendorResponse register(VendorRequest request) {
         User vendor = editMapper.createVendor(request);
         vendor.setPassword(passwordEncoder.encode(request.getPassword()));
         vendor.isActive();
@@ -46,14 +47,16 @@ public class VendorService {
     }
 
     public VendorResponse update(Long id, VendorRequest request) {
-        User vendor = repository.findById(id).get();
+        User vendor = repository.findById(id).orElseThrow(() ->
+                new NoSuchElementException(User.class, id));
         editMapper.updateVendor(vendor, request);
         log.info("The vendor has successfully updated his data: {}", vendor.getFirstName());
         return viewMapper.viewVendor(repository.save(vendor));
     }
 
     public VendorResponse deleteById(Long id) {
-        User vendor = repository.findById(id).get();
+        User vendor = repository.findById(id).orElseThrow(() ->
+                new NoSuchElementException(User.class, id));
         repository.deleteById(id);
         log.info("The vendor was successfully removed by ID from the database: {}", vendor.getFirstName());
         return viewMapper.viewVendor(vendor);
@@ -65,16 +68,18 @@ public class VendorService {
     }
 
     public VendorResponse gitById(Long id) {
-        User vendor = repository.findById(id).get();
+        User vendor = repository.findById(id).orElseThrow(() ->
+                new NoSuchElementException(User.class, id));
         log.info("getting a vendor by id: {}", vendor.getFirstName());
         return viewMapper.viewVendorById(vendor);
     }
 
-    //  addBook button function section  starts  ==========================================================
+    //  addBook button function section
     public VendorResponse addBookToVendor(BookRequest bookRequest, Long id) {
         Book book = bookEditMapper.createBook(bookRequest);
         book.setStatus(RequestStatus.SUBMITTED);
-        User user = repository.findById(id).get();
+        User user = repository.findById(id).orElseThrow(() ->
+                new NoSuchElementException(User.class, id));
         book.setUser(user);
         bookRepository.save(book);
         repository.save(user);
@@ -83,8 +88,10 @@ public class VendorService {
     }
 
     public VendorResponse updateBookVendor(Long userId, Long bookId, BookRequest bookRequest) {
-        User user = repository.findById(userId).get();
-        Book book = bookRepository.findById(bookId).get();
+        User user = repository.findById(userId).orElseThrow(() ->
+                new NoSuchElementException(User.class, userId));
+        Book book = bookRepository.findById(bookId).orElseThrow(() ->
+                new NoSuchElementException(Book.class, bookId));
         bookEditMapper.updateBook(book, bookRequest);
         book.setUser(user);
         book.setStatus(RequestStatus.SUBMITTED);
@@ -95,9 +102,10 @@ public class VendorService {
     }
 
     public VendorResponse deleteBookVendor(Long userId, Long bookId) {
-
-        User user = repository.findById(userId).get();
-        Book book = bookRepository.findById(bookId).get();
+        User user = repository.findById(userId).orElseThrow(() ->
+                new NoSuchElementException(User.class, userId));
+        Book book = bookRepository.findById(bookId).orElseThrow(() ->
+                new NoSuchElementException(Book.class, bookId));
         bookRepository.deleteById(bookId);
         repository.save(user);
         log.info("The vendor has successfully deleted his book: {}", book.getTitle());
@@ -108,7 +116,8 @@ public class VendorService {
     // addPromocode section starts   ====================================================
     public VendorResponse addPromocode(PromoCodeRequest promocodeRequest, Long id) {
         PromoCode promocode = promocodeEditMapper.create(promocodeRequest);
-        User user = repository.findById(id).get();
+        User user = repository.findById(id).orElseThrow(() ->
+                new NoSuchElementException(User.class, id));
         List<Book> bookList = user.getBooks();
         for (Book book : bookList) {
             book.setPromoCode(promocode);
@@ -121,8 +130,10 @@ public class VendorService {
     }
 
     public VendorResponse updatePromocode(PromoCodeRequest promocodeRequest, Long vendorId, Long promoCodeId) {
-        User user = repository.findById(vendorId).get();
-        PromoCode promocode = promocodeRepository.findById(promoCodeId).get();
+        User user = repository.findById(vendorId).orElseThrow(() ->
+                new NoSuchElementException(User.class, vendorId));
+        PromoCode promocode = promocodeRepository.findById(promoCodeId).orElseThrow(() ->
+                new NoSuchElementException(PromoCode.class, promoCodeId));
         promocodeEditMapper.update(promocode, promocodeRequest);
         List<Book> bookList = user.getBooks();
         for (Book book : bookList) {
@@ -136,8 +147,10 @@ public class VendorService {
     }
 
     public VendorResponse deletePromocode(Long vendorId, Long promoCodeId) {
-        User user = repository.findById(vendorId).get();
-        PromoCode promocode = promocodeRepository.findById(promoCodeId).get();
+        User user = repository.findById(vendorId).orElseThrow(() ->
+                new NoSuchElementException(User.class, vendorId));
+        PromoCode promocode = promocodeRepository.findById(promoCodeId).orElseThrow(() ->
+                new NoSuchElementException(PromoCode.class, promoCodeId));
         promocodeRepository.delete(promocode);
         repository.save(user);
         log.info("The seller has successfully deleted the promo code: {}", promocode.getPromoName());

@@ -128,8 +128,8 @@
 //    }
 //
 //    @Test
-//    @DisplayName("Test for create vendor")
-//    void create() {
+//    @DisplayName("Test for register vendor")
+//    void register() {
 //        doReturn(vendor).when(editMapper).createVendor(vendorRequest);
 //        String password = "1234567";
 //        doReturn(password).when(passwordEncoder).encode(vendorRequest.getPassword());
@@ -137,8 +137,8 @@
 //        doReturn(vendor).when(repository).save(vendor);
 //        doReturn(vendorResponse).when(viewMapper).viewVendor(vendor);
 //
-//        assertThat(vendorService.create(vendorRequest)).isEqualTo(vendorResponse);
-//        assertThat(vendorService.create(vendorRequest).getIsActive()).isTrue();
+//        assertThat(vendorService.register(vendorRequest)).isEqualTo(vendorResponse);
+//        assertThat(vendorService.register(vendorRequest).getIsActive()).isTrue();
 //    }
 //
 //    @Test
@@ -253,7 +253,7 @@
 //        @Test
 //        void addPromocode() {
 //            vendorResponse.setPromocodes(List.of(promocode));
-//            doReturn(promocode).when(promocodeEditMapper).create(promocodeRequest);
+//            doReturn(promocode).when(promocodeEditMapper).register(promocodeRequest);
 //            doReturn(Optional.of(vendor)).when(repository).findById(1L);
 //            doReturn(promocode).when(promocodeRepository).save(promocode);
 //            doReturn(vendor).when(repository).save(vendor);

@@ -61,7 +61,7 @@ public class AuthController {
     @PostMapping("register/vendor")
     public VendorResponse registration(@RequestBody VendorRequest request) {
         log.info("Inside AuthController registration vendor method");
-        return vendorService.create(request);
+        return vendorService.register(request);
     }
 
     @Operation(summary = "Register client", description = "Client registration")
