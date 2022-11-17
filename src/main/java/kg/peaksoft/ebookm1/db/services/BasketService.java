@@ -37,7 +37,7 @@ public class BasketService {
     public BasketResponse addBasket(BasketRequest basketRequest, long clientId) {
         User client = userRepository.findById(clientId).orElseThrow(() ->
                 new NoSuchElementException(User.class, clientId));
-        Book book = bookRepository.findById(basketRequest.getBookId()).orElseThrow(()->
+        Book book = bookRepository.findById(basketRequest.getBookId()).orElseThrow(() ->
                 new NoSuchElementException(Book.class, basketRequest.getBookId()));
         double amountOfBook = book.getAmountOfBooks() - (basketRequest.getQuantity());
         book.setAmountOfBooks((int) amountOfBook);
@@ -52,21 +52,21 @@ public class BasketService {
     public BasketResponse updateBasket(BasketRequest request, long clientId) {
         log.info("Updating the contents of the shopping basket: ");
         return viewMapper.viewBasket(basketRepository.save(editMapper.updateBasket
-                (basketRepository.findById(request.getBasketId()).orElseThrow(()->
-                                new NoSuchElementException(Basket.class, request.getBasketId())), request)));
+                (basketRepository.findById(request.getBasketId()).orElseThrow(() ->
+                        new NoSuchElementException(Basket.class, request.getBasketId())), request)));
     }
 
     public BasketResponse getBasketById(Long id) {
         log.info("Getting basket by id: {}", id + " - book id");
-        return viewMapper.viewBasket(basketRepository.findById(id).orElseThrow(()->
+        return viewMapper.viewBasket(basketRepository.findById(id).orElseThrow(() ->
                 new NoSuchElementException(Basket.class, id)));
     }
 
     public void deleteBasket(Long basketId) {
         log.info("Deleted basket by id: {}", basketId + " - basket id");
-        Basket basket = basketRepository.findById(basketId).orElseThrow(()->
+        Basket basket = basketRepository.findById(basketId).orElseThrow(() ->
                 new NoSuchElementException(Basket.class, basketId));
-        int addBackAmountOfBook = basket.getBook().getAmountOfBooks()+basket.getQuantity();
+        int addBackAmountOfBook = basket.getBook().getAmountOfBooks() + basket.getQuantity();
         basket.getBook().setAmountOfBooks(addBackAmountOfBook);
         basketRepository.deleteById(basket.getId());
     }
@@ -82,8 +82,10 @@ public class BasketService {
     }
 
     public BasketResponse promoCodeCalculation(Long baskedId, Long bookId, String promoName) {
-        Basket basket = basketRepository.findById(baskedId).get();
-        Book book = bookRepository.findById(bookId).get();
+        Basket basket = basketRepository.findById(baskedId).orElseThrow(() ->
+                new NoSuchElementException(Basket.class, baskedId));
+        Book book = bookRepository.findById(bookId).orElseThrow(() ->
+                new NoSuchElementException(Book.class, bookId));
         if (promoName.matches("(.*)" + book.getPromoCode().getPromoName() + "(.*)")) {
             LocalDate currentTime = LocalDate.now();
             LocalDate expirationDate = (book.getPromoCode().getFinishingDay());
@@ -93,7 +95,7 @@ public class BasketService {
                 double discount = basket.getBasketPrice() - percentage;
                 basket.setBasketPrice(discount);
                 basket.setStatus(PurchaseStatus.FINISHED);
-                log.info("Promo code successfully activated: ", basket.getBasketPrice());
+                log.info("Promo code successfully activated: " + basket.getBasketPrice());
             } else {
                 basket.setBasketPrice(book.getPrice());
                 log.info("Promo code expired");
@@ -104,4 +106,5 @@ public class BasketService {
         }
         return viewMapper.viewBasket(basketRepository.save(basket));
     }
+
 }
