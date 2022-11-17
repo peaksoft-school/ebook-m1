@@ -2,48 +2,28 @@ package kg.peaksoft.ebookm1.service;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ListObjectsV2Result;
-import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.amazonaws.util.IOUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import kg.peaksoft.ebookm1.db.repository.FileServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class StorageService implements FileServiceImpl {
+public class StorageService implements kg.peaksoft.ebookm1.db.repository.StorageService {
 
     @Value("${application.bucket.name}")
     private String bucketName;
     private final AmazonS3 s3;
-
-    @Override
-    public String saveFile(MultipartFile file) {
-        String originalFileName = file.getOriginalFilename();
-        try {
-            File file1 = convertMultiPartToFile(file);
-            PutObjectResult putObjectResult = s3.putObject(bucketName, originalFileName, file1);
-            log.info("The file (photo, video, audio, etc.) has been successfully uploaded to S3: {}", file1.getName());
-            return putObjectResult.getContentMd5();
-        } catch (IOException e) {
-            log.error("Failed to save file to S3");
-            throw new RuntimeException(e);
-        }
-    }
 
     @Override
     public byte[] downloadFile(String fileName) {
@@ -72,14 +52,6 @@ public class StorageService implements FileServiceImpl {
         log.info("S3 file list: {}", listObjectsV2Result);
         return listObjectsV2Result.getObjectSummaries().stream()
                 .map(S3ObjectSummary::getKey).collect(Collectors.toList());
-    }
-
-    private File convertMultiPartToFile(MultipartFile file) throws IOException {
-        File convFile = new File(Objects.requireNonNull(file.getOriginalFilename()));
-        FileOutputStream fos = new FileOutputStream(convFile);
-        fos.write(file.getBytes());
-        fos.close();
-        return convFile;
     }
 
 }
