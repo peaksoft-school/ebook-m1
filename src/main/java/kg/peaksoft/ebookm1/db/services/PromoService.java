@@ -4,7 +4,7 @@ import kg.peaksoft.ebookm1.api.payload.promocode.PromoCodeResponse;
 import kg.peaksoft.ebookm1.db.entity.Book;
 import kg.peaksoft.ebookm1.db.entity.PromoCode;
 import kg.peaksoft.ebookm1.db.enums.RequestStatus;
-import kg.peaksoft.ebookm1.db.mapper.PromocodeViewMapper;
+import kg.peaksoft.ebookm1.db.mapper.PromoCodeViewMapper;
 import kg.peaksoft.ebookm1.db.repository.BookRepository;
 import kg.peaksoft.ebookm1.db.repository.PromocodeRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ import java.util.Locale;
 public class PromoService {
 
     private final PromocodeRepository promocodeRepository;
-    private final PromocodeViewMapper promocodeViewMapper;
+    private final PromoCodeViewMapper promocodeViewMapper;
     private final BookRepository bookRepository;
 
 
