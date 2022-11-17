@@ -11,6 +11,7 @@ import kg.peaksoft.ebookm1.db.repository.BookRepository;
 import kg.peaksoft.ebookm1.db.repository.HistoryOperationRepository;
 import kg.peaksoft.ebookm1.db.repository.UserRepository;
 import kg.peaksoft.ebookm1.db.repository.WishListRepository;
+import kg.peaksoft.ebookm1.exceptions.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -29,8 +30,10 @@ public class WishListService {
     private final HistoryOperationRepository historyOperationRepo;
 
     public WishListResponse addWishList(WishListRequest wishListRequest, long clientId) {
-        User client = userRepository.findById(clientId).get();
-        Book book = bookRepository.findById(wishListRequest.getBookId()).get();
+        User client = userRepository.findById(clientId).orElseThrow(() ->
+                new NoSuchElementException(User.class, clientId));
+        Book book = bookRepository.findById(wishListRequest.getBookId()).orElseThrow(() ->
+                new NoSuchElementException(Book.class, wishListRequest.getBookId()));
         WishList wishList = new WishList(client, book);
         HistoryOperation wishListOperation = new HistoryOperation(wishList, client);
         historyOperationRepo.save(wishListOperation);
@@ -41,12 +44,14 @@ public class WishListService {
 
     public WishListResponse getWishListById(Long id) {
         log.info("Getting wishlist by id: {}", id);
-        return viewMapper.viewWishList(wishListRepository.findById(id).get());
+        return viewMapper.viewWishList(wishListRepository.findById(id).orElseThrow(() ->
+                new NoSuchElementException(WishList.class, id)));
     }
 
     public void deleteWishList(Long wishListId) {
         log.info("Deleted wishlist by id: {}", wishListId);
-        wishListRepository.delete(wishListRepository.findById(wishListId).get());
+        wishListRepository.delete(wishListRepository.findById(wishListId).orElseThrow(() ->
+                new NoSuchElementException(WishList.class, wishListId)));
     }
 
     public List<WishListResponse> getAllWishLists() {
