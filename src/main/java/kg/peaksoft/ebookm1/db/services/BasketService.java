@@ -81,9 +81,9 @@ public class BasketService {
         return viewMapper.viewAllBaskets(basketRepository.findAllByStatus(PurchaseStatus.FINISHED));
     }
 
-    public BasketResponse promoCodeCalculation(Long baskedId, Long bookId, String promoName) {
-        Basket basket = basketRepository.findById(baskedId).orElseThrow(() ->
-                new NoSuchElementException(Basket.class, baskedId));
+    public BasketResponse promoCodeCalculation(Long basketId, Long bookId, String promoName) {
+        Basket basket = basketRepository.findById(basketId).orElseThrow(() ->
+                new NoSuchElementException(Basket.class, basketId));
         Book book = bookRepository.findById(bookId).orElseThrow(() ->
                 new NoSuchElementException(Book.class, bookId));
         if (promoName.matches("(.*)" + book.getPromoCode().getPromoName() + "(.*)")) {
